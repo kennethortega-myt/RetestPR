@@ -1,0 +1,93 @@
+<section class="contenido-nofixed">
+  <section class="cont-flex">
+    <div class="w-100 lineTitle">
+      <span class="icono_titulo icon-ico_menu_actas"></span>
+      <div class="">
+        <h1 class="titulo1 nomarginhv"> {{ electionDescriptionTitle }}</h1>
+        <div class="actualizado">
+          <b>{{ 'acta-component.actualizado' | translate }} {{ resumen?.fechaActualizacion | date : "dd/MM/yyyy" }} {{ 'acta-component.aLas' | translate }}
+            {{ resumen?.fechaActualizacion | hourFormat }}
+          </b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="w-100 p-0-movil d-flex flex-grow-1">
+    <div class="tabs-group">
+      <div class="tabs">
+        <button class="tab-flechas" *ngIf="isMobile" (click)="scrollTabs('left')" [disabled]="!canScrollLeft">
+          &#8249;
+        </button>
+        
+        <div class="tabs_scroll">
+          <div class="tabs_container" [style.transform]="getTransformStyle()">
+            <button class="tablinks active" (click)="openTab('tab1')" [class.active]="activeTab === 'tab1'" id="activo1">
+              <span class="label">{{ 'acta-component.resumen' | translate }}</span>
+            </button>
+            <button class="tablinks" (click)="openTab('tab2')" [class.active]="activeTab === 'tab2'" id="activo2">
+              <span class="label">{{ 'acta-component.porAmbito' | translate }}</span>
+            </button>
+            <button class="tablinks" (click)="openTab('tab3')" [class.active]="activeTab === 'tab3'" id="activo3">
+              <span class="label">{{ 'acta-component.porMesaDni' | translate }}</span>
+            </button>
+            <button class="tablinks" (click)="openTab('tab4')" [class.active]="activeTab === 'tab4'" id="activo4">
+              <span class="label">{{ 'acta-component.enviadasJee' | translate }}</span>
+            </button>
+          </div>
+          <div class="seleccion"></div>
+        </div>
+        
+        <button class="tab-flechas" *ngIf="isMobile" (click)="scrollTabs('right')" [disabled]="!canScrollRight">
+          &#8250;
+        </button>
+      </div>
+
+      <div class="tab-conte bg_blanco" id="tab1" [class.active]="activeTab === 'tab1' && resumen?.fechaActualizacion">
+        <ng-container *ngIf="activeTab === 'tab1'">
+          <app-actas-resumen
+            [idEleccion]="idEleccion"
+            [resumen]="resumen"
+            [idProceso]="idProceso"
+            [ingresoTabCuatro]="ingresoTabUno"
+          ></app-actas-resumen>
+        </ng-container>
+      </div>
+
+      <div class="tab-conte" id="tab2" [class.active]="activeTab === 'tab2'">
+        <ng-container *ngIf="activeTab === 'tab2'">
+          <app-actas-por-ambito class="w-100 bg_blanco"
+            [idEleccion]="idEleccion"
+            [resumen]="resumen"
+            [elecciones]="elecciones"
+            [ingresoTabDos]="ingresoTabDos"
+            ></app-actas-por-ambito>
+        </ng-container>
+      </div>
+
+      <div class="tab-conte" id="tab3" [class.active]="activeTab === 'tab3'">
+        <ng-container *ngIf="activeTab === 'tab3'">
+          <app-actas-por-mesa class="w-100 d-flex flex-grow-1 flex-column bg_blanco"
+            [idEleccion]="idEleccion"
+            [ingreso]="ingresoTabTres"
+            [resumen]="resumen"
+            [elecciones]="elecciones"
+          ></app-actas-por-mesa>
+        </ng-container>
+      </div>
+
+      <div class="tab-conte" id="tab4" [class.active]="activeTab === 'tab4'">
+        <ng-container *ngIf="activeTab === 'tab4'">
+          <app-actas-observadas class="w-100  bg_blanco"
+            [resumen]="resumen"
+            [idEleccion]="idEleccion"
+            [elecciones]="elecciones"
+            [ingresoTabTres]="ingresoTabCuatro"
+            ></app-actas-observadas>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

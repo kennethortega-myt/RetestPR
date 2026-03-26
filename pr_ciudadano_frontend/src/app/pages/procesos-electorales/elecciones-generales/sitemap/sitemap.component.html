@@ -1,0 +1,291 @@
+<section class="contenido-nofixed">
+  <div class="cont-minimo">
+    <section class="cont-flex">
+      <div class="w-100">
+        <h1 class="titulo1"><span class="icono_titulo icon-ico-participacion2"></span>{{ 'Sitemap.Sitemap' | translate }}</h1>
+      </div>
+    </section>
+    <section class="sitemap-content">
+      <nav aria-label="Navegación principal - Secciones electorales">
+        <ul>
+          <li>
+            <h2 id="resumen-general">{{ 'Sitemap.ResumenGeneral' | translate }}</h2>
+            <ul aria-labelledby="resumen-general">
+              <li>
+                <button (click)="goToEleccion(RESUMEN, SELECCION.CERO)">
+                  <strong>{{ 'Sitemap.PresidenciaRepublica' | translate }}: </strong>
+                  {{ 'Sitemap.DetallePresidenciaRepublica' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(RESUMEN, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.EleccionDEU' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleEleccionDEU' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(RESUMEN, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.EleccionDEM' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleEleccionDEM' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(RESUMEN, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.EleccionDiputados' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleEleccionDiputados' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(RESUMEN, SELECCION.CUATRO)">
+                  <strong>{{ 'Sitemap.EleccionParlamento' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleEleccionParlamento' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="presidencia">{{ 'Sitemap.Presidencia' | translate }}</h2>
+            <ul aria-labelledby="presidencia">
+              <li>
+                <button (click)="goToEleccion(PRESIDENCIAL, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.ReUbicacionGeografica' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReUbicacionGeografica' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(PRESIDENCIAL, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.ReOrganizacionPolitica' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReOrganizacionPolitica' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="senadores-multiple">{{ 'Sitemap.SenadoresDEM' | translate }}</h2>
+            <ul aria-labelledby="senadores-multiple">
+              <li>
+                <button (click)="goToEleccion(SENADOR_MULTIPLE, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.ReUbicacionGeograficaDEM' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReUbicacionGeograficaDEM' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(SENADOR_MULTIPLE, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.ReOrganizacionPoliticaDEM' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReOrganizacionPoliticaDEM' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(SENADOR_MULTIPLE, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.ReCandidato' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReCandidato' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="senadores-unico">{{ 'Sitemap.SenadoresDEU' | translate }}</h2>
+            <ul aria-labelledby="senadores-unico">
+              <li>
+                <button (click)="goToEleccion(SENADOR_UNICO, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.ReUbicacionGeograficaDEU' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReUbicacionGeograficaDEU' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(SENADOR_UNICO, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.ReOrganizacionPoliticaDEU' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReOrganizacionPoliticaDEU' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(SENADOR_UNICO, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.ReCandidatoDEU' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReCandidatoDEU' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="diputados">{{ 'Sitemap.Diputados' | translate }}</h2>
+            <ul aria-labelledby="diputados">
+              <li>
+                <button (click)="goToEleccion(DIPUTADOS, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.ReUbicacionGeograficaDiputados' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReUbicacionGeograficaDiputados' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(DIPUTADOS, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.ReOrganizacionPoliticaDiputados' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReOrganizacionPoliticaDiputados' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(DIPUTADOS, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.ReCandidatoDiputados' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReCandidatoDiputados' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="parlamento-andino">{{ 'Sitemap.ParlamentoAndino' | translate }}</h2>
+            <ul aria-labelledby="parlamento-andino">
+              <li>
+                <button (click)="goToEleccion(PARLAMENTO, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.ReUbicacionGeograficaParlamento' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReUbicacionGeograficaParlamento' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(PARLAMENTO, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.ReOrganizacionPoliticaParlamento' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReOrganizacionPoliticaParlamento' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(PARLAMENTO, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.ReCandidatoParlamento' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReCandidatoParlamento' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="participacion">Participación ciudadana</h2>
+            <ul aria-labelledby="participacion">
+              <li>
+                <button (click)="goToEleccion(PARTICIPACION)">
+                  <strong>{{ 'Sitemap.ParticipacionCiudadana' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleParticipacionCiudadana' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="actas">{{ 'Sitemap.Actas' | translate }}</h2>
+            <ul aria-labelledby="actas">
+              <li>
+                <button (click)="goToEleccion(ACTAS, SELECCION.UNO)">
+                  <strong>{{ 'Sitemap.Resumen' | translate }}: </strong> {{ 'Sitemap.DetalleResumen' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(ACTAS, SELECCION.DOS)">
+                  <strong>{{ 'Sitemap.AmbitoGeografico' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleAmbitoGeografico' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(ACTAS, SELECCION.TRES)">
+                  <strong>{{ 'Sitemap.NumeroMesa' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleNumeroMesa' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(ACTAS, SELECCION.CUATRO)">
+                  <strong>{{ 'Sitemap.EnviadasRecibidasJEE' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleEnviadasRecibidasJEE' | translate }}
+                </button>
+              </li>
+              <li></li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="reportes">{{ 'Sitemap.ReportesAutomaticos' | translate }}</h2>
+            <ul aria-labelledby="reportes">
+              <li>
+                <button (click)="goToEleccion(REPORTE)">
+                  <strong>{{ 'Sitemap.ReportesAutomaticos' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleReportesAutomaticos' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="info-ayuda">{{ 'Sitemap.InformacionAyuda' | translate }}</h2>
+            <ul aria-labelledby="info-ayuda">
+              <li>
+                <button href="https://eg2026.onpe.gob.pe/">
+                  <strong>{{ 'Sitemap.InformacionProceso' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleInformacionProceso' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(FRECUENTE)">
+                  <strong>{{ 'Sitemap.PreguntasFrecuentes' | translate }}: </strong>
+                  {{ 'Sitemap.DetallePreguntasFrecuentes' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="goToEleccion(SITEMAP)">
+                  <strong>{{ 'Sitemap.Sitemap' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleSitemap' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <h2 id="accesibilidad">{{ 'Sitemap.Accesibilidad' | translate }}</h2>
+            <ul aria-labelledby="accesibilidad">
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.Idioma' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleIdioma' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.TamanoTexto' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleTamanoTexto' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.Contrastes' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleContrastes' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.Cursor' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleCursor' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.MascaraLectura' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleMascaraLectura' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.DislexiaAmigable' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleDislexiaAmigable' | translate }}
+                </button>
+              </li>
+              <li>
+                <button (click)="openBottomSheet()">
+                  <strong>{{ 'Sitemap.Interlineado' | translate }}: </strong>
+                  {{ 'Sitemap.DetalleInterlineado' | translate }}
+                </button>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+</section>
+<app-footer></app-footer>

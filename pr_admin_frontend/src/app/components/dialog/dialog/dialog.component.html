@@ -1,0 +1,39 @@
+<div class="popup">
+  <h1 class="titulo2 t-c" *ngIf="data.tipo == 1">Éxito</h1>
+  <h1 class="titulo2 t-c" *ngIf="data.tipo == 0">Advertencia</h1>
+  <h1 class="titulo2 t-c" *ngIf="data.tipo == 2">Error</h1>
+  <h1 class="titulo2 t-c" *ngIf="data.tipo == 3">Confirmación</h1>
+  <div class="centrar_icono">
+    <!-- Preferir icono proporcionado por data.iconPath, si no existe usar iconos por tipo -->
+    <div *ngIf="data.iconPath">
+      <img [src]="data.iconPath" alt="" />
+    </div>
+    <div *ngIf="!data.iconPath && data.tipo == 1">
+      <img src="assets/img/icons/icono_check.svg" class="ico-60" alt="Éxito" />
+    </div>
+    <div *ngIf="!data.iconPath && data.tipo == 0">
+      <img src="assets/img/icons/icono_alert.svg" class="ico-60" alt="Advertencia" />
+    </div>
+    <div *ngIf="!data.iconPath && data.tipo == 2">
+      <img src="assets/img/icons/icono_x.svg" class="ico-60" alt="Error" />
+    </div>
+    <div *ngIf="!data.iconPath && data.tipo == 3">
+      <!-- fallback info icon; if not available nothing will show -->
+      <img src="assets/img/alert/ico-info.svg" class="ico-60" alt="Confirmación" />
+    </div>
+  </div>
+  <div>
+    <p class="t-c">{{ data.mensaje }}</p>
+  </div>
+  <div class="popup-botones">
+    <ng-container *ngIf="data.confirm; else singleBtn">
+      <button class="button_estilo2" (click)="cerrarDialogo(false)">Cancelar</button>
+      <button class="button_estilo1" (click)="cerrarDialogo(true)" cdkFocusInitial>Aceptar</button>
+    </ng-container>
+    <ng-template #singleBtn>
+      <button class="button_estilo1" (click)="cerrarDialogo()" cdkFocusInitial>
+        Aceptar
+      </button>
+    </ng-template>
+  </div>
+</div>

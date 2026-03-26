@@ -1,0 +1,72 @@
+<div class="config-report-form bg-transparente" [formGroup]="form">
+    <div class="contInputs popup-editar-configuracion">
+        <p class="titulo-content mb-1">{{ "EditarConfiguracion" | translate}} </p>
+
+        <div class="form-row mb-1">
+
+            <!-- FECHA DE INICIO -->
+            <div class="form-group">
+                <div class="form-group">
+                    <label class="label-input" for="">{{ "FechaInicioGenReporte" | translate}}
+
+                        <button [matTooltipPosition]="'above'" matTooltipClass="tooltip-modif"
+                            matTooltip="{{ 'LaFechaProcesoElectoral' | translate }}"
+                            aria-label="La fecha no puede ser antes del proceso electoral">
+                        </button></label>
+
+                    <mat-form-field appearance="outline" class="mfl">
+                        <input formControlName="fechaInicio" matInput placeholder="DD/MM/AAAA" (click)="picker.open()"
+                            [matDatepicker]="picker" [readonly]="true" autocomplete="off" [min]="minDate"
+                            [max]="maxDate" />
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="label-select" for="">{{ "HoraInicioReportes" | translate}}
+                    <button [matTooltipPosition]="'above'" matTooltipClass="tooltip-modif"
+                        matTooltip="{{ 'LaFechaProcesoElectoral' | translate }}"
+                        aria-label="La Hora no puede ser antes del proceso electoral">
+                    </button></label>
+                <mat-form-field appearance="outline" class="mfl">
+                    <mat-select formControlName="horaInicio" placeholder="{{ 'horaInicio' | translate }}">
+                        <mat-option [value]="''">{{ "horaInicio" | translate }}</mat-option>
+                        <mat-option *ngFor="let item of listaDeHorasDeInicios" [value]="item.value">{{ item.text
+                            }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <!-- PERIODO DE GENERACIÓN DE REPORTE -->
+            <div class="form-group">
+                <label class="label-input" for="tipoGeneracionReporteVal">{{ "GeneracionReporte" | translate}}</label>
+                <mat-form-field appearance="outline" class="mfl">
+                    <mat-select formControlName="tipoGeneracionReporteVal"
+                        placeholder="{{ 'PeriodoGeneracionReporte' | translate }}">
+                        <mat-option *ngFor="let item of listaDePeriodos" [value]="item.value">{{ item.text
+                            }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- DETENER REPORTE -->
+            <div class="form-group">
+
+            </div>
+        </div>
+
+        <div class="form-buttons mt-1">
+            <button class="button_estilo3" (click)="cerrar()">
+                Cancelar
+            </button>
+            <button class="button_estilo1" (click)="guardarConfiguracion()"
+                [disabled]="isFormUnchanged() || form.invalid">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+@use '../../../variables' as *;
+@use 'sass:map';
+
+.onpe-disclaimer-browser {
+  align-items: center;
+  background: var(--mat-sys-surface);
+  border: 3px solid var(--amarilloOnpe);
+  border-radius: 50px 14px 14px 50px;
+  box-shadow: -3px 0px 5px rgba(128, 128, 128, 0.6);
+  display: flex;
+  font-family: "Poppins", Arial, sans-serif;
+  gap: 20px;
+  max-width: 310px;
+  position: relative;
+
+  .icon-circle {
+    align-items: center;
+    background: var(--amarilloOnpe);
+    border-radius: 50%;
+    display: flex;
+    flex-shrink: 0;
+    height: 50px;
+    justify-content: center;
+    padding: 10px;
+    width: 50px;
+  }
+
+  .icon-circle svg {
+    height: 28px;
+    width: 28px;
+  }
+
+  .text-content {
+    flex: 1;
+  }
+
+  .text-content {
+    .title {
+      color: var(--amarilloOnpe);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      color: var(--gris-01);
+      font-size: 1.2rem;
+      font-weight: 400;
+    }
+  }
+
+  .close-btn {
+    align-items: center;
+    background: var(--amarilloOnpe);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 24px;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    width: 24px;
+    transition: background 0.2s;
+  }
+
+  .close-btn:hover {
+    background: var(--amarilloOnpe);
+  }
+
+  .close-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.disclaimer-snackbar-container .mat-mdc-snackbar-surface {
+  background: none !important;
+  box-shadow: none !important;
+  font-family: "Poppins", Arial, sans-serif;
+
+  .mdc-snackbar__label {
+    padding: 0;
+  }
+}

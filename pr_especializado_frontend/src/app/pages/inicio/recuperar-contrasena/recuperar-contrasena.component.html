@@ -1,0 +1,33 @@
+<div class="popup">
+  <h1 class="titulo2 t-c">{{ 'RecuperarContrasena.Titulo' | translate }}</h1>
+  <div class="centrar_icono">
+    <img src="assets/img/icons/icono_llave.svg" alt="" draggable="false" />
+  </div>
+
+  <form name="login" [formGroup]="form" (submit)="notifyRecoveryPassword()" class="popup_formulario">
+    <label for="usuario" class="input-label">{{ 'RecuperarContrasena.Usuario' | translate }}</label>
+    <input #usuarioInput name="usuario" [placeholder]="'RecuperarContrasena.PlaceholderUsuario' | translate" (drop)="bloquearEvent($event)"
+      (dragover)="bloquearEvent($event)" type="text" class="input w-full"
+      [class.input-error]="form.get('usuario')?.invalid && form.get('usuario')?.touched" formControlName="usuario" 
+      [maxlength]="FIELD_LIMITS.USUARIO_MAX_LENGTH_FAKE"/>
+    <label for="usuario" class="label-error">
+      <mat-error *ngIf="form.get('usuario')?.hasError('required') && form.get('usuario')?.touched">
+        {{ 'RecuperarContrasena.ErrorUsuarioObligatorio' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('usuario')?.hasError('minlength')">
+        {{ 'RecuperarContrasena.ErrorMinCaracteres' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('usuario')?.hasError('maxlength')">
+        {{ 'RecuperarContrasena.ErrorMaxCaracteres' | translate }}
+      </mat-error>
+      <mat-error *ngIf="form.get('usuario')?.hasError('pattern')">
+        {{ 'RecuperarContrasena.ErrorPatternUsuario' | translate }}
+      </mat-error>
+    </label>
+
+    <div class="popup-botones">
+      <button type="button" (click)="volver()" class="button-regresar button_estilo3">{{ 'RecuperarContrasena.Cancelar' | translate }}</button>
+      <button value="Aceptar" target="_parent" class="button_estilo1" [disabled]="form.invalid" type="submit">{{ 'RecuperarContrasena.Aceptar' | translate }}</button>
+    </div>
+  </form>
+</div>

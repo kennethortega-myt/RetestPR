@@ -1,0 +1,55 @@
+<div class="config-report-container__detalle">
+  <div class="px-32 px-0-movil mt-2 mt-0-movil">
+    <h2>{{ titleKey | translate }}</h2>
+  </div>
+  <div class="config-report-form__shadow ">
+    @if (reportConfigList.length > 0) {
+      @for (item of reportConfigList; track item.id) {
+        <div class="card-shadow full-width custom-grid-reportes paddTRBL10 w-100">
+          <div class="grid-logo">
+            <img [src]="item.icono" alt="tipo de eleccion" />
+          </div>
+          <div class="grid-eleccion">
+            <div class="reportes-box-text">
+              <h3>{{ 'detalle.tipo_eleccion' | translate }} <span>{{ item.tipoDeEleccion }}</span></h3>
+            </div>
+            <div class="d-flex">
+              <div class="flex-fill reportes-detalle">
+                <p>{{ 'detalle.fecha_hora_inicio' | translate }} <span>{{ item.fechaDeInicio }} {{ '2025-01-01T' + item.horaDeInicio.replace(' horas', '') | date:'hh:mm a' }}</span></p>
+                <p>{{ 'detalle.periodicidad' | translate }} <span>{{ item.periodo }}</span></p>
+                <p>{{ 'detalle.fecha_fin' | translate }} <span>{{ 'detalle.fecha_fin_valor' | translate }}</span></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="box-actions-2 grid-botones">
+            <button class="button_estilo2 m-0" (click)="onEditar(item)">
+              <img src="assets/icons/ico-edit.svg" class="btn-ico-in" alt="Editar"> {{ 'detalle.editar' | translate }}
+            </button>
+            @switch (item.estado) {
+              @case (1) {
+                <button class="button_estilo1 m-0" (click)="onDetenerReanudar(item)">
+                  <img src="assets/icons/ico-pause.svg" class="btn-ico-in" alt="Detener"> {{ 'detalle.detener' | translate }}
+                </button>
+              }
+              @default {
+                <button class="button_estilo6 m-0" (click)="onDetenerReanudar(item)">
+                  <img src="assets/icons/ico-play.svg" class="btn-ico-in" alt="Detener"> {{ 'detalle.reanudar' | translate }}
+                </button>
+              }
+            }
+            <button class="button_estilo5 m-0" (click)="onGenerar(item)">
+              <img src="assets/img/iconGenerar.svg" class="btn-ico-in" alt="Generar"> {{ 'detalle.generar_manual' | translate }}
+            </button>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="monigote"> 
+        <app-personaje-mensaje
+          mensaje= "RegistroReportesPersonaje"
+          class="scroll-content-general d-flex flex-direction-col-xs content-general"></app-personaje-mensaje>
+      </div>
+    }
+  </div>
+</div>

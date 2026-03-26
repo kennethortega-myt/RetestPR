@@ -1,0 +1,30 @@
+<div *ngIf="isContentReady">
+  <div class="d-flex px-32 p-0-movil mt-2 mt-12-xs gap-22">
+    <div class="w-70 w-full-xs mr-40 mr-0-xs">
+      <h1 class="titulo-content">{{ 'tituloConsultaAvanzada' | translate }}</h1>
+      <app-filtro
+        (mensajeEvent)="mostrarMensaje($event)"
+        (filtrarEvent)="filtrar($event)"
+        (limpiarFiltrarEvent)="limpiar($event)"
+        (cambiosFiltrosDinamicosEvent)="cambiosFiltroDinamicos($event)"
+      ></app-filtro>
+    </div>
+  </div>
+
+  <div
+    *ngIf="mensaje"
+    class="scroll-content-general d-flex flex-direction-col-xs content-general "
+  >
+    <div
+      class="w-full w-full-xs items-center d-flex content-center content-70 py-1 p-0-movil bg-transparent-movil"
+    >
+      <app-personaje-mensaje [mensaje]="mensaje"></app-personaje-mensaje>
+    </div>
+
+    <div class="w-30 w-full-xs content-mapa"></div>
+  </div>
+  
+  <ng-container *ngIf="!mensaje">
+    <app-resultado></app-resultado>
+  </ng-container>
+</div>

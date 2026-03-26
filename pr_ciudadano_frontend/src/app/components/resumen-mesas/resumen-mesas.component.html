@@ -1,0 +1,16 @@
+<div class="leyenda_eleccion">
+  <div class="w-33 d-flex-wrap mesa-movil">
+    <img alt="check_leyend" src="assets/img/check_leyend.svg" />
+    {{ MesasInstaKey | translate }}
+    {{ mesasDetail.mesasInstaladas | number : "1.0-3" : "en-US" }}
+  </div>
+  <div class="w-33 d-flex-wrap mesa-movil">
+    <img alt="x_leyend" src="assets/img/x_leyend.svg" /> {{ MesasNoInstaKey | translate }}
+    {{ mesasDetail.mesasNoInstaladas | number : "1.0-3" : "en-US" }}
+  </div>
+  <div class="w-33 d-flex-wrap mesa-movil">
+    <img alt="pendiente_leyend" src="assets/img/pendiente_leyend.svg" />
+    {{ MesasPendKey | translate }}
+    {{ mesasDetail.mesasPendientes | number : "1.0-3" : "en-US" }}
+  </div>
+</div>

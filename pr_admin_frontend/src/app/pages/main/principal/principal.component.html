@@ -1,0 +1,101 @@
+<section class="menu_inicial">
+  <div id="princAdmin" *ngIf="nacionAutorizado()">
+    <h1 class="titulo1">
+      Saludos {{ usuario?.nombre }} al SCE 2023 <br /><i
+        >(Sistema de Cómputo Electoral)</i
+      >
+    </h1>
+    <article class="cont_menu">
+      <a class="menu" routerLink="/main/configuraciones/paso1">
+        <div>
+          <img src="assets/img/menu-configuracion.svg" alt=""/>
+          <h2 class="titulo2">Configuraciones</h2>
+        </div>
+        <p>Configura las secciones de los tipos de documentos</p>
+      </a>
+      <a class="menu" routerLink="/main/configuraciones/paso1">
+        <div>
+          <img src="assets/img/menu-proceso.svg" alt=""/>
+          <h2 class="titulo2">Crear Proceso</h2>
+        </div>
+        <p>Existen 17 procesos creados</p>
+      </a>
+      <a class="menu" routerLink="/main/monitoreo-nacion">
+        <div>
+          <img src="assets/img/menu-monitor.svg" alt=""/>
+          <h2 class="titulo2">Monitoreo</h2>
+        </div>
+        <p>
+          Última transmisión<br />
+          26/03/2024<br />
+          14:00:00 hrs
+        </p>
+      </a>
+    </article>
+  </div>
+  <div id="princMonitor" *ngIf="ccAutorizado()">
+    <h1 class="titulo1">
+      Saludos {{ usuario?.nombre }} al SCE 2023 <br /><i
+        >(Sistema de Cómputo Electoral)</i
+      >
+    </h1>
+    <article class="cont_menu">
+      <a class="menu" routerLink="/main/instalacion">
+        <div>
+          <img src="assets/img/menu-instalacion-configuracion.svg" alt=""/>
+          <h2 class="titulo2">Instalación y Configuración</h2>
+        </div>
+        <p>Guía de descarga e instalación de módulos</p>
+      </a>
+      <a class="menu" routerLink="/main/control">
+        <div>
+          <img src="assets/img/menu-digitalizacion.svg" alt=""/>
+          <h2 class="titulo2">Control de Digitalización</h2>
+        </div>
+        <p>Carga y validación de documentos</p>
+      </a>
+      <a class="menu" routerLink="/main/verificacion-actas">
+        <div>
+          <img src="assets/img/menu-verificacion.svg" alt=""/>
+          <h2 class="titulo2">Verificación de Actas</h2>
+        </div>
+        <p>Existen 2,485 por procesar</p>
+      </a>
+      <a class="menu" routerLink="/main/configuraciones/paso1">
+        <div>
+          <img src="assets/img/menu-resolucion.svg" alt=""/>
+          <h2 class="titulo2">Resoluciones JEE/JNE</h2>
+        </div>
+        <p>Existen 3 resoluciones registradas</p>
+      </a>
+      <a class="menu" routerLink="/main/monitoreo">
+        <div>
+          <img src="assets/img/menu-monitor.svg" alt=""/>
+          <h2 class="titulo2">Monitoreo y Transmisión</h2>
+        </div>
+        <p>
+          Última transmisión<br />
+          26/03/2024<br />
+          14:00:00 hrs
+        </p>
+      </a>
+    </article>
+  </div>
+  <div id="princAdminv2">
+    <h1 class="titulo1 txt-center">
+      Bienvenido al sistema {{ usuario?.nombre }}
+    </h1>
+    <article class="cont_menu">      
+      <ng-container *ngFor="let modulo of modulos">
+        <a class="menu" [routerLink]="'/' + modulo.url">
+          <div>
+            <img [src]="'assets/img/icons/' + modulo.icono" [attr.alt]="modulo.nombre"/>
+            
+            <h2 class="titulo2">{{ modulo.nombre }}</h2>
+          </div>
+        </a>
+      </ng-container>
+    </article>
+  </div>
+  <section></section>
+</section>

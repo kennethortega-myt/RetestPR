@@ -1,0 +1,8 @@
+[
+	{"id":1, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener BD", "atributo":"getBd"},
+	{"id":2, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener Vista Elección", "atributo":"getVistaEleccion"},
+	{"id":3, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener Vista Acta", "atributo":"getVistaActa"},
+	{"id":4, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener Vista Participación Ciudadana", "atributo":"getVistaParticipacionCiudadana"},
+	{"id":5, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener Vista Mesa", "atributo":"getVistaMesa"},
+	{"id":6, "sucess":false, "usuarioCreacion":"pr", "etiqueta":"Obtener Vista Total Candidatos Por Agrupación Política", "atributo":"getVistaTotalCandidatosPorAgrupacionPolitica"}
+]

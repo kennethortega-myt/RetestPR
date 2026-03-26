@@ -1,0 +1,265 @@
+.content-linea-pre {
+    gap: 30px;
+
+  }
+
+  .content-partidos{
+
+    gap: 20px;
+  }
+  
+  .linea-horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-start;
+  
+    height: 1px;
+    background-color: black;
+    position: relative;
+  }
+  
+  .division {
+    width: 1px;
+    height: 10px;
+    background-color: #707070;
+    position: relative;
+  }
+  .division span {
+    position: absolute;
+    top: -14px;
+    font-size: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #003874;
+    font-weight: 500;
+    line-height: 1rem;
+  }
+  .primera {
+    transform: translateX(0%) !important;
+  }
+  
+  .ultimo {
+    transform: translateX(-100%) !important;
+  }
+  
+  .item-partidos {
+    gap: 30px;
+    align-items: center;
+    display: flex;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+   
+    opacity: 1;
+  
+  }
+  
+  .item-detalle-partidos-finalizado {
+    gap: 90px;
+    align-items: center;
+    display: flex;
+    background: green 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+    border-radius: 11px;
+    opacity: 1;
+    padding: 8px 10px;
+  
+    .item-detalle {
+      h3 {
+        font-size:14px;
+        font-weight: 400;
+  
+        color: white;
+      }
+  
+      span {
+        color: white;
+        font-size: 28px;
+      }
+    }
+  }
+  
+  .item-detalle-partidos-incompleto {
+    gap: 90px;
+    align-items: center;
+    display: flex;
+    background: white 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+    border-radius: 11px;
+    opacity: 1;
+    padding: 8px 10px;
+  
+    .item-detalle {
+      h3 {
+        font-size: 14px;
+        font-weight: 400;
+  
+        color: white;
+      }
+  
+      span {
+        color: white;
+        font-size: 28px;
+      }
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  .item-provisitas.p1 {
+    padding: 18px 10px;
+  }
+  
+  .item-provisitas.p2 {
+    padding: 4px 10px;
+  }
+  .item-provisitas {
+    gap: 90px;
+    align-items: center;
+    display: flex;
+    background: #2A71B9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+    border-radius: 11px;
+    opacity: 1;
+  
+  
+  
+    .item-detalle {
+      h3 {
+        font-size: 14px;
+        font-weight: 600;
+        padding-left: 30px;
+        color: white!important;
+      }
+    }
+  }
+  .content-votos-e{
+    display: flex; gap: 10px;
+    div{
+        background-color: #e4e4e42d; width: 110px;padding: 10px; box-sizing: border-box;
+    }
+    .votos{
+        background-color: #e4e4e42d; width: 110px;display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        color: #1D1D1D;
+        font-weight: 500;
+    }
+  }
+  
+  .content-votos{
+    display: flex; gap: 10px;
+    div{
+        background-color: #e4e4e42d; width: 110px;padding: 10px; box-sizing: border-box;
+    }
+    .votos{
+        background-color: #e4e4e42d; width: 110px;display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+        color: #1D1D1D;
+        font-weight: 500;
+    }
+  }
+
+  .linea-p{
+    padding: 10px 20px 10px 0px;
+  }
+
+  .cont-progress{
+    flex-direction: column; align-items: end;padding: 10px 20px 10px 0px;
+    gap: 8px;
+    span{
+        font-size: 14px;
+        font-weight: 500;
+        color: #003874;
+    }
+  }
+
+  .cont-part{
+    
+           
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center; padding: 10px 0px;
+    h3{
+        color: #003770;
+        font-size: 20px;
+    }
+    span{
+        color: #1D1D1D;
+        font-size: 14px;
+    }
+  
+  }
+
+
+
+
+
+
+
+
+
+
+  .formula-container {
+    display: inline-block;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #2971B9; 
+    margin-top: 2rem;
+
+  }
+  
+  .formula {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+  }
+  
+  .formula-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .vt{
+        color: #003770;
+    }
+  }
+  .vt{
+    font-weight: 600;
+  }
+  .separator {
+    
+    height: 65px;
+
+    background:  #003770;
+    width: 2px;
+  }
+  
+  .fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .numerator, .denominator {
+    display: block;
+    text-align: center;
+    color: #2971B9;
+    font-weight: 600;
+  }
+  
+  .numerator {
+    border-bottom: 1px solid #2971B9; 
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .denominator {
+    padding-top: 5px;
+  }
+  

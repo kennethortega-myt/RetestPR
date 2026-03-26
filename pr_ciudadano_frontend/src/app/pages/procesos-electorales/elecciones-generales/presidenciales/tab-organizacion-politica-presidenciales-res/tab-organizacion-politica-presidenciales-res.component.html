@@ -1,0 +1,83 @@
+<article class="cont-flex presidenciales-org-pol">
+  <!-- Test Persona / Filtro / Mapa (Ini) -->
+  <div class="w-50 pefima">
+    <div class="interno">
+      <div class="mobileFilter" *ngIf="showOnpePersonToInform">
+        <div class="monigote-select-mobile">
+          <p class="txtGlobe">
+            {{ 'tab-organizacion-politica-presidenciales-res.seleccionar_organizacion' | translate }}
+          </p>
+          <img src="assets/personajes/personaje4.svg" alt="" />
+        </div>
+        <div class="miga_pan version-movil" style="display: block">
+          <button class="btn_migapan" (click)="openBottomSheet()">
+            <img class="icono_migapan" src="assets/img/icons/ico-candi1.svg" alt="" />
+            <span>{{ 'realizar-busqueda.seleccioneOrganizacion' | translate }}</span>
+            <div class="mat-mdc-select-arrow-wrapper">
+              <div class="mat-mdc-select-arrow ng-tns-c1073613477-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  height="24px"
+                  focusable="false"
+                  aria-hidden="true"
+                  class="ng-tns-c1073613477-3"
+                >
+                  <path d="M7 10l5 5 5-5z" class="ng-tns-c1073613477-3"></path>
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="withOpMap" *ngIf="!showOnpePersonToInform">
+        <div id="opMapaMobile" class="opMapaMobile">
+          <button class="btn_migapan pseudoGrid" (click)="openBottomSheet()">
+            <img class="icono_migapan" src="assets/img/icons/ico-candi2.svg" alt="" />
+            <span>
+              {{ candidatoSeleccionado.nombreAgrupacionPolitica }}
+            </span>
+            <div class="mat-mdc-select-arrow-wrapper">
+              <div class="mat-mdc-select-arrow ng-tns-c1073613477-3">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24px"
+                  height="24px"
+                  focusable="false"
+                  aria-hidden="true"
+                  class="ng-tns-c1073613477-3"
+                >
+                  <path d="M7 10l5 5 5-5z" class="ng-tns-c1073613477-3"></path>
+                </svg>
+              </div>
+            </div>
+          </button>
+        </div>
+        <div class="sticky_ubigeo w-100">
+          <app-generic-filter-ubigeo
+            *ngIf="showMap"
+            class="w-100 n-p"
+            filterFunctionality="peru_and_international"
+            (applyFiltersEvent)="applyFiltersEvent($event)"
+          ></app-generic-filter-ubigeo>
+        </div>
+        <div class="resMap">
+          <ng-container *ngIf="showMap">
+            <div class="map-container bg-white-movil">
+              <app-main-hot-map
+                [electionId]="electionID"
+                [tooltipType]="tooltipType"
+                [heatLegendTextType]="'type_2'"
+                [showIconTodos]="false"
+                [changeZoomLevelsToThree]="true"
+                (ubigeoParamsChanged)="ubigeoParamsChangedFromMapWithSpecialCase($event)"
+                (regionChanged)="changeRegionFromMap($event)"
+                [clickMap]="false"
+              ></app-main-hot-map>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

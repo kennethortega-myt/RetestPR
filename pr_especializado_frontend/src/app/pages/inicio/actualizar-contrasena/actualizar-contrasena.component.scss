@@ -1,0 +1,149 @@
+@use "sass:map";
+@use "../../../../variables.scss" as *;
+
+/* Definición de variables de color locales (referenciando las globales) */
+:root {
+  --azulonpe: #{map.get($primary-colors, onpe-institucional)};
+  --azul: #{map.get($secondary-colors, clr-azul-11)};
+  --azulhover: #{map.get($secondary-colors, clr-azul-16)};
+  --grisonpe: #{map.get($secondary-colors, clr-gris-8)};
+}
+
+/* Contenedor principal del popup */
+.popup-container {
+  width: 320px;
+  max-width: 100%;
+  padding: 30px 25px;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+  .popup-container {
+    width: 100%;
+  }
+}
+
+/* Título del popup */
+.titulo-popup {
+  /* Asegúrate de que tu H1 use esta clase o la clase .titulo2 que tienes */
+  color: map.get($secondary-colors, clr-azul-11);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Icono central de la llave */
+.icono-llave,
+.centrar_icono {
+  text-align: center;
+}
+
+/* Contenedor del input y el icono del ojo */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input:focus {
+  outline: none;
+  border-color: map.get($primary-colors, onpe-institucional);
+}
+
+.input::placeholder {
+  opacity: 0.5;
+  color: map.get($primary-colors, onpe-gris);
+}
+
+/* Icono del ojo */
+.eye {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: map.get($primary-colors, onpe-institucional);
+}
+
+.eye:hover {
+  color: map.get($secondary-colors, clr-azul-5);
+}
+
+/* ==================================================================== */
+/* SOLUCIÓN: Aumentar la separación aquí */
+/* ==================================================================== */
+
+
+/* Contenedor de botones */
+.popup-botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  padding-top: 15px;
+  /* Un poco de espacio por si acaso */
+}
+
+/* Estilos de botones */
+.button_estilo3:hover {
+  background-color: map.get($secondary-colors, clr-azul-11);
+  color: white;
+}
+
+/* Botón Aceptar (usaremos .button_estilo2 como en tu CSS original) */
+.button_estilo2 {
+  flex: 1;
+  border: 1px solid map.get($secondary-colors, clr-azul-5);
+  background: map.get($secondary-colors, clr-azul-5);
+  color: white;
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.button_estilo2:hover {
+  background: var(--azulhover);
+  border-color: var(--azulhover);
+}
+
+/* Responsividad (sin cambios) */
+@media (max-width: 500px) {
+  .popup-container {
+    width: 95vw;
+    padding: 25px 20px;
+  }
+
+  .popup-botones {
+    flex-direction: row;
+  }
+
+  .button_estilo2 {
+    width: 100%;
+  }
+
+
+  .mi-clase-personalizada {
+    margin-top: 5px;
+    font-size: 1px;
+  }
+}
+
+.label-error {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.label-error mat-error {
+  display: block;
+  min-height: auto;
+  color: map.get($secondary-colors, clr-rojo-2);
+  font-size: 11px;
+  margin-top: 6px;
+}

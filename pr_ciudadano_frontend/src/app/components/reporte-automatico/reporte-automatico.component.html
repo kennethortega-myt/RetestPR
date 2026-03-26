@@ -1,0 +1,65 @@
+<article class="seccion-borde cards-reportes">
+    <div class="cabecera-reportes">
+        <h2 class="titulo2 t-l">
+            <span [class]="['ico_eleccion', detalleReporteAutomatico.iconoTipoEleccion]"></span>
+            <div class="flex-grow-1">
+                <div class="eleccion">{{ detalleReporteAutomatico.nombreTipoEleccion }}</div>
+                <div class="cantidad_reportes">{{ detalleReporteAutomatico.totalesPorTipoEleccion }} 
+                 @if(detalleReporteAutomatico.totalesPorTipoEleccion == 1){
+                    <span class="leyenda-cabecera">{{ 'Reportes.reporteGenerado' | translate }}</span>
+                 }
+                 @else{
+                    <span class="leyenda-cabecera">{{ 'Reportes.reportesGenerados' | translate }}</span>
+                 }
+                </div>
+            </div>
+        </h2>
+        @if(detalleReporteAutomatico.totalesPorTipoEleccion > 0){
+            <div class="mt-05 d-inline-flex gap-10">
+                <div class="centrar-icono"><button class="estilo2" (click)="verReportes(detalleReporteAutomatico.codigoTipoEleccion)">{{ 'Reportes.verReportes' | translate }}</button></div>
+                <button class="btn-icono" matTooltipPosition="above" (click)="descargarReporte(detalleReporteAutomatico)"
+                [matTooltip]="'Reportes.MaestroCandidatos' | translate" matTooltipClass="custom-tooltip3"><img src="assets/img/icons/ico-docs.svg" alt="Documento"></button></div>
+        }
+    </div>
+    @if(detalleReporteAutomatico.totalesPorTipoEleccion > 0){
+        <div class="grilla-reportes mt-05 texto-azul">
+            <div class="t-c">Nº</div>
+            <div>{{ 'Reportes.fechaHora' | translate }}</div>
+            <div class="t-c">{{ 'Reportes.porcentaje' | translate }}</div>
+            <div class="t-c">{{ 'Reportes.descargar' | translate }}</div>
+        </div>
+        @for (acta of detalleReporteAutomatico.actas; track acta.idActa; let i = $index) {
+          <div class="fila-reporte grilla-reportes">
+              <div class="color-estado">{{ i + 1 }}</div>
+              <div class="color-fecha">{{ acta.fechaActa | date : "dd/MM/yyyy" }} {{ acta.fechaActa | hourFormat }}</div>
+              <div class="color-porcentaje">
+
+                <div class="barra-cargando version-pc">
+                    <div
+                        class="barra-cargando-content"
+                        [ngStyle]="{ width: acta.porcentaje + '%' }"
+                    > </div>
+                    <p class="titulo_votos_totales">
+                        <span class="titulo_votos_totales__num2">{{ acta.porcentaje | porcentajeFormat }}</span>
+                    </p>
+                </div>
+                <div class="version-movil">
+                    {{ acta.porcentaje | porcentajeFormat }}
+                </div>
+              </div>
+              <div class="t-c d-flex justify-content-center">
+                  <button class="btn-descargar" (click)="descargarArchivoActa(acta)">
+                    <img src="assets/img/icons/ico-descargar.svg" alt="descargar">
+                  </button>
+              </div>
+          </div>
+        }
+    }@else{
+        <div class="personaje-anuncio">
+            <p>
+                Todavía no se cuenta con información para mostrar.
+            </p>
+            <img alt="person" [src]="randomImageUrl" />
+        </div>
+    }
+</article>

@@ -1,0 +1,66 @@
+<h1 class="titulo2 t-c">Editar configuración</h1>
+<div class="config-report-form bg-transparente pop-editarconf" [formGroup]="form">
+    <div class="contInputs popup-editar-configuracion">
+        <div class="form-row mb-1">
+
+            <!-- FECHA DE INICIO -->
+            <div class="form-group">
+                <div class="form-group">
+                <label class="label-input" for="fechaInicio"> Fecha de inicio</label>
+                <mat-form-field appearance="outline" class="mfl">
+                    <input
+                    id="fechaInicio"
+                    formControlName="fechaInicio"
+                    matInput
+                    placeholder="DD/MM/AAAA"
+                    (click)="picker.open()"
+                    [matDatepicker]="picker"
+                    [readonly]="true"
+                    autocomplete="off"
+                    [min]="minDate"
+                    [max]="maxDate"
+                    />
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label class="label-select" for="horaInicio"> Hora de inicio</label>
+                <mat-form-field appearance="outline" class="mfl">
+                <mat-select id="horaInicio" formControlName="horaInicio" placeholder="Seleccione la hora de inicio">
+                    <mat-option
+                    *ngFor="let item of listaDeHorasDeInicios"
+                    [value]="item.value"
+                    >{{ item.text }}</mat-option
+                    >
+                </mat-select>
+                </mat-form-field>
+            </div>
+
+            <!-- PERIODO DE GENERACIÓN DE REPORTE -->
+            <div class="form-group">
+                <label class="label-input" for="tipoGeneracionReporteVal">Periodicidad de generación</label>
+                <mat-form-field appearance="outline" class="mfl">
+                <mat-select formControlName="tipoGeneracionReporteVal" placeholder="Periodicidad de generación" >
+                    <mat-option
+                    *ngFor="let item of listaDePeriodos"
+                    [value]="item.value"
+                    >{{ item.text }}</mat-option
+                    > 
+                </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- DETENER REPORTE -->
+        </div>       
+    </div>
+    <div class="popup-botones t-r">
+        <button class="button_estilo3" (click)="cerrar()">
+            Cancelar
+        </button>
+        <button class="button_estilo1" (click)="guardarConfiguracion()" [disabled]="isFormUnchanged() || form.invalid">
+            Guardar
+        </button>
+    </div>
+</div>

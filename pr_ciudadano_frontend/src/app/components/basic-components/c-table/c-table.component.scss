@@ -1,0 +1,58 @@
+table {
+    width: 100%;
+}
+.mat-mdc-cell.mdc-data-table__cell {
+    font-size: 1.15rem !important;
+        color: #003874 !important; 
+    border-bottom: 1px solid #ababab !important;
+    padding: 5px !important;
+    }
+
+    .mat-mdc-header-cell {
+        font-size: 1.15rem !important;
+        color: #fff;
+        padding: 5px !important;
+    }
+
+
+    .mat-mdc-header-row ,    .mat-mdc-header-cell {
+        height: auto !important;
+    }
+ 
+
+.mat-mdc-table .mdc-data-table__row:nth-child(even) {
+    background-color: #fff;
+}
+
+
+.mat-mdc-table .mdc-data-table__row:nth-child(odd) {
+    background-color: #fcfeff;
+}
+
+.mat-mdc-table .mdc-data-table__row , .mat-mdc-cell.mdc-data-table__cell{ 
+    height: auto !important;
+}
+
+.mat-mdc-paginator{
+    background: transparent; 
+}
+
+.mat-mdc-paginator .mat-mdc-select{
+    padding: 0 10px;
+}
+
+
+.mat-mdc-tab-body-wrapper{
+    position: relative;
+      overflow: hidden;
+      display: flex;
+      transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
+      background: #FFFFFF;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+        border-radius: 0 0 15px 15px;
+      -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+      -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+  
+  }
+  

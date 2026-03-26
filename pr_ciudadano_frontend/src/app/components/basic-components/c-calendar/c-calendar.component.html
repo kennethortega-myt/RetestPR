@@ -1,0 +1,9 @@
+<div class="flexInput">  
+    <label class="label-input" for="">{{ label }}</label>
+    <mat-form-field class="mfl" appearance="outline">
+        <input matInput [matDatepicker]="picker" [placeholder]="placeholder">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+    </mat-form-field>
+</div>

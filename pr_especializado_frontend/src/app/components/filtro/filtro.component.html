@@ -1,0 +1,132 @@
+<div
+  class="d-flex flex-direction-col-xs gap-9 w-85 w-full-xs items-center items-baseline-xs mt-16 version-pc"
+>
+  <img
+    class="c-pointer"
+    src="assets/iconosConsultaOP/ico-engranaje.svg"
+    alt="filtro"
+  />
+  <div
+    class="d-flex flex-direction-col-xs w-full-xs gap-18 gap-10-xs"
+    [formGroup]="form"
+  >
+    <mat-select
+      class="mat-select-resul"
+      customSelect
+      formControlName="tipoEleccion"
+      panelClass="custom-select-panel"
+    >
+      <mat-option [value]="0">{{ "TEleccion" | translate}}</mat-option>
+      <mat-option
+        *ngFor="let eleccion of listaEleccion"
+        [value]="eleccion.value"
+        >{{ eleccion.text }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      formControlName="distritoElectoral"
+      class="mat-select-resul"
+       panelClass="custom-select-panel"
+      *ngIf="nombreEtiquetaDistritoElectoral && esEleccionParaDistritoElectoral()"
+    >
+      <mat-option
+        *ngFor="let item of listaDistritoElectoral"
+        [value]="item.value"
+        >{{ item.text }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      formControlName="ambitoGeografico"
+      customSelect
+      class="mat-select-resul"
+      panelClass="custom-select-panel"
+      (valueChange)="onChangeAmbitGeografic($event)"
+      *ngIf="!esEleccionParaDistritoElectoral() && form.get('tipoEleccion')?.value != 0"
+    >
+      <mat-option
+        *ngFor="let ambitoGeografico of listaAmbitoGeografico"
+        [value]="ambitoGeografico.value"
+        >{{ ambitoGeografico.text }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      formControlName="nivelUbigeoUno"
+      class="mat-select-resul"
+       panelClass="custom-select-panel"
+      *ngIf="nombreEtiquetaNivelUno && !esEleccionParaDistritoElectoral()"
+    >
+      <mat-option [value]="'0'">{{ nombreEtiquetaNivelUno | translate }} </mat-option>
+      <mat-option
+        *ngFor="let nivelUno of listaNivelUno"
+        [value]="nivelUno.value"
+        >{{ nivelUno.text }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      formControlName="nivelUbigeoDos"
+      class="mat-select-resul"
+       panelClass="custom-select-panel"
+      *ngIf="nombreEtiquetaNivelDos && !esEleccionParaDistritoElectoral()"
+    >
+      <mat-option [value]="'0'">{{ nombreEtiquetaNivelDos  | translate }}</mat-option>
+      <mat-option
+        *ngFor="let nivelDos of listaNivelDos"
+        [value]="nivelDos.value"
+        >{{ nivelDos.text }}</mat-option
+      >
+    </mat-select>
+
+    <mat-select
+      formControlName="nivelUbigeoTres"
+      class="mat-select-resul"
+       panelClass="custom-select-panel"
+      *ngIf="nombreEtiquetaNivelTres && !esEleccionParaDistritoElectoral()"
+    >
+      <mat-option [value]="'0'">{{ nombreEtiquetaNivelTres  | translate }}</mat-option>
+      <mat-option
+        *ngFor="let nivelTres of listaNivelTres"
+        [value]="nivelTres.value"
+        >{{ nivelTres.text }}</mat-option
+      >
+    </mat-select>
+  </div>
+
+  <div class="w-full-xs text-center-xs" *ngIf="ocultarLimpiar()">
+    <div class="contenedor-botones pl-30 pl-0-xs">
+      <button class="button_estilo3" (click)="limpiar()">{{ 'BotonLimpiar' | translate }}</button>
+    </div>
+  </div>
+</div>
+<div class="miga_pan version-movil flex-direction-col gap-10-xs mt-1">
+  <!-- Botón principal: muestra el nombre de la elección seleccionada -->
+  <button class="btn_migapan" (click)="openpopupfiltroeleccion()">
+    <img class="icono_migapan" src="assets/img/icons/ico_eleccion.svg" alt="" />
+    {{ filtroSeleccionado | translate }}
+    <div class="flecha_desplegar"></div>
+  </button>
+
+  <!-- Breadcrumb de selecciones (ámbito / distrito / niveles ubigeo) -->
+  <div class="miga_pan gap-10-xs" *ngIf="form.get('tipoEleccion')?.value !== 0">
+    <button class="btn_migapan" (click)="openpopupfiltroubigeo()">
+      <img class="icono_migapan" src="assets/img/icons/ico-ubigeo2.svg" alt="" />
+      <ng-container *ngIf="migaPanItems.length === 0">
+        {{ 'TODOS' | translate }}
+      </ng-container>
+      <ng-container *ngIf="migaPanItems.length > 0">
+        <div >  
+        <ng-container *ngFor="let item of migaPanItems; let last = last">
+          {{ item }}<span *ngIf="!last">&nbsp;/&nbsp;</span>
+        </ng-container>
+        </div>
+      </ng-container>
+      <div class="flecha_desplegar"></div>
+    </button>
+    <button class="icono-filtro-azul" *ngIf="ocultarLimpiar()" matRipple (click)="limpiar()">
+    </button>
+  </div>
+</div>
+

@@ -1,0 +1,146 @@
+:root {
+    --azulOnpe: #003874;
+    --azulOnpeClaro: #2971B9;
+    --celesteOnpe: #6DB2E2;
+    --grisPendiente: #ECECEC;
+    --grisTextos: #B2B4B6;
+    --grisBorde: #CCCCCC;
+    --azulFocus: #287ace;
+    --blanco:#ffffff;
+    --blancoHumo:#f8f8f8;
+}
+.header-container {
+  position: sticky!important;
+  top: 0 !important;
+}
+
+.link {
+  user-select: none;
+}
+
+.link::first-line {
+  text-transform: capitalize !important;
+}
+
+li .submenu {
+  display: none;
+}
+
+li:hover .submenu,
+li:focus-within .submenu {
+  display: block;
+}
+.submenu a:focus {
+ 
+  background-color: var(--azulFocus);
+  color: var(--blanco)!important;
+}
+.submenu a:focus,
+.link:focus {
+
+  color: var(--blanco)!important;
+}
+.submenu-senadores{
+  display: flex; justify-content: space-between;
+  gap: 16px;
+  padding: 10px 18px;
+  .item-senadores{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    span{
+      color: var(--azulOnpe)!important;
+
+    text-align: center;
+    font-size: 1.8em;
+    }
+    h3{
+      color: var(--azulOnpe)!important;
+
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+.header2 {
+  position: relative;
+}
+#header-sentinel {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 100%;
+  visibility: hidden;
+}
+
+
+.dropdown {
+  position: absolute;
+  top: 50px; /* Ajusta la posición según sea necesario */
+  left: 0;
+  width: 200px;
+  background-color: var(--blanco);
+  border: 1px solid var(--grisBorde);
+  z-index: 1000; /* Asegúrate de que el z-index sea suficientemente alto */
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid var(--grisBorde);
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
+.flex-idioma{
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-right: 16px;
+}
+
+
+// Estilos para el menú desplegable de idioma
+.lang-select {
+  width: 140px;
+  margin: 0;
+  font-size: 13px;
+
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
+    padding-top: 4px;
+  }
+
+  ::ng-deep .mat-form-field-infix {
+    padding: 4px 8px;
+  }
+
+  ::ng-deep .mat-select-trigger {
+    font-size: 13px;
+    padding: 0;
+    min-height: auto;
+  }
+
+  ::ng-deep .mat-option {
+    font-size: 13px;
+    padding: 4px 12px;
+  }
+
+  ::ng-deep .mat-form-field-label {
+    font-size: 12px;
+    top: 1.4em;
+  }
+
+  .lang-icon {
+    margin-right: 6px;
+  }
+}

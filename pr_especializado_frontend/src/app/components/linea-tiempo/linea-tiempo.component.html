@@ -1,0 +1,89 @@
+<!-- Template para Desktop -->
+<ul class="progressbar" *ngIf="!esPantallaChica">
+  <ng-container *ngFor="let lineaTiempo of lineasTiempo">
+    <li
+      class="active"
+      [ngClass]="{
+        rojo: isActaRoja(lineaTiempo)
+      }"
+    >
+      <div
+        class="ico-steps"
+        mat-raised-button
+        [matTooltipPosition]="'above'"
+        [matTooltip]="isActaObservada(lineaTiempo) ? obtenerDescripcion(lineaTiempo) + '&#10;' : null"
+        [matTooltipDisabled]="!isActaObservada(lineaTiempo)"
+        matTooltipClass="custom-tooltip"
+      >
+        <img [src]="obtenerRutaIcono(lineaTiempo)" alt="" />
+      </div>
+
+      <h3 
+        [matTooltipPosition]="'above'"
+        [matTooltip]="isActaObservada(lineaTiempo) ? obtenerDescripcion(lineaTiempo) + '&#10;' : null"
+        [matTooltipDisabled]="!isActaObservada(lineaTiempo)"
+        matTooltipClass="custom-tooltip" >{{ obtenerDescripcion(lineaTiempo, isActaObservada(lineaTiempo)) }}
+      </h3>
+      <h3 class="fecha-steps">        
+        {{ lineaTiempo.fechaRegistro | date : "dd/MM/yyyy" }}
+        {{ lineaTiempo.fechaRegistro | date : "hh:mm:ss a" }}
+      </h3>
+    </li>
+  </ng-container>
+</ul>
+
+<!-- Template para Mobile -->
+ <div class="w-full" *ngIf="esPantallaChica">
+    <button class="button-map" (click)="toggleLineaTiempo()">
+      <div class="text-mapa">
+        <img src="assets/img/icons/icon-ojo.svg" alt="" />
+        <h5>{{ 'ActasEnviadasJEE.LineaTiempo' | translate }}</h5>
+      </div>
+      <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarLineaTiempo"></div>
+    </button>
+
+    <div class="container card-map-movil"
+         [ngClass]="{ 'mostrar-timeline': mostrarLineaTiempo,
+                      'dato-oculto': !mostrarLineaTiempo }">
+      <ul class="progressbar">
+        <ng-container *ngFor="let lineaTiempo of lineasTiempo">
+          <li
+            *ngIf="isActaObservada(lineaTiempo); else showList"
+            [ngClass]="isActaRoja(lineaTiempo) ? 'active rojo' : 'active'"
+          >
+            <div
+              class="ico-steps"
+              mat-raised-button
+              matTooltipPosition="above"
+              [matTooltip]="limpiarDescripcionRepetida(lineaTiempo.descripcionEstadoActaResolucion)"
+              [matTooltipDisabled]="!lineaTiempo.descripcionEstadoActaResolucion"
+              matTooltipClass="custom-tooltip2"
+            >
+              <img alt="codigoEstadoActa" [src]="obtenerRutaIcono(lineaTiempo)" />
+            </div>
+            <div class="descripcion">
+              <h3>{{ getDescripcionReducida(lineaTiempo.descripcionEstadoActaResolucion) }}</h3>
+              <h3 class="fecha-steps">
+                {{ lineaTiempo.fechaRegistro | date : "dd/MM/yyyy" }}
+                {{ lineaTiempo.fechaRegistro | date : "hh:mm:ss a" }}
+              </h3>
+            </div>
+          </li>
+          <ng-template #showList>
+            <li [ngClass]="isActaRoja(lineaTiempo) ? 'active rojo' : 'active'">
+              <div class="ico-steps" mat-raised-button matTooltipPosition="above">
+                <img alt="codigoEstadoActa" [src]="obtenerRutaIcono(lineaTiempo)" />
+              </div>
+              <div class="descripcion">
+                <h3>{{ obtenerDescripcion(lineaTiempo) }}</h3>
+                <h3 class="fecha-steps">
+                  {{ lineaTiempo.fechaRegistro | date : "dd/MM/yyyy" }}
+                  {{ lineaTiempo.fechaRegistro | date : "hh:mm:ss a" }}
+                </h3>
+              </div>
+            </li>
+          </ng-template>
+        </ng-container>
+      </ul>
+    </div>
+  </div>

@@ -1,0 +1,19 @@
+<div class="d-flex flex-wrap content-between button-responsive justify-content-center align-center">
+  <div class="content-fecha">
+    <div class="actualizacion">
+      <span>
+        {{ "ACTUALIZADO-AL" | translate }}
+        <span class="fecha-normal">
+          {{ resumenTotal?.fechaActualizacion | date : "dd/MM/yyyy" }}
+          {{ "aLas" | translate }}
+          {{ resumenTotal?.fechaActualizacion | date : "hh:mm:ss a" }}
+        </span>
+      </span>
+    </div>
+  </div>
+  <div class="contenedor-botones pl-50 pl-0-xs">
+    <button class="button_estilo1" (click)="generateReport()">
+      {{ "GENERAR-REPORTE" | translate }}
+    </button>
+  </div>
+</div>

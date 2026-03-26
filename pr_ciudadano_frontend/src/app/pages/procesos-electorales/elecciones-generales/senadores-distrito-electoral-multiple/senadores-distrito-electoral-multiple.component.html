@@ -1,0 +1,41 @@
+<section class="contenido-nofixed">
+  <article class="w-100">
+    <h1 class="titulo1"><span class="icono_titulo icon-ico-senador_dem"></span> {{ electionDescriptionTitle }}</h1>
+  </article>
+  <app-seccion-actas-resumen [resumen]="resumen" class="actas-seccion"></app-seccion-actas-resumen>
+  <div class="tabs-group">
+    <app-election-tabs [activeTab]="activeTab" (openTabEvent)="openTab($event)" class="w-100"></app-election-tabs>
+
+    <div class="tab-conte" id="tab1" [class.active]="activeTab === 'tab1'">
+      @if (activeTab === 'tab1' && resumen) {
+        <app-resultado-ubicacion-geografica
+          [idEleccion]="idEleccion"
+          [resumen]="resumen"
+          [active]="activeTab === 'tab1'"
+          (updateResumenGeneral)="obtenerResumenFromTabSection($event)"
+        ></app-resultado-ubicacion-geografica>
+      }
+    </div>
+    <div class="tab-conte" id="tab2" [class.active]="activeTab === 'tab2'">
+      @if (activeTab === 'tab2' && resumen) {
+        <ng-container *ngIf="resumen">
+          <app-realizar-busqueda
+            [datos]="{ resumen: resumen, idEleccion: idEleccion }"
+            (updateResumenGeneral)="obtenerResumenFromTabSection($event)"
+          ></app-realizar-busqueda>
+        </ng-container>
+      }
+    </div>
+    <div class="tab-conte" id="tab3" [class.active]="activeTab === 'tab3'">
+      @if (activeTab === 'tab3' && resumen) {
+        <app-resultado-candidato
+          [idEleccion]="idEleccion"
+          [resumen]="resumen"
+          [active]="activeTab === 'tab3'"
+          (updateResumenGeneral)="obtenerResumenFromTabSection($event)"
+        ></app-resultado-candidato>
+      }
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

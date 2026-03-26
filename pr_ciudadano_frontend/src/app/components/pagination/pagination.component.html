@@ -1,0 +1,15 @@
+<div class="">
+  <ul class="numero-lista">
+    <li>
+      <a *ngIf="!disablePrevPage" tabindex="0" (click)="prevPage()" (keydown.enter)="prevPage()" (keydown.space)="prevPage()">◀</a>
+    </li>
+    <li *ngFor="let page of listOfPages">
+      <a [ngClass]="{ activado: page == selectedPage }" tabindex="0" (click)="selectPage(page)" (keydown.enter)="selectPage(page)" (keydown.space)="selectPage(page)">
+        {{ page }}
+      </a>
+    </li>
+    <li>
+      <a *ngIf="!disableNextPage"  tabindex="0" (click)="nextPage()" (keydown.enter)="nextPage()" (keydown.space)="nextPage()">►</a>
+    </li>
+  </ul>
+</div>

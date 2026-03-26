@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "file.upload-dir",
+    "type": "java.lang.String",
+    "description": "A description for 'file.upload-dir'"
+  },
+  {
+    "name": "app.sce-batch-pr.transmision.send-queue",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sce-batch-pr.transmision.send-queue'"
+  },
+  {
+    "name": "app.sce-batch-pr.transmision.reply-queue",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sce-batch-pr.transmision.reply-queue'"
+  },
+  {
+    "name": "app.sce-batch-pr.transmision.send-queue-file",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sce-batch-pr.transmision.send-queue-file'"
+  },
+  {
+    "name": "app.sce-batch-pr.transmision.reply-queue-file",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sce-batch-pr.transmision.reply-queue-file'"
+  },
+  {
+    "name": "app.sftp.ipserver",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.ipserver'"
+  },
+  {
+    "name": "app.sftp.username",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.username'"
+  },
+  {
+    "name": "app.sftp.home",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.home'"
+  },
+  {
+    "name": "app.sftp.password",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.password'"
+  },
+  {
+    "name": "app.sftp.port",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.port'"
+  },
+  {
+    "name": "app.sftp.dir-pr",
+    "type": "java.lang.String",
+    "description": "A description for 'app.sftp.dir-pr'"
+  }
+]}

@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use '../../../../variables.scss' as *;
+
+.content_detalle{
+    display: flex; align-items: center;width: 100%;
+}
+
+.config_report_flex{
+    display: flex;gap: 20px;width: 100%;
+    border-bottom: 2px map.get($colors, gris-tabla) solid;
+    padding-bottom: 12px;
+}
+.content_detalle_reporte{
+    display: flex; flex-direction: column;width: 100%;    justify-content: center;
+    div{
+        h4{
+            font-size: map.get($font-sizes, "_14");
+            color: map.get($colors, azul-principal);
+            display: flex;
+            text-align: left;
+          margin-bottom: 0.6rem;
+            span{
+                color: map.get($colors, onpe-institucional);  flex: 1;
+                font-weight: map.get($font-weights, bold);
+                padding-left: 6px;
+            }
+        }
+    }
+}
+.content_detalle_col{
+    display: flex; flex-direction: column; 
+    flex: 1;
+
+
+    p{
+        text-align: center;
+        font-size: map.get($font-sizes, "_14");
+        line-height: 1rem;
+        color: map.get($colors, gris-texto);
+        span{
+            color: map.get($colors, gris-texto);
+            font-weight: map.get($font-weights, bold);
+        }
+    }
+}
+
+
+.border-hr{
+    border: 1px map.get($colors, gris-c0) solid;
+    height: 16px; margin: 0px 20px;
+}
+
+.text-left{
+    text-align: left!important;
+}

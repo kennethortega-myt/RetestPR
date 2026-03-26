@@ -1,0 +1,156 @@
+<section class="w-100 sombra-resumen-acta inicial version-pc">
+  <div class="flex-1 sec-cont sec-prinsipal-candidato general">
+    <div class="infoprincipal menor">
+      <div class="infoprincipal-detalle">
+        <span>
+          {{ ActasContabilizadasKey | translate }} <br />
+          <b>{{ resumen?.actasContabilizadas | porcentajeFormat }}</b>
+        </span>
+        <span>
+          <strong>{{ TotalActasKey | translate }} {{ resumen?.totalActas | number : "1.0-3" : "en-US" }}  </strong>
+          <br />
+          {{ resumen?.actasEnviadasJee | porcentajeFormat }} {{ ActasEnvioJeeKey | translate }}
+          {{ resumen?.actasPendientesJee | porcentajeFormat }} {{ ActasPendientesKey | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="hasContent; else emptyState">
+    <ng-container *ngTemplateOutlet="contentHas"></ng-container>
+  </ng-container>
+
+  <div class="w-100">
+    <div class="barra-cargando">
+      <div [style.width]="actasContabilizadas + '%'"></div>
+      <div [style.width]="acumuladoActasEnviadasJEE + '%'"></div>
+    </div>
+  </div>
+  
+  <div class="t-l">
+    <span class="actualizado"
+      ><b
+        >{{ ActualizadoKey | translate }} {{ resumen?.fechaActualizacion | date : "dd/MM/yyyy" }} {{ ALasKey | translate }}
+        {{ resumen?.fechaActualizacion | hourFormat }}
+      </b></span
+    >
+  </div>
+  <div class="flex-1 t-r">
+    <ul class="leyenda vertical">
+      <li>
+        <div class="color validados"></div>
+        {{ ContabilizadasKey | translate }}
+        <b *ngIf="resumen && resumen?.contabilizadas >= 0">({{ resumen?.contabilizadas.toLocaleString("en") }})</b>
+      </li>
+      <li>
+        <div class="color celeste"></div>
+        {{ EnvioJeeKey | translate }}
+        <b *ngIf="resumen && resumen?.enviadasJee >= 0">({{ resumen?.enviadasJee.toLocaleString("en") }})</b>
+      </li>
+      <li>
+        <div class="color blancos"></div>
+        {{ PendientesKey | translate }}
+        <b *ngIf="resumen && resumen?.pendientesJee >= 0">({{ resumen?.pendientesJee.toLocaleString("en") }})</b>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="w-100 inicial version-movil">
+  <div class="w-100-m">
+    <ng-container *ngIf="hasContent; else emptyState">
+      <ng-container *ngTemplateOutlet="contentHas"></ng-container>
+    </ng-container>
+
+    <div class="sombra-resumen-acta">
+      <div class="cabecera_desplegable_resumen" (click)="toggleClass()" (keydown.enter)="toggleClass()">
+        <div class="w-50-m d-flex-wrap">
+          <h2 class="titulo_resumen_acta">{{ ActasContabilizadasKey | translate }}</h2>
+          <div class="datos_resumen">
+            {{ resumen?.actasContabilizadas | porcentajeFormat }}
+          </div>
+        </div>
+        <div class="w-50-m desplegable_resumen">
+          <img class="mr-05" alt="" src="assets/img/reloj-actualizacion.svg" />
+          <div class="desplegar_resumen">
+            <div class="fecha_resumen">
+              {{ resumen?.fechaActualizacion | date : "dd/MM/yyyy" }}
+            </div>
+            <div class="hora_resumen">
+              {{ resumen?.fechaActualizacion | hourFormat }}
+            </div>
+          </div>
+          <div
+            class="flecha_desplegar"
+            [class.flecha_desplegado]="desplegar"
+            
+          ></div>
+        </div>
+      </div>
+      <div class="w-100-m contenido_desplegar" [class.desplegado]="desplegar">
+        <hr class="desplegable-hr" />
+        <div class="px-1_5">
+          <div class="d-flex-wrap">
+            <div class="conte-col-iconos">
+              <span class="iconos-resumen icon-ico_menu_actas"></span>
+              <div class="flex-1 col-iconos">
+                <h3>{{ TotalActasKey | translate }}</h3>
+                <h4>{{ resumen?.totalActas | number : "1.0-3" : "en-US" }}</h4>
+              </div>
+            </div>
+          </div>
+          <div class="w-50-m"></div>
+          <div class="w-50-m"></div>
+          <div class="barra-cargando">
+            <div [style.width]="actasContabilizadas + '%'"></div>
+            <div [style.width]="acumuladoActasEnviadasJEE + '%'"></div>
+          </div>
+          <ul class="leyenda vertical">
+            <li class="content-flex" >
+              <div class="color validados"></div>
+              <div class="contedor_leyenda contedor_leyenda-xs ">
+                <p>
+                  {{ ContabilizadasKey | translate }}
+                  <b *ngIf="resumen && resumen?.contabilizadas >= 0"
+                    >({{ resumen?.contabilizadas.toLocaleString("en") }})</b
+                  >
+                </p>
+                <h3>{{ resumen?.actasContabilizadas | porcentajeFormat }}</h3>
+              </div>
+            </li>
+            <li  class="content-flex" >
+              <div class="color celeste"></div>
+              <div class="contedor_leyenda  contedor_leyenda-xs">
+                <p>
+                  {{ EnvioJeeKey | translate }}
+                  <b *ngIf="resumen && resumen?.enviadasJee >= 0">({{ resumen?.enviadasJee.toLocaleString("en") }})</b>
+                </p>
+                <h3>{{ resumen?.actasEnviadasJee | porcentajeFormat }}</h3>
+              </div>
+            </li>
+            <li  class="content-flex" >
+              <div class="color blancos"></div>
+              <div class="contedor_leyenda contedor_leyenda-xs">
+                <p>
+                  {{ PendientesKey | translate }}
+                  <b *ngIf="resumen && resumen?.pendientesJee >= 0"
+                    >({{ resumen?.pendientesJee.toLocaleString("en") }})</b
+                  >
+                </p>
+                <h3>{{ resumen?.actasPendientesJee | porcentajeFormat }}</h3>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #contentHas>
+  <div class="t-r cont-botones">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #emptyState>
+</ng-template>

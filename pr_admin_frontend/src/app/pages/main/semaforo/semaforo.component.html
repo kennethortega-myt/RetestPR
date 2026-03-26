@@ -1,0 +1,22 @@
+<section class="section-flex secciones">
+  <article class="w-full">
+    <h1 class="titulo1">Semáforo</h1>
+    <h2 class="titulo2">Permite verificar los servicios</h2>
+    <p>
+      Podemos identificar mediante un semáforo si los servicios están disponibles o no.
+    </p>
+    <div class="content-sema">
+      @for (item of semaforos; track item.key) { 
+        <div class="semaforo">
+          <img [src]="getIcono(item.estado)" alt="icono" />  
+          <p>{{ item.label }}</p>  
+          <button type="button" class="button_estilo2" (click)="validar(item)">Validar</button>
+        </div>
+      }
+    </div>
+    <div class="box-message-blue full-width p-10">
+      <img src="assets/icons/ico-Info.svg" alt="icono" />
+      <p>Seleccione una opción para habilitar el procedimiento.</p>
+    </div>
+  </article>
+</section>

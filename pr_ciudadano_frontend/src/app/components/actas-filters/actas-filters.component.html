@@ -1,0 +1,81 @@
+<div class="none-movil">
+  <fieldset class="mb-1">
+    <legend class="noView">{{ FiltrarActas | translate }}</legend>
+    <form [formGroup]="mainForm" class="selector">
+      <select formControlName="filtro">
+        <option *ngFor="let item of mainOptions" [ngValue]="item.value">
+          {{ item.text }}
+        </option>
+      </select>
+    </form>
+  </fieldset>
+
+  <section class="example-section" [formGroup]="actasForm">
+    <ng-container *ngFor="let option of actasOptionsV">
+      <span class="checkbox-vertical">
+        <mat-checkbox
+          formControlName="{{option.id}}"
+          class="check"
+          (change)="emitEventToUpddateActasFilters($event, option)"
+        >
+          {{ option.text }}
+        </mat-checkbox>
+      </span>
+
+        <span class="checkbox-vertical">
+          <ul>
+            <ng-container *ngFor="let children of option.children">
+              <li>
+                <mat-checkbox
+                  formControlName="{{children.id}}"
+                  class="check"
+                  (change)="emitEventToUpddateActasFilters($event)"
+                >
+                  {{ children.text }}
+                </mat-checkbox>
+              </li>
+            </ng-container>
+          </ul>
+        </span>
+
+    </ng-container>
+  </section>
+</div>
+<div class="version-movil">
+  <fieldset class="w-100 mb-1">
+    <legend class="noView mb-05">{{ FiltrarActas | translate }}</legend>
+    <form [formGroup]="mainForm" class="mb-2-movil">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-select formControlName="filtro" placeholder="TODOS">
+          <mat-option *ngFor="let item of mainOptions" [value]="item.value">
+            {{ item.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+
+    <legend class="noView mb-05">{{ MotivoEnvioJEE | translate }}</legend>
+    <form [formGroup]="actasForm">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-select formControlName="tipoObservacion" multiple (selectionChange)="emitEventToUpddateActasFilters()" placeholder="SELECCIONE">
+          <ng-container *ngFor="let option of actasOptionsV">
+            <mat-option
+              (click)="emitEventObservadasCheckedMovil(option)" (keydown.enter)="emitEventObservadasCheckedMovil(option)"
+              [value]="option.value"
+            >
+              {{ option.text }}
+            </mat-option>
+            <ng-container *ngFor="let children of option.children">
+              <mat-option
+                class="pl-3"
+                [value]="children.value"
+              >
+                {{ children.text }}
+              </mat-option>
+            </ng-container>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </fieldset>
+</div>

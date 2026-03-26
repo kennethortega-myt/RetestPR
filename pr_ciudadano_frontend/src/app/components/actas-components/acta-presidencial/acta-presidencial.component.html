@@ -1,0 +1,196 @@
+<section class="sec-cont segundo gris">
+  <app-linea-tiempo
+    [detalleMesa]="detalleMesa"
+    [detalle]="detalle"
+    [archivos]="archivos"
+    [lineaTiempo]="lineaTiempo"
+    [numeroDeActa]="numeroDeActa"
+    [nombreDeActa]="nombreDeActa"
+  >
+  </app-linea-tiempo>
+
+  <div *ngIf="detalleMesa?.codigoEstadoActa == ACTA_CODIGO_ESTADO.CONTABILIZADA && detalleMesa?.estadoActa != 'N'">
+    <p>{{ 'actas-components.ordenarPor' | translate }}</p>
+    <label for="toggle" [className]="orderBy === 'Votos' ? 'label_activo' : 'label_inactivo'">{{
+      'actas-components.acta' | translate
+    }}</label>
+    <mat-slide-toggle [formControl]="ctrlToggle"></mat-slide-toggle>
+    <span for="toogle2" [className]="orderBy === 'Posicion' ? 'label_activo' : 'label_inactivo'">{{
+      'actas-components.votos' | translate
+    }}</span>
+  </div>
+  <ng-container *ngIf="detalleMesa?.codigoEstadoActa == ACTA_CODIGO_ESTADO.CONTABILIZADA">
+    <section class="sec-cont segundo gris">
+      <div class="sticky_cabecera_acta" *ngIf="detalle?.length > 0">
+        <h2 class="titulo2">{{ 'actas-components.infoActaElectoral' | translate }}<i></i></h2>
+
+        <section class="desplegable titulos-votos full">
+          <div>
+            <div class="w-100 t-r">
+              <article class="candidato">
+                <span></span>
+                <div class="cont-info">
+                  <div class="img img-transparente"></div>
+                  <div class="img img-transparente"></div>
+                  <div class="nombre"></div>
+                  <div class="cant">
+                    <span>{{ 'actas-components.votosValidos' | translate }} (%)</span>
+                  </div>
+                  <div class="cant">
+                    <span>{{ 'actas-components.votosEmitidos' | translate }} (%)</span>
+                  </div>
+                </div>
+                <div class="cantidad">
+                  <span
+                    *ngFor="let value of escalaTotalVotos; let index = index"
+                    [ngStyle]="{
+                      left: getPosicionRegla(value, index),
+                      position: 'absolute',
+                      top: '-10px'
+                    }"
+                  >
+                    {{ getReglaValorIteracion(value, index) | number : '1.0-3' : 'en-US' }}
+                  </span>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div></div>
+        </section>
+      </div>
+
+      <ng-container *ngFor="let det of detalle">
+        <section
+          *ngIf="
+            (![80, 81, 82].includes(det.nagrupacionPolitica) && det.estado !== 20) ||
+            (det.estado == 20 && orderBy === 'Votos')
+          "
+          class="desplegable full"
+          [ngClass]="{ ' desplegado': det.seleccionado }"
+          [ngClass]="{ achurado: det.estado == 20 }"
+          id="cont01"
+        >
+          <div>
+            <div class="w-100 t-r" (click)="detalleVotos(det)" (keydown.enter)="detalleVotos(det)">
+              <article class="candidato barras_azules">
+                <div class="cont-info">
+                  <app-img
+                    *ngIf="det.estado != 20"
+                    alt="partidos"
+                    [src]="getPoliticalPartyImage(det.ccodigo)"
+                  ></app-img>
+                  <app-img
+                    *ngIf="det.estado != 20"
+                    alt="candidatos"
+                    [src]="getCandidateImage(det?.candidato[0]?.cdocumentoIdentidad)"
+                  ></app-img>
+
+                  <div class="conte_achurado" *ngIf="det.estado == 20">
+                    <img src="assets/img/achurado.svg" alt="achurado"/>
+                    <div class="texto_achurado">NO PARTICIPA</div>
+                  </div>
+
+                  <div class="nombre nameandphoto" *ngIf="det.estado != 20">
+                    <h3 *ngIf="det.estado != 20">
+                      {{ obtenerNombreCandidato(det) }}
+                    </h3>
+                    <p>{{ det.descripcion }}</p>
+                  </div>
+                  <div class="cant cant-pc" *ngIf="det.estado != 20">
+                    <span><b>{{ det.nporcentajeVotosValidos | porcentajeFormat }}</b></span>
+                  </div>
+                  <div class="cant cant-pc" *ngIf="det.estado != 20">
+                    <span><b>{{ det.nporcentajeVotosEmitidos | porcentajeFormat }}</b></span>
+                  </div>
+                  @if (det.estado != 20) {
+                    <div class="conte-votos2 version-movil">
+                      <div class="titulo_movil">{{ 'actas-components.cantidadVotos' | translate }}</div>
+                      <span class="titulo_votos_totales__num2"><b>{{ det.nvotos }}</b></span>
+                    </div>
+                  }
+                </div>
+                <div class="conte_barras_desplegar version-pc" *ngIf="det.estado != 20">
+                  <div class="barra-cargando">
+                    <div
+                      [ngStyle]="{
+                        width: calcularWith(det.nvotos)
+                      }"
+                    ></div>
+
+                    <p class="cant-votos">
+                      {{ 'actas-components.cantidadVotos' | translate }}
+                      <span>
+                        {{ det.nvotos }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="desplegar" *ngIf="det.estado != 20">
+            <ng-container *ngIf="det.candidato && det.candidato.length > 0">
+              <app-deta-lista-candidato [candidatos]="det.candidato"></app-deta-lista-candidato>
+            </ng-container>
+          </div>
+        </section>
+      </ng-container>
+      @if(detalleMesa?.estadoActa != ACTA_NO_INSTALADA){
+        <!-- VOTOS BLANCO -->
+        <linea-voto
+          [title]="'tab-ubicacion-geografica-presidenciales.votos_blanco' | translate"
+          [votes]="emptyVotes"
+          [isPresidencial]="true"
+          [percentageOfEmptyAndNullVotes]="
+            (maxValueForScaleName[maxValueForScaleName.length - 1] != 0
+              ? (emptyVotes.totalVotosValidos / maxValueForScaleName[maxValueForScaleName.length - 1]) * 100
+              : 0) + '%'
+          "
+          (click)="detailTypeVotesEmptyNullImpugned(emptyVotes, 'VOTOS BLANCO')"
+          (keydown.enter)="detailTypeVotesEmptyNullImpugned(emptyVotes, 'VOTOS BLANCO')"
+        ></linea-voto>
+
+        <!-- VOTOS NULOS -->
+        <linea-voto
+          [title]="'tab-ubicacion-geografica-presidenciales.votos_nulos' | translate"
+          [votes]="nullVotes"
+          [isPresidencial]="true"
+          [percentageOfEmptyAndNullVotes]="
+            (maxValueForScaleName[maxValueForScaleName.length - 1] != 0
+              ? (nullVotes.totalVotosValidos / maxValueForScaleName[maxValueForScaleName.length - 1]) * 100
+              : 0) + '%'
+          "
+          (click)="detailTypeVotesEmptyNullImpugned(nullVotes, 'VOTOS NULOS')"
+          (keydown.enter)="detailTypeVotesEmptyNullImpugned(nullVotes, 'VOTOS NULOS')"
+        ></linea-voto>
+
+        <!-- VOTOS IMPUGNADOS -->
+        <linea-voto
+          title="VOTOS IMPUGNADOS"
+          [votes]="impugnedVotes"
+          [isPresidencial]="true"
+          [percentageOfEmptyAndNullVotes]="
+            (maxValueForScaleName[maxValueForScaleName.length - 1] != 0
+              ? (impugnedVotes.totalVotosValidos / maxValueForScaleName[maxValueForScaleName.length - 1]) * 100
+              : 0) + '%'
+          "
+          (click)="detailTypeVotesEmptyNullImpugned(impugnedVotes, 'VOTOS IMPUGNADOS')"
+          (keydown.enter)="detailTypeVotesEmptyNullImpugned(impugnedVotes, 'VOTOS IMPUGNADOS')"
+        ></linea-voto>
+
+        <!-- TOTAL DE VOTOS -->
+        <linea-voto
+          [title]="totalVotosTra | translate"
+          [votes]="totalVotes"
+          [isTotal]="true"
+          [isPresidencial]="true"
+        ></linea-voto>
+      }
+    </section>
+    <app-resumen-total-votos 
+      class="w-100" 
+      *ngIf="detalle?.length > 0"
+      [useAlterTotalCastedVotesKey]="true">
+    </app-resumen-total-votos>
+  </ng-container>
+</section>

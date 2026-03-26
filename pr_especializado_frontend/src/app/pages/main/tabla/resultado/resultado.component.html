@@ -1,0 +1,377 @@
+<div class="scroll-content-general d-flex flex-direction-col-xs content-general px-32 p-0-movil">
+  <div class="w-30 w-60-md w-full-xs items-center d-flex flex-direction-col content-70 p-0-movil">
+    <div class="flex-direction-col w-full">
+      <app-resumen-etiqueta
+        class="VersionM"
+        #resumenEtiquetaComponent
+        [resumenTotal]="resumenTotal"
+        [cadenaFiltro]="cadenaFiltro"
+        (generarReporteEvent)="generarReporte()"
+      ></app-resumen-etiqueta>
+    </div>
+
+    <div class="content-resultado mb-1-movil version-pc">
+      <app-resumen-grafica-modelo-uno
+        [resumenTotal]="resumenTotal"
+        [idTipoEleccion]="idTipoEleccion"
+      ></app-resumen-grafica-modelo-uno>
+    </div>
+
+    <!-- Botón para mostrar mapa en móvil -->
+    <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+      <div class="text-mapa">
+        <img src="assets/img/icons/icon-mapa.svg" alt="icono mapa" />
+        <h5>{{ 'actas-observadas.VerMapaCalor' | translate }}</h5>
+      </div>
+      <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2"></div>
+    </button>
+    <!-- Contenedor del mapa -->
+    <div
+      class="d-flex flex-direction-col w-full containermap"
+      [ngClass]="{
+        'map-visible2': mostrarMapa2 || !esPantallaChica,
+        'map-oculto': !mostrarMapa2 && esPantallaChica
+      }"
+    >
+      <div class="mapas card-map-movil" style="width: 100%; height: 240px !important">
+        <ng-container *ngIf="mapaCalor">
+          <app-chart-mapa
+            [id]="'chartdivmap'"
+            (bottonHome)="cambioIdAmbitoGeograficoDesdeMapa($event)"
+            (seleccionPoligonoEvent)="ubigeoMapaSeleccionado($event)"
+          >
+          </app-chart-mapa>
+        </ng-container>
+      </div>
+    </div>
+    <div class="table-detalle-resultado"></div>
+
+    <div class="content-resultado mb-1-movil version-movil mt-1">
+      <app-resumen-grafica-modelo-uno
+        [resumenTotal]="resumenTotal"
+        [idTipoEleccion]="idTipoEleccion"
+      ></app-resumen-grafica-modelo-uno>
+    </div>
+    
+  </div>
+
+  <div class="w-70 w-full-xs margen-mobile">
+    <div
+      class="d-flex flex-direction-col gap-22 p-0-movil"
+      *ngIf="mensaje == '' || form.controls.estadoActa.value != null"
+    >
+      <app-resumen-etiqueta
+        class="VersionD"
+        #resumenEtiquetaComponent
+        [resumenTotal]="resumenTotal"
+        [cadenaFiltro]="cadenaFiltro"
+        (generarReporteEvent)="generarReporte()"
+      ></app-resumen-etiqueta>
+
+      <div class="w-full">
+        <!-- HEADER DESKTOP -->
+        <div class="d-flex items-center content-between gap-10-xs flex-wrap-movil header-desktop">
+          <h1 class="titulo-content titulo-content-table">
+            {{ 'DetalleEleccion' | translate }} {{ formatNameElection(filtroModel.nombreTipoEleccion) }}
+          </h1>
+
+          <div class="content-breadcrumb titulo-content-table">
+            <div class="item-breadcrumb" [formGroup]="form">
+              <mat-select
+                [(value)]="select3"
+                class="mat-select-resul selectEstadoActa"
+                formControlName="estadoActa"
+                (selectionChange)="estadoActaHasChanged()"
+              >
+                <mat-option value="">{{ 'EstadoActa' | translate }}</mat-option>
+                <mat-option value="C">{{ 'Contabilizadas' | translate }}</mat-option>
+                <mat-option value="E">{{ 'ParaEnvioJEE' | translate }}</mat-option>
+                <mat-option value="P">{{ 'Pendientes' | translate }}</mat-option>
+              </mat-select>
+            </div>
+          </div>
+        </div>
+        <!-- TABS Y SELECT MOBILE -->
+        <div class="mobile-header" *ngIf="esPantallaChica">
+          <!-- Tabs de Actas y Resoluciones -->
+          <div class="tabs-mobile">
+            <div class="tab-item active">
+              <img src="assets/iconosConsultaOP/actas.svg" alt="actas" />
+              <span>{{ 'Actas' | translate }}</span>
+            </div>
+            <div class="tab-item">
+              <img src="assets/iconosConsultaOP/resolucion2.svg" alt="Resoluciones" />
+              <span>{{ 'Resoluciones' | translate }}</span>
+            </div>
+          </div>
+
+          <!-- SELECT PERSONALIZADO MOBILE -->
+          <div class="custom-select-mobile" [formGroup]="form">
+            <!-- Botón principal -->
+            <button class="button-select-estado" (click)="toggleEstadoActa()" type="button">
+              <div class="text-estado">
+                <h5>{{ obtenerTextoEstado() }}</h5>
+              </div>
+              <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarEstadoActa"></div>
+            </button>
+
+            <!-- Panel de opciones -->
+            <div
+              class="opciones-panel"
+              [ngClass]="{
+                'panel-visible': mostrarEstadoActa,
+                'panel-oculto': !mostrarEstadoActa
+              }"
+            >
+              <div
+                class="opcion-item"
+                [class.opcion-selected]="form.get('estadoActa')?.value === ''"
+                (click)="seleccionarEstado('')"
+                (keydown.enter)="seleccionarEstado('')"
+              >
+                <span>{{ 'EstadoActa' | translate }}</span>
+              </div>
+              <div
+                class="opcion-item"
+                [class.opcion-selected]="form.get('estadoActa')?.value === 'C'"
+                (click)="seleccionarEstado('C')"
+                (keydown.enter)="seleccionarEstado('C')"
+              >
+                <span>{{ 'Contabilizadas' | translate }}</span>
+              </div>
+              <div
+                class="opcion-item"
+                [class.opcion-selected]="form.get('estadoActa')?.value === 'E'"
+                (click)="seleccionarEstado('E')"
+                (keydown.enter)="seleccionarEstado('E')"
+              >
+                <span>{{ 'ParaEnvioJEE' | translate }}</span>
+              </div>
+              <div
+                class="opcion-item"
+                [class.opcion-selected]="form.get('estadoActa')?.value === 'P'"
+                (click)="seleccionarEstado('P')"
+                (keydown.enter)="seleccionarEstado('P')"
+              >
+                <span>{{ 'Pendientes' | translate }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full w-full-xs items-center d-flex content-center" *ngIf="mensaje != ''">
+          <app-personaje-mensaje
+            [mensaje]="mensaje"
+            [mensajeParams]="{
+              fecha: (resumenTotal?.fechaActualizacion | date: 'dd/MM/yyyy')!,
+              hora: (resumenTotal?.fechaActualizacion | date: 'hh:mm:ss a')!
+            }"
+          >
+          </app-personaje-mensaje>
+        </div>
+
+        <!-- Mostrar tabla solo si hay datos -->
+        <div *ngIf="tableInformation.totalRegisters != 0">
+          <!-- TABLA DESKTOP -->
+          <div class="mt-10 scroll-tabla-consulta-avanzada-extended version-pc">
+            <mat-table [dataSource]="tableInformation.dataSource" class="table-striped tabla-resultados head-flotante">
+              <ng-container matColumnDef="ambito">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Ambito' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.ambito }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="departamento">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Region' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.departamento }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="provincia">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Provincia' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.provincia }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="distrito">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Distrito' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.distrito }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="local">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.LocalVotacion' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.local }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="mesa">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Nmesa' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.mesa }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="electores">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.ElectoresHabiles' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.electores }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="votos">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.VotosObtenidos' | translate | uppercase }} *
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.votos }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="estadoacta">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.EstadoActa' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  {{ element.documento | uppercase }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="documento">
+                <mat-header-cell *matHeaderCellDef class="w-n">
+                  {{ 'Resultadoapp.Documentos' | translate | uppercase }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n">
+                  <div class="content-documentos">
+                    <img
+                      *ngIf="element.archivosActa && element.archivosActa.length > 0"
+                      (click)="verActa(element)"
+                      (keydown.enter)="verActa(element)"
+                      src="assets/iconosConsultaOP/actas.svg"
+                      alt="actas"
+                    />
+                    <img
+                      *ngIf="element.archivosResolucion && element.archivosResolucion.length > 0"
+                      (click)="verResolucion(element)"
+                      (keydown.enter)="verResolucion(element)"
+                      src="assets/iconosConsultaOP/resolucion2.svg"
+                      alt="Resoluciones"
+                    />
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+            </mat-table>
+          </div>
+
+          <!-- TABLA MOBILE -->
+          <div class="version-movil">
+            <app-c-table-mobile
+              class="w-full"
+              [displayedColumns]="mobileDisplayedColumns"
+              [dataSource]="tableInformation.dataSource"
+              [isPoliticalOrganization]="isPoliticalOrganization"
+              (verActa)="verActa($event)"
+              (verResolucion)="verResolucion($event)"
+            ></app-c-table-mobile>
+          </div>
+
+          <!-- PAGINADOR -->
+          <div class="d-flex items-center content-between d-block-xs mt-12-xs content-paginador">
+            <div class="content-breadcrumb titulo-content-table">
+              <div class="item-breadcrumb">
+                <img src="assets/iconosConsultaOP/actas.svg" alt="actas" />
+                <span>{{ 'Actas' | translate }}</span>
+              </div>
+              <div class="item-breadcrumb">
+                <img src="assets/iconosConsultaOP/resolucion2.svg" alt="Resoluciones" />
+                <span>{{ 'Resoluciones' | translate }}</span>
+              </div>
+            </div>
+
+            <h3>
+              @if (this.isPoliticalOrganization) {
+                <span>* {{ 'Resultadoapp.leyenda' | translate }}</span>
+              }
+            </h3>
+
+            <!-- PAGINADOR MOBILE -->
+            <div class="paginador-mobile">
+              <div class="list-paginador mt-24">
+                <!-- Botón anterior -->
+                <button
+                  (click)="goToPreviousPage()"
+                  [disabled]="tableInformation.currentPage === 0"
+                  class="page-button"
+                >
+                  &lt;
+                </button>
+
+                <!-- Botones dinámicos -->
+                <ng-container *ngFor="let page of getVisiblePages()">
+                  <!-- Si es número, mostrar botón clickeable -->
+                  <button
+                    *ngIf="typeof page === 'number'"
+                    (click)="goToPage(page)"
+                    [class.active-button]="page === tableInformation.currentPage + 1"
+                    class="page-button"
+                  >
+                    {{ page }}
+                  </button>
+
+                  <!-- Si es string (puntos suspensivos), mostrar como texto -->
+                  <span *ngIf="typeof page === 'string'" class="page-ellipsis">
+                    {{ page }}
+                  </span>
+                </ng-container>
+
+                <!-- Botón siguiente -->
+                <button
+                  (click)="goToNextPage()"
+                  [disabled]="tableInformation.currentPage >= tableInformation.totalPages - 1"
+                  class="page-button"
+                >
+                  &gt;
+                </button>
+              </div>
+            </div>
+
+            <!-- PAGINADOR DESKTOP -->
+            <div class="paginador-desktop">
+              <mat-paginator
+                class="bg-transparente"
+                [length]="tableInformation.totalRegisters"
+                [pageSize]="tableInformation.pageSize"
+                [pageIndex]="tableInformation.currentPage"
+                (page)="handlePageEvent($event)"
+                aria-label="Select page"
+              >
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
+        <!-- Mensaje cuando no hay datos -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<app-header></app-header>
+<section class="contenedor-body">
+  <nav *ngIf="!isPrincipal">
+    <ul>
+      <ng-container *ngFor="let item of accesos.modulos">
+        <li [ngClass]="{ 'active': isActive(item.url) }">
+          <a [routerLink]="`/${item.url}`">
+            {{ item.nombre }}
+          </a>
+        </li>        
+      </ng-container>
+    </ul>
+  </nav>
+  <section class="contenedor-principal">
+    <router-outlet></router-outlet>
+  </section>
+</section>

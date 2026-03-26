@@ -1,0 +1,294 @@
+<div class="contenedorDescargas" *ngIf="isContentReady">
+  <div class="d-flex gap-22 px-32 p-0-movil mt-2 mt-12-xs">
+    <div class="w-full">
+      <div class="d-flex flex-direction-col-xs gap-9 content-between items-center items-baseline-xs flex-wrap">
+        <div class="d-flex flex-direction-col">
+          <h1 class="titulo-content">{{ titleKey | translate }}</h1>
+
+          <div class="miga_pan version-movil mt-1"> 
+            <button class="btn_migapan" (click)="onOpenMobileFilter()">
+              <img class="icono_migapan" src="assets/img/icons/ico-ubigeo2.svg" alt="" />
+              {{criterioSeleccionado}}
+              <div class="flecha_desplegar"></div>
+            </button>
+            <button class="icono-filtro-azul" *ngIf="ocultarLimpiar" matRipple (click)="onLimpiar()">
+            </button>
+          </div>
+
+          <div
+            class="newOrder d-flex flex-direction-col-xs gap-9 content-left w-full items-center items-baseline-xs mt-16 filtro-content"
+          >
+            <div class="d-flex flex-direction-col-xs w-full-xs gap-18 gap-10-xs items-center" [formGroup]="form">
+              <img class="c-pointer" src="assets/iconosConsultaOP/ico-engranaje.svg" alt="filtro" />
+              <mat-select
+                class="mat-select-resul"
+                panelClass="custom-select-panel"
+                customSelect
+                formControlName="tipoEleccion"
+              >
+                <mat-option [value]="0">{{ 'TEleccion' | translate }}</mat-option>
+                <mat-option *ngFor="let eleccion of listaEleccion" [value]="eleccion.value">{{
+                  eleccion.text
+                }}</mat-option>
+              </mat-select>
+              <mat-select
+                *ngIf="showTipoReporteFilter"
+                class="mat-select-resul"
+                panelClass="custom-select-panel"
+                customSelect
+                formControlName="tipoReporte"
+              >
+                <mat-option [value]="0">{{ 'TReporte' | translate }}</mat-option>
+                <mat-option *ngFor="let reporte of listaReporte" [value]="reporte.value">{{ reporte.text | translate }}</mat-option>
+              </mat-select>
+            </div>
+            <button class="button_estilo3" *ngIf="ocultarLimpiar" (click)="onLimpiar()">{{ 'BotonLimpiar' | translate }}</button>
+            <button class="button_estilo2" (click)="onActualizar()">{{ 'Actualizar' | translate }}</button>
+          </div>
+        </div>
+
+        <div class="content-consult numberTotales">
+          <img src="assets/icon-consult.svg" alt="Total de reportes" />
+          <div class="text-section">
+            <h6>{{ totalKey | translate }}</h6>
+            <span *ngIf="!isFirstRequest">{{ tableInformation.totalRegisters }}</span>
+            <span *ngIf="isFirstRequest"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-32 px-0-md">
+    <div class="d-flex flex-colum containerMC">
+      <h2>{{ 'MaestroCandidatos' | translate }}</h2>
+      <div class="d-flex flex-1 containerCards w-full align-center">
+        @for (tipoEleccion of listaEleccion; track tipoEleccion.value; let i = $index) {
+          <div class="card d-flex flex-1 align-center justify-between">
+            <div class="cargoNombre">{{ tipoEleccion.text }}</div>
+            <div class="contImg d-flex align-center" (click)="descargarReporte(tipoEleccion)">
+              <img src="assets/icons/iconReportesPR.svg" alt="icon_csv" />
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-content-general d-flex flex-direction-col-xs justify-content-center">
+    <ng-container *ngIf="!isFirstRequest">
+      <div class="version-movil flex-wrap px-32 p-0-movil">
+        <mat-accordion multi="true" class="table-card w-full">
+          <mat-expansion-panel *ngFor="let element of tableInformation.dataSourceTotals">
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ element.fecha }}</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.FConsulta' | translate }}:</div>
+                <div class="dato">{{ element.fecha }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.TReporte' | translate }}:</div>
+                <div class="dato">{{ element.tipoReporte }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.TEleccion' | translate }}:</div>
+                <div class="dato">{{ element.tipoEleccion }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.TPorcentaje' | translate }}:</div>
+                <div class="dato">{{ number(element.porcentaje) | porcentajeFormat }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.Ambito' | translate }}:</div>
+                <div class="dato">{{ element.ambito }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.DC' | translate }}:</div>
+                <div class="dato">{{ element.dc }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.PP' | translate }}:</div>
+                <div class="dato">{{ element.pp }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.DE' | translate }}:</div>
+                <div class="dato">{{ element.de }}</div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.Estado' | translate }}:</div>
+                <div class="dato text-right">
+                  <img class="icon-estado" [src]="getEstadoIcon(element).icon" [alt]="getEstadoIcon(element).alt" />
+                </div>
+              </div>
+              <div class="linea-tabla">
+                <div class="cabecera">{{ 'tabla.Repositorio' | translate }}:</div>
+                <div class="dato text-right">
+                  <img
+                    src="assets/icon-file-active.svg"
+                    *ngIf="hasRepo(element.repositorio)"
+                    alt="Enlace descarga"
+                    (click)="onDescargar(element)"
+                    (keydown.enter)="onDescargar(element)"
+                  />
+                  <img
+                    src="assets/icon-file-inactive.svg"
+                    *ngIf="!hasRepo(element.repositorio)"
+                    alt="Enlace inactivo"
+                  />
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="w-full px-32 version-pc" *ngIf="!isLoadingReportList && tableInformation.dataSourceTotals.length > 0">
+        <div class="scroll-tabla-descarga w-full">
+          <mat-table
+            [dataSource]="tableInformation.dataSourceTotals"
+            class="w-full table-striped tabla-resultados head-flotante setupReportes"
+          >
+            <ng-container matColumnDef="fecha">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.FConsulta' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.fecha }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoReporte">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.TReporte' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.tipoReporte | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipoEleccion">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.TEleccion' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.tipoEleccion | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="porcentaje">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.TPorcentaje' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ number(element.porcentaje) | porcentajeFormat}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ambito">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.Ambito' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.ambito | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dc">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{ 'tabla.DC' | translate | uppercase }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.dc | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pp">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{ 'tabla.PP' | translate | uppercase }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.pp | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="de">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{ 'tabla.DE' | translate | uppercase }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">{{ element.de | uppercase }}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="estado">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.Estado' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">
+                <img class="icon-estado" [src]="getEstadoIcon(element).icon" [alt]="getEstadoIcon(element).alt" />
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="repositorio">
+              <mat-header-cell *matHeaderCellDef class="w-n">{{
+                'tabla.Repositorio' | translate | uppercase
+              }}</mat-header-cell>
+              <mat-cell *matCellDef="let element" class="w-n">
+                <div class="content-documentos">
+                  <img
+                    [src]="getRepoIcon(element.repositorio)"
+                    alt="Repositorio"
+                    (click)="onDescargar(element)"
+                    (keydown.enter)="onDescargar(element)"
+                  />
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+        </div>
+        <div class="d-flex items-center content-between d-block-xs mt-12-xs content-paginador">
+          <div class="conte-leyenda">
+            <div class="leyenda mt-10">
+              <div class="d-flex items-center sin-data">
+                <img class="icon-estado" src="assets/icono_no_data.svg" alt="Sin Data en BD" />
+                <span class="texto_leyenda">{{ 'tabla.NoData' | translate }}</span>
+              </div>
+              <div class="d-flex items-center">
+                <img class="icon-estado" src="assets/icon-timer.svg" alt="En Proceso" />
+                <span class="texto_leyenda">{{ 'tabla.EnProceso' | translate }}</span>
+              </div>
+              <div class="d-flex items-center">
+                <img class="icon-estado" src="assets/icon-check.svg" alt="Terminado" />
+                <span class="texto_leyenda">{{ 'tabla.Terminado' | translate }}</span>
+              </div>
+            </div>
+          </div>
+        @if(tableInformation.totalRegisters > 10){
+          <mat-paginator
+            class="bg-blanco"
+            [length]="tableInformation.totalRegisters"
+            [pageSize]="tableInformation.pageSize"
+            [pageSizeOptions]="[]"
+            [pageIndex]="tableInformation.currentPage"
+            [showFirstLastButtons]="true"
+            (page)="onPageChange($event)"
+            aria-label="Select page">
+          </mat-paginator>
+        }
+        </div>
+      </div>
+      <div class="d-flex items-center content-between mt-12-xs content-paginador d-none d-block-xs">
+        <div class="conte-leyenda">
+          <div class="leyenda mt-10 mb-10">
+            <div class="d-flex items-center sin-data">
+              <img class="icon-estado" src="assets/icono_no_data.svg" alt="Sin Data en BD" />
+              <span class="texto_leyenda">{{ 'tabla.NoData' | translate }}</span>
+            </div>
+            <div class="d-flex items-center">
+              <img class="icon-estado" src="assets/icon-timer.svg" alt="En Proceso" />
+              <span class="texto_leyenda">{{ 'tabla.EnProceso' | translate }}</span>
+            </div>
+            <div class="d-flex items-center">
+              <img class="icon-estado" src="assets/icon-check.svg" alt="Terminado" />
+              <span class="texto_leyenda">{{ 'tabla.Terminado' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        @if(tableInformation.totalRegisters > 10){
+          <mat-paginator
+            class="bg-blanco pag-movil"
+            [length]="tableInformation.totalRegisters"
+            [pageSize]="tableInformation.pageSize"
+            [pageSizeOptions]="[]"
+            [pageIndex]="tableInformation.currentPage"
+            [showFirstLastButtons]="true"
+            (page)="onPageChange($event)"
+            aria-label="Select page">
+          </mat-paginator>
+        }
+      </div>
+      <app-personaje-mensaje
+        [mensaje]="emptyMessage"
+        [mensajeParams]="{ 
+            fecha: (fechas.fechaProceso| date:'dd/MM/yyyy')!, 
+            hora: (fechas.fechaProceso| date:'hh:mm:ss a')! }"         
+        *ngIf="!isLoadingReportList && tableInformation.dataSourceTotals.length === 0"
+      ></app-personaje-mensaje>
+    </ng-container>
+  </div>
+</div>

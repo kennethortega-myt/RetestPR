@@ -1,0 +1,95 @@
+<section class="cont-flex">
+  <div class="w-100">
+    <div class="w-100">
+      <app-generic-filter-ubigeo
+        class="w-100 n-p"
+        [filterFunctionality]="'peru_intern_and_all_join'"
+        (applyFiltersEvent)="applyFiltersEvent($event)"
+        (applyListResetEvent)="reiniciarListaPorCambioDeFiltro($event)"
+      ></app-generic-filter-ubigeo>
+    </div>
+  </div>
+  <div class="w-100 n-p">
+    <article class="cont-flex normal centrando-barras">
+      <div>
+        <section class="t-c">
+          <ng-container *ngFor="let eleccion of elecciones; let i = index">
+            <article
+              [ngClass]="{
+                'seccion-borde tarjetas': true,
+                bg_actas_congresal: eleccion.id == MAIN_ELECTION_IDS.diputados,
+                bg_actas_parlamento: eleccion.id == MAIN_ELECTION_IDS.parlamento_andino,
+                bg_actas_presidencial: eleccion.id == MAIN_ELECTION_IDS.presidenciales,
+                bg_actas_senador_dem: eleccion.id == MAIN_ELECTION_IDS.senadores_27,
+                bg_actas_senador_deu: eleccion.id == MAIN_ELECTION_IDS.senadores_33
+              }"
+            >
+              <h2 class="titulo2 t-l">
+                <span class="ico_eleccion"
+                 [ngClass]="{'icon-ico_e_diputados': eleccion.id == MAIN_ELECTION_IDS.diputados,
+                  'icon-ico_e_parlamento': eleccion.id == MAIN_ELECTION_IDS.parlamento_andino,
+                  'icon-ico_e_presidencial': eleccion.id == MAIN_ELECTION_IDS.presidenciales,
+                  'icon-ico-senador_dem': eleccion.id == MAIN_ELECTION_IDS.senadores_27,
+                  'icon-ico-senador_deu': eleccion.id == MAIN_ELECTION_IDS.senadores_33
+                 }">
+                </span>
+                {{(eleccion?.nombre)?.toLocaleUpperCase() }}</h2>
+              <div class="sec-prinsipal-candidato general actas-cant">
+                <div class="infoprincipal-detalle">
+                  <span>
+                    {{ 'actas-resumen.ActasContabilizadas' | translate }} <br />                    
+                    <b>{{ eleccion.porcentajeActasContabilizadas | porcentajeFormat }}</b>
+                  </span>
+                </div>
+                <div id="grafica" class="fullPieChartClass grafica">
+                  <app-chart-pie
+                    [id]="'chart_' + eleccion.id"
+                    [resumenGeneral]="eleccion"
+                    [cargar]="cargarPie"
+                  ></app-chart-pie>
+                </div>
+              </div>
+              <ul class="leyenda blue">
+                <li>
+                  <span>
+                    <div class="color validados"></div>
+                    {{ 'actas-resumen.Contabilizadas' | translate }}
+                  </span>
+
+                  <b>{{ eleccion.porcentajeActasContabilizadas | porcentajeFormat }}</b>
+                  <i>{{ eleccion.actasContabilizadas | number: '1.0-3' : 'en-US' }}</i>
+                </li>
+                <li>
+                  <span>
+                    <div class="color celeste"></div>
+                    {{ 'actas-resumen.EnvioJEE' | translate }}
+                  </span>
+
+                  
+                  <b>{{ eleccion.porcentajeActasObservadasEnviadas | porcentajeFormat }}</b>
+                  <i>{{ eleccion.actasObservadasEnviadas | number: '1.0-3' : 'en-US' }}</i>
+                </li>
+                <li>
+                  <span>
+                    <div class="color blancos"></div>
+                    {{ 'actas-resumen.Pendientes' | translate }}
+                  </span>
+
+                  <b>{{ eleccion.porcentajeActasPendientes | porcentajeFormat }}</b>
+                  <i>{{ eleccion.actasPendientes | number: '1.0-3' : 'en-US' }}</i>
+                </li>
+                <li>
+                  <span> </span>
+                  <span class="rayita_suma">
+                    <b>{{ 'actas-resumen.Total' | translate }}</b>
+                    <i>{{ obtenerTotal(eleccion) | number: '1.0-3' : 'en-US' }}</i>
+                  </span>
+                </li>
+              </ul>
+            </article>
+          </ng-container>
+        </section>
+      </div>
+    </article>
+  </div>
+</section>

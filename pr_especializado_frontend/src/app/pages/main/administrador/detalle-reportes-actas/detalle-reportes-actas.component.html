@@ -1,0 +1,7 @@
+<app-detalle-reportes-list
+  [titleKey]="'detalle.titulo'"
+  [reportConfigList]="reportConfigList"
+  (generar)="generarReporteManual($event)"
+  (detenerReanudar)="detenerReporte($event)"
+  (editar)="editarparametros($event)"
+></app-detalle-reportes-list>

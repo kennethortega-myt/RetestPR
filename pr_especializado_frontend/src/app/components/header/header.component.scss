@@ -1,0 +1,138 @@
+@use "sass:map";
+@use '../../../variables.scss' as *;
+
+/* Menú boletín */
+.menuBoletin {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.menuBoletin nav {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    height: 100%;
+    justify-content: flex-end;
+    background: #F8F8F8;
+    width: 250px;
+    left: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.menuBoletin nav ul {
+    margin: 0 auto;
+    display: flex;
+    transition: all .1s;
+    padding: 0;
+}
+
+.menuBoletin nav li {
+    list-style-type: none;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.menuBoletin nav li {
+    display: inline-flex;
+    width: auto;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    max-height: 74px;
+    transition: all .1s;
+}
+
+.menuBoletin li{
+    color: #1d1d1d;
+    font-size: 1.2rem;
+    line-height: 1.1;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+.menuBoletin .link{
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.menuBoletin nav li a {
+    transition: .2s;
+    padding: 10px 15px;
+    width: 100%;
+    margin: 0;
+    color: #003874;
+    font-weight: 450;
+    line-height: 1.2;
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.menuBoletin nav li:hover a {
+    background: #2A71B9;
+    color: #fff;
+}
+
+.menuBoletin a {
+    color: #2a71b9;
+    transition: .2s;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: var(--font18);
+    font-weight: 600;
+}
+
+.menuBoletin nav li a span {
+    color: #003874;
+    min-width: 20px;
+    display: inline-flex;
+    text-align: center;
+    font-size: 1.8em;
+    position: relative;
+    left: 0;
+    top: 0;
+    max-width: 45px;
+    height: 31px;
+    align-items: center;
+    justify-content: center;
+    margin: -2px 10px 0 5px;
+}
+.menuBoletin nav li:hover a span{
+    color: #FFFFFF;
+}
+
+.menuBoletin .icon-ico_resumen_general:before {
+    content: "\e901";
+}
+.filterTitle{
+    color: map.get($primary-colors, onpe-institucional);
+}
+.filterTitle dfn{
+    color: gray !important;
+}
+.sltdIpsumTitle{
+    display: flex;
+    flex-direction: row;
+}
+.selected-view{
+    font-size: 0.9rem;
+    color: #003874;
+    margin-bottom: 0;
+}
+.selected-time{
+    font-size: 0.9rem;
+    color: #808080;
+    margin-top: 0;
+    margin-left: 8px;
+}
+

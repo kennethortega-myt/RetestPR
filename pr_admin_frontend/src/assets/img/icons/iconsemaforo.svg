@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70" height="70" viewBox="0 0 70 70">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-iconSemaforo);
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: #2971bb;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_13178" data-name="Rectángulo 13178" class="cls-1" width="60.502" height="60.502" transform="translate(0 0)"/>
+    </clipPath>
+    <clipPath id="clip-iconSemaforo">
+      <rect width="70" height="70"/>
+    </clipPath>
+  </defs>
+  <g id="iconSemaforo" class="cls-2">
+    <g id="Grupo_26214" data-name="Grupo 26214" transform="translate(4.749 4.749)">
+      <g id="Grupo_26213" data-name="Grupo 26213" class="cls-3">
+        <path id="Trazado_22379" data-name="Trazado 22379" class="cls-4" d="M58.612,1.89A6.194,6.194,0,0,0,54.068,0H6.433A6.2,6.2,0,0,0,1.889,1.89,6.194,6.194,0,0,0,0,6.434V54.069a6.2,6.2,0,0,0,1.889,4.544A6.2,6.2,0,0,0,6.433,60.5h18a2.67,2.67,0,1,0,0-5.339h-18a1.046,1.046,0,0,1-.752-.342,1.043,1.043,0,0,1-.342-.753v-35.2H55.163v5.567a2.67,2.67,0,1,0,5.339,0v-18a6.194,6.194,0,0,0-1.89-4.544"/>
+        <path id="Trazado_22380" data-name="Trazado 22380" class="cls-4" d="M27,33.544a7.8,7.8,0,1,0,7.8,7.8,7.8,7.8,0,0,0-7.8-7.8"/>
+        <path id="Trazado_22381" data-name="Trazado 22381" class="cls-4" d="M51.939,33.5a7.782,7.782,0,1,0,7.782,7.783A7.792,7.792,0,0,0,51.939,33.5m0,13.5a5.716,5.716,0,1,1,5.715-5.715A5.722,5.722,0,0,1,51.939,47"/>
+      </g>
+    </g>
+  </g>
+</svg>

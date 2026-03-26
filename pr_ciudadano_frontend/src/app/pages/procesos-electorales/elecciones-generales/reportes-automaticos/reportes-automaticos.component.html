@@ -1,0 +1,49 @@
+<section class="contenido-nofixed">
+    <section class="cont-flex">
+        <div class="w-100 lineTitle">
+            <span class="icono_titulo icon-ico-reportes"></span>
+            <div class="">
+                <h1 class="titulo1 nomarginhv">{{ 'Reportes.Reportes' | translate }}</h1>
+                <div class="actualizado"> 
+                <b>{{ 'acta-component.actualizado' | translate }}
+                    {{ listaFecha?.fechaProceso | date : "dd/MM/yyyy" }}
+                    {{ 'acta-component.aLas' | translate }}        
+                    {{ listaFecha?.fechaProceso | hourFormat }}</b>
+                </div>
+            </div>
+        </div>
+        @if(existsPresidencyReports){
+        <div class="conte-reporte-leyenda">
+            <div class="reporte-leyenda">
+               <img class="mr-05" src="assets/img/icons/iconInformativo.svg" alt="info">
+               <span>{{ 'Reportes.leyenda' | translate }}</span>
+            </div>
+            <div class="descarga-maestro">
+                <span class="btn-icono"><img src="assets/img/icons/ico-docs.svg" alt="Documento"></span> {{ 'Reportes.descargaMaestro' | translate }}
+            </div>
+        </div>
+        }
+    </section>
+
+    <section class="cont-flex">
+        <div class="w-100 t-c n-p conte-cards-reportes">
+            @if(existsPresidencyReports){
+                    @for(reporteAutomaticoPorTipoEleccion of reportesAutomaticosPorTipoEleccion; track reporteAutomaticoPorTipoEleccion.codigoTipoEleccion){
+                        <app-reporte-automatico class="conte-reporte"
+                            [detalleReporteAutomatico]="reporteAutomaticoPorTipoEleccion"
+                        />
+                    }
+            }@else{
+                <div class="personaje-anuncio">
+                    <p>
+                        {{ 'personaje.reporte_no_generado' | translate }}
+                    </p>
+                    <img alt="person" [src]="randomImageUrl" />
+                </div>
+            }
+        </div>
+    </section>
+
+
+</section>
+<app-footer></app-footer>

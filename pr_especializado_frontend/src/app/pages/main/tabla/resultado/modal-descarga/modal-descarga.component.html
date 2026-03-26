@@ -1,0 +1,19 @@
+<div class="p-20 modal-content">
+  <div>
+    <h5 class="titulo-modal mb-0">{{ 'ModalDescarga.GenerandoReporte' | translate }}</h5>
+  </div>
+  @if (!showAdvertencia) {
+    <div class="advertencia mt-20">
+      <img src="assets/icons/icono_aviso.svg" alt="aviso" />
+    </div>
+  } @else {
+    <div class="text-center">
+      <img width="90%" src="assets/animated/loading.svg" alt="cargando" />
+    </div>
+  }
+
+  <p [innerHTML]="htmlMessage"></p>
+  <div class="d-flex content-center mt-20">
+    <button class="button_estilo1" (click)="closeDialog()">ACEPTAR</button>
+  </div>
+</div>

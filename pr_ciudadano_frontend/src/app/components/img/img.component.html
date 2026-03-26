@@ -1,0 +1,8 @@
+<ng-container *ngIf="hasWrapper">
+  <div class="img">
+    <img [alt]="alt" [src]="src" (error)="onErrorImg($event)" />
+  </div>
+</ng-container>
+<ng-container *ngIf="!hasWrapper">
+  <img [alt]="alt" [src]="src" (error)="onErrorImg($event)" />
+</ng-container>

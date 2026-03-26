@@ -1,0 +1,81 @@
+<div class="voto_detalle">
+  @if(tipoModal && tieneCandidato()){
+  <div class="bg-gris-candidato sombras">
+    <div class="img-partido">
+      <img alt="partidos" [src]="imagenOrganizacion">
+    </div>
+    <p class="nombre-agrupacion">{{dialogData.tablaModel.nombrePartidoPolitico}}</p>
+  </div>
+
+  <div class="dato-candidato">
+    <div class="img-candidato">
+      <img [src]="imagenCandidato" role="modal" />
+    </div>
+    <h3 class="nombre-candidato">{{ nombreCompleto }}</h3>
+    <span class="subtitulo">{{ 'TablaEscrutinio.CantidadVotos' | translate }}: </span>
+    <span class="voto-cantidad">{{dialogData.tablaModel.totalVotos}}</span>
+  </div>
+
+  } @else {
+  <div class="dato-candidato">
+    <h3 class="nombre-candidato">
+      {{ dialogData.tablaModel.nombrePartidoPolitico }}
+    </h3>
+    <span class="subtitulo">
+      {{ 'TablaEscrutinio.CantidadVotos' | translate }}:
+    </span>
+    <span class="voto-cantidad">
+      {{ dialogData.tablaModel.totalVotos }}
+    </span>
+  </div>
+  }
+</div>
+
+<div class="bg-gris-candidato">
+  <div class="votos-grises">
+    <span>{{ 'TablaEscrutinio.VotosValidos' | translate }}</span>
+    <span class="voto">
+      {{ tieneCandidato()
+      ? (dialogData.tablaModel.votosValido | porcentajeFormat)
+      : '-' }}
+    </span>
+  </div>
+  <div class="votos-grises">
+    <span>{{ 'TablaEscrutinio.VotosEmitidos' | translate }}</span>
+    <span class="voto"> {{dialogData.tablaModel.votosEmitido | porcentajeFormat}} </span>
+  </div>
+</div>
+<button class="button_estilo2" mat-dialog-close="true">{{ 'TablaEscrutinio.CERRAR' | translate }}</button>
+
+@if(this.mostrarLista && listaCandidatos && listaCandidatos.length > 0) {
+<button class="button-map" (click)="toggleShowCandidates()">
+  <div class="text-mapa">
+    <img src="assets/img/icons/icon-ojo.svg" alt="" />
+    <h5>{{ 'TablaEscrutinio.DetalleCandidatos' | translate }}</h5>
+  </div>
+  <div class="flecha_desplegar" [class.flecha_desplegado]="showCandidates"></div>
+</button>
+<div class="">
+  <div class="card-map-movil ocultar-datos" [class.mostrar-listado]="showCandidates"
+    [class.ocultar-listado]="!showCandidates">
+    <section class="columnas_detallados">
+      @for (candidato of listaCandidatos; track candidato.lista) {
+      <article class="candidato">
+        <div class="cont-info">
+          <div class="data-person">
+            <span class="numero">{{ candidato.lista }}</span>
+            <div class="nombre">
+              <h3>{{ candidato.nombreCompleto }}</h3>
+            </div>
+          </div>
+          <div class="votos votos-text">
+            <strong>{{ candidato.votos | number : "1.0-1" : "en-US" }}
+            </strong><br />{{ 'TablaEscrutinio.VOTOS' | translate }}
+          </div>
+        </div>
+      </article>
+      }
+    </section>
+  </div>
+</div>
+}

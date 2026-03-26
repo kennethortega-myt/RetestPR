@@ -1,0 +1,23 @@
+<!-- Barra principal + imagen + tooltip de partido político -->
+<div
+  mat-raised-button
+  matTooltipPosition="above"
+  matTooltipClass="custom-tooltip"
+  matTooltip="Cantidad de votos: {{
+    info.number_of_valid_votes | number : '1.0-3' : 'en-US'
+  }} {{
+    getPercentageDescriptionForPoliticGroup(
+      getPercentageWithThreeDecimals(info.percentage_valid_votes)
+    )
+  }}"
+  class="carga"
+  [ngClass]="{
+    'the-most-voted': highLightTheMostVoted ? index < 2 : false
+  }"
+  [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+  *ngIf="!showImageOfCandidate"
+>
+  <div class="elector-foto">
+    <img alt="elector-foto" [src]="info.urlAgrupacionImage" />
+  </div>
+</div>

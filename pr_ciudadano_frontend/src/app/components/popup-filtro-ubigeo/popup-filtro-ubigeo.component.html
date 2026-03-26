@@ -1,0 +1,233 @@
+<!-- FORMULARIO DEL MODAL PARA BICAMERALIDAD -->
+<div
+  class="p-2"
+  *ngIf="tipoDeProcesoElectoralAMostrar == tiposDeProcesosElectorales['elecciones_generales_o_bicameralidad']"
+>
+  <div class="">
+    <div class="alinear_boton_cerrar">
+      <button class="cerrar_menu" (click)="cerrarmenu()">
+      <img src="assets/img/icons/ico_x.svg" alt="" />
+    </button>
+    </div>
+    
+    <div class="cabecera-menu">
+      <img alt="ico-ubigeo2" src="assets/img/icons/ico-ubigeo2.svg" />
+      <h2>{{ VerlugarKey | translate }}</h2>
+    </div>
+
+    <div
+      [formGroup]="ubigeoForm"
+      class="p-0-movil w-100"
+      *ngIf="
+        filterFunctionality == 'only_peru' ||
+        filterFunctionality == 'peru_and_international' ||
+        filterFunctionality == 'peru_intern_and_all_join'
+      "
+    >
+      <div class="conte_select_movil">
+        <label for="ambito">{{ AmbitoKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="region"
+            (selectionChange)="regionChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option *ngFor="let item of listRegiones" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoPeru">
+        <label for="region">{{ RegionKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="department"
+            (selectionChange)="departmentChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ RegionKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listDepartamento" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoPeru">
+        <label for="provincia">{{ ProvinciaKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="province"
+            (selectionChange)="provinceChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ ProvinciaKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listProvincia" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoPeru">
+        <label for="distrito">{{ DistritoKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="district"
+            (selectionChange)="districtChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ DistritoKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listDistrito" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showSelectLocationUbigeo && showUbigeoPeru">
+        <label for="local de votacion">{{ LocalvotacionKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select formControlName="location">
+            <mat-option *ngFor="let item of listLocales" [value]="item.codigoLocalVotacion">
+              {{ item.nombreLocalVotacion }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoExtranjero">
+        <label for="continente">{{ ContinenteKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="continent"
+            (selectionChange)="continentChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ ContinenteKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listContinentals" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoExtranjero">
+        <label for="pais">{{ PaisKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="country"
+            (selectionChange)="countryChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ PaisKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listCountries" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showUbigeoExtranjero">
+        <label for="estado">{{ CiudadKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select
+            formControlName="state"
+            (selectionChange)="stateChanged()"
+            placeholder="Seleccione"
+          >
+            <mat-option value="">{{ CiudadKey | translate }}</mat-option>
+            <mat-option *ngFor="let item of listStates" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="cont-botones">
+        <button class="estilo2" (click)="applyUbigeoFilters()" [disabled]="filterButtonIsDisabled">{{ FiltrarKey | translate }}</button>
+      </div>
+    </div>
+
+    <div
+      [formGroup]="electoralDistrictForm"
+      class="p-0-movil w-100"
+      *ngIf="filterFunctionality == 'only_regiones'"
+    >
+      <div class="conte_select_movil">
+        <label for="region">{{ 'popup-filtro.distritoElectoral' | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select formControlName="region" placeholder="Seleccione" (selectionChange)="electoralDistrictChanged()">
+            <mat-option *ngFor="let item of regiones" [value]="item.codigo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="cont-botones">
+        <button class="estilo2" (click)="applyUbigeoFiltersForRegion()" [disabled]="filterButtonIsDisabled">{{ FiltrarKey | translate }}</button>
+      </div>
+    </div>
+
+  </div>
+  
+</div>
+
+<!-- FORMULARIO DEL MODAL PARA REVOCATORIA -->
+<div class="p-2" *ngIf="tipoDeProcesoElectoralAMostrar == tiposDeProcesosElectorales['proceso_de_revocatoria']">
+  <div class="">
+    <div class="alinear_boton_cerrar">
+      <button class="cerrar_menu" (click)="cerrarmenu()">
+        <img src="assets/img/icons/ico_x.svg" alt="" />
+      </button>
+    </div>
+    <div class="cabecera-menu">
+      <img alt="ico-ubigeo2" src="assets/img/icons/ico-ubigeo2.svg" />
+      <h2>{{ VerlugarKey | translate }}</h2>
+      <p>{{ SeleccionaUbicacionKey | translate }} <strong>{{ FiltrarKey | translate }}</strong>.</p>
+    </div>
+
+    <div [formGroup]="revocatoriaForm" class="p-0-movil w-100">
+      <div class="conte_select_movil">
+        <label for="ambito">{{ PaisKey | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select value="">
+            <mat-option value="">{{ PeruKey | translate }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil">
+        <label for="region">{{ 'popup-filtro.region' | translate }}</label>
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-select formControlName="region" placeholder="Seleccione" (selectionChange)="electoralRevocatoriaChanged()">
+            <mat-option *ngFor="let item of regiones" [value]="item.ubigeo">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="conte_select_movil" *ngIf="showLocales">
+        <label for="location">{{ LocalvotacionKey | translate }}</label>
+        <app-autocomplete-input
+          placeholder="Local de Votación"
+          [form]="revocatoriaForm" 
+          [arrayValues]="listLocales" 
+          valueKey="codigoLocalVotacion"
+          displayKey="nombreLocalVotacion" 
+          formControlName="location"
+          (optionValueSelected)="valueChange($event)"
+        >
+        </app-autocomplete-input>
+      </div>
+
+      <div class="cont-botones">
+        <button class="estilo2" (click)="applyUbigeoFiltersForRevocatoria()" [disabled]="filterButton2IsDisabled">{{ FiltrarKey | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

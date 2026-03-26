@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-iconRepotes);
+      }
+
+      .cls-3 {
+        fill: #2a71b9;
+      }
+
+      .cls-4 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-5 {
+        clip-path: url(#clip-path-2);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_2348" data-name="Rectángulo 2348" class="cls-1" width="43.447" height="58.355"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectángulo_2349" data-name="Rectángulo 2349" class="cls-1" width="39.55" height="53.122"/>
+    </clipPath>
+    <clipPath id="clip-iconRepotes">
+      <rect width="72" height="72"/>
+    </clipPath>
+  </defs>
+  <g id="iconRepotes" class="cls-2">
+    <g id="Grupo_14827" data-name="Grupo 14827" transform="translate(1.11 0.908)">
+      <g id="Grupo_14826" data-name="Grupo 14826" transform="translate(19202 23334.664)">
+        <rect id="Rectángulo_2343" data-name="Rectángulo 2343" class="cls-3" width="27.363" height="2.443" transform="translate(-19184.947 -23282.969)"/>
+        <rect id="Rectángulo_2344" data-name="Rectángulo 2344" class="cls-3" width="27.363" height="2.443" transform="translate(-19184.947 -23288.73)"/>
+        <rect id="Rectángulo_2345" data-name="Rectángulo 2345" class="cls-3" width="27.363" height="2.443" transform="translate(-19184.947 -23294.49)"/>
+        <rect id="Rectángulo_2346" data-name="Rectángulo 2346" class="cls-3" width="27.363" height="2.443" transform="translate(-19184.947 -23300.252)"/>
+        <rect id="Rectángulo_2347" data-name="Rectángulo 2347" class="cls-3" width="14.402" height="2.443" transform="translate(-19171.986 -23306.012)"/>
+        <g id="Grupo_2864" data-name="Grupo 2864" transform="translate(-19193.109 -23324.518)">
+          <g id="Enmascarar_grupo_2863" data-name="Enmascarar grupo 2863" class="cls-4" transform="translate(0 0)">
+            <path id="Trazado_2356" data-name="Trazado 2356" class="cls-3" d="M4.574,77.438h34.54a4.578,4.578,0,0,0,4.573-4.573V23.444a4.578,4.578,0,0,0-4.573-4.574H15.073l-.1.1L11.233,22.71,3.841,30.1.1,33.847l-.095.1V72.865a4.578,4.578,0,0,0,4.573,4.573M39.846,23.444V72.865a.733.733,0,0,1-.732.732H4.574a.733.733,0,0,1-.732-.732V36.632H13.19a4.578,4.578,0,0,0,4.573-4.572V22.711H39.114a.734.734,0,0,1,.732.733M13.923,25.423V32.06a.733.733,0,0,1-.732.732H6.553Z" transform="translate(-0.001 -19.066)"/>
+          </g>
+        </g>
+        <g id="Grupo_2866" data-name="Grupo 2866" transform="translate(-19180.881 -23332.572)">
+          <g id="Grupo_2865" data-name="Grupo 2865" class="cls-5" transform="translate(0 0)">
+            <path id="Trazado_2357" data-name="Trazado 2357" class="cls-3" d="M74.043,0H52.158l-3.5,3.5-3,3h8.949v-3H74.043a.668.668,0,0,1,.667.667v44.99a.667.667,0,0,1-.667.667H72.123v3.5h1.919a4.167,4.167,0,0,0,4.162-4.162V4.164A4.168,4.168,0,0,0,74.043,0" transform="translate(-38.437 -0.178)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

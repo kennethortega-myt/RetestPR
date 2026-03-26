@@ -1,0 +1,19 @@
+<!-- Imagen o nombre de partido -->
+<div>
+  <div
+    mat-raised-button
+    matTooltipPosition="above"
+    matTooltipClass="custom-tooltip2"
+    matTooltip="{{ info.name_of_politic_group }}"
+    *ngIf="showImageOfCandidate"
+  >
+    <div class="partido-logo">
+      <img alt="partido-logo" [src]="info.urlAgrupacionImage" />
+    </div>
+  </div>
+  <div *ngIf="!showImageOfCandidate">
+    <div class="nombre-logo">
+      {{ info.name_of_politic_group }}
+    </div>
+  </div>
+</div>

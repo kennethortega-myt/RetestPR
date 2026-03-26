@@ -1,0 +1,73 @@
+<article class="cont-flex presidenciales-org-pol" *ngIf="isFinishFirstLoading">
+  <!-- Test Persona / Filtro / Mapa (Ini) -->
+  <div class="w-full d-flex space-between">
+    <div class="filtro">
+      <div>
+        <app-generic-filter-ubigeo
+          *ngIf="showMap"
+          class="w-100 n-p"
+          filterFunctionality="peru_and_international"
+          (applyFiltersEvent)="applyFiltersEvent($event)"
+        ></app-generic-filter-ubigeo>
+      </div>
+      
+    </div>
+    <div class="d-flex align-items">
+      <app-pagination [numberOfPages]="calculateNumberOfPages" (loadPageEvent)="loadPage($event)"></app-pagination>
+    </div>
+    
+  </div>
+  <div class="w-30 pefima">
+    <div class="interno" *ngIf="showOnpePersonToInform">
+      <app-person-opne-no-information
+        class="onlyPc"
+        [personOnpeMessageType]="'select_one_politic_org'"
+      ></app-person-opne-no-information>
+    </div>
+    <div class="mapaContent">
+      
+      <!-- -->
+      <ng-container *ngIf="showMap">
+        <div class="map-container">
+          <app-main-hot-map
+            [electionId]="electionID"
+            [tooltipType]="tooltipType"
+            [heatLegendTextType]="'type_2'"
+            [showIconTodos]="false"
+            [changeZoomLevelsToThree]="true"
+            (ubigeoParamsChanged)="ubigeoParamsChangedFromMapWithSpecialCase($event)"
+            (regionChanged)="changeRegionFromMap($event)"
+          ></app-main-hot-map>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="w-70 onlyPc">
+    
+    <section class="secCand">
+      <a
+        *ngFor="let candidato of policitalOrganizationItemsPaginated; let indice = index"
+        class="item-can"
+        [ngClass]="{
+          activado: candidato.dniCandidato == selectedCandidato.dniCandidato
+        }"
+        tabindex="0"
+        (click)="selectThisCandidate(candidato)"
+        (keydown.enter)="selectThisCandidate(candidato)"
+        (keydown.espace)="selectThisCandidate(candidato)"
+      >
+        <div class="img">
+          <app-img [alt]="'partidos'" [src]="candidato.urlAgrupacionImage"></app-img>
+        </div>
+        <div class="img circular">
+          <app-img alt="candidato" [src]="candidato.urlCandidateImage"></app-img>
+        </div>
+        <div class="nombre">
+          <h2>{{ candidato.nombreCandidato }}</h2>
+          <p>{{ candidato.nombreAgrupacionPolitica }}</p>
+          <p class="votos">Cantidad de votos: {{ getLocaleString(candidato.totalVotosValidos) }}</p>
+        </div>
+      </a>
+    </section>
+  </div>
+</article>

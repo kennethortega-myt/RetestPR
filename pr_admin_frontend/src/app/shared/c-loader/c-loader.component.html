@@ -1,0 +1,15 @@
+@if (loader$ | async; as data) {
+  @if (data.active) {
+    <div class="pop-carga">
+      <div class="loading-container">
+        <img 
+          src="assets/loader/loading.svg" 
+          alt="Cargando..."
+          class="loading-gif">
+        @if (data.message) {
+          <p class="loading-message">{{ data.message }}</p>
+        }
+      </div>
+    </div>
+  }
+}

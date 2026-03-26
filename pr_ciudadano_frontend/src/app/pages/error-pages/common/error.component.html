@@ -1,0 +1,15 @@
+<div class="conte-100vh">
+  <app-header></app-header>
+  <div class="centrando flex-grow-1">
+    <div class="colBox">
+      <div class="conte_img">
+        <img [src]="imgSrc" alt="Página no encontrada" />
+      </div>
+      <div class="col_text px-20">
+        <p>{{ titleKey | translate }}</p>
+        <button class=" mt-2 estilo1" (click)="volverAlInicio()">{{ goBack | translate }}</button>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

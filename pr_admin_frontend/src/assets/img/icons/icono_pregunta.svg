@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 45 45">
+  <!-- Generator: Adobe Illustrator 29.5.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 141)  -->
+  <defs>
+    <style>
+      .st0, .st1 {
+        fill: none;
+      }
+
+      .st1 {
+        stroke: #bbb;
+        stroke-width: 4.5px;
+      }
+
+      .st2, .st3 {
+        isolation: isolate;
+      }
+
+      .st4 {
+        clip-path: url(#clippath-1);
+      }
+
+      .st3 {
+        fill: #003770;
+        font-family: ArialRoundedMTBold, 'Arial Rounded MT Bold';
+        font-size: 25.9px;
+      }
+
+      .st5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st0" x="15.1" y="9.8" width="14.8" height="27.8"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="st0" x="15.1" y="9.8" width="14.8" height="27.8"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_7078">
+    <circle id="Elipse_289" class="st1" cx="22.5" cy="22.5" r="20.1"/>
+    <g id="Grupo_7076" class="st2">
+      <g id="Grupo_7075">
+        <g class="st5">
+          <g id="Grupo_7074">
+            <g id="Grupo_7073" class="st2">
+              <g id="Grupo_7072">
+                <g class="st4">
+                  <g id="Grupo_7071">
+                    <g id="_" class="st2">
+                      <text class="st3" transform="translate(15.1 32.2)"><tspan x="0" y="0">?</tspan></text>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

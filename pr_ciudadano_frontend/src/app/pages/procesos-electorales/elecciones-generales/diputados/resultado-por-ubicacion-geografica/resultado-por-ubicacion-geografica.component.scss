@@ -1,0 +1,17 @@
+.w-70 img {
+    max-width: 100%; /* Esto evitará que las imágenes se desborden del div */
+}
+.estilo2Custom {
+    background-color: #6BBB32 !important;
+    outline: none;
+    font-size: 1.2rem;
+    padding: 8px 25px;
+    text-transform: uppercase;
+    transition: 0.2s;
+    position: relative;
+    margin: 5px 5px;
+    cursor: pointer;
+    vertical-align: middle;
+    border: none;
+    color: white !important;
+}

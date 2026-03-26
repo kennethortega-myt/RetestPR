@@ -1,0 +1,52 @@
+<div style="border: 1px solid #1d1d1d" class="mt-16 content-estadistico">
+  <div class="d-flex flex-direction-col-xs flex-direction-col-sm gap-grafico-resumen items-center justify-between">
+    <div class="w-full-xs w-full-sm d-flex items-center flex-direction-col-xs content-between content-total-actas">
+      <div class="d-flex items-center gap-9 w-33 w-full-xs">
+        @switch (resumenTotal?.idEleccion) { @case
+        (EnumIdEleccion.ID_ELECCION_PRESIDENCIAL) {
+        <img src="assets/icon-acta-pre.svg" alt="Icono de Acta" />
+        } @case (EnumIdEleccion.ID_ELECCION_CONGRESAL) {
+        <img src="assets/icon-congresal.svg" alt="Icono de Acta" />
+        } @case (EnumIdEleccion.ID_ELECCION_PARLAMENTO_ANDINO) {
+        <img src="assets/icon-parlamento-andino.svg"alt="Icono de Acta" />
+        } @case (EnumIdEleccion.ID_ELECCION_SENADORES_MULTIPLE) {
+        <img src="assets/senador_DEM.svg" alt="Icono de Acta" />
+        }@case (EnumIdEleccion.ID_ELECCION_SENADORES_UNICO) {
+        <img src="assets/senador_DEU.svg" alt="Icono de Acta" />
+        }@case (EnumIdEleccion.ID_ELECCION_DIPUTADOS) {
+        <img src="assets/icon-congresal.svg" alt="Icono de Acta" />
+        }
+        }
+        <div class="total-actas">
+          <h4>{{ "TotalActas" | translate}}</h4>
+          <span>{{ resumenTotal?.totalActas | number : "1.0-0" }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full-xs w-full-sm d-flex items-center mt-12-xs content-between content-electores grafico-resumen-pie">
+      <div class="estados-resultados order2-movil w-full-xs mt-12-xs">
+        <div class="d-flex gap-20 space-between-xs">
+          <div class="d-flex items-center gap-9 flex-1" style="width: 70%">
+            <span class="c"> </span>
+            <h5>{{ "Contabilizadas" | translate}}</h5>
+          </div>
+          <h6>{{ resumenTotal?.contabilizadas | number : "1.0-0" }}</h6>
+        </div>
+        <div class="d-flex gap-20 space-between-xs">
+          <div class="d-flex items-center gap-9 flex-1" style="width: 70%">
+            <span class="e"> </span>
+            <h5>{{ "ParaJEE" | translate}}</h5>
+          </div>
+          <h6>{{ resumenTotal?.enviadasJee | number : "1.0-0" }}</h6>
+        </div>
+      </div>
+
+      <div class="d-flex content-end order1-movil content-center-xs mt-12-xs w-33">
+        <app-chart-pie [id]="'chartdiv01'"></app-chart-pie>
+      </div>
+    </div>
+  </div>
+
+  <div></div>
+</div>

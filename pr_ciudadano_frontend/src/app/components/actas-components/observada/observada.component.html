@@ -1,0 +1,152 @@
+<section class="cont-flex">
+  <article class="w-70">
+    <h2 class="w-50 titulo2">
+      {{ ActasObservadas | translate }}
+      <span class="blueTxt">({{ totalRegistros | number : "1.0-1" }})</span>
+    </h2>
+    <div class="w-50">
+      <ul class="numero-lista" *ngIf="totalPaginasReales > 1">
+        <li>
+          <a *ngIf="habilitarBotonAnterior" (click)="eventoPaginaAnterior()">◀</a>
+        </li>
+        <li *ngFor="let i of listaPaginas">
+          <a
+            (click)="paginado(i.pagina)"
+            class="activado"
+            [ngStyle]="{
+              background: i?.seleccionado ? '#2971b9' : '#ffffff',
+              color: i?.seleccionado ? '#ffffff' : '#2971b9'
+            }"
+            >{{ i.pagina }}</a
+          >
+        </li>
+        <li>
+          <a *ngIf="habilitarBotonSiguiente" (click)="eventoPaginaSiguiente()">►</a>
+        </li>
+      </ul>
+    </div>
+    <fieldset class="w-25 mb-1" *ngIf="totalRegistros > 0">
+      <legend class="noView">{{ Filtro | translate }}</legend>
+      <label for="filtrar">{{ Filtrar | translate }}</label>
+      <form [formGroup]="myForm" class="selector">
+        <select formControlName="filtro">
+          <option [ngValue]="null">Todos</option>
+          <option [ngValue]="'false'">
+            {{ ACTA_CODIGO_ESTADO_DESC.PARA_ENVIO_JEE }}
+          </option>
+          <option [ngValue]="'true'">
+            {{ ACTA_CODIGO_ESTADO_DESC.CONTABILIZADA }}
+          </option>
+        </select>
+      </form>
+    </fieldset>
+
+    <div class="f-w">
+      <ng-container *ngFor="let acta of actas">
+        <button
+          class="mesa-observada"
+          [ngClass]="{
+           'contabilizada':acta.estadoActa === ACTA_CODIGO_ESTADO.CONTABILIZADA,
+           'pendiente':acta.estadoActa === ACTA_CODIGO_ESTADO.PENDIENTE,
+           'observado':acta.estadoActa === ACTA_CODIGO_ESTADO.OBSERVADA,
+           'ico-distrital':acta.idEleccion == ID_ELECCION.ID_ELECCION_MUNICIPAL,
+           'ico-congresal':acta.idEleccion == ID_ELECCION.ID_ELECCION_DIPUTADOS,
+           'ico-presidencial':acta.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL,
+           'ico-parlamento':acta.idEleccion == ID_ELECCION.ID_ELECCION_PARLAMENTO_ANDINO,
+           'ico-senador_dem':acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_27,
+           'ico-senador_deu':acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_33,
+           'activado':acta.esSeleccionado,
+           }"
+          (click)="VerDetalles(acta.id)"
+        >
+          {{ acta.descripcionMesa }} <i>{{ Acta | translate }} {{ acta.codigoMesa }}</i>
+          <div class="txt-observada">
+            <span>{{ acta.descripcionEstadoActa }}</span>
+            <ng-container *ngIf="acta.codigoEstadoActa === ACTA_CODIGO_ESTADO.CONTABILIZADA">
+              <img alt="ico-observada" class="ico-observada" src="assets/img/icons/ico-observada-contabilizada.svg" />
+            </ng-container>
+            <ng-container *ngIf="acta.codigoEstadoActa === ACTA_CODIGO_ESTADO.PARA_ENVIO_JEE">
+              <img alt="ico-observada" class="ico-observada" src="assets/img/icons/ico-observada.svg" />
+            </ng-container>
+          </div>
+        </button>
+      </ng-container>
+    </div>
+    <div *ngIf="totalRegistros > 0">
+      <ul class="leyendas_actas">
+        <li *ngFor="let eleccion of elecciones">
+          <span class="{{ eleccion.icono }}"></span>
+          {{ Actaeleccion | translate }} {{ eleccion.nombre }}
+        </li>
+      </ul>
+      <ul class="leyendas_actas">
+        <li>
+          <img alt="ico-observada" class="ico-observada" src="assets/img/icons/ico-observada.svg" />
+          {{ ACTA_CODIGO_ESTADO_DESC.PARA_ENVIO_JEE }}
+        </li>
+        <li>
+          <img alt="ico-observada" class="ico-observada" src="assets/img/icons/ico-observada-contabilizada.svg" />
+          {{ ACTA_CODIGO_ESTADO_DESC.CONTABILIZADA }}
+        </li>
+      </ul>
+    </div>
+  </article>
+  <div class="w-30">
+    <div id="chartdivobs" class="mapas" style="width: 95%; height: 95% !important"></div>
+  </div>
+</section>
+<section *ngIf="detalleActa" class="sec-cont segundo px-20">
+  <h3 class="titulo_numero_acta">{{ ActaN | translate}}&#176; {{ detalleActa?.codigoMesa }} - {{ electionName }}</h3>
+  <div class="conte_detalles_acta">
+    <div class="detalles_acta">
+      <p>
+        {{ Electoreshabiles | translate }}:
+        {{ detalleActa?.totalElectoresHabiles | number : "1.0-1" }}
+      </p>
+      <p>
+        {{ Totalvotantes | translate }}:
+        {{ detalleActa?.totalVotosEmitidos | number : "1.0-1" }}
+      </p>
+      <p>
+        {{ Participacionciudadana | translate }}:
+        <span *ngIf="detalleActa?.codigoEstadoActa != ACTA_CODIGO_ESTADO.PARA_ENVIO_JEE"
+          >{{ obtenerPorcentajeParticipacionCiudadana(detalleActa) | number : "1.0-3" : "en-US" }}%</span
+        >
+      </p>
+    </div>
+    <div class="detalles_acta">
+      <p>
+        {{ Acta | translate }} {{ obtenerNombreEleccion(detalleActa) }}:
+        {{ detalleActa?.descripcionEstadoActa }}
+      </p>
+      <p>{{ Departamento | translate }}: {{ detalleActa?.ubigeoNivel01 }}</p>
+      <p>{{ Provincia | translate }}: {{ detalleActa?.ubigeoNivel02 }}</p>
+    </div>
+    <div class="detalles_acta">
+      <p>{{ Distrito | translate }}:: {{ detalleActa?.ubigeoNivel03 }}</p>
+      <p>{{ Localvotacion | translate }}: {{ detalleActa?.nombreLocalVotacion }}</p>
+      <p *ngIf="detalleActa?.centroPoblado">{{ CentroPoblado | translate }}: {{ detalleActa?.centroPoblado }}</p>
+    </div>
+  </div>
+</section>
+<section class="aparecer" *ngIf="detalleActa">
+  <ng-container *ngIf="detalleActa.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+    <app-acta-presidencial
+      *ngIf="lineaTiempo && detalle"
+      [detalleMesa]="detalleActa"
+      [lineaTiempo]="lineaTiempo"
+      [detalle]="detalle"
+      [archivos]="listaArchivos"
+    ></app-acta-presidencial>
+  </ng-container>
+  <ng-container *ngIf="detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+    <app-historico [lineaTiempo]="lineaTiempo" [detalleActa]="detalleActa"></app-historico>
+    <app-lista-acordion-agrupacion-candidato
+      [totalVotosEmitidos]="detalleActa.totalVotosEmitidos"
+      [totalVotosValidos]="detalleActa.totalVotosValidos"
+      [detalle]="detalle"
+      [idActa]="detalleActa.id"
+      [detalleActa]="detalleActa"
+    ></app-lista-acordion-agrupacion-candidato>
+  </ng-container>
+</section>

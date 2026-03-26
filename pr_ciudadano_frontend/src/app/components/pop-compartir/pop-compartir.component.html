@@ -1,0 +1,47 @@
+<h2 class="modalHead titulo2 pl-2 pr-2">{{ codigoGeneradoKey | translate }} </h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <section class="checkbox-compartir" [formGroup]="form" *ngIf="idTipoProceso == PROCESO['elecciones_generales_o_bicameralidad']">
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="presidencialesCheck">
+        {{TITLE[ELECTION.presidenciales]}}
+      </mat-checkbox>
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="diputadosCheck">
+        {{TITLE[ELECTION.diputados]}}
+      </mat-checkbox>
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="distritoElectoralMultiple">
+        {{TITLE[ELECTION.senadores_multiple]}}
+      </mat-checkbox>
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="distritoElectoralUnico">
+        {{TITLE[ELECTION.senadores_unico]}}
+      </mat-checkbox>
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="parlamentoCheck">
+        {{TITLE[ELECTION.parlamento_andino]}}
+      </mat-checkbox>
+    </section>
+    <section class="checkbox-compartir" [formGroup]="form" *ngIf="idTipoProceso == PROCESO['proceso_de_revocatoria']">
+      <mat-checkbox class="checkbox-margin" color="warn" formControlName="revocatoriaCheck">
+        {{TITLE[ELECTION.revocatoria]}}
+      </mat-checkbox>
+    </section>
+    <div>
+      <span>{{ instruccionKey | translate }}</span>
+      <div class="textarea">
+        {{ selectedIFrames }}
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="bottom-actas-verificar-pop justify-content-between"></div>
+  <button class="estilo2" mat-dialog-close (click)="closeDialog()">{{ cerrarKey | translate }}</button>
+  <button
+   
+    class="estilo1"
+    mat-dialog-close
+    (click)="copyCustomIFrame()"
+    [disabled]="!selectedIFrames"
+    [ngStyle]="{ opacity: selectedIFrames ? 1 : 0.5 }"
+  >
+    {{ copiarKey | translate }}
+  </button>
+</mat-dialog-actions>

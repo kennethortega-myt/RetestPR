@@ -1,0 +1,367 @@
+<article class="cont-flex">
+  <div class="sticky_ubigeo w-100">
+    <article class="cont-flex normal" [formGroup]="myFormUbigeo">
+      <div class="w-70 p-0-movil">
+        <app-generic-filter-ubigeo
+          class="w-100 n-p"
+          [filterFunctionality]="'only_regiones'"
+          (applyFiltersEvent)="filtrar($event)"
+        ></app-generic-filter-ubigeo>
+      </div>
+    </article>
+  </div>
+
+  <div class="w-70">
+    <ng-container *ngIf="dataForDistrictOrigin?.length > 0">
+      <app-grafica-distrito-electoral
+        class="w-100 n-p"
+        [information_for_bars]="dataForDistrictOrigin"
+        [totalPaginasGrafica]="totalPaginasGrafica"
+        [scaleValues]="scalesForDistrict"
+      ></app-grafica-distrito-electoral>
+    </ng-container>
+  </div>
+  <!-- MAPA -->
+
+  <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+    <div class="text-mapa">
+      <img src="assets/img/icons/icon-mapa.svg" alt="" />
+      <h5>{{ 'actas-por-ambito.VerMapaCalor' | translate }}</h5>
+    </div>
+    <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2"></div>
+  </button>
+  <div
+    class="w-30 min-50vh transition-map map-participacion"
+    [ngClass]="{
+      'map-visible2': mostrarMapa2 || !esPantallaChica,
+      'map-oculto': !mostrarMapa2 && esPantallaChica
+    }"
+  >
+    <div class="mapas map-container card-map-movil" style="width: 100%; height: 460px">
+      <ng-container *ngIf="mapaCalor && active">
+        <app-main-hot-map
+          [mapType]="'congresales'"
+          [mapaCalor]="mapaCalor"
+          [idDistritoElectoral]="myFormUbigeo.get('region').value"
+          [esEstranjero]="esExtranjero"
+          [oneFilter]="true"
+          [electionId]="idEleccion"
+          [mapContainerId]="'chartdiv'"
+          [changeZoomLevelsToThree]="true"
+          [mapHeight]="heightGrafica || 460"
+          [mostrarBotonMundo]="false"
+          [showLoadingState]="true"
+          (ubigeoParamsChanged)="seleccionarDistritoElectoralPorParams($event)"
+        ></app-main-hot-map>
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-container *ngIf="listOrganizacionPoliticaOrigin.length > 0">
+    <section class="cont-flex cont-btn-flechas version-pc">
+      <button class="btn_next-2" (click)="irSeccionBaja(partebaja)"></button>
+    </section>
+    <section class="sec-cont segundo gris" #partebaja>
+      <div class="sticky_cabecera">
+        <div class="w-100">
+          <h2 class="titulo2 mt-2-movil">
+            {{ 'resultado-ubicacion-geografica.organizaciones_politicas' | translate }}
+            <i>({{ getNumberOfPoliticalOrganizations(listOrganizacionPolitica) }}) </i>
+          </h2>
+        </div>
+        <div [class.form]="!esPantallaChica" [formGroup]="myFormOrganizacion">
+          <div class="w-50 centrar-vertical">
+            <mat-form-field appearance="outline" class="input-bg-blanco">
+              <input
+                formControlName="nomAgrupacion"
+                matInput
+                [placeholder]="'resultado-ubicacion-geografica.nombre_org_politica' | translate"
+              />
+              <button
+                *ngIf="myFormOrganizacion.get('nomAgrupacion').value?.length"
+                matSuffix
+                mat-icon-button
+                aria-label="Limpiar selección"
+                (click)="limpiarLista()"
+                (mousedown)="$event.preventDefault()"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </div>
+        <section *ngIf="listOrganizacionPolitica.length == 0">
+          <div class="personaje-anuncio">
+            <p>
+              {{ mensajeNoResultado }}
+            </p>
+            <img alt="person" [src]="randomImageUrl" />
+          </div>
+        </section>
+        @if (!esPantallaChica && listOrganizacionPolitica.length) {
+          <section class="desplegable titulos-votos full">
+            <div>
+              <div class="w-100 t-r">
+                <article class="candidato">
+                  <span> </span>
+                  <div class="cont-info">
+                    <div class="img"></div>
+                    <div class="nombre"></div>
+                    <div class="cant">
+                      <span>{{ 'resultado-ubicacion-geografica.votos_validos' | translate }} (%)</span>
+                    </div>
+                    <div class="cant">
+                      <span>{{ 'resultado-ubicacion-geografica.votos_emitidos' | translate }} (%)</span>
+                    </div>
+                  </div>
+                  <div class="cantidad">
+                    <span
+                      *ngFor="let value of escalaTotalVotos; let index = index"
+                      [ngStyle]="{
+                        left: getPosicionRegla(value, index),
+                        position: 'absolute',
+                        top: '-10px'
+                      }"
+                    >
+                      {{ getReglaValorIteracion(value, index) | number : '1.0-3' : 'en-US' }}
+                    </span>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div></div>
+          </section>
+        }
+      </div>
+      <ng-container *ngFor="let organizacionPolitica of listOrganizacionPolitica">
+        <section
+          *ngIf="
+            organizacionPolitica.codigoAgrupacionPolitica != '80' &&
+            organizacionPolitica.codigoAgrupacionPolitica != '81'
+          "
+          class="desplegable full"
+          id="cont01"
+          [ngClass]="{ detalle: vermas1 === true }"
+        >
+          <div>
+            <div class="w-100 t-r">
+              <article class="candidato barras_azules">
+                <div class="cont-info" (click)="detailVote(organizacionPolitica)" (keydown.enter)="detailVote(organizacionPolitica)">
+                  <div class="img">
+                    <img alt="partidos" [src]="organizacionPolitica.urlAgrupacionImage"
+                    />
+                  </div>
+                  <div class="nombre">
+                    <h3>{{ organizacionPolitica.nombreAgrupacionPolitica }}</h3>
+                    <p>
+                      {{ 'resultado-ubicacion-geografica.total_candidatos' | translate }}:
+                      {{ organizacionPolitica.totalCandidatos }}
+                    </p>
+                  </div>
+                  <div class="cant cant-pc">
+                    <span
+                      ><b>{{ organizacionPolitica.porcentajeVotosValidos | porcentajeFormat }}</b></span
+                    >
+                  </div>
+                  <div class="cant cant-pc">
+                    <span
+                      ><b>{{ organizacionPolitica.porcentajeVotosEmitidos | porcentajeFormat }}</b></span
+                    >
+                  </div>
+                  <div class="conte-votos version-movil">
+                    <div class="titulo_movil">
+                      {{ 'tab-ubicacion-geografica-presidenciales.cantidad_votos' | translate }}
+                    </div>
+                    <span class="titulo_votos_totales__num2"
+                      ><b>{{ organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US' }}</b></span
+                    >
+                  </div>
+                </div>
+                <div class="barra-cargando version-pc">
+                  <div
+                    [ngStyle]="{
+                      width: calcularWith(organizacionPolitica.totalVotosValidos)
+                    }"
+                  ></div>
+                  <p class="titulo_votos_totales">
+                    <span class="fs14">{{ 'resultado-ubicacion-geografica.cantidad_votos' | translate }}: </span>
+                    <span class="titulo_votos_totales__num2">
+                      {{ organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US' }}
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div></div>
+        </section>
+      </ng-container>
+      <ng-container *ngFor="let organizacionPolitica of listOrganizacionPolitica">
+        <section
+          *ngIf="organizacionPolitica.codigoAgrupacionPolitica == '80'"
+          class="desplegable votos-sincandidato full"
+        >
+          <div>
+            <div class="w-100 t-r">
+              <article class="candidato sincandidato">
+                <span></span>
+                <div class="cont-info blanco" (click)="detailTypeVotes(organizacionPolitica, 'VOTOS BLANCO')" (keydown.enter)="detailTypeVotes(organizacionPolitica, 'VOTOS BLANCO')">
+                  <div class="nombre">
+                    <h3>{{ organizacionPolitica.nombreAgrupacionPolitica }}</h3>
+                  </div>
+                  <div class="img"></div>
+                  <div class="cant cant-pc">
+                    <span><b> - </b></span>
+                  </div>
+                  <div class="cant cant-pc">
+                    <span
+                      ><b>{{ organizacionPolitica.porcentajeVotosEmitidos | porcentajeFormat }}</b></span
+                    >
+                  </div>
+                  <div class="conte-votos version-movil">
+                    <span class="titulo_votos_totales__num2"
+                      ><b>{{ organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US' }}</b></span
+                    >
+                    <div class="titulo_movil">{{ 'resultado-ubicacion-geografica.cantidad_votos' | translate }}</div>
+                  </div>
+                </div>
+                <div class="barra-cargando version-pc">
+                  <div
+                    [ngStyle]="{
+                      width: calcularWith(organizacionPolitica.totalVotosValidos)
+                    }"
+                  ></div>
+                  <p class="titulo_votos_totales">
+                    <span class="fs14">{{ 'resultado-ubicacion-geografica.cantidad_votos' | translate }}: </span>
+                    <span class="titulo_votos_totales__num2">
+                      {{ organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US' }}
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div></div>
+        </section>
+      </ng-container>
+      <ng-container *ngFor="let organizacionPolitica of listOrganizacionPolitica">
+        <section
+          *ngIf="organizacionPolitica.codigoAgrupacionPolitica == '81'"
+          class="desplegable votos-sincandidato full"
+        >
+          <div>
+            <div class="w-100 t-r">
+              <article class="candidato sincandidato">
+                <span></span>
+                <div class="cont-info blanco" (click)="detailTypeVotes(organizacionPolitica, 'VOTOS NULOS')" (keydown.enter)="detailTypeVotes(organizacionPolitica, 'VOTOS NULOS')">
+                  <div class="nombre">
+                    <h3>{{ organizacionPolitica.nombreAgrupacionPolitica }}</h3>
+                  </div>
+                  <div class="img"></div>
+                  <div class="cant cant-pc">
+                    <span><b> - </b></span>
+                  </div>
+                  <div class="cant cant-pc">
+                    <span
+                      ><b>{{ organizacionPolitica.porcentajeVotosEmitidos | porcentajeFormat }}</b></span
+                    >
+                  </div>
+                  <div class="conte-votos version-movil">
+                    <span class="titulo_votos_totales__num2"
+                      ><b>{{ organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US' }}</b></span
+                    >
+                    <div class="titulo_movil">{{ 'resultado-ubicacion-geografica.cantidad_votos' | translate }}</div>
+                  </div>
+                </div>
+                <div class="barra-cargando version-pc">
+                  <div
+                    [ngStyle]="{
+                      width: calcularWith(organizacionPolitica.totalVotosValidos)
+                    }"
+                  ></div>
+                  <p class="titulo_votos_totales">
+                    <span class="fs14">{{ 'resultado-ubicacion-geografica.cantidad_votos' | translate }}: </span>
+                    <span class="titulo_votos_totales__num2">{{
+                      organizacionPolitica.totalVotosValidos | number : '1.0-1' : 'en-US'
+                    }}</span>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div></div>
+        </section>
+      </ng-container>
+      <section
+        *ngIf="listOrganizacionPolitica?.length > 0 && mostrarTotalVotos"
+        class="desplegable votos-sincandidato full"
+      >
+        <div>
+          <div class="w-100 t-r">
+            <article class="candidato sincandidato">
+              <span></span>
+              <div class="cont-info blanc">
+                <div class="nombre">
+                  <h3>{{ 'resultado-ubicacion-geografica.total_votos' | translate }}</h3>
+                </div>
+                <div class="img"></div>
+                <div class="cant cant-pc">
+                  <span
+                    ><b>{{ resumen.totalVotosEmitidos > 0 ? 100.0 + '%' : (0 | porcentajeFormat) }}</b></span
+                  >
+                </div>
+                <div class="cant cant-pc">
+                  <span
+                    ><b>{{ resumen.totalVotosEmitidos > 0 ? 100.0 + '%' : (0 | porcentajeFormat) }}</b></span
+                  >
+                </div>
+              </div>
+
+              <div class="cant-movil version-movil">
+                <div class="votos_totales">
+                  <div class="titulo_movil">{{ 'resultado-ubicacion-geografica.votos_validos' | translate }}</div>
+                  <span>
+                    <b>{{ resumen.totalVotosValidos | number : '1.0-2' : 'en-US' }}</b>
+                    <b>{{ resumen.totalVotosValidos > 0 ? 100.0 + '%' : (0 | porcentajeFormat) }}</b>
+                  </span>
+                </div>
+                <div class="votos_totales">
+                  <div class="titulo_movil">{{ 'resultado-ubicacion-geografica.votos_emitidos' | translate }}</div>
+                  <span>
+                    <b>
+                      {{ resumen.totalVotosEmitidos | number : '1.0-2' : 'en-US' }}
+                    </b>
+                    <b>
+                      {{ resumen.totalVotosEmitidos > 0 ? 100.0 + '%' : (0 | porcentajeFormat) }}
+                    </b>
+                  </span>
+                </div>
+              </div>
+              <div class="votos-totales cant-pc">
+                <p class="titulo_votos_totales">
+                  <span>* {{ 'resultado-ubicacion-geografica.votos_validos' | translate }}: </span>
+                  <span class="titulo_votos_totales__num2"
+                    >{{ resumen.totalVotosValidos | number : '1.0-2' : 'en-US' }}
+                  </span>
+                </p>
+                <p class="titulo_votos_totales mb-6">
+                  <span>** {{ 'resultado-ubicacion-geografica.votos_emitidos' | translate }}: </span
+                  ><span class="titulo_votos_totales__num2">{{
+                    resumen.totalVotosEmitidos | number : '1.0-2' : 'en-US'
+                  }}</span>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div></div>
+      </section>
+
+      <app-resumen-total-votos class="w-100" *ngIf="listOrganizacionPolitica.length > 0"></app-resumen-total-votos>
+    </section>
+    <section class="cont-flex cont-btn-flechas version-pc" *ngIf="listOrganizacionPolitica.length > 0">
+      <button class="btn_after-2" (click)="irSeccionArriba(null)"></button>
+    </section>
+  </ng-container>
+</article>

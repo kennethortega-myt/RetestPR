@@ -1,0 +1,95 @@
+@use "sass:map";
+@use '../../../variables.scss' as *;
+
+// Estilos para el contenedor del modal
+::ng-deep .modal-detail-votes-container {
+  .mat-mdc-dialog-container {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+.ocultar-datos {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.mostrar-listado {
+  max-height: none;
+  overflow-y: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.ocultar-listado {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.card-map-movil {
+  &.mostrar-listado {
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+.flecha_desplegar {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid map.get($secondary-colors, clr-azul-5);
+  transition: transform 0.3s ease;
+}
+
+.columnas_detallados {
+  margin-top: 0 !important;
+}
+
+.flecha_desplegado {
+  transform: rotate(180deg);
+}
+
+.button-map {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: map.get($secondary-colors, clr-blanco-3);
+  border: 1px solid map.get($secondary-colors, clr-gris-17);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 8px;
+
+  &:hover {
+    border-color: #ccc;
+    background: #f9f9f9;
+  }
+
+  &:focus {
+    outline: 2px solid map.get($secondary-colors, clr-azul-14);
+    outline-offset: 2px;
+  }
+
+  .text-mapa {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    h5 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: map.get($secondary-colors, clr-azul-5);
+    }
+  }
+}

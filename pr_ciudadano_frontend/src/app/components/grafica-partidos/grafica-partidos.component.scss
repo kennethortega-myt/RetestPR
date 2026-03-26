@@ -1,0 +1,30 @@
+.the-most-voted {
+  background-color: #528BC5;
+}
+
+.bar-tooltip {
+  width: 160px !important;
+  margin-left: -80px !important;
+  margin-top: -30px !important;
+  border-radius: 8px;
+  z-index: 999;
+}
+
+.button-right-especial {
+  opacity: 0;
+}
+
+.elector-foto .numero {
+  width: 58px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  box-sizing: border-box;
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34" height="24" viewBox="0 0 34 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-iconAlinear);
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: #000;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_11149" data-name="Rectángulo 11149" class="cls-1" width="33.016" height="23.732"/>
+    </clipPath>
+    <clipPath id="clip-iconAlinear">
+      <rect width="34" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="iconAlinear" class="cls-2">
+    <g id="Grupo_22814" data-name="Grupo 22814" transform="translate(0.679 0.268)">
+      <g id="Grupo_22813" data-name="Grupo 22813" class="cls-3">
+        <path id="Trazado_16784" data-name="Trazado 16784" class="cls-4" d="M5.468.321a1.051,1.051,0,0,0-1.512,0L.3,4.106A1.052,1.052,0,1,0,1.808,5.568L3.66,3.652V8.91a1.052,1.052,0,1,0,2.1,0V3.652L7.616,5.568A1.052,1.052,0,1,0,9.128,4.106Z" transform="translate(0)"/>
+        <path id="Trazado_16785" data-name="Trazado 16785" class="cls-4" d="M7.615,106.036l-1.853,1.916v-5.258a1.052,1.052,0,1,0-2.1,0v5.258l-1.853-1.916A1.052,1.052,0,1,0,.295,107.5l3.66,3.785a1.052,1.052,0,0,0,1.512,0l3.66-3.785a1.052,1.052,0,1,0-1.512-1.462" transform="translate(0.001 -87.872)"/>
+        <path id="Trazado_16786" data-name="Trazado 16786" class="cls-4" d="M89.25,8.035h14.533a1.084,1.084,0,0,0,0-2.168H89.25a1.084,1.084,0,1,0,0,2.168" transform="translate(-76.222 -5.072)"/>
+        <path id="Trazado_16787" data-name="Trazado 16787" class="cls-4" d="M89.25,109.089h14.533a1.084,1.084,0,1,0,0-2.168H89.25a1.084,1.084,0,1,0,0,2.168" transform="translate(-76.222 -92.436)"/>
+        <path id="Trazado_16788" data-name="Trazado 16788" class="cls-4" d="M89.25,58.562h18.9a1.084,1.084,0,1,0,0-2.168H89.25a1.084,1.084,0,1,0,0,2.168" transform="translate(-76.222 -48.754)"/>
+        <path id="Trazado_16789" data-name="Trazado 16789" class="cls-4" d="M108.153,157.448H89.25a1.084,1.084,0,1,0,0,2.168h18.9a1.084,1.084,0,1,0,0-2.168" transform="translate(-76.222 -136.118)"/>
+      </g>
+    </g>
+  </g>
+</svg>

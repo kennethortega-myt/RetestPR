@@ -1,0 +1,56 @@
+<section class="section-flex secciones">
+  <article class="w-100">
+    <h1 class="titulo1">Gestión de reportes automáticos</h1>
+    <h2 class="titulo2">Administrar la generación automática de reportes por tipo de elección</h2>
+  </article>
+  <div class="flex-reportes mt-10">
+    @if (reportConfigList.length > 0) {
+    @for (item of reportConfigList; track item.id) {
+    <div class="card-shadow full-width custom-flex-reportes p-10 w-100">
+      <div>
+        <img [src]="item.icono" alt="tipo de elección" />
+      </div>
+      <div>
+        <div class="reportes-box-text">
+          <h3>Tipo de elección: <span>{{ item.tipoDeEleccion }}</span></h3>
+        </div>
+        <div class="d-flex">
+          <div class="flex-fill reportes-detalle">
+            <p>Fecha y hora de inicio: <span>{{ item.fechaDeInicio }} {{ '2025-01-01T' + item.horaDeInicio.replace('
+                horas', '') | date:'hh:mm a' }}</span></p>
+            <p>Periodicidad: <span>{{ item.periodo }}</span></p>
+            <p>Fecha fin: <span>Al alcanzar el 100 % de actas contabilizadas</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="box-actions-2">
+        <button class="button_estilo2 m-0" (click)="editarparametros(item)">
+          <img src="assets/icons/ico-edit.svg" class="btn-ico-in" alt="Editar"> Editar
+        </button>
+        @switch (item.estado) {
+          @case (1) {
+          <button class="button_estilo1 m-0" (click)="detenerReporte(item)">
+            <img src="assets/icons/ico-pause.svg" class="btn-ico-in" alt="Detener"> Detener
+          </button>
+          }
+          @default {
+          <button class="button_estilo6 m-0" (click)="detenerReporte(item)">
+            <img src="assets/icons/ico-play.svg" class="btn-ico-in" alt="Reanudar"> Reanudar
+          </button>
+          }
+        }
+        <button class="button_estilo5 m-0" (click)="generarReporteManual(item)">
+          <img src="assets/icons/iconGenerar.svg" class="btn-ico-in" alt="Generar"> Generar
+        </button>
+      </div>
+    </div>
+    }
+    } @else {
+    <div class="monigote">
+      <app-personaje-mensaje
+        mensaje="Hasta el momento no se han registrado configuraciones de reportes. configure un reporte para visualizarlo en esta sección."
+        class="scroll-content-general d-flex flex-direction-col-xs content-general"></app-personaje-mensaje>
+    </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<section class="seccion-pantalla contenido-nofixed" style="background-color: rgb(252, 252, 252)">
+  <div class="conte-flechas">
+    <button *ngIf="showPrevButton" (click)="scrollToPrevElement()" class="btn_after"></button>
+  </div>
+  
+  <section class="cont-flex">
+    
+    
+    <article class="w-100">
+      <h1 class="titulo1">
+        <span class="icono_titulo" [ngClass]="electionType?.icono"></span>
+        {{ electionTitle }}
+      </h1>
+    </article>
+
+    <app-seccion-actas-resumen
+      class="actas-seccion"
+      [resumen]="resumen"
+      [showMainButtons]="true"
+      (seeDetailButtonAction)="verDetalle()"
+    ></app-seccion-actas-resumen>
+
+    <app-generic-filter-ubigeo
+      class="w-100 n-p"
+      [isEven]="isEven"
+      [electionType]="electionType"
+      [filterFunctionality]="filterFunctionality"
+      (applyFiltersEvent)="applyFiltersEvent($event)"
+      (generateReportPdf)="generateReportPdf()"
+      (generateReportPdfIsDisabledEvent)="noGenerateReportPDF()"
+      (generateReportCsv)="generateReportCsv()"
+      (generateReportCsvIsDisabledEvent)="noGenerateReportCsv()"
+    ></app-generic-filter-ubigeo>
+
+    @if (filteredDataForDistrict.length > 0) {
+    <app-grafica-partidos
+      class="w-100 n-p"
+      [information_for_bars]="filteredDataForDistrict"
+      [scaleValues]="scalesForDistrict"
+      [showImageOfCandidate]="electionType?.idEleccion == 10"
+      [highLightTheMostVoted]="highLightTheMostVoted()"
+    ></app-grafica-partidos>
+    }
+
+    
+  </section>
+  <div class="conte-flechas">
+    <button *ngIf="showNextButton" (click)="scrollToNextElement()" class="btn_next"></button>
+  </div>
+  
+</section>

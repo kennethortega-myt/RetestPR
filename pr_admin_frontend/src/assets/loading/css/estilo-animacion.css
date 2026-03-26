@@ -1,0 +1,31 @@
+body, html{
+	padding: 0;
+	margin: 0;
+}
+
+#animation_container{
+  	width: 100% !important;
+  	height:auto !important;
+}
+
+#animation_container #canvas{
+width: 100% !important;
+    height: auto !important;
+}
+
+#animation_container #dom_overlay_container{
+	display: none
+	
+}
+
+#preloadjs-container{
+	display: none
+}
+
+*{
+	    overflow: hidden;
+}
+
+  .bloqueo-responsive{
+display: none !important;
+}

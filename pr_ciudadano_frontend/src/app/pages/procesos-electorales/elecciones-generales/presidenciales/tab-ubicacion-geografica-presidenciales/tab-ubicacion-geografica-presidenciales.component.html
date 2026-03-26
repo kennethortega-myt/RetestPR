@@ -1,0 +1,226 @@
+<article class="cont-flex">
+  <div class="sticky_ubigeo w-100">
+    <app-generic-filter-ubigeo
+      class="w-100 n-p"
+      [filterFunctionality]="'peru_intern_and_all_join'"
+      (applyFiltersEvent)="applyFiltersEvent($event)"
+    ></app-generic-filter-ubigeo>
+  </div>
+  <!-- GRAFICA DE BARRAS CON SUS FILTROS -->
+  <div class="w-70">
+    <app-grafica-partidos
+      class="w-100 n-p"
+      *ngIf="dataForDistrict.length > 0"
+      [information_for_bars]="dataForDistrict"
+      [scaleValues]="scalesForDistrict"
+      [highLightTheMostVoted]="true"
+      [showImageOfCandidate]="true"
+    ></app-grafica-partidos>
+  </div>
+  <!-- MAPA -->
+  <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+    <div class="text-mapa">
+      <img src="assets/img/icons/icon-mapa.svg" alt="">
+      <h5>{{ "actas-por-ambito.VerMapaCalor" | translate }}</h5>
+    </div>
+    <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2">
+    </div>
+  </button>
+  <div class="w-30 min-50vh transition-map map-participacion" [ngClass]="{
+      'map-visible2': mostrarMapa2 || !esPantallaChica,
+      'map-oculto': !mostrarMapa2 && esPantallaChica
+    }">
+    <div
+      class="bg-white-movil mapas map-container card-map-movil"
+      style="width: 100%; max-height: 460px"
+      (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()"
+      (mousedown)="$event.stopPropagation()" 
+    >
+      <app-main-hot-map
+        [electionId]="electionID"
+        (regionChanged)="changeRegionFromMap($event)"
+        (ubigeoParamsChanged)="ubigeoParamsChangedFromMap($event)"
+        [changeZoomLevelsToThree]="true"
+      ></app-main-hot-map>
+    </div>
+  </div>
+
+  <section class="cont-flex cont-btn-flechas version-pc">
+    <button class="btn_next-2" (click)="scrollToBottomSection()"></button>
+  </section>
+  <div class="ancla" id="bottom-section"></div>
+  <section class="sec-cont segundo gris" >
+    <div class="sticky_cabecera">
+      <div class="w-100">
+        <h2 class="titulo2 mt-2-movil">
+          {{ 'tab-ubicacion-geografica-presidenciales.titulo_candidatos_presidencia' | translate }}
+          <i>({{ getNumberOfPoliticalOrganizations(geographicalLocationNameItems).length }})</i>
+        </h2>
+      </div>
+      <form [class.form]="!esPantallaChica" [formGroup]="myFormBusCandidato">
+        <div class="w-50 centrar-vertical">
+          <mat-form-field appearance="outline" class="input-bg-blanco">
+            <input 
+              formControlName="nomCandidato"
+              matInput
+              [placeholder]="'tab-ubicacion-geografica-presidenciales.placeholder_input_busqueda' | translate"
+            />
+            <button
+              *ngIf="myFormBusCandidato.get('nomCandidato').value.length"
+              matSuffix
+              mat-icon-button
+              aria-label="Limpiar selección"
+              (click)="resetListaCandidatos()"
+              (mousedown)="$event.preventDefault()"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </form>
+      <section
+        class="desplegable titulos-votos full"
+        id="cont01"
+        *ngIf="geographicalLocationNameItems.length != 0"
+      >
+        <div>
+          <div class="w-100 t-r">
+            <article class="candidato">
+              <div class="cont-info">
+                <div class="img img-transparente"></div>
+                <div class="img img-transparente"></div>
+                <div class="nombre"></div>
+                <div class="cant">
+                  <span>{{ 'tab-ubicacion-geografica-presidenciales.votos_validos' | translate }} (%)</span>
+                </div>
+                <div class="cant">
+                  <span>{{ 'tab-ubicacion-geografica-presidenciales.votos_emitidos' | translate }} (%)</span>
+                </div>
+              </div>
+              <div class="cantidad">
+                <span *ngFor="let value of maxValueForScaleName; let index = index" [ngStyle]="{
+                  'left': getPosicionRegla(value, index),
+                  'position': 'absolute',
+                  'top': '-10px'
+                }">
+                  {{ getReglaValorIteracion(value, index) | number : "1.0-3" : "en-US" }}
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div></div>
+      </section>
+    </div>
+
+    <section class="desplegable full" *ngFor="let candidato of geographicalLocationNameItems; let indice = index">
+      <div>
+        <div class="w-100 t-r">
+          <article class="candidato">
+            <div class="cont-info" (click)="detalleVotos(candidato);" (keydown.enter)="detalleVotos(candidato);">
+              <app-img [alt]="'partidos'" style="line-height: 1;" [src]="candidato.urlAgrupacionImage"></app-img>
+              <app-img alt="candidato" style="line-height: 1;" [src]="candidato.urlCandidateImage"></app-img>
+              <div class="nombre nameandphoto">
+                <h3>{{ candidato.nombreCandidato }}</h3>
+                <p>{{ candidato.nombreAgrupacionPolitica }}</p>
+              </div>
+              <div class="cant cant-pc">
+                <div class="titulo_movil">{{ 'tab-ubicacion-geografica-presidenciales.votos_validos' | translate }}</div>
+                <span *ngIf="candidato?.porcentajeVotosValidos > 0 && candidato?.porcentajeVotosValidos < 100">
+                  <b>
+                    {{ candidato?.porcentajeVotosValidos | porcentajeFormat }}
+                  </b>
+                </span>
+                <span *ngIf="candidato?.porcentajeVotosValidos == 0 || candidato?.porcentajeVotosValidos == 100">
+                  <b>
+                    {{ candidato?.porcentajeVotosValidos | porcentajeFormat }}
+                  </b>
+                </span>
+              </div>
+              <div class="cant cant-pc">
+                <div class="titulo_movil">{{ 'tab-ubicacion-geografica-presidenciales.votos_emitidos' | translate }}</div>
+                <span *ngIf="candidato?.porcentajeVotosEmitidos > 0 && candidato?.porcentajeVotosEmitidos < 100">
+                  <b>
+                    {{ candidato?.porcentajeVotosEmitidos | porcentajeFormat }}
+                  </b>
+                </span>
+                <span *ngIf="candidato?.porcentajeVotosEmitidos == 0 || candidato?.porcentajeVotosEmitidos == 100">
+                  <b>
+                    {{ candidato?.porcentajeVotosEmitidos | porcentajeFormat }}
+                  </b>
+                </span>
+              </div>
+                <div class="conte-votos2 version-movil">
+                  <div class="titulo_movil">{{ 'tab-ubicacion-geografica-presidenciales.cantidad_votos' | translate }}</div>
+                  <span class="titulo_votos_totales__num2"><b>{{ candidato.totalVotosValidos | number : "1.0-2" : "en-US" }}</b></span>
+                </div>
+              
+            </div>
+            
+            <div class="barra-cargando version-pc">
+              <div
+                class="barra-cargando-content"
+                [ngStyle]="{
+                  width: calcularWith(candidato.totalVotosValidos)
+                }"
+              ></div>
+              <p class="titulo_votos_totales">
+                <span class="fs14">{{ 'tab-ubicacion-geografica-presidenciales.cantidad_votos' | translate }}: </span>
+                <span class="titulo_votos_totales__num2">{{ candidato.totalVotosValidos | number : "1.0-2" : "en-US" }}</span>
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div></div>
+    </section>
+
+    <!-- VOTOS EN BLANCO -->
+    <linea-voto
+      *ngIf="emptyVotes && geographicalLocationNameItems.length != 0 && showSpecialCount"
+      [title]="'tab-ubicacion-geografica-presidenciales.votos_blanco' | translate"
+      [votes]="emptyVotes"
+      [isPresidencial]="true"
+      [percentageOfEmptyAndNullVotes]="
+        (maxValueForScaleName[maxValueForScaleName.length - 1] != 0
+          ? (emptyVotes.totalVotosValidos / maxValueForScaleName[maxValueForScaleName.length - 1]) * 100
+          : 0) + '%'
+      "
+      (click)="detailTypeVotes(emptyVotes, 'VOTOS BLANCO')" (keydown.enter)="detailTypeVotes(emptyVotes, 'VOTOS BLANCO')"
+    ></linea-voto>
+
+    <!-- VOTOS NULOS -->
+    <linea-voto
+      *ngIf="nullVotes && geographicalLocationNameItems.length != 0 && showSpecialCount"
+      [title]="'tab-ubicacion-geografica-presidenciales.votos_nulos' | translate"
+      [votes]="nullVotes"
+      [isPresidencial]="true"
+      [percentageOfEmptyAndNullVotes]="
+        (maxValueForScaleName[maxValueForScaleName.length - 1] != 0
+          ? (nullVotes.totalVotosValidos / maxValueForScaleName[maxValueForScaleName.length - 1]) * 100
+          : 0) + '%'
+      "
+      (click)="detailTypeVotes(nullVotes, 'VOTOS NULOS')" (keydown.enter)="detailTypeVotes(nullVotes, 'VOTOS NULOS')"
+    ></linea-voto>
+
+    <!-- TOTAL DE VOTOS -->
+    <linea-voto
+      *ngIf="resumen && geographicalLocationNameItems.length != 0 && showSpecialCount"
+      [title]="'tab-ubicacion-geografica-presidenciales.total_votos' | translate"
+      [votes]="resumen"
+      [isTotal]="true"
+      [isPresidencial]="true"
+    ></linea-voto>
+  </section>
+
+  <div
+    class="cont-flex justify-content-center"
+    *ngIf="geographicalLocationNameItems.length == 0 && geographicalLocationNameFirstRequestIsLoaded"
+  >
+    <app-person-opne-no-information [personOnpeMessageType]="'criterios_no_valid'"></app-person-opne-no-information>
+  </div>
+  <app-resumen-total-votos class="w-100" *ngIf="geographicalLocationNameItems.length !== 0"></app-resumen-total-votos>
+  <section class="cont-flex cont-btn-flechas version-pc">
+    <button class="btn_after-2" (click)="scrollToTopSection()"></button>
+  </section>
+</article>

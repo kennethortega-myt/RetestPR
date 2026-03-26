@@ -1,0 +1,22 @@
+@if (dataLoginStore.isProcessValid()) {
+  <div class="mainContentPanel w-full">
+    <div class="contentCenter">
+      <div>
+        <div>
+          <h1>{{ 'bienvenido' | translate }} {{ labelUserLogin }}</h1>
+        </div>
+        <div class="optsModules">
+          <a class="card padd_15"
+              role="link"
+              tabindex="0"
+              *ngFor="let modulo of modulos"
+              [routerLink]="'/' + modulo.url"
+              (keydown)="onKeyDown($event)">
+            <img [src]="'assets/icons/panel/' + modulo.icono" [attr.alt]="modulo.nombre">
+            <p>{{ getTranslationKey(modulo.nombre) | translate }}</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+}

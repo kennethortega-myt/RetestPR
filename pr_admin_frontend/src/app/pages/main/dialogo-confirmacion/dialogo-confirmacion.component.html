@@ -1,0 +1,13 @@
+<div class="confirmacion-content">
+  <h1 class="titulo2 t-c">Confirmación</h1>
+  <div class="centrar_icono">
+    <img src="assets/img/icons/icono_alert.svg" class="ico-60" alt="Advertencia" />
+  </div>
+  <div>
+    <p>{{ mensaje }}</p>
+  </div>
+  <div class="t-r popup-botones">
+    <button class="button_estilo3" (click)="cerrarDialogo()">No</button>
+    <button class="button_estilo1" (click)="confirmado()" cdkFocusInitial>Sí</button>
+  </div>
+</div>

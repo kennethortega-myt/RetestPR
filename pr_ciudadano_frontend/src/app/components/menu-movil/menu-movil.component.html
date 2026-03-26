@@ -1,0 +1,111 @@
+<div class="alinear_boton_cerrar mb-3">
+  <button class="cerrar_menu" mat-dialog-close>
+    <img src="assets/img/icons/ico_x.svg" alt="" />
+  </button>
+</div>
+<div class="t-r menu-hidden menu">
+  <nav>
+    <ul class="" [class.showmenu]="classToggled">
+      <div class="site-overlay"></div>
+      <ng-container *ngFor="let eleccion of listaEleccionesMenu">
+        <ng-container *ngIf="!eleccion.hijos">
+          <li>
+            <a class="link" [class]="eleccion.seleccionado ? 'active' : ''" (click)="redirectToPadre(eleccion.id, eleccion)" (keydown.enter)="redirectToPadre(eleccion.id, eleccion)" (keydown.space)="redirectToPadre(eleccion.id, eleccion)">
+              <div class="conte-ico-movil"><span [class]="eleccion.icono"></span></div>
+              <span class="nombre" [innerHTML]="formatNombre(eleccion.nombre)"></span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="eleccion.hijos">
+          <li>            
+            <a class="link" [class]="activarItem(eleccion.id)" (click)="togglePanel()" (keydown.enter)="togglePanel()" (keydown.space)="togglePanel()">
+              <div class="conte-ico-movil"><span [class]="eleccion.icono"></span></div>
+              <span class="nombre">{{ eleccion.nombre }}</span>
+              <span class="flecha_desplegar radius-cero" [class.flecha_desplegado]="desplegado"></span>
+            </a>
+            <ul class="submenu" [class.desplegar]="desplegado">
+              <ng-container *ngFor="let hijo of eleccion.listaHijos">
+                <li>
+                  <a class="link" [class.active]="hijo.seleccionado" (click)="redirectToHija(hijo.id, hijo)" (keydown.enter)="redirectToHija(hijo.id, hijo)" (keydown.space)="redirectToHija(hijo.id, hijo)"
+                    ><div class="conte-ico-movil"><span [class]="hijo.icono"></span></div>
+                    <span class="nombre">{{ hijo.nombre }}</span>
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ng-container>
+      <li>
+        <a
+          class="link" 
+          aria-haspopup="true"
+          [attr.aria-expanded]="desplegadoinfo"
+           (click)="toggleInfo()"
+        >
+          <div class="conte-ico-movil"><span class="icon-ico-hoja-informativa"></span></div>
+          <span class="nombre">{{ 'menu.informacion' | translate }}</span>
+          <span class="flecha_desplegar radius-cero" [class.flecha_desplegado]="desplegadoinfo"></span>
+        </a>
+
+        <ul class="submenu" [class.desplegar]="desplegadoinfo">
+          <li>
+            <a
+              role="menuitem"
+              class="link"
+              target="_blank"
+              href="https://www.gob.pe/institucion/onpe/campa%C3%B1as/104066-elecciones-generales-2026"
+              mat-dialog-close
+              (click)="closeInfoMenu()"
+            >
+              <div class="conte-ico-movil">
+              <span
+                class="icon-ico-informacion"
+                aria-hidden="true"
+              ></span></div>
+              <span class="nombre">{{ 'menu.info-process' | translate }}</span>
+            </a>
+          </li>
+          <li>
+            <a
+              role="menuitem"
+              class="link"
+              routerLink="/main/faq"
+              routerLinkActive="active"
+              mat-dialog-close
+              (click)="toggleField();"
+              (keydown.enter)="router.navigate(['/faq'])"
+              (keydown.space)="router.navigate(['/faq'])"
+            >
+              <div class="conte-ico-movil">
+              <span
+                class="icon-ico-pregunta"
+                aria-hidden="true"
+              ></span></div>
+              <span class="nombre">{{ 'menu.PreguntasFrecuentes' | translate }}</span>
+            </a>
+          </li>
+          <li>
+            <a
+              role="menuitem"
+              class="link"
+              routerLink="/main/sitemap"
+              routerLinkActive="active"
+              mat-dialog-close
+              (click)="toggleField();"
+              (keydown.enter)="router.navigate(['/sitemap'])"
+              (keydown.space)="router.navigate(['/sitemap'])"
+            >
+              <div class="conte-ico-movil">
+              <span
+                class="icon-ico-sitemap"
+                aria-hidden="true"
+              ></span></div>
+              <span class="nombre">{{ 'menu.Sitemap' | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>

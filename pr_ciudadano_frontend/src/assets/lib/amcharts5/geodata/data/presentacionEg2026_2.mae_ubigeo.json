@@ -1,0 +1,308 @@
+[{
+  "c_ubigeo": "910100",
+  "c_nombre": "ARGELIA"
+},
+{
+  "c_ubigeo": "910300",
+  "c_nombre": "REPUBLICA ARABE DE EGIPTO"
+},
+{
+  "c_ubigeo": "910500",
+  "c_nombre": "MARRUECOS"
+},
+{
+  "c_ubigeo": "910600",
+  "c_nombre": "SUDAFRICA"
+},
+{
+  "c_ubigeo": "920100",
+  "c_nombre": "ANTILLAS HOLANDESAS"
+},
+{
+  "c_ubigeo": "920200",
+  "c_nombre": "ARGENTINA"
+},
+{
+  "c_ubigeo": "920400",
+  "c_nombre": "BOLIVIA"
+},
+{
+  "c_ubigeo": "920500",
+  "c_nombre": "BRASIL"
+},
+{
+  "c_ubigeo": "920600",
+  "c_nombre": "CANADA"
+},
+{
+  "c_ubigeo": "920700",
+  "c_nombre": "COLOMBIA"
+},
+{
+  "c_ubigeo": "920800",
+  "c_nombre": "COSTA RICA"
+},
+{
+  "c_ubigeo": "920900",
+  "c_nombre": "CUBA"
+},
+{
+  "c_ubigeo": "921000",
+  "c_nombre": "CHILE"
+},
+{
+  "c_ubigeo": "921100",
+  "c_nombre": "ECUADOR"
+},
+{
+  "c_ubigeo": "921200",
+  "c_nombre": "EL SALVADOR"
+},
+{
+  "c_ubigeo": "921300",
+  "c_nombre": "ESTADOS UNIDOS DE AMERICA"
+},
+{
+  "c_ubigeo": "921500",
+  "c_nombre": "GUATEMALA"
+},
+{
+  "c_ubigeo": "921600",
+  "c_nombre": "HAITI"
+},
+{
+  "c_ubigeo": "921700",
+  "c_nombre": "HONDURAS"
+},
+{
+  "c_ubigeo": "921900",
+  "c_nombre": "MEXICO"
+},
+{
+  "c_ubigeo": "922000",
+  "c_nombre": "NICARAGUA"
+},
+{
+  "c_ubigeo": "922100",
+  "c_nombre": "PANAMA"
+},
+{
+  "c_ubigeo": "922200",
+  "c_nombre": "PARAGUAY"
+},
+{
+  "c_ubigeo": "922300",
+  "c_nombre": "PUERTO RICO"
+},
+{
+  "c_ubigeo": "922400",
+  "c_nombre": "REPUBLICA DOMINICANA"
+},
+{
+  "c_ubigeo": "922600",
+  "c_nombre": "TRINIDAD TOBAGO"
+},
+{
+  "c_ubigeo": "922700",
+  "c_nombre": "URUGUAY"
+},
+{
+  "c_ubigeo": "922800",
+  "c_nombre": "VENEZUELA"
+},
+{
+  "c_ubigeo": "923000",
+  "c_nombre": "GUAYANA FRANCESA"
+},
+{
+  "c_ubigeo": "930100",
+  "c_nombre": "REPUBLICA DE COREA DEL SUR"
+},
+{
+  "c_ubigeo": "930200",
+  "c_nombre": "REPUBLICA POPULAR CHINA"
+},
+{
+  "c_ubigeo": "930400",
+  "c_nombre": "INDIA"
+},
+{
+  "c_ubigeo": "930600",
+  "c_nombre": "ISRAEL"
+},
+{
+  "c_ubigeo": "930700",
+  "c_nombre": "JAPON"
+},
+{
+  "c_ubigeo": "930800",
+  "c_nombre": "LIBANO"
+},
+{
+  "c_ubigeo": "931000",
+  "c_nombre": "TAILANDIA"
+},
+{
+  "c_ubigeo": "931100",
+  "c_nombre": "INDONESIA"
+},
+{
+  "c_ubigeo": "931300",
+  "c_nombre": "JORDANIA"
+},
+{
+  "c_ubigeo": "931500",
+  "c_nombre": "TURQUIA"
+},
+{
+  "c_ubigeo": "931900",
+  "c_nombre": "ARABIA SAUDITA"
+},
+{
+  "c_ubigeo": "932000",
+  "c_nombre": "VIETNAM"
+},
+{
+  "c_ubigeo": "932400",
+  "c_nombre": "IRAN"
+},
+{
+  "c_ubigeo": "932500",
+  "c_nombre": "SINGAPUR"
+},
+{
+  "c_ubigeo": "932800",
+  "c_nombre": "KUWAIT"
+},
+{
+  "c_ubigeo": "933000",
+  "c_nombre": "MALASIA"
+},
+{
+  "c_ubigeo": "933200",
+  "c_nombre": "FILIPINAS"
+},
+{
+  "c_ubigeo": "933700",
+  "c_nombre": "EMIRATOS ARABES UNIDOS"
+},
+{
+  "c_ubigeo": "933800",
+  "c_nombre": "QATAR"
+},
+{
+  "c_ubigeo": "940200",
+  "c_nombre": "ALEMANIA"
+},
+{
+  "c_ubigeo": "940300",
+  "c_nombre": "AUSTRIA"
+},
+{
+  "c_ubigeo": "940400",
+  "c_nombre": "BELGICA"
+},
+{
+  "c_ubigeo": "940600",
+  "c_nombre": "REPUBLICA CHECA"
+},
+{
+  "c_ubigeo": "940800",
+  "c_nombre": "DINAMARCA"
+},
+{
+  "c_ubigeo": "940900",
+  "c_nombre": "ESPAÑA"
+},
+{
+  "c_ubigeo": "941000",
+  "c_nombre": "FINLANDIA"
+},
+{
+  "c_ubigeo": "941100",
+  "c_nombre": "FRANCIA"
+},
+{
+  "c_ubigeo": "941200",
+  "c_nombre": "GRAN BRETAÑA"
+},
+{
+  "c_ubigeo": "941300",
+  "c_nombre": "GRECIA"
+},
+{
+  "c_ubigeo": "941400",
+  "c_nombre": "HOLANDA"
+},
+{
+  "c_ubigeo": "941500",
+  "c_nombre": "HUNGRIA"
+},
+{
+  "c_ubigeo": "941700",
+  "c_nombre": "ITALIA"
+},
+{
+  "c_ubigeo": "941800",
+  "c_nombre": "IRLANDA"
+},
+{
+  "c_ubigeo": "942000",
+  "c_nombre": "GRAN DUCADO DE LUXEMBURGO"
+},
+{
+  "c_ubigeo": "942300",
+  "c_nombre": "NORUEGA"
+},
+{
+  "c_ubigeo": "942400",
+  "c_nombre": "POLONIA"
+},
+{
+  "c_ubigeo": "942500",
+  "c_nombre": "PORTUGAL"
+},
+{
+  "c_ubigeo": "942600",
+  "c_nombre": "RUMANIA"
+},
+{
+  "c_ubigeo": "942700",
+  "c_nombre": "SUECIA"
+},
+{
+  "c_ubigeo": "942800",
+  "c_nombre": "SUIZA"
+},
+{
+  "c_ubigeo": "942900",
+  "c_nombre": "RUSIA"
+},
+{
+  "c_ubigeo": "943100",
+  "c_nombre": "CROACIA"
+},
+{
+  "c_ubigeo": "943400",
+  "c_nombre": "UCRANIA"
+},
+{
+  "c_ubigeo": "943600",
+  "c_nombre": "BIELORRUSIA"
+},
+{
+  "c_ubigeo": "943700",
+  "c_nombre": "MACEDONIA DEL NORTE"
+},
+{
+  "c_ubigeo": "944200",
+  "c_nombre": "PRINCIPADO DE ANDORRA"
+},
+{
+  "c_ubigeo": "950100",
+  "c_nombre": "AUSTRALIA"
+},
+{
+  "c_ubigeo": "950200",
+  "c_nombre": "NUEVA ZELANDA"
+}]

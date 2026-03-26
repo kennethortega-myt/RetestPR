@@ -1,0 +1,82 @@
+<div class="config-report-container">
+  <div class="px-32 px-0-movil mt-2 mt-0-movil">
+    <h2>{{ titleKey | translate }}</h2>
+  </div>
+
+  <div class="config-report-form" [formGroup]="form">
+    <div class="contInputs">
+      <div class="box-message">
+        <img src="assets/icons/ico-Info.svg" alt="icono">
+        <p>{{ "configRepMensaje" | translate }}</p>
+      </div>
+
+      <div class="form_container">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="label-select" for="tipoDeEleccion">{{ "tabla.TEleccion" | translate }} <span>*</span></label>
+            <mat-form-field appearance="outline" class="mfl" >
+              <mat-select id="tipoDeEleccion" formControlName="tipoDeEleccion" 
+                placeholder="{{ 'SeleccioneTipoEleccion' | translate }}">
+                <mat-option *ngFor="let item of listaEleccion" [value]="item.value">{{ item.text }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <span *ngIf="listaEleccion.length === 0" class="error-eleccion">
+              {{ "NoEleccionesDisponibles" | translate }}
+            </span>
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label class="label-input" for="fechaDeInicioDeGeneracion">
+                {{ "FechaInicioGenReporte" | translate }} <span> * </span>
+              </label>
+
+              <mat-form-field appearance="outline" class="mfl">
+                <input id="fechaDeInicioDeGeneracion" formControlName="fechaDeInicioDeGeneracion" matInput
+                  placeholder="dd/mm/aaaa" (click)="picker.open()" [matDatepicker]="picker" [readonly]="true"
+                  autocomplete="off" [min]="minDate" [max]="maxDate" />
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="label-input" for="periodoDeGeneracion">{{ "GeneracionReporte" | translate }}<span> *
+              </span></label>
+            <mat-form-field appearance="outline" class="mfl">
+              <mat-select formControlName="periodoDeGeneracion"
+                placeholder="{{ 'PeriodoGeneracionReporte' | translate }}">
+                <mat-option *ngFor="let item of listaDePeriodos" [value]="item.value">{{ item.text }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="label-select" for="horaDeInicio">
+              {{ "HoraInicioReportes" | translate }} <span>*</span>
+            </label>
+            <mat-form-field appearance="outline" class="mfl">
+              <mat-select id="horaDeInicio" formControlName="horaDeInicio" placeholder="{{ 'horaInicio' | translate }}">
+                <mat-option *ngFor="let item of listaDeHorasDeInicios" [value]="item.value">{{ item.text }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="cont_footer">
+      <span class="alert-campos"> <span>*</span>{{ "camposObligatorios" | translate }}</span>
+
+      <div class="form-buttons">
+        <button (click)="onGuardar()" class="button_estilo1" [disabled]="!isValidForm"
+          [ngStyle]="{ opacity: isValidForm ? '1' : '0.5' }">
+          Guardar Configuración
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

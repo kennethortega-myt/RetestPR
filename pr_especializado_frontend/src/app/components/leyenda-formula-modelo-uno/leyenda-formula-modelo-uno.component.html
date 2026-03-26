@@ -1,0 +1,35 @@
+<div class="content-total-votos">
+  <h5>
+    * {{ 'LeyendaFormula.leyenda1' | translate }}.
+  </h5>
+  <h5>
+    ** {{ 'LeyendaFormula.leyenda2' | translate }}
+  </h5>
+</div>
+<div class="d-flex content-center"> 
+  <div class="formula-container">
+    <div class="formula">
+      <div class="formula-item">
+        <span class="textformula">% {{ 'LeyendaFormula.Votos_Validos' | translate }}</span>
+        <span>=</span>
+        <div class="fraction">
+          <span class="numerator">{{ 'LeyendaFormula.CantidadVotos' | translate }}</span>
+          <span class="denominator">{{ 'LeyendaFormula.TotalVotosValidos' | translate }}</span>
+        </div>
+        <span>X</span>
+        <span class="textformula">100</span>
+      </div>
+      <div class="separator"></div>
+      <div class="formula-item">
+        <span class="textformula">% {{ 'LeyendaFormula.VotosEmitidos' | translate }}</span>
+        <span>=</span>
+        <div class="fraction">
+          <span class="numerator">{{ 'LeyendaFormula.CantidadVotos' | translate }}</span>
+          <span class="denominator">{{ 'LeyendaFormula.TotalVotosEmitidos' | translate }}</span>
+        </div>
+        <span>X</span>
+        <span class="textformula">100</span>
+      </div>
+    </div>
+  </div>
+</div>

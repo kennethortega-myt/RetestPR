@@ -1,0 +1,12 @@
+.map-container {
+  position: relative;
+  min-height: 475px !important;
+}
+.barra-cargando-content {
+  padding: 0 !important;
+}
+@media (max-width: 960px) {
+  .map-container {
+  min-height: 360px !important;
+}
+}

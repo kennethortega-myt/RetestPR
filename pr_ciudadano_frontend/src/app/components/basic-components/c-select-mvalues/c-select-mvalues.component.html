@@ -1,0 +1,17 @@
+<div class="flexInput">
+    <label class="label-input" for="">{{ label }}</label>
+    <mat-form-field appearance="outline" class="mfl">
+      <mat-select [placeholder]="placeholder" (selectionChange)="selectedOp($event)">
+        @for (demo of policitalOrganizationItems; track demo) {
+          <mat-option [value]="demo.codigoAgrupacionPolitica">
+            <span class="selMvalue">
+                <img alt="" height="25" class="example-option-img" src="{{demo.urlAgrupacionImage}}">
+                <span class="opInfOpts">
+                    <span class="topTxtOpts">{{demo.nombreAgrupacionPolitica}}</span> |<br> <small class="bottomTxtOpts">{{demo.nombreCandidato}}</small>
+                </span>
+            </span>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+</div>

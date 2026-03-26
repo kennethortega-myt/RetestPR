@@ -1,0 +1,47 @@
+<article class="cambioheight grafica-candidatos">
+  <article>
+    <span *ngFor="let value of listaEscalaFinal">{{ value | number }}</span>
+  </article>
+  <article>
+    <section class="grafica-partidos-section">
+      <button class="btn_next2" (click)="siguiente()" *ngIf="contaPagina < totalPaginasGrafica"></button>
+      <button class="btn_next2_desabilitada" *ngIf="contaPagina >= totalPaginasGrafica"></button>
+      <button class="btn_after2" (click)="anterior()" *ngIf="contaPagina > 0"></button>
+      <button class="btn_after2_desabilitada" (click)="anterior()" *ngIf="contaPagina <= 0"></button>
+      <!-- Bars -->
+      <article class="chart-section grafica-partidos-article" #politicalPartiesArticle>
+        <div class="data-postul" *ngFor="let info of information_for_bars_temporal; let index = index" [id]="index + 1">
+          <div class="cambioheight barra-principal">
+            <div
+              tabindex="0"
+              class="carga"
+              [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              matTooltip="
+                {{ info.name_of_candidate }} {{ info.name_of_candidate ? ' - ' : '' }}
+                {{ traslateQuantityVotes | translate }}: {{ info.number_of_valid_votes | number : '1.0-1' : 'en-US' }}
+                {{ traslateVotesValids | translate }}: {{ info.percentage_valid_votes | porcentajeFormat }}
+              "
+              #tooltipCandidate="matTooltip"
+              (click)="toggleTooltip(tooltipCandidate, index)" (keydown.enter)="toggleTooltip(tooltipCandidate, index)" 
+              [class.active]="indexActiveBar === index"
+            >
+              <div class="elector-foto">
+                <img alt="partidos" [src]="info.urlAgrupacionImage" />
+              </div>
+            </div>
+          </div>
+          <div class="nombre-logo">
+            {{ info.name_of_politic_group }}
+          </div>
+        </div>
+      </article>
+      <div class="cambioheight fondo-grafica">
+        <div *ngFor="let value of listaEscalaFinalLinea"></div>
+        <div></div>
+      </div>
+    </section>
+  </article>
+</article>

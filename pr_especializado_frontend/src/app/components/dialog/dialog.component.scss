@@ -1,0 +1,21 @@
+.popup-botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+
+    button {
+        height: 2.25rem;
+        min-width: 100px;
+        flex: 1;
+        max-width: 120px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}
+
+.popup {
+  max-width: 90vw;
+}

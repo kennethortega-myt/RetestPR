@@ -1,0 +1,215 @@
+<header class="header-container background-color-base">
+  <section class="cont-flex">
+    <div class="conte_cabecera_header">
+      <div class="conte-ico-menu">
+        <button
+          id="sidebarToggle"
+          (click)="openMenuMovil('0ms', '0ms')"
+          onkeypress=""
+        >
+          <span class="icon-ico_menu"></span>
+        </button>
+        <a class="conte-logoeleccion">
+          <img
+            alt="Onpe Elecciones Generales 2026"
+            [src]="
+              isRevocatoria
+                ? 'assets/img/logo/logo-cpr2025.svg'
+                : 'assets/img/logo/logo-eleccion.svg'
+            "
+            class="logo-principal"
+          />
+        </a>
+        <img
+          alt="ico-compartir"
+          class="opciones-ubigeo"
+          mat-button
+          [matMenuTriggerFor]="beforeMenu"
+          src="assets/img/icons/ico-compartir.svg"
+        />
+      </div>
+      <a class="conte-logoeleccion">
+        <img
+          alt="Onpe Elecciones Generales 2026"
+          [src]="
+            isRevocatoria
+              ? 'assets/img/logo/logo-cpr2025.svg'
+              : 'assets/img/logo/logo-eleccion.svg'
+          "
+          class="logo-principal"
+        />
+      </a>
+    </div>
+    <div class="t-r menu-hidden menu">
+      <nav aria-label="Menú principal de elecciones">
+        <ul class="" [class.showmenu]="classToggled">
+          <div class="site-overlay" aria-hidden="true"></div>
+          <ng-container *ngFor="let eleccion of listaEleccionesMenu">
+            <!-- Ítem sin hijos -->
+            <ng-container *ngIf="!eleccion.hijos">
+              <li>
+                <a
+                  class="link"
+                  [class]="activarItem(eleccion)"
+                  role="menuitem"
+                  tabindex="0"
+                  (focus)="eleccion.expanded = true"
+                  (click)="redirectToPadre(eleccion.id, eleccion)"
+                  (keydown.enter)="redirectToPadre(eleccion.id, eleccion)"
+                  (keydown.space)="redirectToPadre(eleccion.id, eleccion)"
+                >
+                  <span [class]="eleccion.icono" aria-hidden="true"></span>
+                  <span
+                    class="nombre"
+                    [innerHTML]="formatNombre(eleccion.nombre)"
+                  ></span>
+                </a>
+              </li>
+            </ng-container>
+            <!-- Ítem con hijos -->
+            <ng-container *ngIf="eleccion.hijos">
+              <li (focusout)="onMenuFocusOut($event, eleccion)">
+                <a
+                  class="link"
+                  [ngClass]="eleccion.expanded ? 'active' : activarItem(eleccion)"
+                  role="menuitem"
+                  aria-haspopup="true"
+                  [attr.aria-expanded]="eleccion.expanded ? 'true' : 'false'"
+                  tabindex="0"
+                  (click)="changeWithClick(eleccion, $event)"
+                  (keydown.enter)="changeWithClick(eleccion, $event)"
+                  (keydown.space)="changeWithClick(eleccion, $event)"
+                >
+                  <span [class]="eleccion.icono" aria-hidden="true"></span>
+                  <span class="nombre">{{ eleccion.nombre }}</span>
+                </a>
+
+                <ul *ngIf="eleccion.expanded" class="submenu">
+                  <ng-container *ngFor="let hijo of eleccion.listaHijos">
+                    <li>
+                      <a
+                        role="menuitem"
+                        tabindex="0"
+                        class="link"
+                        [class]="activarItem(hijo)"
+                        (click)="selectHija(hijo, eleccion)"
+                        (keydown.enter)="selectHija(hijo, eleccion)"
+                        (keydown.space)="selectHija(hijo, eleccion)"
+                      >
+                        <span [class]="hijo.icono" aria-hidden="true"></span>
+                        <span class="nombre">{{ hijo.nombre }}</span>
+                      </a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-container>
+          <!-- Ítem faq (Ini) -->
+          <li (focusout)="onInfoFocusOut($event)">
+            <a
+              class="link pseudoLink"
+              aria-haspopup="true"
+              aria-expanded="false"
+              tabindex="0"
+              [class.active]="isInformacionActive() || informacionExpanded"
+              (click)="toggleInformacion($event)"
+              (keydown.enter)="toggleInformacion($event)"
+              (keydown.space)="toggleInformacion($event)">
+              <span
+                class="icono icon-ico-hoja-informativa"
+                aria-hidden="true"
+              ></span>
+              <span class="nombre">Información</span>
+            </a>
+            @if(informacionExpanded){
+            <ul class="submenu">
+              <li>
+                <a
+                  role="menuitem"
+                  class="link"
+                  tabindex="0"
+                  target="_blank"
+                  routerLinkActive="active"
+                  href="https://eg2026.onpe.gob.pe/" >
+                  <span
+                    class="icono icon-ico-informacion"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="nombre">{{ 'menu.info-process' | translate }}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  role="menuitem"
+                  class="link"
+                  tabindex="0"
+                  [routerLink]="ROUTE_FAQ"
+                  routerLinkActive="active"
+                  (click)="collapseInformacion()">
+                  <span
+                    class="icono icon-ico-pregunta"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="nombre">{{ 'menu.PreguntasFrecuentes' | translate }}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  role="menuitem"
+                  class="link"
+                  tabindex="0"
+                  [routerLink]="ROUTE_SITEMAP"
+                  routerLinkActive="active"
+                  (click)="collapseInformacion()">
+                  <span
+                    class="icono icon-ico-sitemap"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="nombre">{{ 'menu.Sitemap' | translate }}</span>
+                </a>
+              </li>
+            </ul>
+            }
+          </li>
+          <!-- Ítem faq (Fin) -->
+        </ul>
+
+        <!-- Íconos lateral derecho -->
+        <div class="flex-idioma">
+          <button
+            matIconButton
+            [matMenuTriggerFor]="beforeMenu"
+            aria-label="Compartir"
+            #menuTrigger="matMenuTrigger"
+            class="opciones-ubigeo compartir"
+          >
+            <img alt="Compartir" src="assets/img/icons/ico-compartir.svg" />
+          </button>
+          <button
+            class="btnAccesibilidad hidden-acce"
+            mat-raised-button
+            (click)="openBottomSheet()"
+            (keydown.enter)="openBottomSheet()"
+            (keydown.space)="openBottomSheet()"
+            aria-label="Opciones de accesibilidad"
+          >
+            <img
+              alt=""
+              src="assets/img/icons/ico-accesible.svg"
+              class="ico-accesible"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <form class="ubigeo-principal">
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button class="item-compartir" mat-menu-item (click)="copiarEnlaceURL()">
+        <span class="icon-ico-link"></span> {{ copiarTexto | translate }}
+      </button>
+    </mat-menu>
+  </form>
+</header>

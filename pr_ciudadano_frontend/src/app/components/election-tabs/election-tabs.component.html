@@ -1,0 +1,24 @@
+<div class="tabs">
+  <button class="tab-flechas" *ngIf="isMobile" (click)="scrollTabs('left')" [disabled]="!canScrollLeft">
+    &#8249;
+  </button>
+  
+  <div class="tabs_scroll">
+    <div class="tabs_container" [style.transform]="getTransformStyle()">
+      <button class="tablinks active" (click)="openTab('tab1')" [class.active]="activeTab === 'tab1'" id="activo1">
+        <span class="label">{{Resultadoubicaciongeografica | translate}}</span>
+      </button>
+      <button class="tablinks" (click)="openTab('tab2')" [class.active]="activeTab === 'tab2'" id="activo2">
+        <span class="label">{{Resultadoorganizacionpolitica | translate}}</span>
+      </button>
+      <button class="tablinks" (click)="openTab('tab3')" [class.active]="activeTab === 'tab3'" id="activo3">
+        <span class="label">{{Resultadocandidato | translate}}</span>
+      </button>
+    </div>
+    <div class="seleccion"></div>
+  </div>
+  
+  <button class="tab-flechas" *ngIf="isMobile" (click)="scrollTabs('right')" [disabled]="!canScrollRight">
+    &#8250;
+  </button>
+</div>

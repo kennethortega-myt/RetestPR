@@ -1,0 +1,15 @@
+<aside class="w-100 map-container">
+  <!-- Loading State (opcional) -->
+  <div *ngIf="showLoadingState && isLoading" class="map-loading-overlay">
+    <div class="spinner"></div>
+    <p class="loading-text">{{ loadingText }}</p>
+  </div>
+
+  <!-- Contenedor del Mapa -->
+  <div 
+    #mapContentRef
+    [id]="mapContainerId" 
+    class="mapas map-content"
+    [class.map-loading]="showLoadingState && isLoading">
+  </div>
+</aside>

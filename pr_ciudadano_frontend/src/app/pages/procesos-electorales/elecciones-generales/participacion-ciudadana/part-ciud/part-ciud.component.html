@@ -1,0 +1,227 @@
+<section class="contenido-nofixed">
+  <div class="cont-minimo">
+    <section class="cont-flex">
+      <div class="w-100">
+        <h1 class="titulo1">
+          <span class="icono_titulo icon-ico-participacion2"></span> {{ electionDescriptionTitle }}
+        </h1>
+      </div>
+    </section>
+
+    <app-seccion-actas-resumen class="actas-seccion" [resumen]="resumen"></app-seccion-actas-resumen>
+
+    <div class="w-100 n-p filter-participation">
+      <app-generic-filter-ubigeo
+        class=""
+        [filterFunctionality]="'peru_intern_and_all_join'"
+        (applyFiltersEvent)="applyFiltersEvent($event)"
+        [skipAutoLoadUbigeoLists]="true"
+        [showCleanButton]="false">
+      </app-generic-filter-ubigeo>
+      <div class="center-flex version-pc">
+        @if(regionValue != regionTodos){
+          <button class="estilo3 res-btn100" (click)="cleanFiltersEvent()">
+              {{ 'actas-observadas.Limpiar' | translate }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+      <div class="text-mapa">
+        <img src="assets/img/icons/icon-mapa.svg" alt="">
+        <h5>{{ 'Participacion-Ciudadana.vermapa' | translate }}</h5>
+      </div>
+      <div
+        class="flecha_desplegar"
+        [class.flecha_desplegado]="mostrarMapa"
+      ></div>
+    </button>
+
+    <section class="cont-flex">
+      <article class="w-100 p-0-movil">
+        <div class="cont-cards">
+          <div [ngClass]="{
+            'map-visible': mostrarMapa || !esPantallaChica,
+            'map-oculto': !mostrarMapa && esPantallaChica
+            }" class="w-25 map-participacion pseudoborder standarPch transition-map-participacion"
+          >
+          <div class="card-map-movil">
+            <app-main-hot-map
+              [electionId]="electionId"
+              [isParticipaciónCiudadana]=true
+              [heatLegendTextType]="'participacion'"
+              [showIconTodos]="true"
+              [showIconExtranjero]="true"
+              [clickMap]="true"
+              (regionChanged)="changeRegionFromMap($event)"
+              (ubigeoParamsChanged)="ubigeoParamsChangedFromMap($event)"
+              [changeZoomLevelsToThree]="true"
+            ></app-main-hot-map>
+          </div>
+
+          </div>
+          <div class="w-25 p-0-movil">
+            <div class="pseudoborder standarPch flexAlign-cc">
+              <div class="t-c">
+                <img alt="electores" src="assets/img/electores-hab.svg" /><br />
+                <span class="infoNumbers txtClr_1">
+                  {{ 'Participacion-Ciudadana.Electores' | translate }}<br />
+                  <b>{{ getLocaleString(totalesDataDetail.totalElectoresHabiles) }}</b>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="w-50 infoElectores pt-0-md">
+            <div class="pseudoborder w-100 mgrB_20 centrar-vertical py-1-movil">
+              <div class="w-100 p-0-movil">
+                <div class="w-50 t-c totales m-0 mb-1-movil">
+                  <span class="infoNumbers txtClr_2">
+                    {{ 'Participacion-Ciudadana.TotalAsistentes' | translate }}<br />
+                    <b>{{ getLocaleString(totalesDataDetail.totalAsistentes) }}</b>
+                  </span>
+                </div>
+                <div class="w-50 t-c totales m-0">
+                  <span class="infoNumbers txtClr_4">
+                    {{ 'Participacion-Ciudadana.TotalAusente' | translate }}<br />
+                    <b>{{ getLocaleString(totalesDataDetail.totalAusentes) }}</b>
+                  </span>
+                </div>
+              </div>
+              <div class="w-100 t-c totales leyenda_participacion">
+                {{ 'Participacion-Ciudadana.fraseParticipacion' | translate }}
+              </div>
+            </div>
+            <div class="pseudoborder w-100 flexBoxProv conte-pie-participacion py-1-movil">
+              <div class="w-50 centrar-vertical col_dato_participacion px-20-movil">
+                <h1 class="titulo2">{{ 'Participacion-Ciudadana.participacionCiudadana' | translate }}</h1>
+                <ul class="leyenda vertical">
+                  <li class="m-0">
+                    <div class="color validados"></div>
+                    <div class="texto_leyenda">
+                      {{ 'Participacion-Ciudadana.CiudadanosAsistentes' | translate }}:
+                      <b>{{ totalesDataDetail.porcentajeAsistentes | porcentajeFormat }}</b>
+                    </div>
+                  </li>
+                  <li class="m-0">
+                    <div class="color celeste"></div>
+                    <div class="texto_leyenda">
+                      {{ 'Participacion-Ciudadana.CiudadanosAusentes' | translate }}:
+                      <b>{{ totalesDataDetail.porcentajeAusentes | porcentajeFormat }}</b>
+                    </div>
+                  </li>
+                  <li class="m-0">
+                    <div class="color" style="background-color: #ececec"></div>
+                    <div class="texto_leyenda">
+                      {{ 'Participacion-Ciudadana.CiudadanosPendientes' | translate }}:
+                      <b>{{ 100 - (totalesDataDetail.porcentajeAusentes + totalesDataDetail.porcentajeAsistentes) || 0
+                            | porcentajeFormat }} *
+                      </b>
+                    </div>
+                  </li>
+                </ul>
+                
+              </div>
+              <div class="w-50 centrar-vertical align-items">
+                <div id="divChartPie" class="pie-participacion"></div>
+              </div>
+              <p class="leyenda_participacion2 px-20-movil"><span class="asterisk">*</span>{{ 'Participacion-Ciudadana.fraseCiudadanosPendientes' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Resumen porcentual por departamentos, provincias o distritos -->
+    <section class="cont-flex" *ngIf="resumen.fechaActualizacion">
+      <div class="w-100 px-20 py-20" id="bottom-section">
+        <h2 class="titulo2">{{ ubigeoTitleName }}</h2>
+
+        @if(ubigeosData.length > 1){
+        <div class="w-25 p-0">
+          <div *ngIf="ubigeosData.length >= 1">
+            <label for="orderBy">{{ 'Participacion-Ciudadana.ordenarPor' | translate }}: </label>
+            <form class="selector" [formGroup]="sortedForm">
+              <select (change)="sortUbigeosDetails($event)" formControlName="orderBy" class="bg_blanco">
+                <option value="alfab">{{ 'Participacion-Ciudadana.Alfabeticamente' | translate }}</option>
+                <option value="mayor">{{ 'Participacion-Ciudadana.MayorParticipacion' | translate }}</option>
+                <option value="menor">{{ 'Participacion-Ciudadana.MenorParticipacion' | translate }}</option>
+              </select>
+            </form>
+          </div>          
+        </div>
+        }
+
+        
+        <div class="w-75 p-0" *ngIf="pagination.arrayForPagination.length > 1">
+          <ul class="numero-lista justify-end">
+            <li *ngIf="pagination.paginaActual != 0" >
+              <a tabindex="0" (click)="pagination.paginaActual != 0 && cargarUbigeosFromPage(pagination.paginaActual - 1)"
+              (keydown.enter)="pagination.paginaActual != 0 && cargarUbigeosFromPage(pagination.paginaActual - 1)">◀</a>
+            </li>
+            <li
+              *ngFor="let item of pagination.arrayForPagination; let index = index"
+              [ngClass]="{ active: pagination.paginaActual == index }"
+              
+            >
+              <a tabindex="0" (click)="pagination.paginaActual != index && cargarUbigeosFromPage(index)"
+              (keydown.enter)="pagination.paginaActual != index && cargarUbigeosFromPage(index)"> {{ index + 1 }} </a>
+            </li>
+            <li *ngIf="pagination.paginaActual != pagination.arrayForPagination!.length - 1">
+              <a tabindex="0" (click)="
+                pagination.paginaActual != pagination.arrayForPagination!.length - 1 &&
+                  cargarUbigeosFromPage(pagination.paginaActual + 1)
+              "
+              (keydown.enter)="
+                pagination.paginaActual != pagination.arrayForPagination!.length - 1 &&
+                  cargarUbigeosFromPage(pagination.paginaActual + 1)
+              ">►</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <section class="columnas detallados tres ubigeo">
+        <button
+          class="candidato cambio-hover"
+          *ngFor="let item of ubigeosData"
+          (click)="selectCurrentUbigeoDetail(item)"
+          onkeypress=""
+        >
+          <div class="cont-info">
+            <div>
+              <div class="datos">
+                <span>
+                  {{ item.name }}
+                  <b class="text-blue" *ngIf="item?.porcentajeAsistentes! > 0 && item?.porcentajeAsistentes! < 100"
+                    >{{ item.porcentajeAsistentes | porcentajeFormat }} {{ 'Participacion-Ciudadana.asistieron' | translate }}</b
+                  >
+                  <b class="text-blue" *ngIf="item?.porcentajeAsistentes == 0 || item?.porcentajeAsistentes == 100"
+                    >{{ item.porcentajeAsistentes || 0 }}% {{ 'Participacion-Ciudadana.asistieron' | translate }}</b
+                  >
+                </span>
+              </div>
+              <div class="px-20">
+                <div class="barra-cargando" *ngIf="item.porcentajeAsistentes == 0">
+                  <div
+                    [ngStyle]="{
+                      width: '0%'
+                    }"
+                  ></div>
+                </div>
+                <div class="barra-cargando" *ngIf="item.porcentajeAsistentes! > 0">
+                  <div
+                    [ngStyle]="{
+                      width: (item.porcentajeAsistentes || 0) < 0.2 ? 0.2 + '%' : item.porcentajeAsistentes + '%'
+                    }"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+      </section>
+    </section>
+  </div>
+</section>
+
+<app-footer></app-footer>

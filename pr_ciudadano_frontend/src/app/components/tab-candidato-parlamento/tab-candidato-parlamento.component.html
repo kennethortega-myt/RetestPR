@@ -1,0 +1,72 @@
+<section class="cont-flex flex-grow-1">
+  <div class="sticky_ubigeo w-100" *ngIf="showChartAndFilters">
+    <app-generic-filter-ubigeo
+      class="w-100 n-p"
+      [filterFunctionality]="'peru_intern_and_all_join'"
+      (applyFiltersEvent)="applyFiltersEvent($event)"
+    ></app-generic-filter-ubigeo>
+  </div>
+  <div class="w-100 no-information mb-3 mt-3" *ngIf="!showChartAndFilters">
+    <app-person-opne-no-information
+      [personOnpeMessageType]="'there_is_no_information2'"
+    ></app-person-opne-no-information>
+  </div>
+  <div class="cont-flex" *ngIf="showChartAndFilters">
+    <!-- GRÁFICA -->
+    <div class="w-70">
+      <app-grafica-partidos
+        *ngIf="showGraficBar && filteredDataForDistrict.length > 0 && showChartAndFilters && showOnlyChart"
+        class="w-100 n-p"
+        [information_for_bars]="filteredDataForDistrict"
+        [scaleValues]="scalesForDistrict"
+        [highLightTheMostVoted]="false"
+        [showImageOfCandidate]="true"
+        [showOnlyDefaultCandidate]="true"
+        [hideVotesValidsOnTooltip]="true"
+      ></app-grafica-partidos>
+      <div class="w-100 mb-3 mt-3" *ngIf="showChartAndFilters && !showOnlyChart">
+        <app-person-opne-no-information></app-person-opne-no-information>
+      </div>
+    </div>
+    <!-- MAPA -->
+
+    <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+      <div class="text-mapa">
+        <img src="assets/img/icons/icon-mapa.svg" alt="">
+        <h5>{{ "actas-por-ambito.VerMapaCalor" | translate }}</h5>
+      </div>
+      <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2">
+      </div>
+    </button>
+    <div class="w-30 min-50vh transition-map map-participacion" [ngClass]="{
+        'map-visible2': mostrarMapa2 || !esPantallaChica,
+        'map-oculto': !mostrarMapa2 && esPantallaChica
+      }">
+      <div class="bg-white-movil mapas map-container card-map-movil" style="width: 100%; max-height: 460px">
+        <app-main-hot-map
+            [electionId]="electionId"
+            (regionChanged)="changeRegionFromMap($event)"
+            (ubigeoParamsChanged)="ubigeoParamsChangedFromMap($event)"
+            [changeZoomLevelsToThree]="true"
+          ></app-main-hot-map>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-100 content-total-votos" *ngIf="showChartAndFilters && showOnlyChart">
+    <ng-container>
+      @if(filteredDataForDistrict.length != 0 && filteredDataForDistrict.length < cantidadLimiteCandidatos){
+        <h5><span class="asterisk">*</span>
+          {{ 'resultado-candidato.notaCandidatos1' | translate }}
+        </h5>
+      } @else if(filteredDataForDistrict.length >= cantidadLimiteCandidatos) {
+        <h5><span class="asterisk">*</span>
+            {{ 'resultado-candidato.notaCandidatos1' | translate }}
+        </h5>
+        <h5><span class="asterisk">*</span>
+            {{ 'resultado-candidato.notaCandidatos2' | translate }}
+        </h5>
+      }
+    </ng-container>
+  </div>
+</section>

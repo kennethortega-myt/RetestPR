@@ -1,0 +1,12 @@
+<div class="filtro-info-container version-movil" *ngIf="filtroData">
+  <div>
+    <p class="filtro-info-timestamp">
+      {{ "ACTUALIZADO-AL" | translate }}
+      <span class="fecha-normal">
+        {{ currentTimestamp | onpeDate : "dd/MM/yyyy" }}
+        {{ "aLas" | translate }}
+        {{ currentTimestamp | onpeDate : "hh:mm:ss a" }}
+      </span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="p-2 p-1-5-movil">
+  <div>
+
+    <div class="alinear_boton_cerrar">
+      <button class="cerrar_menu" (click)="cerrarmenu()">
+        <img src="assets/img/icons/ico_x.svg" alt="cerrar" />
+      </button>
+    </div>
+
+    <div class="cabecera-menu">
+      <img alt="ico-eleccion" src="assets/img/icons/ico_eleccion.svg" />
+      <h2>{{ 'popup-filtro.verLugar' | translate }}</h2>
+    </div>
+
+    <form [formGroup]="form">
+
+      <!-- Tipo de Elección -->
+      <label for="">Tipo de elección</label>
+      <mat-select
+        class="mat-select-resul"
+        formControlName="tipoEleccion">
+        <mat-option [value]="0">{{ "TEleccion" | translate }}</mat-option>
+        <mat-option *ngFor="let eleccion of listaEleccion" [value]="eleccion.value">
+          {{ eleccion.text | translate }}
+        </mat-option>
+      </mat-select>
+
+      <!-- Tipo de Reporte (si aplica) -->
+      <div *ngIf="data.mostrarReporte" class="mt-16">
+        <label for="">Tipo de reporte</label>
+        <mat-select
+          class="mat-select-resul "
+          formControlName="tipoReporte">
+          <mat-option [value]="0">{{ "TReporte" | translate }}</mat-option>
+          <mat-option *ngFor="let reporte of listaReporte" [value]="reporte.value">
+            {{ reporte.text | translate }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="cont-botones">
+        <button class="button_estilo2" (click)="cerrarConDatos()">
+          {{ "FILTRAR" | translate }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

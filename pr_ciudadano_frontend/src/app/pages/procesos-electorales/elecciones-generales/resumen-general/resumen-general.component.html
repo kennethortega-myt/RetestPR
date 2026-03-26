@@ -1,0 +1,21 @@
+<div class="contenedor-resumen-general">
+  <div class="resumen-general-container">
+    @if (isLoadedElectionTypes) { 
+      @for (type of electionTypes; track type.id) {
+        <app-distrital-election
+          class="general-contenedor"
+          [isEven]="$index % 2 === 0"
+          [electionType]="type"
+          [index]="$index"
+          [showNextButton]="$index < electionTypes.length - 1"
+          [showPrevButton]="$index !== 0"
+          (nextChartAction)="scrollToElementByIndex($event)"
+          (prevChartAction)="scrollToElementByIndex($event)"
+        >
+        </app-distrital-election>
+      } 
+    }
+  </div>
+
+  <app-footer></app-footer>
+</div>

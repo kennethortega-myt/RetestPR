@@ -1,0 +1,253 @@
+<section class="cont-flex flex-grow-1 bg_blanco">
+  <div class="w-100">
+    <article class="cont-flex">
+      <div class="w-100 p-0-movil">
+        <form [formGroup]="myFormUbigeo" class="filter-ubigeo-container">
+          <app-generic-filter-ubigeo
+            filterFunctionality="peru_and_international"
+            [showCleanButton]="false"
+            [region]="regionFilter"
+            (applyFiltersEvent)="applyFiltersEvent($event)"
+          ></app-generic-filter-ubigeo>
+          @if (mostrarElementos) {
+            <app-autocomplete-input
+              class="filter-ubigeo--local-voting"
+              placeholder="Local de Votación"
+              [form]="myFormUbigeo"
+              [arrayValues]="localesVotacion"
+              valueKey="codigoLocalVotacion"
+              displayKey="nombreLocalVotacion"
+              formControlName="cent_educativo"
+              (optionValueSelected)="filtrar()"
+            >
+            </app-autocomplete-input>
+          }
+          @if (!isOnInitialValue()) {
+            <button class="estilo3 res-btn100 version-pc" (click)="ejecutClearFilterNew()">
+              {{ 'actas-por-ambito.Limpiar' | translate }}
+            </button>
+          }          
+        </form>
+      </div>
+    </article>
+  </div>
+  <div class="w-70">
+    <section class="t-c">
+      <article class="cont-flex">
+        <div class="w-100 conte-mesas">
+          @for (acta of actas; track $index) {
+            <button
+              [ngClass]="{
+                mesa: true,
+                contabilizada: acta.codigoEstadoActa == 'C',
+                pendiente: acta.codigoEstadoActa == 'P',
+                observado: acta.codigoEstadoActa == 'E',
+                'ico-distrital': acta.idEleccion == ID_ELECCION.ID_ELECCION_MUNICIPAL,
+                'ico-congresal': acta.idEleccion == ID_ELECCION.ID_ELECCION_DIPUTADOS,
+                'ico-presidencial': acta.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL,
+                'ico-parlamento': acta.idEleccion == ID_ELECCION.ID_ELECCION_PARLAMENTO_ANDINO,
+                'ico-senador_dem': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_27,
+                'ico-senador_deu': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_33,
+                activado: acta.esSeleccionado
+              }"
+              [attr.data-estado]="getEstadoTraducido(acta.codigoEstadoActa)"
+              (click)="VerDetalles(acta, $index)"
+            >
+              {{ acta.codigoMesa }}
+            </button>
+          }
+          <ng-container class="sec-cont segundo px-20" *ngIf="mensaje != ''">
+            <div class="personaje-anuncio gran">
+              <p class="burbuja-celeste">
+                {{ mensaje }}
+              </p>
+              <img alt="person" [src]="randomImageUrl" />
+            </div>
+          </ng-container>
+        </div>
+        <ng-container *ngIf="actas?.length > 0">
+          <div class="w-100 f-w">
+            <ul class="leyendas_actas">
+              <li *ngFor="let eleccion of elecciones">
+                <span class="{{ eleccion.icono }}"></span>
+                Acta - {{ eleccion.nombre }}
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+        <div class="w-100 f-w">
+          <div class="d-flex w-full space-between flex-direction-col-movil px-10">
+            <h2 *ngIf="totalRegistros > 0" class="t-l titulo2">
+              {{ 'actas-por-ambito.TotalActas' | translate }}: {{ totalRegistros | number: '1.0-1' : 'en-US' }}
+            </h2>
+            <div class="">
+              <ul class="numero-lista" *ngIf="totalPaginasReales > 1 && !loadingPaginacion">
+                <li>
+                  <a
+                    *ngIf="habilitarBotonAnterior"
+                    tabindex="0"
+                    (click)="eventoPaginaAnterior()"
+                    (keydown.enter)="eventoPaginaAnterior()"
+                    (keydown.space)="eventoPaginaAnterior()"
+                    ><img src="assets/img/arrow_left.svg" alt="izquierda"> </a
+                  >
+                </li>
+                <li *ngFor="let i of listaPagina">
+                  <a
+                    (click)="paginado(i.pagina)"
+                    (keydown.enter)="paginado(i.pagina)"
+                    (keydown.space)="paginado(i.pagina)"
+                    tabindex="0"
+                    class="activado"
+                    [ngStyle]="{
+                      background: i?.seleccionado ? '#2971b9' : '#ffffff',
+                      color: i?.seleccionado ? '#ffffff' : '#2971b9'
+                    }"
+                    >{{ i.pagina }}</a
+                  >
+                </li>
+                <li>
+                  <a
+                    *ngIf="habilitarBotonSiguiente"
+                    (click)="eventoPaginaSiguiente()"
+                    (keydown.enter)="eventoPaginaSiguiente()"
+                    (keydown.space)="eventoPaginaSiguiente()"
+                    tabindex="0"
+                    ><img src="assets/img/arrow_right.svg" alt="derecha"></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+      <ng-container *ngIf="datosActa">
+        <ul class="leyenda vertical dos t-l res-mb10">
+          <li>
+            <span>
+              <div class="color validados"></div>
+              {{ 'actas-shared-leyenda-estado.contabilizadas' | translate }}:
+              <b>{{ datosActa?.contabilizada | number: '1.0-1' : 'en-US' }}</b>
+            </span>
+          </li>
+          <li>
+            <span>
+              <div class="color celeste"></div>
+              {{ 'actas-shared-leyenda-estado.paraEnvioJee' | translate }}:
+              <b>{{ datosActa?.observada | number: '1.0-1' : 'en-US' }}</b>
+            </span>
+          </li>
+          <li>
+            <span>
+              <div class="color blancos"></div>
+              {{ 'actas-shared-leyenda-estado.pendientes' | translate }}:
+              <b>{{ datosActa?.pendiente | number: '1.0-1' : 'en-US' }}</b>
+            </span>
+          </li>
+        </ul>
+      </ng-container>
+    </section>
+  </div>
+
+  <!-- MAPA -->
+  <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+    <div class="text-mapa">
+      <img src="assets/img/icons/icon-mapa.svg" alt="" />
+      <h5>{{ 'actas-por-ambito.VerMapaCalor' | translate }}</h5>
+    </div>
+    <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2"></div>
+  </button>
+  <div
+    class="w-30 min-50vh transition-map map-participacion"
+    [ngClass]="{
+      'map-visible2': mostrarMapa2 || !esPantallaChica,
+      'map-oculto': !mostrarMapa2 && esPantallaChica
+    }"
+  >
+    <div class="bg-white mapas map-container card-map-movil" style="width: 100%; height: 460px">
+      <app-main-hot-map
+        [mapType]="'contabilizadas'"
+        [mapaCalor]="mapaCalor"
+        [esEstranjero]="esEstranjero"
+        [nivelUbigeo]="nivelUbigeo"
+        [codigoUbigeo]="codigoUbigeo"
+        (bottonHome)="eventoMapBotton($event)"
+        (cambioUbigeoEvent)="cambioUbigeo($event)"
+        (distritoSeleccionadoEvent)="detectarDistritoPorMapa($event)"
+        [changeZoomLevelsToThree]="true"
+      ></app-main-hot-map>
+    </div>
+  </div>
+</section>
+<div class="ancla2" id="detalle-view-111"></div>
+<section *ngIf="detalleActa != null" class="sec-cont segundo px-20 px-0-movil">
+  <h3 class="titulo_numero_acta">ACTA N° {{ detalleActa?.codigoMesa }} - {{ electionName }}</h3>
+
+  <app-det-acta [detalleActa]="detalleActa" [idAmbito]="idAmbito"></app-det-acta>
+
+  <ng-template ngIf="!lineaTiempo">
+    <div *ngIf="lineaTiempo?.length < 1; else conLinea" class="bg_gris t-r mt-2 mb-2">
+      <div class="personaje-anuncio gran">
+        <p class="">
+          {{ 'personaje.hemosActualizado' | translate }}
+          <span class="no-break">
+            {{ resumen?.fechaActualizacion | date: 'dd/MM/yyyy' }} {{ 'personaje.aLas' | translate }}
+            {{ resumen?.fechaActualizacion | hourFormat }}
+          </span>
+          {{ 'personaje.sinActualizacion' | translate }}
+        </p>
+        <img alt="person" [src]="randomImageUrl" />
+      </div>
+    </div>
+
+    <ng-template #conLinea>
+      <ng-container *ngIf="detalleActa.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+        <app-acta-presidencial
+          *ngIf="lineaTiempo && detalle"
+          [detalleMesa]="detalleActa"
+          [lineaTiempo]="lineaTiempo"
+          [detalle]="detalle"
+          [archivos]="listaArchivos"
+          [numeroDeActa]="codigoMesaForLineaTiempo"
+          [nombreDeActa]="configNameForLineTiempo"
+        ></app-acta-presidencial>
+      </ng-container>
+
+      <ng-container *ngIf="detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+        <app-linea-tiempo
+          [detalleMesa]="detalleActa"
+          [detalle]="detalle"
+          [archivos]="listaArchivos"
+          [lineaTiempo]="lineaTiempo"
+          [numeroDeActa]="codigoMesaForLineaTiempo"
+          [nombreDeActa]="configNameForLineTiempo"
+        ></app-linea-tiempo>
+      </ng-container>
+      @if (
+        detalle &&
+        detalle.length &&
+        detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL &&
+        detalleActa.codigoEstadoActa == ACTA_CODIGO_ESTADO.CONTABILIZADA
+      ) {
+        <app-lista-acordion-agrupacion-candidato
+          [totalVotosEmitidos]="detalleActa.totalVotosEmitidos"
+          [totalVotosValidos]="detalleActa.totalVotosValidos"
+          [detalle]="detalle"
+          [idActa]="detalleActa.id"
+          [detalleActa]="detalleActa"
+          [useAlterTotalCastedVotesKey]="true"
+        ></app-lista-acordion-agrupacion-candidato>
+      }
+    </ng-template>
+  </ng-template>
+  <section *ngIf="detalleActa?.estadoActa == 'N'" class="sec-cont segundo px-20">
+    <div class="bg_gris t-r mt-2 mb-2">
+      <div class="personaje-anuncio">
+        <p>
+          <ng-container> {{ 'personaje.mesaNoInstalada' | translate }} </ng-container>
+        </p>
+        <img alt="person" [src]="randomImageUrl" />
+      </div>
+    </div>
+  </section>
+</section>

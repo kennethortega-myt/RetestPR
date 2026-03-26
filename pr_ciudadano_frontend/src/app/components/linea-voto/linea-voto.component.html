@@ -1,0 +1,75 @@
+<section class="desplegable votos-sincandidato full">
+  <div>
+    <div class="w-100 t-r">
+      <article class="candidato sincandidato">
+        <div class="cont-info">
+          <div class="nombre">
+            <h3>{{ title }}</h3>
+          </div>
+          <div class="img version-pc"></div>
+          <div class="cant cant-pc">
+            <span *ngIf="!isTotal"><b>-</b></span>
+            <span *ngIf="isTotal">
+              <b> {{ votes?.porcentajeVotosValidos | number: '1.0-3' : 'en-US' }} % </b>
+            </span>
+          </div>
+          <div class="cant cant-pc">
+            <span>
+              <b> {{ votes?.porcentajeVotosEmitidos ? (votes.porcentajeVotosEmitidos | porcentajeFormat) : 0 + ' %' }}</b>
+            </span>
+          </div>
+          <div class="conte-votos version-movil" *ngIf="!isTotal">
+            <div class="titulo_movil">{{ cantidadVotosTra | translate }}:</div>
+            <span class="titulo_votos_totales__num2">
+              <b>{{ votes?.totalVotosValidos || 0 | number: '1.0-3' : 'en-US' }}</b>
+            </span>
+          </div>
+        </div>
+        <div class="barra-cargando version-pc" *ngIf="!isTotal">
+          <div class="barra-cargando-content" [ngStyle]="{ width: getPercentageOfEmptyAndNullVotes() }"></div>
+          <p class="titulo_votos_totales">
+            <span class="fs14">{{ cantidadVotosTra | translate }}: </span>
+            <span class="titulo_votos_totales__num2">
+              {{ votes?.totalVotosValidos || 0 | number: '1.0-3' : 'en-US' }}
+            </span>
+          </p>
+        </div>
+        <div class="votos-totales version-pc" *ngIf="isTotal">
+          <p class="titulo_votos_totales">
+            <span class="fs14">* {{ votosValidosTra | translate }}: </span>
+            <span class="titulo_votos_totales__num2">
+              {{ votes?.totalVotosValidos || 0 | number: '1.0-3' : 'en-US' }}
+            </span>
+          </p>
+          <p class="titulo_votos_totales mb-6">
+            <span class="fs14">** {{ votosEmitidosTra | translate }}: </span
+            ><span class="titulo_votos_totales__num2">
+              {{ votes?.totalVotosEmitidos || 0 | number: '1.0-3' : 'en-US' }}
+            </span>
+          </p>
+        </div>
+        <div class="cant-movil version-movil" *ngIf="isTotal">
+          <div class="votos_totales">
+            <div class="titulo_movil">{{ votosValidosTra | translate }}</div>
+            <span *ngIf="!isTotal"><b>-</b></span>
+            <span *ngIf="isTotal">
+              <b>{{ votes?.totalVotosValidos || 0 | number: '1.0-3' : 'en-US' }}</b>
+              <b>{{ votes?.porcentajeVotosValidos | number: '1.0-3' : 'en-US' }}%</b>
+            </span>
+          </div>
+          <div class="votos_totales">
+            <div class="titulo_movil">{{ votosEmitidosTra | translate }}</div>
+            <span *ngIf="!isTotal"><b>-</b></span>
+            <span *ngIf="isTotal">
+              <b>
+                {{ votes?.totalVotosEmitidos || 0 | number: '1.0-3' : 'en-US' }}
+              </b>
+              <b> {{ votes?.porcentajeVotosEmitidos || 0 | number: '1.0-3' : 'en-US' }}% </b>
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div></div>
+</section>

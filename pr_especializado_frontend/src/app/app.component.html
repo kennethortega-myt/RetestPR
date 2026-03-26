@@ -1,0 +1,18 @@
+<button
+  style="position: fixed; bottom: 5px; right: 0px; z-index: 200; border: 0; background: none"
+  class="btnAccesibilidad btnAccesibilidad-flotante hidden lg:block"
+  [class.in-login-access]="isLogin"
+  mat-raised-button
+  (click)="openBottomSheet()"
+>
+  <img alt="accesibilidad" src="assets/img/icons/ico-accesible.svg" class="ico-accesible" />
+</button>
+
+<div class="background-color-base" [class.big-cursor]="grandCursor" appGlobalKeyboardShortcuts>
+  <div [class.resalta]="readingMaskActive" #cursorContainer></div>
+  <router-outlet></router-outlet>
+  <app-loading></app-loading>
+</div>
+<ng-template #disclaimerTpl>
+  <onpe-disclaimer-browser (close)="closeDisclaimer()" />
+</ng-template>

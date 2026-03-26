@@ -1,0 +1,96 @@
+<div class="p-2 p-1-5-movil">
+  <div>
+
+    <div class="alinear_boton_cerrar">
+      <button class="cerrar_menu" (click)="cerrarmenu()">
+        <img src="assets/img/icons/ico_x.svg" alt="cerrar" />
+      </button>
+    </div>
+
+    <div class="cabecera-menu">
+      <img alt="ico-ubigeo2" src="assets/img/icons/ico-ubigeo2.svg" />
+      <h2>{{ 'popup-filtro.ubicacion' | translate }}</h2>
+    </div>
+
+    <form [formGroup]="form">
+
+      <!-- Distrito Electoral (solo elecciones distritales) -->
+      <div class="conte_select_movil mt-16"
+        *ngIf="esEleccionParaDistritoElectoral()">
+        <label for="">Distrito electoral</label>
+        <mat-select
+          class="select-conborde"
+          formControlName="distritoElectoral">
+          <mat-option *ngFor="let item of listaDistritoElectoral" [value]="item.value">
+            {{ item.text }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <!-- Ámbito Geográfico (elecciones no distritales) -->
+      <div class="conte_select_movil mt-16"
+        *ngIf="!esEleccionParaDistritoElectoral()">
+        <label for="">{{nombreEtiquetaAmbito | titlecase}}</label>
+        <mat-select
+          class="select-conborde"
+          formControlName="ambitoGeografico">
+          <mat-option *ngFor="let ambito of listaAmbitoGeografico" [value]="ambito.value">
+            {{ ambito.text }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <!-- Nivel Ubigeo 1 (región / continente) -->
+      <div class="conte_select_movil"
+        *ngIf="!esEleccionParaDistritoElectoral() && nombreEtiquetaNivelUno">
+        <label for="">{{nombreEtiquetaNivelUno | titlecase}}</label>
+        <mat-select
+          class="select-conborde"
+          formControlName="nivelUbigeoUno">
+          <mat-option value="0">{{ nombreEtiquetaNivelUno }}</mat-option>
+          <mat-option *ngFor="let item of listaNivelUno" [value]="item.value">
+            {{ item.text }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <!-- Nivel Ubigeo 2 (provincia / país) -->
+      <div class="conte_select_movil"
+        *ngIf="!esEleccionParaDistritoElectoral() && nombreEtiquetaNivelDos && form.controls.nivelUbigeoUno.value !== '0'">
+        <label for="">{{nombreEtiquetaNivelDos  | titlecase }}</label>
+        <mat-select
+          class="select-conborde"
+          formControlName="nivelUbigeoDos">
+          <mat-option value="0">{{ nombreEtiquetaNivelDos }}</mat-option>
+          <mat-option *ngFor="let item of listaNivelDos" [value]="item.value">
+            {{ item.text }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <!-- Nivel Ubigeo 3 (distrito / estado) -->
+      <div class="conte_select_movil"
+        *ngIf="!esEleccionParaDistritoElectoral() && nombreEtiquetaNivelTres && form.controls.nivelUbigeoDos.value !== '0'">
+        <label for="">{{nombreEtiquetaNivelTres | titlecase }}</label>
+        <mat-select
+          class="select-conborde"
+          formControlName="nivelUbigeoTres">
+          <mat-option value="0">{{ nombreEtiquetaNivelTres }}</mat-option>
+          <mat-option *ngFor="let item of listaNivelTres" [value]="item.value">
+            {{ item.text }}
+          </mat-option>
+        </mat-select>
+      </div>
+
+      <div class="cont-botones">
+        <button class="button_estilo2" (click)="cerrarConDatos()">
+          {{ "FILTRAR" | translate }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+

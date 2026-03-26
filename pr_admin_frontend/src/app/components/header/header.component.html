@@ -1,0 +1,12 @@
+<header>
+  <img src="assets/img/logo/logo-eleccion.svg" class="logo-principal" alt="Onpe">
+  <div class="content-sesion">
+    <div class="sesion d-none-md d-flex" (click)="cerrarSession()" (keydown)="onKeyDown($event)">
+      <img class="icon-user-login" src="assets/img/user.svg" alt="" />
+      <div class="text-right">
+        <h2>{{usuario?.nombre}}</h2>
+        <h3 class="item-cerrar">Cerrar sesión</h3>
+      </div>
+    </div>
+  </div>
+</header>

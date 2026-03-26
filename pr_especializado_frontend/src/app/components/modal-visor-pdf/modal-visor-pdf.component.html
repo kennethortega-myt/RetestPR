@@ -1,0 +1,78 @@
+<div class="pseudoModal  pseudoModal-flex {{ isFullscreen ? 'withFs' : '' }}" #pseudoModal>
+  <div style="display: flex; flex-direction: row;">
+    @if (data.multiple) {
+        <div class="{{ data.esPantallaChica ? '' : 'content-list-resol' }} listModal {{ isFullscreen ? 'withFs' : '' }}">
+          <ul class="{{ data.esPantallaChica ? '' : 'list-resol' }}  menuModal">
+            @for (archivo of data.archivos; track $index) {
+              <li
+                class="btn_descargar_acta"
+                [class]="{ active: archivo.activo }"
+                (click)="loadOtherResolution(archivo)" (keydown.enter)="loadOtherResolution(archivo)"
+              >
+                <span class="material-icons version-movil">download</span> Ver {{ archivo.descripcion }}
+              </li>
+            }
+          </ul>
+      </div>
+    }
+    
+    <div style="display: flex; flex-direction: column; flex: 1;">
+      @if (!data.esPantallaChica) {
+        <div *ngIf="mensajeError != ''" class="pdf-container">
+          <span>{{mensajeError}}</span>
+        </div>
+        <div class="pdf-container" #pdfContainer>
+          <pdf-viewer cdkDragBoundary=".example-boundary" cdkDrag style="display: flex; justify-content: center"
+            [rotation]="rotation2" [src]="pdfSrc" [render-text]="true" [original-size]="true" [render-text]="true"
+            [zoom]="zoomLevel" [original-size]="false" [autoresize]="true" class="pdf-viewer"
+            (after-load-complete)="hideLoading()">
+          </pdf-viewer>
+        </div>
+        <div *ngIf="mostrarDisclaimerActas" style="padding: 10px 20px;">
+          <p class="mt-1" class="leyenda-modal">
+            * Las actas electorales son documentos de carácter público que, de acuerdo a la legislación peruana, se encuentran a disposición de todos los ciudadanos. La ONPE las publica para garantizar la transparencia del proceso electoral.
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+  
+  @if (!data.esPantallaChica) {
+    <div class="d-flex content-between content-center-xxs flex-wrap-xs">
+      <div class="d-flex gap-9 p-botones-modal">
+        <button class="bg-blanco d-flex content-center items-center border-icon" (click)="rotatePDF()" (keydown.enter)="rotatePDF()">
+          <span class="material-icons">refresh</span>
+        </button>
+        <button class="bg-blanco d-flex content-center items-center border-icon" (click)="increaseZoom()" (keydown.enter)="increaseZoom()">
+          <span class="material-icons">zoom_in</span>
+        </button>
+        <button class="bg-blanco d-flex content-center items-center border-icon" (click)="decreaseZoom()" (keydown.enter)="decreaseZoom()">
+          <span class="material-icons">zoom_out</span>
+        </button>
+        <button class="bg-blanco d-flex content-center items-center border-icon" (click)="toggleFullscreen()" (keydown.enter)="toggleFullscreen()">
+          <span class="material-icons">{{isFullscreen ? 'fullscreen_exit' : 'fullscreen'}}</span>
+        </button>
+      </div>
+
+      <div class="d-flex align-items gap-10 p-botones-modal">
+        <button
+          (click)="descargarPDF()"
+          class="m-0 button_estilo1 mb-40"
+          [ngStyle]="{ margin: '0 10px' }"
+          [disabled]="fileAction"
+        >
+          DESCARGAR PDF
+        </button>
+        <button (click)="cerrar()" class="m-0 button_estilo1 mb-40 pl-14 margin-button">
+          CERRAR
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="justify-content-center">
+      <button (click)="cerrar()" class="m-0 w-full-xs button_estilo1 mb-40">
+        CERRAR
+      </button>
+    </div>
+  }
+</div>

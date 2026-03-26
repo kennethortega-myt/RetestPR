@@ -1,0 +1,57 @@
+<article class="grafica-candidatos">
+  <article>
+    <span *ngFor="let value of listaEscalaFinal">{{ value }}</span>
+  </article>
+  <article>
+    <section>
+      <button class="btn_next2" (click)="scrollRight()" *ngIf="contaPagina < totalPagina"></button>
+      <button class="btn_next2_desabilitada" *ngIf="contaPagina >= totalPagina"></button>
+      <button class="btn_after2" (click)="scrollLeft()" *ngIf="contaPagina > 0"></button>
+      <button class="btn_after2_desabilitada" *ngIf="contaPagina <= 0"></button>
+      <!-- Bars -->
+      <article class="" #politicalPartiesArticle style="overflow: hidden !important">
+        <div class="data-postul" *ngFor="let info of information_for_bars">
+          <div class="barra-principal">
+            <div
+              tabindex="0"
+              class="carga"
+              [ngStyle]="{
+                height: info.percentage_of_valid_votes + '%'
+              }"
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              #tooltipCandidate="matTooltip"
+              (click)="toggleTooltip(tooltipCandidate, $event)"
+              matTooltip="
+              {{ info.name_of_candidate }}
+              {{ 'comun.numero' | translate }}: {{info.number_of_list | number: '1.0-1' : 'en-US'}}
+              {{'linea-voto.cantidadVotos' | translate }}: {{ info.number_of_valid_votes }}"
+            >
+              <div class="elector-foto">
+                <div class="numero">{{ info.number_of_list }}</div>
+              </div>
+            </div>
+          </div>
+          <div
+            mat-raised-button
+            matTooltipPosition="above"
+            matTooltipClass="custom-tooltip2"
+            #tooltipGroup="matTooltip"
+            (click)="toggleTooltip(tooltipGroup, $event)"
+            matTooltip="{{ info.name_of_politic_group }}"
+            [tabindex]="0"
+          >
+            <div class="partido-logo">
+              <img alt="partidos" [src]="info.urlAgrupacionImage" />
+            </div>
+          </div>
+        </div>
+      </article>
+      <div class="fondo-grafica">
+        <div *ngFor="let value of listaEscalaFinalLinea"></div>
+        <div></div>
+      </div>
+    </section>
+  </article>
+</article>

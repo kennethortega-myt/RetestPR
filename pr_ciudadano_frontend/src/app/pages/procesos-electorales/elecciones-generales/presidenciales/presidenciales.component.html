@@ -1,0 +1,57 @@
+<section class="contenido-nofixed" id="main-all-section">
+  <article class="w-100">
+    <h1 class="titulo1"><span class="icono_titulo icon-ico_e_presidencial"></span> {{ electionDescriptionTitle }}</h1>
+  </article>
+
+  <app-seccion-actas-resumen class="actas-seccion" [resumen]="resumen"></app-seccion-actas-resumen>
+
+  <div class="tabs-group">
+    <div class="tabs">
+      <div class="tabs_scroll">
+        <button class="tablinks active" (click)="openTab('tab1')" [class.active]="activeTab === 'tab1'" id="activo1">
+          <span class="label">{{ 'presidenciales.resultado_por_ubicacion_geografica' | translate }}</span>
+        </button>
+        <button class="tablinks" (click)="openTab('tab2')" [class.active]="activeTab === 'tab2'" id="activo2">
+          <span class="label">{{ 'presidenciales.resultado_por_organizacion_politica' | translate }}</span>
+        </button>
+        <div class="seleccion"></div>
+      </div>
+    </div>
+    <div class="tab-conte" id="tab1" [class.active]="activeTab === 'tab1'">
+      <ng-container *ngIf="activeTab === 'tab1' && resumen.fechaActualizacion">
+        <app-tab-ubicacion-geografica-presidenciales
+          (scrollToTopEvent)="scrollToMainSection()"
+          (regionChangedEvent)="regionChanged($event)"
+          (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+          (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+          [resumen]="resumen"
+          [electionID]="electionID"
+        ></app-tab-ubicacion-geografica-presidenciales>
+      </ng-container>
+    </div>
+
+    <div class="tab-conte" id="tab2" [class.active]="activeTab === 'tab2'">
+      <ng-container *ngIf="activeTab === 'tab2'">
+        <ng-container *ngIf="!isResponsive">
+          <app-tab-organizacion-politica-presidenciales class="w-100"
+            (regionChangedEvent)="regionChanged($event)"
+            (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+            (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+            [electionID]="electionID"
+          ></app-tab-organizacion-politica-presidenciales>
+        </ng-container>
+
+        <ng-container *ngIf="isResponsive">
+          <app-tab-organizacion-politica-presidenciales-res class="w-100"
+            (regionChangedEvent)="regionChanged($event)"
+            (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+            (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+            [electionID]="electionID"
+          ></app-tab-organizacion-politica-presidenciales-res>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

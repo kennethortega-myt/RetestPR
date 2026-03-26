@@ -1,0 +1,24 @@
+::ng-deep .cdk-overlay-container .mdc-dialog.mdc-dialog--open,
+::ng-deep .cdk-overlay-container .mdc-dialog.mdc-dialog--closing {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+::ng-deep .cdk-overlay-container .mdc-dialog--open .mat-mdc-dialog-surface,
+::ng-deep .cdk-overlay-container .mdc-dialog--closing .mat-mdc-dialog-surface {
+  transform: none !important;
+  margin: auto !important;
+  width: 60vw !important;
+  max-width: 60vw !important;
+  max-height: 95vh !important;
+}
+@media (max-width: 960px) {
+  ::ng-deep .cdk-overlay-container .mdc-dialog--open .mat-mdc-dialog-surface,
+  ::ng-deep .cdk-overlay-container .mdc-dialog--closing .mat-mdc-dialog-surface {
+    transform: none !important;
+    margin: auto !important;
+    width: calc(100% - 32px ) !important;
+    max-width: 100vw !important;
+  } 
+}

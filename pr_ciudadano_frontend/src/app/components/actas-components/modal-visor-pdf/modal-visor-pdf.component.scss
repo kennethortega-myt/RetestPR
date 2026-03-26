@@ -1,0 +1,232 @@
+.mat-dialog-actions {
+  &[align='end'] {
+    justify-content: flex-end;
+  }
+
+  &[align='center'] {
+    justify-content: center;
+  }
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__content {
+  overflow: hidden !important;
+}
+::ng-deep .mat-mdc-dialog-container {
+  width: 1024px;
+  max-width: 100%;
+}
+.cdk-overlay-pane {
+  max-width: 90% !important;
+}
+// Nuevo (Ini)
+.image-viewer {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+
+  .image-container {
+    position: relative;
+    cursor: grab;
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      transform-origin: center center;
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+.content-pdf {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+}
+
+.content-pdf:active {
+  cursor: grabbing;
+}
+
+.luisdelmal .ng2-pdf-viewer-container[_ngcontent-ng-c3799526204] {
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+.baseviewer .ng2-pdf-viewer-container[_ngcontent-ng-c3799526204] {
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+}
+.baseviewer {
+  width: 100% !important;
+  height: 100%;
+}
+.boxBtns {
+  display: grid;
+  width: auto;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+  height: 36px;
+}
+.boxBtns .btn-ico-control {
+  height: 36px;
+  width: 36px;
+}
+.boxBtns .btn-ico-control img {
+  height: 36px;
+  width: 36px;
+}
+
+.modalFlex {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  height: 100%;
+}
+.listModal {
+  width: 200px;
+  height:100%;
+  
+  display: flex;
+}
+ul.menuModal {
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  margin: 0;
+}
+ul.menuModal li {
+  display: grid;
+  grid-template-columns: auto;
+  align-items: center;
+  padding: 12px 10px;
+  width: 100%;
+  color: #0056b3;
+  min-height: 39px;
+  text-align: center;
+  .material-icons {
+    color: #0056b3;
+    text-align: center;
+  }
+}
+ul.menuModal li:hover {
+  background: #f8f8f8;
+  cursor: pointer;
+}
+ul.menuModal li.active {
+  background: #0056b3;
+  color: #f8f8f8;
+  cursor: initial;
+  .material-icons {
+    color: #ffffff;
+  }
+}
+.customModalContent {
+  flex: 1;
+  overflow: hidden !important;
+  background-color: #f8f8f8;
+}
+.customModalContent .pseudoModal {
+  display: flex;
+  height: 100%;
+}
+.actionsModal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.withFs {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  z-index: 9999;
+  > div {
+    height: 100vh;
+  }
+}
+::ng-deep .withH100 {
+  width: 100vw;
+  min-height: calc(100vh - 90px);
+}
+::ng-deep .pseudoModal:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+::ng-deep .pseudoModal:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+::ng-deep .pseudoModal:-moz-full-screen {
+  width: 100vw;
+  height: 100vh;
+}
+.modalFrame {
+  height: 100%;
+}
+.pseudoModal-content {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 70px);
+}
+@media (max-width: 1224px) {
+  .cdk-overlay-pane {
+    width: 80% !important;
+  }
+}
+@media (max-width: 960px) {
+  .listModal {
+    width: 100%;
+    height: auto;
+  }
+  ul.menuModal {
+    padding-bottom: 0rem;
+    li {
+      grid-template-columns: 25px auto;
+    }
+  }
+  .withFs {
+    > div {
+      height: inherit;
+    }
+  }
+  .pseudoModal-content {
+    flex-direction: column;
+  }
+}
+@media (max-width: 440px) {
+  ul.menuModal {
+    padding-bottom: 0;
+  }
+  
+}

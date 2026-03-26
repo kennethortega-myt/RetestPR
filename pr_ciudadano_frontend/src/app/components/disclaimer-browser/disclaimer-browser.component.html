@@ -1,0 +1,17 @@
+<div class="icon-circle">
+  <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="32,6 60,56 4,56" fill="none" stroke="#7A5500" stroke-width="5" stroke-linejoin="round" />
+    <line x1="32" y1="24" x2="32" y2="40" stroke="#7A5500" stroke-width="5" stroke-linecap="round" />
+    <circle cx="32" cy="48" r="3" fill="#7A5500" />
+  </svg>
+</div>
+<div class="text-content">
+  <div class="title">{{ 'browser-disclaimer.title' | translate }}</div>
+  <div class="subtitle">{{ 'browser-disclaimer.subtitle' | translate }}</div>
+</div>
+<button class="close-btn" (click)="closeDisclaimer()" aria-label="Cerrar">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="5" y1="5" x2="19" y2="19" stroke="white" stroke-width="3" stroke-linecap="round" />
+    <line x1="19" y1="5" x2="5" y2="19" stroke="white" stroke-width="3" stroke-linecap="round" />
+  </svg>
+</button>

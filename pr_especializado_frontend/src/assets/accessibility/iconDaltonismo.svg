@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-iconDaltonismo);
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_13173" data-name="Rectángulo 13173" class="cls-1" width="22.447" height="15.424"/>
+    </clipPath>
+    <clipPath id="clip-iconDaltonismo">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="iconDaltonismo" class="cls-2">
+    <g id="Grupo_26206" data-name="Grupo 26206" transform="translate(0.777 4)">
+      <g id="Grupo_26205" data-name="Grupo 26205" class="cls-3" transform="translate(0 0)">
+        <path id="Trazado_22372" data-name="Trazado 22372" d="M14.341,0a7.712,7.712,0,1,0,7.713,7.712A7.721,7.721,0,0,0,14.341,0" transform="translate(0.395 0)"/>
+        <path id="Trazado_22373" data-name="Trazado 22373" class="cls-4" d="M14.865,7.682A7.182,7.182,0,1,1,7.682.5a7.183,7.183,0,0,1,7.183,7.183" transform="translate(0.03 0.03)"/>
+        <path id="Trazado_22374" data-name="Trazado 22374" d="M7.713,15.424a7.712,7.712,0,1,1,7.713-7.713,7.721,7.721,0,0,1-7.713,7.713m0-14.365a6.653,6.653,0,1,0,6.653,6.652A6.66,6.66,0,0,0,7.713,1.06" transform="translate(0 0)"/>
+      </g>
+    </g>
+  </g>
+</svg>

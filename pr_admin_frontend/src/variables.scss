@@ -1,0 +1,243 @@
+@use "sass:string";
+@use 'sass:map';
+
+// ============================================
+// SISTEMA DE COLORES
+// ============================================
+// Todos los colores de la aplicación en un solo mapa
+// Uso: map.get($colors, nombre-color)
+
+$colors: (
+    // === COLORES INSTITUCIONALES ONPE ===
+    onpe-institucional: #003770,
+    onpe-celeste: #2A71B9,
+    onpe-azul-claro: #0172CF,
+    onpe-naranja: #ffb81c,
+    onpe-morado: #8147ae,
+    onpe-celeste-claro: #69b2e7,
+    
+    // === BLANCOS ===
+    blanco: #FFFFFF,
+    blanco-humo: #F8F8F8,
+    blanco-gris: #F5F5F7,
+    
+    // === GRISES ===
+    gris-oscuro: #6E6E6E,
+    gris-medio: #808080,
+    gris-claro: #D9D9D9,
+    gris-muy-claro: #F5F6F7,
+    gris-fondo: #F2F4F5,
+    gris-texto: #707068,
+    gris-borde: #d1d1d1,
+    gris-deshabilitado: #bababa,
+    gris-bg: #f0f0f0,
+    gris-divisor: #d6d6d6,
+    gris-claro-2: #e3e3e3,
+    gris-scroll: #888888,
+    gris-scroll-bg: #cecece,
+    gris-tabla: #ececec,
+    gris-texto-claro: #707070,
+    gris-777: #777,
+    gris-borde-claro: #bbbbc1,
+    gris-texto-oscuro: #383837,
+    gris-c0: #c0c0c0,
+    gris-ee: #eeeeee,
+    gris-cc: #cccccc,
+    gris-f2: #f2f2f2,
+    gris-e0: #e0e0e0,
+    gris-f9: #f9f9f9,
+    gris-sutil: #e4e4e7,
+    gris-medio-claro: #9c9b9b,
+    gris-claro-b8: #b8b8b8,
+    gris-bcbc: #bcbcbc,
+    
+    // === AZULES ===
+    azul-oscuro: #263E6F,
+    azul-medio: #2570B6,
+    azul-principal: #2A71B9,
+    azul-claro: #E5EDF7,
+    azul-institucional: #003874,
+    azul-variante: #2971B9,
+    azul-oscuro-2: #133670,
+    azul-muy-claro: #eff2f3,
+    azul-muy-oscuro: #013770,
+    azul-claro-e2: #e2ecf0,
+    azul-alt: #2970b9,
+    azul-material: #2196f3,
+    azul-footer: #afc2eb,
+    azul-f0f7: #f0f7ff,
+    azul-6aac: #6aacdb,
+    azul-0eab: #0eabe3,
+    azul-0c43: #0c437d,
+    azul-3d71: #3d71b4,
+    azul-3f68: #3f6896,
+    
+    // === ROJOS ===
+    rojo-principal: #DF0A14,
+    rojo-ed: #ed1a39,
+    rojo-hover: #de0a16,
+    rojo-oscuro: #b11b18,
+    rojo-muy-oscuro: #830603,
+    rojo-peligro: #dc3545,
+    
+    // === VERDES ===
+    verde-muy-claro: #EAF5DF,
+    verde-principal: #76BD43,
+    verde-claro: #dce8d3,
+    verde-brillante: #96d003,
+    verde-oscuro: #72a300,
+    verde-exito: #198754,
+    
+    // === OTROS ===
+    negro: #000000,
+    beige: #f5efe6,
+    amarillo: #fdb81f,
+);
+
+// Colores para seccionadores específicos de la aplicación
+$seccionador-colors: (
+    seccionador-1-border: #E92228,
+    seccionador-2-border: #FDB81F,
+    seccionador-3-border: #7D4B9E,
+    seccionador-4-border: #76BD43,
+    seccionador-5-border: #0DABE3,
+    seccionador-6-border: #003874,
+    seccionador-7-border: #F26B3E,
+    seccionador-8-border: #B2B4B6,
+    seccionador-9-border: #ED80AD,
+);
+
+// Colores para switches de Material Design
+$switch-colors: (
+    disabled-handle: #F5F5F5,
+    disabled-track: #DDDDDD,
+    accent-handle: #76BD43,
+    accent-track-light: #DCE8D3,
+    accent-track: #d8e6ce,
+);
+// Fuentes
+$font-family: 'Poppins', sans-serif;
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold:600,
+  bold: 700
+);
+$order: (
+    "_1": 1,
+    "_2": 2,
+    "_3": 3,
+    "_4": 4,
+    "_5": 5,
+    "_6": 6,
+    "_7": 7,
+    "_8": 8,
+    "_9": 9,
+    "_10": 10,
+    "_11": 11,
+    "_12": 12,
+    "_13": 13,
+    "_14": 14,
+    "_15": 15,
+    "_16": 16,
+    "_17": 17,
+    "_18": 18,
+    "_19": 19,
+    "_20": 20
+);
+
+// Tamaños unificados para line-height, font-sizes, padding, margin, gap
+$sizes: (
+    "_1": 0.0625rem,
+    "_2": 0.125rem,
+    "_3": 0.1875rem,
+    "_4": 0.25rem,
+    "_5": 0.3125rem,
+    "_6": 0.375rem,
+    "_7": 0.4375rem,
+    "_8": 0.5rem,
+    "_9": 0.5625rem,
+    "_10": 0.625rem,
+    "_11": 0.6875rem,
+    "_12": 0.75rem,
+    "_13": 0.8125rem,
+    "_14": 0.875rem,
+    "_15": 0.9375rem,
+    "_16": 1rem,
+    "_17": 1.0625rem,
+    "_18": 1.125rem,
+    "_19": 1.1875rem,
+    "_20": 1.25rem,
+    "_21": 1.3125rem,
+    "_22": 1.375rem,
+    "_23": 1.4375rem,
+    "_24": 1.5rem,
+    "_25": 1.5625rem,
+    "_26": 1.625rem,
+    "_27": 1.6875rem,
+    "_28": 1.75rem,
+    "_29": 1.8125rem,
+    "_30": 1.875rem,
+    "_31": 1.9375rem,
+    "_32": 2rem,
+    "_36": 2.25rem
+);
+
+$font-sizes: (
+    "resaltado": 3.2rem,
+    "titulo": 2.5rem,
+    "subtitulo1": 1.8rem,
+    "subtitulo2": 1.6rem,
+    "contenido": 1rem,
+    "labels": 0.75rem,
+    "inputs": 0.875rem,
+    "_1": 0.0625rem,
+    "_2": 0.125rem,
+    "_3": 0.1875rem,
+    "_4": 0.25rem,
+    "_5": 0.3125rem,
+    "_6": 0.375rem,
+    "_7": 0.4375rem,
+    "_8": 0.5rem,
+    "_9": 0.5625rem,
+    "_10": 0.625rem,
+    "_11": 0.6875rem,
+    "_12": 0.75rem,
+    "_13": 0.8125rem,
+    "_14": 0.875rem,
+    "_15": 0.9375rem,
+    "_16": 1rem,
+    "_17": 1.0625rem,
+    "_18": 1.125rem,
+    "_19": 1.1875rem,
+    "_20": 1.25rem,
+    "_21": 1.3125rem,
+    "_22": 1.375rem,
+    "_23": 1.4375rem,
+    "_24": 1.5rem,
+    "_25": 1.5625rem,
+    "_26": 1.625rem,
+    "_27": 1.6875rem,
+    "_28": 1.75rem,
+    "_29": 1.8125rem,
+    "_30": 1.875rem,
+    "_31": 1.9375rem,
+    "_32": 2rem,
+    "_36": 2.25rem
+);
+// Breakpoints
+$breakpoints: (
+    mobile: 620px,
+    tablet: 1024px,
+    pc: 1366px
+);
+
+// Radios para componentes
+$border-radius: (
+  forms: 4px,
+  cards: 15px,
+);
+
+/*********** ***********/
+

@@ -1,0 +1,7 @@
+<div class="w-full linea-horizontal">
+  <ng-container *ngFor="let escala of escalaTotalVotos">
+    <div class="division">
+      <span>{{ escala | number : "1.0-1" : "en-US" }}</span>
+    </div>
+  </ng-container>
+</div>

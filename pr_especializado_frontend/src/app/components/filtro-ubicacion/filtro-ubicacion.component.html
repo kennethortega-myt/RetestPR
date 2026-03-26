@@ -1,0 +1,28 @@
+<div
+  class="d-flex flex-direction-col-xs gap-9 w-85 w-full-xs items-center items-baseline-xs mt-16"
+>
+  <img class="c-pointer" src="assets/boletines/ico-place.svg" alt="Ubicación" />
+  <div class="d-flex flex-direction-col-xs w-full-xs gap-18 gap-10-xs">
+    <mat-select class="mat-select-resul" customSelect [(value)]="selectedIpsum">
+      @for (ipsum of ipsums; track ipsum) {
+      <mat-option [value]="ipsum.value">{{ ipsum.viewValue }}</mat-option>
+      }
+    </mat-select>
+    <mat-select class="mat-select-resul" customSelect [(value)]="selectedIpsum">
+      @for (ipsum of ipsums; track ipsum) {
+      <mat-option [value]="ipsum.value">{{ ipsum.viewValue }}</mat-option>
+      }
+    </mat-select>
+    <mat-select class="mat-select-resul" customSelect [(value)]="selectedIpsum">
+      @for (ipsum of ipsums; track ipsum) {
+      <mat-option [value]="ipsum.value">{{ ipsum.viewValue }}</mat-option>
+      }
+    </mat-select>
+  </div>
+  <div class="w-full-xs text-center-xs">
+    <div class="contenedor-botones pl-30 pl-0-xs">
+      <button class="button_estilo2">FILTRAR</button>
+      <button class="button_estilo3">LIMPIAR</button>
+    </div>
+  </div>
+</div>

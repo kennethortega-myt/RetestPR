@@ -1,0 +1,338 @@
+<section class="contenido-nofixed">
+    <div class="cont-minimo">
+        <section class="cont-flex">
+            <div class="w-100">
+                <h1 class="titulo1">
+                <span class="icono_titulo icon-ico-participacion2"></span> {{ 'PreguntasFrecuentes.PreguntasFrecuentes' | translate }}
+                </h1>
+            </div>
+        </section>
+        <!-- Faqs (Ini) -->
+        <section class="faqs-content">
+            <div class="w-100 search-box">
+            </div>
+            <mat-accordion multi>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.TiposEleccion' | translate }} </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P1' | translate }} </p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R1' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P2' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    <ul>
+                                        <li>{{ 'PreguntasFrecuentes.R2A' | translate }} </li>
+                                        <li>{{ 'PreguntasFrecuentes.R2B' | translate }} </li>
+                                        <li>{{ 'PreguntasFrecuentes.R2C' | translate }} </li>
+                                    </ul>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P3' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    <ul>
+                                        <li>{{ 'PreguntasFrecuentes.R3A' | translate }} </li>
+                                        <li>{{ 'PreguntasFrecuentes.R3B' | translate }} </li>
+                                        <li>{{ 'PreguntasFrecuentes.R3C' | translate }} </li>
+                                    </ul>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P4' | translate }} </p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    <ul>
+                                        <li>{{ 'PreguntasFrecuentes.R4A' | translate }} </li>
+                                        <li>{{ 'PreguntasFrecuentes.R4B' | translate }} </li>
+                                    </ul>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P5' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R5' | translate }} 
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P6' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    <ul>
+                                        <li>{{ 'PreguntasFrecuentes.R6A' | translate }}</li>
+                                        <li>{{ 'PreguntasFrecuentes.R6B' | translate }}</li>
+                                        <li>{{ 'PreguntasFrecuentes.R6C' | translate }}</li>
+                                    </ul>
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.ParticipacionCiudadana' | translate }} </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P7' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R7' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P8' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R8' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.AspectosInstitucionales' | translate }}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P9' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    <ul>
+                                        <li>{{ 'PreguntasFrecuentes.R9A' | translate }}</li>
+                                        <li>{{ 'PreguntasFrecuentes.R9B' | translate }}</li>
+                                    </ul>
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P10' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R10' | translate }} 
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P11' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R11' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P12' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R12' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P13' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R13' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.ConsultasDescargas' | translate }}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P15' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R15' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P16' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R16' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P17' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R17' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.AccesibilidadUso' | translate }}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P18' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R18' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P19' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R19' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ 'PreguntasFrecuentes.SoporteContacto' | translate }}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="accordeon">
+                        <mat-accordion multi>
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="quest-list">
+                                            <img src="assets/img/icons/comments-ico2.svg" alt="icono de pregunta">
+                                            <p>{{ 'PreguntasFrecuentes.P20' | translate }}</p>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="accordeon">
+                                    {{ 'PreguntasFrecuentes.R20' | translate }}
+                                </div>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </section>
+    </div>
+</section>
+<app-footer></app-footer>

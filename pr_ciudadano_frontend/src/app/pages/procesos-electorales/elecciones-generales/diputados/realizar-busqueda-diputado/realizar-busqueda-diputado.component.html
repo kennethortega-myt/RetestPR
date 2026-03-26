@@ -1,0 +1,109 @@
+<article class="cont-flex" [formGroup]="myFormUbigeo">
+  <div class="sticky_ubigeo w-100">
+    <article class="cont-flex normal" [formGroup]="myFormUbigeo">
+      <div class="w-70 p-0-movil">
+        <app-generic-filter-ubigeo
+          class="w-100 n-p"
+          [filterFunctionality]="'only_regiones'"
+          (applyFiltersEvent)="filtrar($event)"
+        ></app-generic-filter-ubigeo>
+      </div>
+    </article>
+  </div>
+
+  <div class="cont-flex justify-content-center">
+    <div class="w-80 t-c">
+      <section class="cont-flex ubigeo-principal second t-l" *ngIf="listAgrupacion?.length > 0">
+        <ng-container *ngIf="!verFiltroInicial">
+          <div class="w-100">
+            <div class="w-100 p-0">
+              <div class="selector">
+                <select formControlName="organizacion" class="bg_blanco">
+                  <option value="0">{{ 'realizar-busqueda.seleccioneOrganizacion' | translate }}</option>
+                  <option *ngFor="let agrupacion of listAgrupacion" [value]="agrupacion.idAgrupacionPolitica">
+                    {{ agrupacion.nombreAgrupacionPolitica }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="verFiltroInicial && listAgrupacion?.length > 0">
+          <div class="conte_buscador congresales-input mb-1">
+            <app-autocomplete-input
+              class="input_autocomplete"
+              placeholder="{{ 'realizar-busqueda.seleccioneOrganizacion' | translate }}"
+              [form]="myFormUbigeo"
+              [arrayValues]="listAgrupacion"
+              valueKey="idAgrupacionPolitica"
+              displayKey="nombreAgrupacionPolitica"
+              formControlName="organizacion"
+              (optionValueSelected)="buscar()"
+            > 
+            </app-autocomplete-input>
+          </div>
+
+          <!-- LISTA DE CANDIDATOS EN MODO COMPACTO (encima del input) -->
+          @if (listCandidato?.length > 0) {
+            <div class="w-100 mb-1 opBase">
+              <app-lista-candidato
+                class="w-full"
+                [listCandidato]="compactListPorCandidato"
+                [datosOrganizacion]="datosOP"
+                [compactMode]="true"
+              ></app-lista-candidato>
+            </div>
+          }
+
+          @if (verInput) {
+            <div class="w-100 centrar-vertical mb-1">
+              <mat-form-field appearance="outline" class="input-bg-blanco">
+                <input
+                  formControlName="nomCandidato"
+                  matInput
+                  class="input_buscador"
+                  placeholder="{{ 'realizar-busqueda.ingreseNombreCandidato' | translate }}"
+                />
+                @if (myFormUbigeo.get('nomCandidato').value?.length) {
+                  <button matSuffix mat-icon-button (click)="limpiarLista()" (mousedown)="$event.preventDefault()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                }
+              </mat-form-field>
+            </div>
+          }
+        </ng-container>
+
+        <div class="w-100">
+          <ng-container *ngIf="listCandidato?.length > 0">
+            <app-lista-candidato
+              class="w-full"
+              [listCandidato]="listCandidato"
+              [showLogoOP]="false"
+              [showNombreOP]="false"
+            ></app-lista-candidato>
+          </ng-container>
+        </div>
+      </section>
+      <ng-container *ngIf="mensajeInterno && !mensaje">
+        <div class="personaje-anuncio">
+          <p>
+            {{ mensajeInterno }}
+          </p>
+          <img alt="person" [src]="randomImageUrl" />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</article>
+
+<ng-container *ngIf="mensaje">
+  <div class="t-c">
+    <div class="personaje-anuncio">
+      <p>
+        {{ mensaje }}
+      </p>
+      <img alt="person" [src]="randomImageUrl" />
+    </div>
+  </div>
+</ng-container>

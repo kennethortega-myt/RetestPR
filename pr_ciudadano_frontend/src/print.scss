@@ -1,0 +1,269 @@
+ @media print {
+   @page {
+     size: 210mm 297mm;
+     margin: 5mm 5mm 5mm 5mm;
+     orphans: 0;
+     widows: 0;
+   }
+
+
+   body {
+     margin: 0;
+     padding: 0;
+     font-size: smaller;
+     width: 100%;
+     overflow: hidden;
+   }
+
+   * {
+     print-color-adjust: exact;
+     -webkit-print-color-adjust: exact;
+   }
+
+   .titulo1 {
+     margin: 5px 0;
+   }
+   .menu-hidden{
+    display: none;
+   }
+
+   .contenido-nofixed {
+     padding-top: 0;
+   }
+
+   .w-50 {
+     width: 50%;
+   }
+
+   
+
+   .candidato .cont-info .cant::before {
+     height: calc(100% + 49px);
+     background: rgb(0 0 0 / 3%) !important;
+   }
+
+   .titulos-votos .cant::before {
+     height: calc(100% + 16px) !important;
+   }
+  
+   .actas-seccion {  padding: 0;
+
+    width: 100%;
+    margin: 0;
+    display: block;
+     .w-100.inicial {
+       .w-50:last-child {
+         width: 100%;
+       }
+     }
+
+     .cont-botones {
+       display: flex !important;
+       justify-content: flex-end !important;
+       align-items: center;
+
+       .estilo1,
+       .estilo2,
+       .estilo3 {
+         display: inline-block;
+       }
+
+     }
+   }
+
+   .candidato {
+     padding: 5px 0;
+
+     .cont-info {
+       width: 70%;   padding-bottom: 0;
+     }
+
+     .barra-cargando {
+       width: 30%;
+     }
+   }
+
+   .ubigeo-principal.second {
+     display: inline-block !important;
+   }
+  
+
+   .ubigeo-principal {
+    display: block;
+     .cont-botones {
+       display: inline-block !important;
+       width: auto;
+
+       .estilo1,
+       .estilo2,
+       .estilo3 {
+         display: inline-block;
+         margin-left: 5px;
+         margin-right: 5px;
+       }
+     }
+   }
+
+   .ubigeo-principal select {
+     width: auto !important;
+     font-size: 7pt !important;
+   }
+
+   .sec-prinsipal-candidato.general .infoprincipal-detalle span strong {
+     font-size: 8pt;
+   }
+
+   .conte-ico-menu {
+     display: none;
+   }
+
+   .opciones-ubigeo img {
+     display: inline-block;
+   }
+
+   
+   .leyenda {
+     width: 100%;
+     font-size: 6pt;
+   }
+
+   footer {
+
+     li {
+       font-size: 7pt;
+
+       a {
+         font-size: 7pt;
+       }
+     }
+
+     .redes-sociales {
+       img {
+         width: 15px;
+         height: 15px;
+         margin: 2px;
+       }
+     }
+   }
+
+   .cont-cards {
+     .w-25:nth-child(2) {
+       width: 50%;
+       padding-left: 5px;
+       padding-right: 5px;
+     }
+
+   
+     .pseudoborder {
+       border: 1px solid #D9D9D9;
+       margin-left: 5px;
+       margin-right: 5px;
+     }
+
+     .infoElectores {
+       margin-top: -20px;
+       min-height: 360px;
+       padding: 0 0 0 20px;
+     }
+   }
+
+   footer>div {
+     width: 25%;
+   }
+
+   .mat-mdc-tab-body.mat-mdc-tab-body-active {
+     overflow: inherit;
+   }
+
+   .btnAccesibilidad {
+     display: none !important;
+   }
+
+   .grafica-candidatos,
+   .mapas {
+     page-break-inside: avoid;
+
+     div {
+       max-height: 100%;
+     }
+
+     canvas {
+       max-height: 100%;
+     }
+   }
+
+   /* graifo de barras */
+   .grafica-candidatos article:first-child,
+   .grafica-referendum article:first-child {
+     height: calc(23vh + 4px);   
+   }
+
+   .fondo-grafica {
+     height: calc(23vh - 10px);
+   }
+
+   .barra-principal {
+     height: calc(23vh - 10px);
+   }
+
+   /* fin grafico de barras */
+   .elector-foto {
+     min-width: 40px;
+     min-height: 40px;
+     max-width: 40px;
+     max-height: 40px;
+   }
+
+   .pseudoborder {
+     page-break-inside: avoid;
+     width: 100%;   background-image: none;
+   }
+
+ 
+
+   header {
+     position: relative;
+   }
+
+   html,
+   body {
+     background: #ffffff;
+   }
+
+ 
+
+   .seccion-pantalla {
+     min-height: auto;
+     padding-top: 0;
+     page-break-inside: avoid;
+   }
+
+   footer,
+   header {
+     page-break-inside: avoid;
+
+   }
+.contentsinsalto{
+  page-break-inside: avoid;
+
+}
+   .btn_after-2,
+   .btn_next-2 {
+     transform: scale(0.6);
+   }
+
+   .formula_votos,
+   .leyenda_eleccion {
+     font-size: 1.2rem;
+   }
+
+   .cantidad {
+     display: none;
+   }
+
+  
+   .desplegable {
+    page-break-before: always;
+   }
+  
+ }

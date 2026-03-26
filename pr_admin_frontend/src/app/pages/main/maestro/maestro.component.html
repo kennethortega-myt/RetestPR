@@ -1,0 +1,62 @@
+<section class="section-flex secciones">
+  <article class="w-full">
+    <h1 class="titulo1">Generación de maestro de candidatos</h1>
+    <h2 class="titulo2">Permite generar los archivos del Maestro de Candidatos</h2>
+    <p>
+      Permite generar los archivos en formato csv sobre la información de los candidatos correspondientes a cada elección.
+    </p>
+    <div class="card-shadow p-5-10">
+      <p>Seleccione la elección a generar</p>
+      <hr>
+      <div class="custom-grid-1 tipo-carga">
+
+        <button
+          type="button"
+          *ngFor="let eleccion of listEleccion"
+          class="btn-white-shadow custom-grid-btn"
+          [class.active]="esActivo(eleccion.value)"
+          [class.done]="eleccion.exito"
+          [disabled]="eleccion.exito"
+          (click)="seleccionarTipo(eleccion.value)"
+        >
+          <div class="ico-carga">
+            <img [src]="eleccion.icono" alt="icono">
+          </div>
+
+          <div class="btn-box-text">
+            <h2>{{ eleccion.text }}</h2>
+            <p *ngIf="eleccion.descripcion">{{ eleccion.descripcion }}</p>
+          </div>
+
+          <div class="box-estado">
+            <div class="dynamiccircle"></div>
+          </div>
+        </button>
+
+        <!-- Mensaje inferior -->
+        <div class="box-message full-width">
+          <img src="assets/icons/ico-circle-check-2.svg" alt="icono">
+          <p>Seleccione una opción para habilitar el procedimiento</p>
+          <button
+            type="button"
+            class="button_estilo1"
+            (click)="alertImportar()"
+            [disabled]="seleccion"
+          >
+            Procesar
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="w-100 boxMsg" *ngIf="false">
+    <div class="cuadro-azulado-ns">
+      <div class="personaje-anuncio">
+        <p>
+          Cuentas con la información más actual. Aún no existen actualizaciones.
+        </p>
+        <img src="assets/img/personaje1.svg" alt="personaje onpe" />
+      </div>
+    </div>
+  </article>
+</section>

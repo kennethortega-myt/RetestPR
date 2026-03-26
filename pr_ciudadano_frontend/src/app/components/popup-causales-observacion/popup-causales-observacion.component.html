@@ -1,0 +1,71 @@
+<h2 class="modalHead titulo2 mb-2">{{ TituloKey | translate }}</h2>
+<mat-dialog-content class="mat-typography">
+    <table border="0" class="table table-striped">
+        <caption class="d-none">{{ ActasObservadasKey | translate }}</caption>
+        <thead>
+            <tr>
+                <th style="width: 30px;">{{ NKey | translate }}</th>
+                <th colspan="2" style="width: 50px;">{{ TipoKey | translate }}</th>
+                <th style="width: 70%;">{{ Descripcionkey | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td class="t-c">1</td>
+                <td rowspan="5" class="vertical-text"><div >{{ ActasObsKey | translate }}</div></td>
+                <td>{{ SinDatosKey | translate }}</td>
+                <td>{{ SinDatosDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">2</td>
+                <td>{{ IncompletaKey | translate }}</td>
+                <td>{{ incompletaDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">3</td>
+                <td>{{ errorAritmetricoKey | translate }}</td>
+                <td>{{ ErrorMaterialDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">4</td>
+                <td>{{ IlegibilidadKey | translate }}</td>
+                <td>{{ IlegibilidadDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">5</td>
+                <td>{{ SinFirmasKey | translate }}</td>
+                <td>{{ SinFirmasDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">6</td>
+                <td colspan="2">{{ VotosImpugnadosKey | translate }}</td>
+                <td>{{ VotosImpugnadosDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">7</td>
+                <td colspan="2">{{ SolicitudNulidadKey | translate }}</td>
+                <td>{{ SolicitudNulidadDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">8</td>
+                <td colspan="2">{{ ActaExtraviadaKey | translate }}</td>
+                <td>{{ ActaExtraviadaDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">9</td>
+                <td colspan="2">{{ ActaSiniestradaKey | translate }}</td>
+                <td>{{ ActaSiniestradaDescKey | translate }}</td>
+            </tr>
+            <tr>
+                <td class="t-c">10</td>
+                <td colspan="2">{{ ObservacionesMultiplesKey | translate }}</td>
+                <td>{{ ObservacionesMultiplesDescKey | translate }}</td>
+            </tr>
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="bottom-actas-verificar-pop justify-content-between"></div>
+    <button class="estilo1" mat-dialog-close>{{ BotonCerrarKey | translate }}</button>
+  </mat-dialog-actions>

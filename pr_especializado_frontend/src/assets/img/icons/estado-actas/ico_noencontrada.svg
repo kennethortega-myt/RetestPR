@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_7728" data-name="Rectángulo 7728" width="19" height="20" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-Mesa_de_trabajo_2">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Mesa_de_trabajo_2" data-name="Mesa de trabajo – 2" clip-path="url(#clip-Mesa_de_trabajo_2)">
+    <g id="Grupo_15035" data-name="Grupo 15035" transform="translate(3 2)">
+      <g id="Grupo_15034" data-name="Grupo 15034" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Trazado_6052" data-name="Trazado 6052" d="M14,20a4.993,4.993,0,0,1-5-5,4.993,4.993,0,0,1,5-5,4.993,4.993,0,0,1,5,5,4.993,4.993,0,0,1-5,5M9,7h5L9,2l5,5L9,2ZM2,20a1.926,1.926,0,0,1-1.412-.587A1.926,1.926,0,0,1,0,18V2A1.926,1.926,0,0,1,.588.587,1.926,1.926,0,0,1,2,0h8l6,6V8.3a7.2,7.2,0,0,0-1-.225,6.915,6.915,0,0,0-3.687.462A7.153,7.153,0,0,0,9.1,10H4v2H7.675a6.894,6.894,0,0,0-.375.975A7.018,7.018,0,0,0,7.075,14H4v2H7.075a7.217,7.217,0,0,0,.7,2.163A6.817,6.817,0,0,0,9.125,20Zm11-1.983,5.034-5.034-1-1L13,16.017l-2.035-2.035-1,1Z" transform="translate(0 0)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

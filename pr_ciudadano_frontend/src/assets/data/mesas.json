@@ -1,0 +1,1619 @@
+[
+  {
+    "NUM_MESA": "0000",
+    "UBIGEO": "0000",
+    "REGION": "0",
+    "ELECT_HABILES":800230,
+    "ACTAS_JNE":30,
+    "ACTAS_CONTABILIZADAS":15,
+    "ACTAS_PENDIENTES":10,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 50,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 20,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 50,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 8,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 35,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 28,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 10,
+        "VOTOS_BLANCO": 15,
+        "VOTOS_NULOS": 30
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "0000",
+    "UBIGEO": "0000",
+    "REGION": "1",
+    "ELECT_HABILES":100230,
+    "ACTAS_JNE":15,
+    "ACTAS_CONTABILIZADAS":5,
+    "ACTAS_PENDIENTES":13,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS":13,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 42,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 34,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 14,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 2,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 4,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 13,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 4,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 56,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 8,
+        "VOTOS_BLANCO": 16,
+        "VOTOS_NULOS": 2
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "0000",
+    "UBIGEO": "0000",
+    "REGION": "2",
+    "ELECT_HABILES":300100,
+    "ACTAS_JNE":30,
+    "ACTAS_CONTABILIZADAS":15,
+    "ACTAS_PENDIENTES":11,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 50,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 20,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 50,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 8,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 35,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 28,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 14,
+        "VOTOS_BLANCO": 32,
+        "VOTOS_NULOS": 19
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "00001",
+    "UBIGEO": "0811044",
+    "REGION": "1",
+    "ELECT_HABILES":200,
+    "ACTAS_JNE":30,
+    "ACTAS_CONTABILIZADAS":48,
+    "ACTAS_PENDIENTES":22,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 10,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 2,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 14,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 15,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 28,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 18,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 17,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 10,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 48,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 11,
+        "VOTOS_BLANCO": 30,
+        "VOTOS_NULOS": 10
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "00002",
+    "UBIGEO": "0811045",
+    "REGION": "1",
+    "ELECT_HABILES":300,
+    "ACTAS_JNE":30,
+    "ACTAS_CONTABILIZADAS":48,
+    "ACTAS_PENDIENTES":22,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 22,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 30,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 50,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 22,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 8,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 6,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 7,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 11,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 49,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 8,
+        "VOTOS_BLANCO": 4,
+        "VOTOS_NULOS": 3
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "00001",
+    "UBIGEO": "0811046",
+    "REGION": "1",
+    "ELECT_HABILES":150,
+    "ACTAS_JNE":8,
+    "ACTAS_CONTABILIZADAS":12,
+    "ACTAS_PENDIENTES":6,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 24,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 35,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 18,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 14,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 14,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 55,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 22,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 4,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 12,
+        "VOTOS_BLANCO": 20,
+        "VOTOS_NULOS": 15
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 10,
+        "VOTOS_NULOS": 20,
+        "VOTOS_IMPUGNADOS":0
+      }
+    ]
+  },
+  {
+    "NUM_MESA": "00001",
+    "UBIGEO": "0811047",
+    "REGION": "1",
+    "ELECT_HABILES":250,
+    "ACTAS_JNE":10,
+    "ACTAS_CONTABILIZADAS":12,
+    "ACTAS_PENDIENTES":17,
+    "DATA_PRESIDENCIAL": [
+      {
+        "ESTADO": "1",
+        "VOTOS_CANDIDATO": [
+          {
+            "ID_CANDIDATO": 1,
+            "NOM_CANDIDATO": "URBINA GUZMAN BLANCA",
+            "IMG_CANDIDATO": "000001",
+            "ID_OP": 1,
+            "DESC_OP": "GANA PERÚ",
+            "IMG_OP": "000001",
+            "TOTAL_VOTOS": 45,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 2,
+            "NOM_CANDIDATO": "OROSCO PALOMINO BRAULIO",
+            "IMG_CANDIDATO": "000002",
+            "ID_OP": 2,
+            "DESC_OP": "DESPERTAR NACIONAL",
+            "IMG_OP": "000002",
+            "TOTAL_VOTOS": 12,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 3,
+            "NOM_CANDIDATO": "CHENGUAYEN OLANO CARLOS",
+            "IMG_CANDIDATO": "000003",
+            "ID_OP": 3,
+            "DESC_OP": "FUERZA 2024",
+            "IMG_OP": "000003",
+            "TOTAL_VOTOS": 19,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 4,
+            "NOM_CANDIDATO": "LUIZ TICONA PAUCAR",
+            "IMG_CANDIDATO": "000004",
+            "ID_OP": 4,
+            "DESC_OP": "PERÚ LIBRE",
+            "IMG_OP": "000004",
+            "TOTAL_VOTOS": 5,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 5,
+            "NOM_CANDIDATO": "VILMA PALMA CONTRERAS",
+            "IMG_CANDIDATO": "000005",
+            "ID_OP": 5,
+            "DESC_OP": "PERÚ LIBERTARIO",
+            "IMG_OP": "000005",
+            "TOTAL_VOTOS": 18,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 6,
+            "NOM_CANDIDATO": "RODRIGO PEREZ SALDIVAR",
+            "IMG_CANDIDATO": "000006",
+            "ID_OP": 6,
+            "DESC_OP": "UNIDOS PODEMOS",
+            "IMG_OP": "000006",
+            "TOTAL_VOTOS": 7,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 7,
+            "NOM_CANDIDATO": "PEDRO NAVAJAS LOPEZ",
+            "IMG_CANDIDATO": "000007",
+            "ID_OP": 7,
+            "DESC_OP": "SOMOS PERÚ",
+            "IMG_OP": "000007",
+            "TOTAL_VOTOS": 9,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 8,
+            "NOM_CANDIDATO": "ROSMERY PAUCAR CASTILLO",
+            "IMG_CANDIDATO": "000008",
+            "ID_OP": 8,
+            "DESC_OP": "DERECHA EXTREMA",
+            "IMG_OP": "000008",
+            "TOTAL_VOTOS": 4,
+            "FAVORITO": false
+          },
+          {
+            "ID_CANDIDATO": 9,
+            "NOM_CANDIDATO": "RONALD CARASAS CHAMPI",
+            "IMG_CANDIDATO": "000009",
+            "ID_OP": 9,
+            "DESC_OP": "SIERRA UNIDA",
+            "IMG_OP": "000009",
+            "TOTAL_VOTOS": 15,
+            "FAVORITO": true
+          },
+          {
+            "ID_CANDIDATO": 10,
+            "NOM_CANDIDATO": "JESUS COLMENAREZ PUMA",
+            "IMG_CANDIDATO": "000010",
+            "ID_OP": 10,
+            "DESC_OP": "SELVA UNIDA",
+            "IMG_OP": "000010",
+            "TOTAL_VOTOS": 16,
+            "FAVORITO": false
+          }
+        ],
+        "VOTOS_VALIDOS": 11,
+        "VOTOS_BLANCO": 30,
+        "VOTOS_NULOS": 10
+      }
+    ],
+    "DATA_CONGRESALES": [
+      {
+        "ESTADO": "1",
+        "VOTOS_OP": [
+          {
+            "ID_OP": 1,
+            "VOTO_POR_OP":20,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 3,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 4,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 5,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 6,
+                "VOTO_PREFERENCIAL": 7
+              },
+              {
+                "ID_CANDIDATO": 7,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 8,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 9,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 2,
+            "VOTO_POR_OP":17,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 10,
+                "VOTO_PREFERENCIAL": 3
+              },
+              {
+                "ID_CANDIDATO": 11,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 12,
+                "VOTO_PREFERENCIAL": 10
+              },
+              {
+                "ID_CANDIDATO": 13,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 14,
+                "VOTO_PREFERENCIAL": 6
+              },
+              {
+                "ID_CANDIDATO": 15,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 16,
+                "VOTO_PREFERENCIAL": 0
+              }
+            ]
+          },
+          {
+            "ID_OP": 3,
+            "VOTO_POR_OP":14,
+            "CANDIDATOS": [
+              {
+                "ID_CANDIDATO": 17,
+                "VOTO_PREFERENCIAL": 1
+              },
+              {
+                "ID_CANDIDATO": 18,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 19,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 20,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 21,
+                "VOTO_PREFERENCIAL": 0
+              },
+              {
+                "ID_CANDIDATO": 22,
+                "VOTO_PREFERENCIAL": 5
+              },
+              {
+                "ID_CANDIDATO": 23,
+                "VOTO_PREFERENCIAL": 2
+              }
+            ]
+          }
+        ],
+        "VOTOS_BLANCO": 12,
+        "VOTOS_NULOS": 35,
+        "VOTOS_IMPUGNADOS":10
+      }
+    ]
+  }
+]

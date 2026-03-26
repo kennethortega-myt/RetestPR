@@ -1,0 +1,74 @@
+<div class="popup" (keydown.enter)="checkButton() && enviar()">
+  <h1 class="titulo2 t-c">Nueva Contraseña</h1>
+
+  <div class="centrar_icono">
+    <img src="assets/icons/icono_llave.svg" alt="Ícono de llave" draggable="false" />
+  </div>
+
+  <!-- Sección de inputs -->
+  <br />
+  <form [formGroup]="formGroupParent">
+    <div class="form-field">
+      <label class="input-label" for="contrasenia">Contraseña</label>
+      <div class="w-full input-wrapper">
+        <input #passwordInput matInput [type]="showPassword ? 'text' : 'password'" class="input w-full"
+          [class.input-error]="formGroupParent.get('contrasenia')?.invalid && formGroupParent.get('contrasenia')?.touched"
+          formControlName="contrasenia" placeholder="Ingresa tu nueva contraseña" id="contrasenia" maxlength="31" />
+        <mat-icon class="eye" (click)="togglePasswordVisibility()" (keydown.enter)="togglePasswordVisibility()">{{
+          showPassword ? "visibility_off" : "visibility" }}</mat-icon>
+      </div>
+      <label for="contrasenia" class="label-error">
+        <mat-error *ngIf="hasRequiredError(1)">
+          La contraseña es obligatoria.
+        </mat-error>
+        <mat-error *ngIf="isComplexityInvalid(1, 'complexityLength')">
+          La contraseña debe tener al menos 8 caracteres.
+        </mat-error>
+        <mat-error *ngIf="formGroupParent.get('contrasenia')?.hasError('maxlength') || formGroupParent.get('contrasenia')?.hasError('maxlengthExceeded')">
+          La contraseña no puede exceder los 30 caracteres
+        </mat-error>
+        <mat-error *ngIf="isComplexityInvalid(1, 'complexityRequiredChars')">
+          Debe incluir mayúscula, minúscula y dígito.
+        </mat-error>
+      </label>
+    </div>
+    <br />
+    <div class="form-field"> 
+      <label class="input-label" for="contrasenia2">Confirmar Contraseña</label>
+      <div class="w-full input-wrapper">
+        <input #passwordInput2 matInput [type]="showPassword2 ? 'text' : 'password'" class="input w-full"
+          [class.input-error]="formGroupParent.get('contrasenia2')?.invalid && formGroupParent.get('contrasenia2')?.touched"
+          formControlName="contrasenia2" placeholder="Confirma tu nueva contraseña" (paste)="bloquearEvent($event)"
+          (copy)="bloquearEvent($event)" (cut)="bloquearEvent($event)" id="contrasenia2" maxlength="31" />
+        <mat-icon class="eye" (click)="togglePasswordVisibility2()" (keydown.enter)="togglePasswordVisibility2()">{{
+          showPassword2 ? "visibility_off" : "visibility" }}</mat-icon>
+      </div>
+      <label for="contrasenia2" class="label-error">
+        <mat-error *ngIf="hasRequiredError(2)">
+          La contraseña es obligatoria.
+        </mat-error>
+        <mat-error *ngIf="formGroupParent.get('contrasenia2')?.hasError('maxlength') || formGroupParent.get('contrasenia2')?.hasError('maxlengthExceeded')">
+          La contraseña no puede exceder los 30 caracteres
+        </mat-error>
+        <mat-error *ngIf="arePasswordsMismatched()">
+          Las contraseñas no coinciden.
+        </mat-error>
+      </label>
+    </div>
+  </form>
+  <br />
+  <!-- Sección separada para requisitos -->
+  <div class="mi-clase-personalizada">
+    <ul class="password-requirements">
+      <li>{{ 'actualizarContrasena.requisitosContrasena' | translate }}</li>
+    </ul>
+  </div>
+  <mat-dialog-actions class="popup-botones">
+    <button class="button-regresar button_estilo3" (click)="onNoClick()">
+      CANCELAR
+    </button>
+    <button class="button_estilo1" (click)="enviar()" cdkFocusInitial [disabled]="!checkButton()">
+      ACEPTAR
+    </button>
+  </mat-dialog-actions>
+</div>

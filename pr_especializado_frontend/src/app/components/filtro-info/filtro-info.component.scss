@@ -1,0 +1,48 @@
+@use "sass:map";
+@use '../../../variables.scss' as *;
+
+.filtro-info-container {
+    background-color: map.get($secondary-colors, clr-gris-8);
+    padding: 16px;
+    margin: 24px 0 8px 0;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filtro-info-header h3 {
+    color: map.get($primary-colors, onpe-institucional);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.filtro-info-content {
+    margin-bottom: 12px;
+}
+
+.filtro-info-label {
+    color: map.get($primary-colors, onpe-institucional);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.filtro-info-value {
+    color: map.get($primary-colors, onpe-institucional);
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.filtro-info-timestamp {
+    color: map.get($primary-colors, onpe-gris);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+
+@media (min-width: 961px) {
+    .filtro-info-container {
+    display: none;
+    }
+}

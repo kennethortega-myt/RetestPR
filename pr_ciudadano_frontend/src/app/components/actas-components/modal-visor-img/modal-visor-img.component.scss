@@ -1,0 +1,15 @@
+::ng-deep .mat-mdc-dialog-container {
+
+    width: 650px;
+ }
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__content {
+
+     overflow: hidden !important;
+ }
+ .contenido-img {
+    width: 100%;
+    overflow-y: scroll;
+    max-height: 800px;
+    display: flex;    
+    justify-content: center;
+ }

@@ -1,0 +1,46 @@
+<h2 class="titulo2">{{ title }}</h2>
+<article class="cambioheight grafica-candidatos">
+  <article>
+    <span *ngFor="let value of scaleValues">{{ value }}</span>
+  </article>
+  <article>
+    <section class="grafica-partidos-section">
+      <button
+        class="btn_next2"
+        (click)="scrollRight()"
+        [class.hidden]="currentNumberOfPage >= numberOfPages - 1"
+      ></button>
+      <button class="btn_after2" (click)="scrollLeft()" [class.hidden]="currentNumberOfPage === 0"></button>
+      <article class="chart-section grafica-partidos-article">
+        <ng-container *ngFor="let info of barsBySection; let index = index">
+          <div class="data-postul-referendum" [id]="index + 1">
+            <ng-container *ngFor="let item of info.items; let index_ = index">
+              <div class="cambioheight barra-principal-referendum" [id]="index_ + 1">
+                <div
+                  class="carga"
+                  [ngStyle]="{ height: item.percentage_for_chart + '%' }"
+                  [matTooltip]="'Cantidad de votos: ' + item.number_of_valid_votes"
+                  matTooltipPosition="above"
+                  [matTooltipClass]="tooltipClass"
+                  [matTooltipShowDelay]="0"
+                  [matTooltipDisabled]="false" 
+                >
+                  <div class="elector-foto">
+                    <img
+                      alt="elector-foto"
+                      [src]="item.name_of_candidate === 'SI' ? '/assets/img/si.jpg' : '/assets/img/no.jpg'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="nombre-logo">{{ info.name_of_politic_group }}</div>
+          </div>
+        </ng-container>
+      </article>
+      <div class="cambioheight fondo-grafica">
+        <div *ngFor="let value of scaleValues"></div>
+      </div>
+    </section>
+  </article>
+</article>

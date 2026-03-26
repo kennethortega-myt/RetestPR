@@ -1,0 +1,214 @@
+<div class="contentAcces">
+  <div class="titleAcces">
+    <div class="flexCsAcc-container">
+      <div class="flexCsAcc-items">
+        <img alt="Menú de accesibilidad" src="assets/accessibility/ico_accesibilidad.svg" />
+      </div>
+      <div class="flexCsAcc-items">{{ 'accessibility-component.MenuAccesibilidad' | translate }}</div>
+      <div class="flexCsAcc-items">
+        <button mat-icon-button aria-label="Cerrar menú de accesibilidad" (click)="closeBottomSheet()">
+          <mat-icon svgIcon="close-icon" aria-hidden="true"></mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="optionsAcces">
+    <mat-accordion class="noShadow checkOpt">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="csTitle">
+            {{ 'accessibility-component.Idioma' | translate }}: {{ getTranslatedLangName(currentLang) }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="MrWhite">
+          <mat-selection-list [multiple]="false" (selectionChange)="onSelectionChange($event)">
+            <mat-list-option
+              *ngFor="let lang of languages"
+              [value]="lang.code"
+              [attr.aria-selected]="lang.code === currentLang ? 'true' : 'false'"
+              [class.color-selected]="lang.code === currentLang"
+            >
+              <img [src]="lang.flag" width="20" height="14" style="margin-right: 5px; object-fit: contain" alt="" />
+              {{ getTranslatedLangName(lang.code) }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div class="profile-selector">
+      <mat-accordion class="noShadow checkOpt">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="csTitle">
+              {{ 'accessibility-component.Perfil' | translate }}
+              @if (currentProfile.name.length) {
+                [{{ currentProfile.name | translate }}], {{ 'accessibility-component.Activo' | translate | lowercase }}
+              }
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="MrWhite">
+            <mat-selection-list [multiple]="false">
+              @for (profile of profiles(); track profile.id) {
+                @if (!(profile.id === profileTdah.id && isMobile())) {
+                  <mat-list-option
+                    (click)="toggleProfile(profile)"
+                    (keydown.enter)="toggleProfile(profile)"
+                    (keydown.space)="toggleProfile(profile)"
+                    [class.color-selected]="profile.id === currentProfile.id"
+                  >
+                    <img class="profile__image" [src]="profile.icon" alt="perfil" />
+                    {{ profile.name | translate }}
+                  </mat-list-option>
+                }
+              }
+            </mat-selection-list>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="accesOpts">
+      <div class="accesContentCubes">
+        <button
+          class="accesCube w-100"
+          [class.active]="itemTextSize.stepActive.id !== itemTextSize.steps[0].id"
+          (click)="toggleItemTextSize()"
+        >
+          <div class="accIcon">
+            <mat-icon
+              aria-hidden="true"
+              [svgIcon]="itemTextSize.icon"
+              [attr.aria-label]="itemTextSize.stepActive.description"
+            ></mat-icon>
+          </div>
+          <div>
+            <span>{{ itemTextSize.stepActive.description | translate }}</span>
+          </div>
+          <div class="microSteps_4" aria-hidden="true">
+            @for (step of itemTextSize.steps; track step.id) {
+              <div [class.active]="step.id === itemTextSize.stepActive.id"></div>
+            }
+          </div>
+        </button>
+
+        <button
+          class="accesCube w-100"
+          [class.active]="itemContrast.stepActive.id !== itemContrast.steps[0].id"
+          (click)="toggleItemContrast()"
+        >
+          <div class="accIcon">
+            <mat-icon
+              aria-hidden="true"
+              [svgIcon]="itemContrast.icon"
+              [attr.aria-label]="itemContrast.stepActive.description"
+            ></mat-icon>
+          </div>
+          <div>
+            <span>{{ itemContrast.stepActive.description | translate }}</span>
+          </div>
+          <div class="microSteps_3" aria-hidden="true">
+            @for (step of itemContrast.steps; track step.id) {
+              <div [class.active]="step.id === itemContrast.stepActive.id"></div>
+            }
+          </div>
+        </button>
+
+        @if (!isMobile()) {
+          <button
+            class="accesCube w-100"
+            [class.active]="itemCursor.stepActive.id !== itemCursor.steps[0].id"
+            (click)="toggleItemCursor()"
+          >
+            <div class="accIcon">
+              <mat-icon
+                aria-hidden="true"
+                [svgIcon]="itemCursor.icon"
+                [attr.aria-label]="itemCursor.stepActive.description"
+              ></mat-icon>
+            </div>
+            <div>
+              <span>{{ itemCursor.stepActive.description | translate }}</span>
+            </div>
+            <div class="microSteps_2" aria-hidden="true">
+              @for (step of itemCursor.steps; track step.id) {
+                <div [class.active]="step.id === itemCursor.stepActive.id"></div>
+              }
+            </div>
+          </button>
+
+          <button
+            class="accesCube w-100"
+            [class.active]="itemReadingMask.stepActive.id !== itemReadingMask.steps[0].id"
+            (click)="toggleItemReadingMask()"
+          >
+            <div class="accIcon">
+              <mat-icon
+                aria-hidden="true"
+                [svgIcon]="itemReadingMask.icon"
+                [attr.aria-label]="itemReadingMask.stepActive.description"
+              ></mat-icon>
+            </div>
+            <div>
+              <span>{{ itemReadingMask.stepActive.description | translate }} </span>
+            </div>
+            <div class="microSteps_2" aria-hidden="true">
+              @for (step of itemReadingMask.steps; track step.id) {
+                <div [class.active]="step.id === itemReadingMask.stepActive.id"></div>
+              }
+            </div>
+          </button>
+        }
+
+        <button
+          class="accesCube w-100"
+          [class.active]="itemDislexiaFriendly.stepActive.id !== itemDislexiaFriendly.steps[0].id"
+          (click)="toggleItemDislexiaFriendly()"
+        >
+          <div class="accIcon">
+            <mat-icon
+              aria-hidden="true"
+              [svgIcon]="itemDislexiaFriendly.icon"
+              [attr.aria-label]="itemDislexiaFriendly.stepActive.description"
+            ></mat-icon>
+          </div>
+          <div>
+            <span>{{ itemDislexiaFriendly.stepActive.description | translate }}</span>
+          </div>
+          <div class="microSteps_2" aria-hidden="true">
+            @for (step of itemDislexiaFriendly.steps; track step.id) {
+              <div [class.active]="step.id === itemDislexiaFriendly.stepActive.id"></div>
+            }
+          </div>
+        </button>
+
+        <button
+          class="accesCube w-100"
+          [class.active]="itemInterLineado.stepActive.id !== itemInterLineado.steps[0].id"
+          (click)="toggleItemInterLine()"
+        >
+          <div class="accIcon">
+            <mat-icon
+              aria-hidden="true"
+              [svgIcon]="itemInterLineado.icon"
+              [attr.aria-label]="itemInterLineado.stepActive.description"
+            ></mat-icon>
+          </div>
+          <div>
+            <span>{{ itemInterLineado.stepActive.description | translate }} </span>
+          </div>
+          <div class="microSteps_3" aria-hidden="true">
+            @for (step of itemInterLineado.steps; track step.id) {
+              <div [class.active]="step.id === itemInterLineado.stepActive.id"></div>
+            }
+          </div>
+        </button>
+      </div>
+      <div class="conte-btn-restablecer">
+        <button class="btn-restablecer" (click)="resetAll()">
+          <img src="assets/accessibility/ico-restablecer.svg" alt="Restablecer" />{{
+            'accessibility-component.Restablecer' | translate
+          }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

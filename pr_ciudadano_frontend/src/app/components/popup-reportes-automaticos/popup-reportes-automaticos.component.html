@@ -1,0 +1,100 @@
+<section class="reports">
+    <div class="reports__header">
+    <div class="reports__brand">
+        <span [class]="['reports__logo', reportesAutomaticos?.iconoTipoEleccion]"></span>
+        <div class="reports__brandText">
+            <div class="reports__title">{{ reportesAutomaticos?.nombreTipoEleccion }}</div>
+            <div class="reports__separador"></div>
+            <div class="reports__subtitle">
+                <span class="reports__count">{{ reportesAutomaticos?.totalRegistros }}</span>
+                <span class="reports__text">{{ 'Reportes.reportesGenerados' | translate }}</span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+  <div class="reports__thead">
+    <div class="center">Nº</div>
+    <div class="center">{{ 'Reportes.fechaHora' | translate }}</div>
+    <div class="center">{{ 'Reportes.porcentaje' | translate }}</div>
+    <div class="center">{{ 'Reportes.descargar' | translate }}</div>
+  </div>
+
+  <div class="reports__tbody">
+    @if(reportesAutomaticos){
+      @for(acta of reportesAutomaticos.content; track acta.idArchivo ; let i = $index){
+          <div class="reports__row">
+            <div class="reports__cell reports__status center">
+              {{ acta.numeroRegistro }}
+            </div>
+
+            <div class="reports__cell reports__date center">{{ acta.fechaConsulta | date : "dd/MM/yyyy" }} {{ acta.fechaConsulta | hourFormat }}</div>
+
+            <div class="reports__cell reports__status center">
+              <div class="barra-cargando version-pc">
+                <div
+                    class="barra-cargando-content"
+                    [ngStyle]="{ width: acta.porcentaje + '%' }"
+                > </div>
+                <p class="titulo_votos_totales">
+                    <span class="titulo_votos_totales__num2">{{ acta.porcentaje | porcentajeFormat }}</span>
+                </p>
+              </div>
+              <div class="version-movil justify-content-center reports__status">
+                {{ acta.porcentaje | porcentajeFormat }}
+              </div>
+            </div>
+      
+            <div class="reports__cell centrado justify-content-center center">
+              <button type="button" class="btn-descargar" (click)="descargarArchivo(acta.idArchivo)">
+                  <img src="assets/img/icons/ico-descargar.svg" alt="Descargar">
+              </button>
+            </div>
+          </div>
+      }
+    }
+  </div>
+
+  <div class="reports__footer">
+    <div>
+      <div class="reports__pager"
+          *ngIf="totalPaginasReales > 1 && !loadingPaginacion">
+
+        <button
+          class="reports__page reports__page--nav"
+          type="button"
+          *ngIf="habilitarBotonAnterior"
+          (click)="eventoPaginaAnterior()"
+          aria-label="Página anterior">
+          ◀
+        </button>
+
+        <button
+          *ngFor="let p of listaPagina"
+          type="button"
+          class="reports__page"
+          [class.is-active]="p.seleccionado"
+          (click)="paginado(p.pagina)">
+          {{ p.pagina }}
+        </button>
+
+        <button
+          class="reports__page reports__page--nav"
+          type="button"
+          *ngIf="habilitarBotonSiguiente"
+          (click)="eventoPaginaSiguiente()"
+          aria-label="Página siguiente">
+          ▶
+        </button>
+      </div>
+    </div>
+
+    <button
+     
+      class="estilo3"
+      type="button"
+      (click)="cerrarPopup()">
+      {{ 'Reportes.volver' | translate }}
+    </button>
+  </div>
+</section>

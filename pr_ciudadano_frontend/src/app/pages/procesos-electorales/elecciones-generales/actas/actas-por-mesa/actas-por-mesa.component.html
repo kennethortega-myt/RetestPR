@@ -1,0 +1,188 @@
+<section class="cont-flex px-20 py-20 bg_blanco">
+  <div class="w-100 p-0">
+    <section [formGroup]="myFormActa" class="sec-cont sec-prinsipal-candidato actas t-c no-percent">
+      <!-- sec-cont sec-prinsipal-candidato actas t-c -->
+      <div class="w-30 t-l">
+        <h2 class="titulo2">{{ 'actas-por-mesa.BuscarNumMesa' | translate }}</h2>
+        <div class="flex-col-input mt-1">
+          <mat-form-field appearance="outline" class="input-bg-blanco">
+            <input
+              formControlName="mesa"
+              mask="0*"
+              minlength="6"
+              maxlength="6"
+              matInput
+              inputmode="numeric"
+              placeholder= "{{ 'actas-por-mesa.IngreseNumMesa' | translate }}"
+              (keyup.enter)="buscar()"
+            />
+          </mat-form-field>
+        </div>
+        <div class="cont-button">
+          <button
+           
+            class="estilo1"
+            (click)="buscar()"
+            [disabled]="deshabilitarBtnBuscarMesa"
+            [ngClass]="{ disable: deshabilitarBtnBuscarMesa }"
+          >
+            {{ 'actas-por-mesa.buscarBtn' | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="w-30 t-l">
+        <h2 class="titulo2">{{ 'actas-por-mesa.BuscarNumDni' | translate }}</h2>
+        <div class="flex-col-input mt-1">
+          <mat-form-field appearance="outline" class="input-bg-blanco">
+            <input
+              formControlName="dni"
+              mask="0*"
+              minlength="8"
+              maxlength="8"
+              matInput
+              inputmode="numeric"
+              placeholder="{{ 'actas-por-mesa.IngreseNumDni' | translate }}"
+              (keyup.enter)="buscarPorDni()"
+            />
+          </mat-form-field>
+        </div>
+        <div class="cont-button">
+          <button
+           
+            class="estilo1"
+            (click)="buscarPorDni()"
+            [disabled]="deshabilitarBtnBuscarDni"
+            [ngClass]="{ disable: deshabilitarBtnBuscarDni }"
+          >
+            {{ 'actas-por-mesa.buscarBtn' | translate }}
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="t-c px-0 pb-2 bg_blanco flex-grow-1">
+      <article class="cont-flex">
+        <div class="w-100 conte-mesas">
+          @for (acta of actas; track $index) {
+            <button
+              [ngClass]="{
+                'mesa': true,
+                'contabilizada': acta.codigoEstadoActa == 'C',
+                'pendiente': acta.codigoEstadoActa == 'P',
+                'observado': acta.codigoEstadoActa == 'E',
+                'ico-distrital': acta.idEleccion == ID_ELECCION.ID_ELECCION_MUNICIPAL,
+                'ico-congresal': acta.idEleccion == ID_ELECCION.ID_ELECCION_DIPUTADOS,
+                'ico-presidencial': acta.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL,
+                'ico-parlamento': acta.idEleccion == ID_ELECCION.ID_ELECCION_PARLAMENTO_ANDINO,
+                'ico-senador_dem': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_27,
+                'ico-senador_deu': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_33,
+                'activado': acta.esSeleccionado
+              }"
+              [attr.data-estado]="getEstadoTraducido(acta.codigoEstadoActa)"
+              (click)="VerDetalles(acta, $index)"
+            >
+              {{ acta.codigoMesa }}
+            </button>
+          }
+        </div>
+        <ng-container *ngIf="actas?.length > 0">
+          <div class="w-100 f-w">
+            <ul class="leyendas_actas">
+              <li *ngFor="let eleccion of elecciones">
+                <span class="{{ eleccion.icono }}"></span>
+                Acta - {{ eleccion.nombre }}
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </article>
+</section>
+<div class="ancla2" id="detalle-view-111"></div>
+<section *ngIf="detalleActa" class="sec-cont segundo px-20 p-0-movil">
+  <h3 class="titulo_numero_acta">ACTA N&#176; {{ detalleActa?.codigoMesa }} - {{ electionName }}</h3>
+  
+  <app-det-acta [detalleActa]="detalleActa" [idAmbito]="idAmbitoGeografico"></app-det-acta>
+
+  <div *ngIf="lineaTiempo?.length < 1; else conLinea" class="bg_gris t-r mt-2 mb-2">
+    <div class="personaje-anuncio">
+      <p>
+        {{ 'personaje.hemosActualizado' | translate }}
+        <span class="no-break">
+          {{ resumen?.fechaActualizacion | date : "dd/MM/yyyy" }} {{ 'personaje.aLas' | translate }}
+          {{ resumen?.fechaActualizacion | hourFormat }}
+        </span>
+          {{ 'personaje.sinActualizacion' | translate }}
+      </p>
+      <img alt="person" [src]="randomImageUrl" />
+    </div>
+  </div>
+  
+  <ng-template #conLinea>
+    <ng-container *ngIf="detalleActa.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+      <app-acta-presidencial
+        *ngIf="lineaTiempo && detalle"
+        [detalleMesa]="detalleActa"
+        [lineaTiempo]="lineaTiempo"
+        [detalle]="detalle"
+        [archivos]="listaArchivos"
+        [numeroDeActa]="codigoMesaForLineaTiempo"
+        [nombreDeActa]="configNameForLineTiempo"
+      ></app-acta-presidencial>
+    </ng-container>
+  
+    <ng-container *ngIf="detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+      <app-linea-tiempo
+        [detalleMesa]="detalleActa"
+        [detalle]="detalle"
+        [archivos]="listaArchivos"
+        [lineaTiempo]="lineaTiempo"
+        [numeroDeActa]="codigoMesaForLineaTiempo"
+        [nombreDeActa]="configNameForLineTiempo"
+      ></app-linea-tiempo>
+    </ng-container>
+
+    @if (
+      detalle &&
+      detalle.length &&
+      detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL &&
+      detalleActa.codigoEstadoActa == ACTA_CODIGO_ESTADO.CONTABILIZADA
+    ) {
+      <app-lista-acordion-agrupacion-candidato
+      [totalVotosEmitidos]="detalleActa.totalVotosEmitidos"
+      [totalVotosValidos]="detalleActa.totalVotosValidos"
+      [detalle]="detalle"
+      [idActa]="detalleActa.id"
+      [detalleActa]="detalleActa"
+      [useAlterTotalCastedVotesKey]="true"
+      ></app-lista-acordion-agrupacion-candidato>
+    }
+  </ng-template>
+
+</section>
+<section *ngIf="actas?.length == 0 && !primeraVez" class="sec-cont segundo px-20">
+  <div class="bg_gris t-r mt-2 mb-2">
+    <div class="personaje-anuncio">
+      <p *ngIf="buscarPorMesa">
+        <ng-container *ngIf="nroMesa"> {{ 'personaje.nMesa' | translate }} {{ nroMesa }} {{ 'personaje.noExiste' | translate }}. </ng-container>
+        <ng-container *ngIf="!nroMesa"> {{ 'personaje.ingreseMesa' | translate }}. </ng-container>
+      </p>
+      <p *ngIf="!buscarPorMesa">
+        <ng-container *ngIf="nroDNI"> {{ 'personaje.numeroDNI' | translate }} {{ nroDNI }} {{ 'personaje.noParticipa' | translate }} </ng-container>
+        <ng-container *ngIf="!nroDNI"> {{ 'personaje.ingreseDNI' | translate }}</ng-container>
+      </p>
+      <img alt="person" [src]="randomImageUrl" />
+    </div>
+  </div>
+</section>
+<section *ngIf="detalleActa?.estadoActa == 'N'" class="sec-cont segundo px-20">
+  <div class="bg_gris t-r mt-2 mb-2">
+    <div class="personaje-anuncio">
+      <p>
+        <ng-container *ngIf="nroMesa"> {{ 'personaje.mesaNoInstalada' | translate }} </ng-container>
+      </p>
+      <img alt="person" [src]="randomImageUrl" />
+    </div>
+  </div>
+</section>

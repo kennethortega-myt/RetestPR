@@ -1,0 +1,28 @@
+<ng-container *ngIf="contentTemplate; else emptyState">
+  <div class="popup">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #emptyState>
+  <div class="popup">
+    <h1 class="titulo2 t-c">{{ dialogConfig.title }}</h1>
+    <div class="centrar_icono">
+      <img *ngIf="dialogConfig.iconPath" [src]="dialogConfig.iconPath" alt="-Icono de diálogo-" />
+    </div>
+
+    <div>
+      <p class="t-c" [innerHTML]="dialogConfig.message"></p>
+    </div>
+
+    <div class="popup-botones">
+      <button class="button_estilo3" (click)="cerrar()" *ngIf="dialogConfig.confirm">
+        <!-- NO -->
+        NO
+      </button>
+      <button class="button_estilo1" (click)="confirmar()" cdkFocusInitial>
+        {{ dialogConfig.confirm ? 'SI' : 'Aceptar' }}
+      </button>
+    </div>
+  </div>
+</ng-template>

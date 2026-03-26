@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../../../../../variables" as vars;
+
+.form-group {
+  position: relative;
+}
+
+.error-eleccion {
+  color: map.get(vars.$secondary-colors, "clr-rojo-1");
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+}

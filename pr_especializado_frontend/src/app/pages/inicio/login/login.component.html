@@ -1,0 +1,87 @@
+<section class="login">
+  <div>
+    <img [src]="imgSrc" height="150px" id="loginFondo" alt="Onpe" draggable="false" />
+  </div>
+  <form name="login" [formGroup]="formGroupParent" (submit)="ingresar()">
+    <div class="cuadro-blanco-2 border-radius15">
+      <img class="logo-login" src="assets/logo/onpe-logo.svg" alt="Onpe" />
+      <h1 class="titulo-login">
+        {{ 'Login.PresentacionResultados'| translate }}<br>
+        {{ 'Login.ModuloEspecializado'| translate }}
+      </h1>
+
+      <div class="cont-inputs">
+        <!-- Campo Usuario -->
+        <div>
+          <label class="input-label" for="usuario">{{ 'Login.Usuario'| translate }}</label>
+          <div class="w-full">
+            <input name="usuario" type="text" class="input w-full"
+              [class.input-error]="formGroupParent.get('usuario')?.invalid && formGroupParent.get('usuario')?.touched"
+              formControlName="usuario" (drop)="bloquearEvent($event)" (dragover)="bloquearEvent($event)"
+              [placeholder]="'Login.PlaceholderUsuario' | translate"
+              [maxlength]="FIELD_LIMITS.USUARIO_MAX_LENGTH_FAKE" />
+          </div>
+          <label for="usuario" class="label-error"
+            *ngIf="formGroupParent.get('usuario')?.hasError('required') && formGroupParent.get('usuario')?.touched">
+            <mat-error>{{ 'Login.ErrorUsuarioObligatorio'| translate }}</mat-error>
+          </label>
+          <label for="usuario" class="label-error" *ngIf="formGroupParent.get('usuario')?.hasError('minlength')">
+            <mat-error>{{ 'Login.ErrorMinCaracteres'| translate }}</mat-error>
+          </label>
+          <label for="usuario" class="label-error" *ngIf="formGroupParent.get('usuario')?.hasError('maxlength')">
+            <mat-error>{{ 'Login.ErrorMaxCaracteres'| translate }}</mat-error>
+          </label>
+          <label for="usuario" class="label-error" *ngIf="formGroupParent.get('usuario')?.hasError('pattern')">
+            <mat-error>{{ 'Login.ErrorCaracteresEsp'| translate }}</mat-error>
+          </label>
+        </div>
+
+        <!-- Campo Contraseña -->
+        <div>
+          <label class="input-label" for="password">{{ 'Login.Contraseña'| translate }}</label>
+          <div class="w-full input-wrapper">
+            <input name="password" [type]="showPassword ? 'text' : 'password'" class="input w-full"
+              [class.input-error]="formGroupParent.get('clave')?.invalid && formGroupParent.get('clave')?.touched"
+              formControlName="clave" (drop)="bloquearEvent($event)" (dragover)="bloquearEvent($event)"
+              [placeholder]="'Login.PlaceholderContraseña' | translate"
+              [maxlength]=FIELD_LIMITS.CLAVE_MAX_LENGTH_FAKE />
+            <mat-icon matSuffix class="eye" (click)="togglePasswordVisibility()" (keydown)="onKeyDown($event)">
+              {{ showPassword ? "visibility_off" : "visibility" }}
+            </mat-icon>
+          </div>
+
+          <!-- Mensajes de error para contraseña -->
+          <label for="password" class="label-error">
+            <mat-error
+              *ngIf="formGroupParent.get('clave')?.hasError('required') && formGroupParent.get('clave')?.touched">
+              {{ 'Login.ErrorContraseñaObligatoria'| translate }}
+            </mat-error>
+            <mat-error
+              *ngIf="formGroupParent.get('clave')?.hasError('minlength') && !formGroupParent.get('clave')?.hasError('required')">
+              {{ 'Login.ErrorMinCaracteresContraseña' | translate }}
+            </mat-error>
+            <mat-error
+              *ngIf="(formGroupParent.get('clave')?.hasError('maxlength') || formGroupParent.get('clave')?.hasError('maxlengthExceeded'))">
+              {{ 'Login.ErrorMaxCaracteresContraseña' | translate }}
+            </mat-error>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="button_estilo1 button m-0" [disabled]="disableInputSubmit()">
+        {{ 'Login.Ingresar' | translate }}
+      </button>
+
+      <a mat-button class="blue_msn recoveryPss" (click)="openDialogRestorePassword()">
+        <img src="assets/img/icons/ico-key.svg" alt="key" class="key_icon" />
+        {{ 'Login.OlvidasteContraseña' | translate }}
+      </a>
+    </div>
+
+    <div class="">
+      <p class="blue_msn">{{ 'Login.NavegadorRecomendado' | translate }}</p>
+      <img src="assets/img/icons/web_browser_icon.svg" alt="key" class="browser_icon" />
+      <p class="grey_msn">PR ME v 1.0.0</p>
+    </div>
+  </form>
+</section>

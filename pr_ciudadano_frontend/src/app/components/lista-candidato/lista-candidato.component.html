@@ -1,0 +1,82 @@
+<section class="cont-flex">
+  <!-- LISTA COMPLETA DE CANDIDATOS Y ORGANIZACIONES POLITICAS -->
+  <div class="w-100">
+    <section class="desplegable full" *ngFor="let candidato of listCandidato; let indice = index">
+      <div>
+        <div class="w-100 t-r">
+          <article class="candidato" [ngClass]="{'compact': compactMode}">
+            <div class="cont-info">
+              @if (compactMode) {
+                <div class="img">
+                  <img
+                    alt="partidos"
+                    [src]="candidato.urlAgrupacionImage"
+                  />
+                </div>
+              }
+              <!-- Mostrar número solo si NO está en modo compacto -->
+              @else {
+                <div class="numero">
+                  {{ candidato.lista }}
+                </div>
+              }
+              <div class="nombre" [ngClass]="compactMode ? 'sinnumero' : ''">
+                @if (!compactMode) {
+                <h3>{{ candidato.nombreCandidato }}</h3>
+                }
+                <p *ngIf="showNombreOP">{{ candidato.nombreAgrupacionPolitica }}</p> 
+                
+              </div>
+              <div class="conte-votos version-movil">
+                <div class="titulo_movil">{{ cantidadVotosTra | translate }}</div>
+                <span class="titulo_votos_totales__num2"><b>{{ candidato.totalVotosEmitidos | number : "1.0-2" : "en-US" }}</b></span>
+              </div>
+            </div>
+            <div class="barra-cargando version-pc">
+              <div
+                class="barra-cargando-content"
+                [ngStyle]="{
+                  width: (valorMaximo != 0 ? (candidato.totalVotosEmitidos / valorMaximo) * 100 : 0) + '%'
+                }"
+              ></div>
+              <p class="titulo_votos_totales flex-column">                
+                  @if (compactMode) {
+                  <span class="w-full t-r cantidadvoto">
+                    <span class="fs14">{{ cantidadVotosTra | translate }}: </span>
+                    <span class="titulo_votos_totales__num2">
+                      {{ (datosOrganizacion?.totalVotosPorOP ?? 0) | number : "1.0-2" : "en-US" }} 
+                    </span>
+                  </span>
+                    <span class="w-full t-r votoemitidovalidos">
+                      <span class="fs14">{{ votosValidos | translate }}:  {{ (datosOrganizacion?.porcentajeVotoValido ?? 0) | porcentajeFormat }}
+                      </span>
+                      <span class="separador">|</span>
+                      <span class="fs14">{{ votosEmitidos | translate }}: {{ (datosOrganizacion?.porcentajeVotoEmitido ?? 0) | porcentajeFormat }}
+                      </span>
+                    </span>
+                  }
+                  @else {                    
+                  <span class="w-full t-r cantidadvoto">
+                    <span class="fs14">{{ cantidadVotosTra | translate }}: </span>
+                    <span class="titulo_votos_totales__num2">
+                      {{ (candidato?.totalVotosEmitidos ?? 0) | number : "1.0-2" : "en-US" }} 
+                    </span>
+                  </span>
+                  }
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div></div>
+    </section>
+  </div>
+  @if (!compactMode) {
+    <div class="conte-resultado-op mt-1" >
+        <div class="reporte-leyenda">
+            <img class="mr-05" src="assets/img/icons/iconInformativo.svg" alt="info">
+            <span>{{ 'resultados.leyenda-por-op' | translate }}</span>
+        </div>
+    </div>
+  }
+</section>

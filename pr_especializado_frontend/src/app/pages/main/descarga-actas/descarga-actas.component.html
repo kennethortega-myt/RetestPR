@@ -1,0 +1,320 @@
+@if (!this.isLoading) {
+  <div>
+    <div class="d-flex gap-22 px-32 p-0-movil mt-2 mt-12-xs">
+      <div class="w-full">
+        <div class="d-flex flex-direction-col-xs gap-9 content-between w-full items-center items-baseline-xs">
+          <div class="d-flex flex-direction-col">
+            <h1 class="titulo-content">{{ 'DescargarActas' | translate }}</h1>
+          </div>
+          <div class="">
+            <!--  Botón con evento (click) -->
+            <button class="button_estilo2" (click)="actualizarTabla()">
+              {{ 'Actualizar' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-content-general d-flex flex-direction-col-xs mt-1">
+      <!--  Mostrar tabla solo si hay datos -->
+      <ng-container *ngIf="mostrarTabla">
+        <div class="w-full px-32 version-pc">
+          <div class="mt-10 scroll-tabla-descarga-act w-full">
+            <mat-table [dataSource]="dataSource" class="w-full table-striped tabla-resultados head-flotante">
+              <!--  Columna Región -->
+              <ng-container matColumnDef="region">
+                <mat-header-cell *matHeaderCellDef> {{ 'TablaDescargaActas.region' | translate }}</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{ element.region }} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="presidencial">
+                <mat-header-cell *matHeaderCellDef class="tabla-header1">
+                  <div class="w-full">
+                    <div class="header-separador-horizontal">{{ 'TablaDescargaActas.presidencial' | translate }}</div>
+                    <div class="iconoyfecha">
+                      <div class="icono-descargar">{{ 'TablaDescargaActas.archivo' | translate }}</div>
+                      <div class="fechayhora">{{ 'TablaDescargaActas.generacion' | translate }}</div>
+                    </div>
+                  </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="w-n vertical-align-middle columna-gris">
+                  <div class="iconoyfecha">
+                    <div class="content-documentos">
+                      <img
+                        *ngIf="element.presidencialDisponible"
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Enlace descarga"
+                        style="cursor: pointer"
+                        (click)="descargarZip(element.presidencialUrl)"
+                        (keydown.enter)="descargarZip(element.presidencialUrl)"
+                      />
+                    </div>
+                    <div class="txt-fecha-hora">{{ (convertirFechaBackend(element.presidencialFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '' }}</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="senadoresDem">
+                <mat-header-cell *matHeaderCellDef class="tabla-header2">
+                  <div class="w-full">
+                    <div class="header-separador-horizontal">
+                      {{ 'TablaDescargaActas.senadoresMultiple' | translate }}
+                    </div>
+                    <div class="iconoyfecha">
+                      <div class="icono-descargar">{{ 'TablaDescargaActas.archivo' | translate }}</div>
+                      <div class="fechayhora">{{ 'TablaDescargaActas.generacion' | translate }}</div>
+                    </div>
+                  </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="vertical-align-middle">
+                  <div class="iconoyfecha">
+                    <div class="content-documentos">
+                      <img
+                        *ngIf="element.senadoresDemDisponible"
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Enlace descarga"
+                        style="cursor: pointer"
+                        (click)="descargarZip(element.senadoresDemUrl)"
+                        (keydown.enter)="descargarZip(element.senadoresDemUrl)"
+                      />
+                    </div>
+                    <div class="txt-fecha-hora">{{ (convertirFechaBackend(element.senadoresDemFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '' }}</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="senadoresDeu">
+                <mat-header-cell *matHeaderCellDef class="tabla-header1">
+                  <div class="w-full">
+                    <div class="header-separador-horizontal">{{ 'TablaDescargaActas.senadoresUnico' | translate }}</div>
+                    <div class="iconoyfecha">
+                      <div class="icono-descargar">{{ 'TablaDescargaActas.archivo' | translate }}</div>
+                      <div class="fechayhora">{{ 'TablaDescargaActas.generacion' | translate }}</div>
+                    </div>
+                  </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="vertical-align-middle columna-gris">
+                  <div class="iconoyfecha">
+                    <div class="content-documentos">
+                      <img
+                        *ngIf="element.senadoresDeuDisponible"
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Enlace descarga"
+                        style="cursor: pointer"
+                        (click)="descargarZip(element.senadoresDeuUrl)"
+                        (keydown.enter)="descargarZip(element.senadoresDeuUrl)"
+                      />
+                    </div>
+                    <div class="txt-fecha-hora">{{ (convertirFechaBackend(element.senadoresDeuFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '' }}</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="diputados">
+                <mat-header-cell *matHeaderCellDef class="tabla-header2">
+                  <div class="w-full">
+                    <div class="header-separador-horizontal">{{ 'TablaDescargaActas.diputados' | translate }}</div>
+                    <div class="iconoyfecha">
+                      <div class="icono-descargar">{{ 'TablaDescargaActas.archivo' | translate }}</div>
+                      <div class="fechayhora">{{ 'TablaDescargaActas.generacion' | translate }}</div>
+                    </div>
+                  </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="vertical-align-middle">
+                  <div class="iconoyfecha">
+                    <div class="content-documentos">
+                      <img
+                        *ngIf="element.diputadosDisponible"
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Enlace descarga"
+                        style="cursor: pointer"
+                        (click)="descargarZip(element.diputadosUrl)"
+                        (keydown.enter)="descargarZip(element.diputadosUrl)"
+                      />
+                    </div>
+                    <div class="txt-fecha-hora">{{ (convertirFechaBackend(element.diputadosFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '' }}</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="parlamento">
+                <mat-header-cell *matHeaderCellDef class="tabla-header1">
+                  <div class="w-full">
+                    <div class="header-separador-horizontal">
+                      {{ 'TablaDescargaActas.parlamentoAndino' | translate }}
+                    </div>
+                    <div class="iconoyfecha">
+                      <div class="icono-descargar">{{ 'TablaDescargaActas.archivo' | translate }}</div>
+                      <div class="fechayhora">{{ 'TablaDescargaActas.generacion' | translate }}</div>
+                    </div>
+                  </div>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element" class="vertical-align-middle columna-gris">
+                  <div class="iconoyfecha">
+                    <div class="content-documentos">
+                      <img
+                        *ngIf="element.parlamentoDisponible"
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Enlace descarga"
+                        style="cursor: pointer"
+                        (click)="descargarZip(element.parlamentoUrl)"
+                        (keydown.enter)="descargarZip(element.parlamentoUrl)"
+                      />
+                    </div>
+                    <div class="txt-fecha-hora">{{ (convertirFechaBackend(element.parlamentoFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '' }}</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="cabecera-doble"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns" class="tabla-textoazul"></mat-row>
+            </mat-table>
+          </div>
+        </div>
+
+        <!-- VERSION MOVIL CON ACCORDION -->
+        <div class="version-movil flex-wrap px-32 p-0-movil">
+          <mat-accordion class="w-full table-card" multi>
+            <mat-expansion-panel *ngFor="let element of dataSource.data">
+              <!-- HEADER -->
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ element.region }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <!-- CONTENIDO -->
+              <div class="panel-body">
+                <!-- PRESIDENCIAL -->
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.presidencial' | translate }}</div>
+                  <div class="dato text-right">
+                    <button
+                      *ngIf="element.presidencialDisponible"
+                      type="button"
+                      class="icon-button"
+                      (click)="descargarZip(element.presidencialUrl)"
+                    >
+                      <img
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Descargar"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.fechaHora' | translate }}</div>
+                  <div class="dato">
+                    {{ (convertirFechaBackend(element.presidencialFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '-' }}
+                  </div>
+                </div>
+
+                <!-- SENADORES DEM -->
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.senadoresDEM' | translate }}</div>
+                  <div class="dato text-right">
+                    <button
+                      *ngIf="element.senadoresDemDisponible"
+                      type="button"
+                      class="icon-button"
+                      (click)="descargarZip(element.senadoresDemUrl)"
+                    >
+                      <img
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Descargar"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.fechaHora' | translate }}</div>
+                  <div class="dato">
+                    {{ (convertirFechaBackend(element.senadoresDemFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '-' }}
+                  </div>
+                </div>
+
+                <!-- SENADORES DEU -->
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.senadoresDEU' | translate }}</div>
+                  <div class="dato text-right">
+                    <button
+                      *ngIf="element.senadoresDeuDisponible"
+                      type="button"
+                      class="icon-button"
+                      (click)="descargarZip(element.senadoresDeuUrl)"
+                    >
+                      <img
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Descargar"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.fechaHora' | translate }}</div>
+                  <div class="dato">
+                    {{ (convertirFechaBackend(element.senadoresDeuFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '-' }}
+                  </div>
+                </div>
+
+                <!-- DIPUTADOS -->
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.diputados' | translate }}</div>
+                  <div class="dato text-right">
+                    <button
+                      *ngIf="element.diputadosDisponible"
+                      type="button"
+                      class="icon-button"
+                      (click)="descargarZip(element.diputadosUrl)"
+                    >
+                      <img
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Descargar"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.fechaHora' | translate }}</div>
+                  <div class="dato">
+                    {{ (convertirFechaBackend(element.diputadosFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '-' }}
+                  </div>
+                </div>
+
+                <!-- PARLAMENTO ANDINO -->
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.parlamentoAndino' | translate }}</div>
+                  <div class="dato text-right">
+                    <button
+                      *ngIf="element.parlamentoDisponible"
+                      type="button"
+                      class="icon-button"
+                      (click)="descargarZip(element.parlamentoUrl)"
+                    >
+                      <img
+                        src="assets/icon-descargar-actas.svg"
+                        alt="Descargar"
+                      />
+                    </button>
+                  </div>
+                </div>
+                <div class="linea-tabla">
+                  <div class="cabecera">{{ 'TablaDescargaActasMovil.fechaHora' | translate }}</div>
+                  <div class="dato">
+                    {{ (convertirFechaBackend(element.parlamentoFecha) | onpeDate:'dd/MM/yyyy hh:mm:ss a') || '-' }}
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+        <div class="w-full-xs text-center-xs">
+          <!--  Mensaje cuando no hay datos (opcional) -->
+        </div>
+      </ng-container>
+      <!--  Mensaje cuando no hay datos -->
+      <ng-container *ngIf="!mostrarTabla">
+        <div class="w-full-xs text-center-xs">
+            <app-personaje-mensaje [mensaje]="'MensajeNoGenerado' | translate"> </app-personaje-mensaje>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+}

@@ -1,0 +1,91 @@
+<section class="section-flex secciones">
+  <article class="w-full">
+    <h1 class="titulo1">Configuración de reportes automáticos</h1>
+    <div class="config-report-form" [formGroup]="form">
+      <div class="card-shadow w-full p-10-16">
+        
+        <div class="box-message full-width p-10 mrgB10">
+          <img src="assets/icons/ico-Info.svg" alt="icono">
+          <p><strong>La generación automática de reportes</strong> se detendrá cuando se alcance el 100% de actas contabilizadas.</p>
+        </div>
+        <div class="form-group flexConfig">
+          <div class="content-input-material">
+            <label class="label-select" for="">Tipo de elección<span>*</span></label>
+            <mat-form-field appearance="outline" class="mfl">
+              <mat-select formControlName="tipoDeEleccion" panelClass="custom-select-panel"
+                placeholder="Seleccione el tipo de elección">
+                <mat-option
+                  *ngFor="let item of listaEleccion"
+                  [value]="item.value"
+                  >{{ item.text }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <span *ngIf="listaEleccion.length === 0" class="error-eleccion">
+              No existen elecciones disponibles para configurar.
+            </span>
+          </div>
+          <div class="content-input-material">
+            <label class="label-input" for=""
+              > Fecha de inicio <span> * </span>
+            </label>
+
+            <mat-form-field appearance="outline" class="mfl">
+              <input
+                  formControlName="fechaDeInicioDeGeneracion"
+                  matInput
+                  placeholder="dd/mm/aaaa"
+                  (click)="picker.open()"
+                  [matDatepicker]="picker"
+                  [readonly]="true"
+                  autocomplete="off"
+                  [min]="minDate"
+                  [max]="maxDate"
+              />
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="content-input-material">
+            <label class="label-input" for="periodoDeGeneracion">Periodicidad de generación<span> * </span></label>
+            <mat-form-field appearance="outline" class="mfl">
+              <mat-select formControlName="periodoDeGeneracion" placeholder="Periodicidad de generación">
+                <mat-option
+                  *ngFor="let item of listaDePeriodos"
+                  [value]="item.value"
+                  >{{ item.text }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="content-input-material">
+            <label class="label-select" for=""
+              > Hora de inicio <span>*</span>
+            </label>
+            <mat-form-field appearance="outline" class="mfl">
+              <mat-select formControlName="horaDeInicio" placeholder="Seleccione la hora de inicio">
+                <mat-option
+                  *ngFor="let item of listaDeHorasDeInicios"
+                  [value]="item.value"
+                  >{{ item.text }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <span class="alert-campos"> <span>*</span>Campos obligatorios</span>
+
+        <div class="form-buttons">
+          <button
+            (click)="guardarConfiguracion()"
+            class="button_estilo1"
+            [disabled]="!isValidForm"
+            [ngStyle]="{ opacity: isValidForm ? '1' : '0.5' }"
+          >
+            Guardar configuración
+          </button>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>

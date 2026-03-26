@@ -1,0 +1,55 @@
+@use "sass:map";
+@use '../../../../variables.scss' as *;
+
+.eye {
+    cursor: pointer;
+    color: #003770;
+    fill: #003770;
+}
+
+.recoveryPss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0 0;
+    padding: 0;
+    text-decoration: none;
+    font-size: map.get($font-sizes, _14);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    gap: 5px;
+}
+
+.recoveryPss:hover {
+    text-decoration: underline;
+}
+
+.key_icon {
+    margin-right: 1px;
+    width: 16px;
+    height: 16px;
+}
+
+.label-error {
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+}
+
+.label-error mat-error {
+  display: block;
+  min-height: auto; /* Reserva espacio para evitar saltos visuales */
+  color: map.get($secondary-colors, clr-rojo-2);
+  font-size: map.get($font-sizes, _11);
+  margin-top: 6px;
+}
+.login{
+  position: relative;
+  .access{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+}

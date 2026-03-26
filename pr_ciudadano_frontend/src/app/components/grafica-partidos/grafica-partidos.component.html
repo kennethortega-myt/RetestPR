@@ -1,0 +1,190 @@
+<article class="cambioheight grafica-candidatos">
+  <article>
+    <span *ngFor="let value of scaleValues">{{ value | number }}</span>
+  </article>
+  <article>
+    <!-- ************************************** -->
+    <!-- GRÁFICA CON MÁS DE UNA PÁGINA -->
+    <section class="grafica-partidos-section" *ngIf="numberOfPages > 1">
+      <button class="btn_next2" (click)="scrollRight()" *ngIf="currentNumberOfPage < numberOfPages - 1"></button>
+      <button class="btn_next2_desabilitada" *ngIf="!(currentNumberOfPage < numberOfPages - 1)"></button>
+      <button class="btn_after2" (click)="scrollLeft()" *ngIf="currentNumberOfPage != 0"></button>
+      <button class="btn_after2_desabilitada" *ngIf="currentNumberOfPage == 0"></button>
+      <!-- Bars -->
+      <article class="chart-section grafica-partidos-article">
+        <div class="data-postul" *ngFor="let info of barsBySection; let index = index" [id]="index + 1">
+          <div class="cambioheight barra-principal">
+            <!-- Barra principal + imagen + tooltip de candidato -->
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              [matTooltip]="generateInfoTooltipComplete(info)"
+              #tooltipCandidate="matTooltip"
+              (click)="toggleTooltip(tooltipCandidate, index)" (keydown.enter)="toggleTooltip(tooltipCandidate, index)"
+              tabindex="0"
+              role="button"
+              [class.active]="indexActiveBar === index"
+              class="carga"
+              [ngClass]="{
+                'the-most-voted': highLightTheMostVoted && currentNumberOfPage == 0 ? index < 2 : false
+              }"
+              [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+              *ngIf="showImageOfCandidate"
+            >
+              <div class="elector-foto" *ngIf="!showOnlyDefaultCandidate">
+                <img alt="candidatos" [src]="info.url_candidate_image" (error)="handleImageError($event)" />
+              </div>
+              <div class="elector-foto" *ngIf="showOnlyDefaultCandidate">
+                <div class="numero" [attr.aria-label]="'Número de lista del candidato: ' + info.lista">{{ info.lista }}</div>
+              </div>
+            </div>
+            <!-- Barra principal + imagen + tooltip de partido político -->
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              [matTooltip]="generateInfoTooltip(info)"
+              #tooltipPoliticalParty="matTooltip"
+              (click)="toggleTooltip(tooltipPoliticalParty, index)" (keydown.enter)="toggleTooltip(tooltipPoliticalParty, index)"
+              tabindex="0"
+              role="button"
+              [class.active]="indexActiveBar === index"
+              class="carga"
+              [ngClass]="{
+                'the-most-voted': highLightTheMostVoted ? index < 2 : false
+              }"
+              [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+              *ngIf="!showImageOfCandidate"
+            >
+              <div class="elector-foto">
+                <img alt="elector-foto" [src]="info.urlAgrupacionImage" />
+              </div>
+            </div>
+          </div>
+          <!-- Imagen o nombre de partido -->
+          <div>
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip2"
+              matTooltip="{{ info.name_of_politic_group }}"
+              #tooltipPoliticalPartyTwo="matTooltip"
+              (click)="toggleTooltip(tooltipPoliticalPartyTwo, index)" (keydown.enter)="toggleTooltip(tooltipPoliticalPartyTwo, index)"
+              tabindex="0"
+              role="button"
+              [class.active]="indexActiveBar === index"
+              *ngIf="showImageOfCandidate"
+            >
+              <div class="partido-logo">
+                <img alt="partido-logo" [src]="info.urlAgrupacionImage" (error)="handleImageErrorImgolitic(info)" />
+              </div>
+            </div>
+            <div *ngIf="!showImageOfCandidate">
+              <div class="nombre-logo">
+                {{ info.name_of_politic_group }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <div class="cambioheight fondo-grafica">
+        <div *ngFor="let value of scaleValues"></div>
+      </div>
+    </section>
+
+    <!-- ************************************** -->
+    <!-- GRÁFICA CON SÓLO UNA PÁGINA -->
+    <section class="grafica-partidos-section" *ngIf="numberOfPages == 1">
+      <button class="btn_next2 button-right-especial"></button>
+      <!-- Bars -->
+      <article class="chart-section grafica-partidos-article">
+        <div class="data-postul" *ngFor="let info of barsBySection; let index = index" [id]="index + 1">
+          <div class="cambioheight barra-principal">
+            <!-- Barra principal + imagen + tooltip de candidato -->
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              matTooltip="{{ info.name_of_candidate }}
+                {{ getNumberOfList(info.lista) }}
+                {{ traslateQuantityVotes | translate }}: {{ info.number_of_valid_votes | number : '1.0-3' : 'en-US' }}{{
+                getPercentageDescriptionForCandidate(getPercentageWithThreeDecimals(info.percentage_valid_votes))
+              }}"
+              #tooltipCandidate="matTooltip"
+              (click)="toggleTooltip(tooltipCandidate, index)" (keydown.enter)="toggleTooltip(tooltipCandidate, index)"
+              tabindex="0"
+              role="button"
+              [class.active]="indexActiveBar === index"
+              class="carga"
+              [ngClass]="{
+                'the-most-voted': highLightTheMostVoted ? index < 2 : false
+              }"
+              [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+              *ngIf="showImageOfCandidate"
+            >
+              <div class="elector-foto" *ngIf="!showOnlyDefaultCandidate">
+                <img alt="candidatos" [src]="info.url_candidate_image" (error)="handleImageError($event)" />
+              </div>
+              <div class="elector-foto" *ngIf="showOnlyDefaultCandidate">
+                <img alt="candidatos" [src]="'assets/img/candidatos/avatar.jpg'" />
+              </div>
+            </div>
+            <!-- Barra principal + imagen + tooltip de partido político -->
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip"
+              matTooltip="{{ traslateQuantityVotes | translate }}: {{
+                info.number_of_valid_votes | number : '1.0-3' : 'en-US'
+              }} {{
+                getPercentageDescriptionForPoliticGroup(getPercentageWithThreeDecimals(info.percentage_valid_votes))
+              }}"
+              #tooltipPoliticalParty="matTooltip"
+              (click)="toggleTooltip(tooltipPoliticalParty, index)" (keydown.enter)="toggleTooltip(tooltipPoliticalParty, index)"
+              tabindex="0"
+              role="button"
+              [class.active]="indexActiveBar === index"
+              class="carga"
+              [ngClass]="{
+                'the-most-voted': highLightTheMostVoted ? index < 2 : false
+              }"
+              [ngStyle]="{ height: info.percentage_for_chart + '%' }"
+              *ngIf="!showImageOfCandidate"
+            >
+              <div class="elector-foto">
+                <img alt="elector-foto" [src]="info.urlAgrupacionImage" />
+              </div>
+            </div>
+          </div>
+          <!-- Imagen o nombre de partido -->
+          <div>
+            <div
+              mat-raised-button
+              matTooltipPosition="above"
+              matTooltipClass="custom-tooltip2"
+              matTooltip="{{ info.name_of_politic_group }}"
+              #tooltipPoliticalPartyTwo="matTooltip"
+              (click)="toggleTooltip(tooltipPoliticalPartyTwo, index)" (keydown.enter)="toggleTooltip(tooltipPoliticalPartyTwo, index)" 
+              tabindex="0"
+              role="button"
+              *ngIf="showImageOfCandidate"
+            >
+              <div class="partido-logo">
+                <img alt="partido-logo" [src]="info.urlAgrupacionImage" />
+              </div>
+            </div>
+            <div *ngIf="!showImageOfCandidate">
+              <div class="nombre-logo">
+                {{ info.name_of_politic_group }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <div class="cambioheight fondo-grafica">
+        <div *ngFor="let value of scaleValues"></div>
+      </div>
+    </section>
+  </article>
+</article>

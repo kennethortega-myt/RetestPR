@@ -1,0 +1,66 @@
+<div class="content-estadistico">
+  <!-- Contenedor principal -->
+  <div class="resumen-actas-container">
+    
+    <div class="resumen-actas-header">
+      <div class="resumen-actas-total">
+        <img
+          class="icon-tipo-de-eleccion"
+          [src]="iconSrc"
+          alt="Icono de Acta"
+        />
+        <div class="total-actas">
+          <h4>{{ "ResumenGrafico.TotalActas" | translate }}</h4>
+          <span>{{ resumenTotal?.totalActas | number:'1.0-0':'en-US' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Estados -->
+    <div class="resumen-actas-body">
+      <!-- Lista de Estados -->
+      <div class="resumen-actas-estados">
+        <ul class="estados-actas-list">
+          <li class="estado-acta-item">
+            <div class="estado-acta-info">
+              <span class="dot blue"></span>
+              <span class="estado-acta-label">{{
+                "ResumenGrafico.Contabilizadas" | translate
+              }}</span>
+            </div>
+            <div class="estado-acta-valores">
+              <h6 class="estado-acta-numero">{{ resumenTotal?.contabilizadas | number:'1.0-0':'en-US'}}</h6>
+              <h6 class="estado-acta-porcentaje">{{ resumenTotal?.contabilizadasPorcentaje ?? 0 | porcentajeFormat }}</h6>
+            </div>
+          </li>
+          
+          <li class="estado-acta-item">
+            <div class="estado-acta-info">
+              <span class="dot lightblue"></span>
+              <span class="estado-acta-label">{{
+                "ResumenGrafico.ParaJEE" | translate
+              }}</span>
+            </div>
+            <div class="estado-acta-valores">
+              <h6 class="estado-acta-numero">{{ resumenTotal?.enviadasJee | number:'1.0-0':'en-US' }}</h6>
+              <h6 class="estado-acta-porcentaje">{{ resumenTotal?.enviadasJeePorcentaje ?? 0 | porcentajeFormat  }}</h6>
+            </div>
+          </li>
+          
+          <li class="estado-acta-item">
+            <div class="estado-acta-info">
+              <span class="dot white"></span>
+              <span class="estado-acta-label">{{
+                "ResumenGrafico.Pendiente" | translate
+              }}</span>
+            </div>
+            <div class="estado-acta-valores">
+              <h6 class="estado-acta-numero">{{ resumenTotal?.pendientesJee | number:'1.0-0':'en-US' }}</h6>
+              <h6 class="estado-acta-porcentaje">{{ resumenTotal?.pendientesJeePorcentaje ?? 0| porcentajeFormat }} </h6>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

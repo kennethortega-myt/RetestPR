@@ -1,0 +1,81 @@
+<div class="pseudoModal  pseudoModal-flex {{ isFullscreen ? 'withFs' : '' }}" #pseudoModal>
+  <div class="pseudoModal-content">
+    @if (data.multiple) {
+      <div class="listModal">
+        <ul class="menuModal">
+          @for (archivo of this.data.archivos; track $index) {
+            <li
+              class="btn_descargar_acta"
+              [class]="{ active: archivo.activo }"
+              (click)="loadOtherResolution(archivo)"
+              (keydown.enter)="loadOtherResolution(archivo)"
+            >
+              <span class="material-icons version-movil">download</span> Ver {{ archivo.descripcion }}
+            </li>
+          }
+        </ul>
+      </div>
+    }
+    <div class="pdf-contenedor">
+      <div class="pdf-container" #pdfContainer>
+        <pdf-viewer
+          class="pdf-viewer"
+          cdkDragBoundary=".example-boundary"
+          cdkDrag
+          style="display: flex; justify-content: center"
+          [rotation]="rotation2"
+          [src]="pdfSrc"
+          [render-text]="true"
+          [original-size]="true"
+          [render-text]="true"
+          [zoom]="zoomLevel"
+          [original-size]="false"
+          [autoresize]="true"
+          (pages-loaded)="hideLoading()"
+        >
+        </pdf-viewer>
+      </div>
+      @if (!this.data.hideInstructions) {
+        <p class="mt-1 version-pc">* {{ 'modal-visor-img.Instrucciones' | translate }}</p>
+      }
+    </div>
+  </div>
+
+  @if (esPantallaChica) {
+    <mat-dialog-actions class="justify-content-center">
+      <button class="estilo1 d-inline-block" (click)="cerrar()">
+        {{ 'modal-visor-img.CerrarText' | translate }}
+      </button>
+    </mat-dialog-actions>
+  } @else {
+    <mat-dialog-actions class="justify-content-between">
+      <div class="actionsModal">
+        <div class="boxBtns">
+          <button class="btn-ico-control" (click)="rotatePDF()">
+            <img src="assets/img/icons/ico-rotar.svg" alt="region" />
+          </button>
+          <button class="btn-ico-control" (click)="increaseZoom()">
+            <img src="assets/img/icons/ico-zoom-in.svg" alt="zoom in" />
+          </button>
+          <button class="btn-ico-control" (click)="decreaseZoom()">
+            <img src="assets/img/icons/ico-zoom-out.svg" alt="zoom out" />
+          </button>
+          <button class="btn-ico-control" (click)="toggleFullscreen()">
+            <img
+              src="assets/img/icons/{{ isFullscreen ? 'ico-fullscreen_exit' : 'ico-fullscreen' }}.svg"
+              alt="zoom out"
+            />
+          </button>
+        </div>
+        <div class="d-flex justify-end">
+          <button class="estilo1 d-inline-block" (click)="descargarPDF()">
+            {{ 'modal-visor-img.DescargarPDF' | translate }}
+          </button>
+          <button class="estilo1 d-inline-block ml-1" (click)="cerrar()">
+            {{ 'modal-visor-img.CerrarText' | translate }}
+          </button>
+        </div>
+      </div>
+    </mat-dialog-actions>
+  }
+</div>

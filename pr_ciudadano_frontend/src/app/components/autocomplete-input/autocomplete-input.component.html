@@ -1,0 +1,31 @@
+<form [formGroup]="form" class="form-container">
+  <mat-form-field  class="input_autocompletar full-width input-bg-blanco" appearance="outline">
+    <input type="hidden"
+      [placeholder]="placeholder"
+      [formControlName]="formControlName" 
+      [value]="getValue(selected)">
+      <input #inputSearchAutoComplete
+      type="text"
+      [placeholder]="placeholder"
+          matInput
+          [formControlName]="formControLabel"
+          [matAutocomplete]="auto"
+          (click)="onInputClick()"
+          class="centered-input">
+          <button *ngIf="selected && selected[valueKey]" 
+            matSuffix 
+            mat-icon-button 
+            aria-label="Limpiar selección" 
+            (click)="limpiarSelected()"
+            (mousedown)="$event.preventDefault()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)" (closed)="onAutocompleteClosed()">
+            @for (option of filteredOptions | async; track option) {
+              <mat-option [value]="getValue(option)">
+                {{ getDisplayValue(option)}}
+              </mat-option>
+            }
+          </mat-autocomplete>
+  </mat-form-field>
+</form>

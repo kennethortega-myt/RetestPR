@@ -1,0 +1,71 @@
+<section class="login">
+  <div>
+    <img [src]="loginBackgroundImg" height="150px" id="loginFondo" alt="Onpe" draggable="false" />
+  </div>
+  <form name="login" class="" [formGroup]="formGroupParent!" (submit)="ingresar()">
+    <div class="cuadro-blanco-2 custom-login">
+      <img src="assets/img/logo-onpe.svg" alt="Onpe" />
+      <h1 class="titulo1">
+        Presentación de Resultados Administrador
+      </h1>
+      <div class="w-full">
+        <label class="label-input" for="usuario">Usuario</label>
+        <mat-form-field appearance="outline" class="mat-form">
+          <input matInput class="input" formControlName="usuario" placeholder="Ingresa tu usuario"
+            (drop)="bloquearEvent($event)" (dragover)="bloquearEvent($event)" sceUppercase />
+        </mat-form-field>
+        <label class="label-error" *ngIf="formGroupParent.get('usuario')?.invalid && formGroupParent.get('usuario')?.touched">
+          <mat-error
+            *ngIf="formGroupParent.get('usuario')?.hasError('required')">
+            El usuario es obligatorio
+          </mat-error>
+          <mat-error
+            *ngIf="formGroupParent.get('usuario')?.hasError('minlength')">
+            El usuario debe tener al menos 3 caracteres
+          </mat-error>
+          <mat-error *ngIf="formGroupParent.get('usuario')?.hasError('maxlength')">
+            El usuario no puede exceder los 50 caracteres
+          </mat-error>
+          <mat-error *ngIf="formGroupParent.get('usuario')?.hasError('pattern')">
+            El usuario no puede iniciar ni finalizar con guiones, ni contener guiones consecutivos
+          </mat-error>
+        </label>
+      </div>
+      <div class="w-full">
+        <label class="label-input" for="password">Contraseña</label>
+        <mat-form-field appearance="outline">
+          <input class="input" matInput #passwordInput name="password" [type]="showPassword ? 'text' : 'password'"
+            formControlName="clave" placeholder="Ingresa tu contraseña" (drop)="bloquearEvent($event)"
+            (dragover)="bloquearEvent($event)" />
+          <mat-icon matSuffix class="eye" (click)="togglePasswordVisibility()" onkeypress=""
+            (keydown)="onKeyDown($event)">
+            {{ showPassword ? "visibility_off" : "visibility" }}
+          </mat-icon>
+        </mat-form-field>
+        <label class="label-error" *ngIf="formGroupParent.get('clave')?.invalid && formGroupParent.get('clave')?.touched">
+          <mat-error *ngIf="formGroupParent.get('clave')?.hasError('required')">
+            La contraseña es obligatoria
+          </mat-error>
+          <mat-error *ngIf="formGroupParent.get('clave')?.hasError('minlength')">
+            La contraseña debe tener al menos 8 caracteres
+          </mat-error>
+          <mat-error
+            *ngIf="(formGroupParent.get('clave')?.hasError('maxlength') || formGroupParent.get('clave')?.hasError('maxlengthExceeded'))">
+            La contraseña no puede exceder los 30 caracteres
+          </mat-error>
+        </label>
+      </div>
+      <button type="submit" class="button_estilo1 m-0 mt-10"
+        [disabled]="formGroupParent.invalid">Ingresar</button>
+      <a mat-button class="recoveryPss" (click)="openDialogRestorePassword()">
+        <img src="assets/img/icons/ico-key.svg" alt="key" class="key_icon" />
+        ¿Olvidaste tu contraseña?
+      </a>
+    </div>
+    <div class="">
+      <p class="blue_msn">Navegador recomendado</p>
+      <img src="assets/img/icons/web_browser_icon.svg" alt="key" class="browser_icon" />
+      <p class="grey_msn">PR v 1.1.0</p>
+    </div>
+  </form>
+</section>

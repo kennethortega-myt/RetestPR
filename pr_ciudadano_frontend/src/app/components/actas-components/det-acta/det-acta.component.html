@@ -1,0 +1,73 @@
+<button class="button-map" *ngIf="esPantallaChica" (click)="toggleDatos()">
+  <div class="text-mapa">
+    <img src="assets/img/icons/icon-ojo.svg" alt="">
+    <h5>{{ detalleActaText | translate }}</h5>
+  </div>
+  <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarDatos">
+  </div>
+</button>
+
+<div class="ocultar-datos card-map-movil" [ngClass]="{
+  'mostrar-datos': mostrarDatos || !esPantallaChica,
+  'dato-oculto': !mostrarDatos && esPantallaChica
+}">
+
+  <div class="conte_detalles_acta">
+    <div class="detalles_acta">
+      <div class="cols-datos">
+        <div class="dato">{{ electoresHabiles | translate }}:</div>
+        <div class="resultado">{{ mostrarTotalElectoresHabiles(detalleActa)}}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ totalVotantes | translate }}:</div>
+        <div class="resultado">{{ mostrarValorTotalVotantes(detalleActa) }}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ participacionCiudadana | translate }}:</div>
+        <div class="resultado">{{ mostrarValorParticipacionCiudadana(detalleActa) }}</div>
+      </div>
+    </div>
+    <div class="detalles_acta">
+      <div class="cols-datos">
+        <div class="dato">{{ estadoActa | translate }}:</div>
+        <div class="resultado">{{ detalleActa?.descripcionEstadoActa | uppercase }}
+        {{ mostrarEtiquetaAdicionalEstadoActa(detalleActa) }}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ mostrarNombreNivel(4, true) }}:</div>
+        <div class="resultado">{{ nombreAmbitoSelect() }}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ mostrarNombreNivel(0, true) }}:</div>
+        <div class="resultado">{{ detalleActa?.ubigeoNivel01 }}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ mostrarNombreNivel(1, true) }}:</div>
+        <div class="resultado">{{ detalleActa?.ubigeoNivel02 }}</div>
+      </div>
+    </div>
+    <div class="detalles_acta">
+      <div class="cols-datos">
+        <div class="dato">{{ mostrarNombreNivel(2, true) }}:</div>
+        <div class="resultado">{{ detalleActa?.ubigeoNivel03 }}</div>
+      </div>
+      <div class="cols-datos">
+        <div class="dato">{{ mostrarNombreNivel(3, true) }}:</div>
+        <div class="resultado">{{ detalleActa?.nombreLocalVotacion }}</div>
+      </div>
+      <ng-container *ngIf="detalleActa?.centroPoblado">
+        <div class="cols-datos">
+          <div class="dato">{{ centroPoblado | translate }}:</div>
+          <div class="resultado">{{ detalleActa?.centroPoblado }}</div>
+        </div>
+      </ng-container>
+      
+      @if(detalleActa.codigoSolucionTecnologica == codigoSolucion){
+        <div class="cols-datos">
+          <div class="dato">{{ solucionTecnologica | translate }}:</div>
+          <div class="resultado">{{ detalleActa?.descripcionSolucionTecnologica }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

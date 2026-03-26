@@ -1,0 +1,41 @@
+<div class="version-movil flex-wrap px-32 p-0-movil">
+  <mat-accordion multi="true" class="table-card w-full">
+    <mat-expansion-panel *ngFor="let row of dataSource.data">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ getCombinedDetailState(row) }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="">
+        <!-- Detalles generados dinámicamente -->
+        <div *ngFor="let detail of generateRowDetails(row)" class="linea-tabla">
+          <div class="cabecera">{{ detail.col1 | translate }}:</div>
+          <div class="dato" *ngIf="detail.tipo === 'texto'">{{ detail.col2 }}</div>
+          <div class="dato" *ngIf="detail.tipo === 'html'" [innerHTML]="detail.col2"></div>
+        </div>
+        
+        <div class="linea-tabla linea-documentos">
+          <div class="cabecera">{{ 'Resultadoapp.Documentos' | translate }}:</div>
+          <div class="dato">
+            <div class="d-flex gap-6" *ngIf="generateRowActions(row).length > 0">
+              <button 
+                *ngFor="let btn of generateRowActions(row)"
+                class="button-transparente button-documento" 
+                [matTooltip]="btn.tooltip | translate"
+                (click)="handleTableAction({ action: btn.action, row })"
+              >
+                <img 
+                  [src]="btn.icon" 
+                  [alt]="btn.tooltip | translate" 
+                  [class]="btn.clase" 
+                />
+              </button>
+            </div>
+            <span *ngIf="generateRowActions(row).length === 0">-</span>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,16 @@
+<section class="columnas detallados">
+  <article class="candidato" *ngFor="let can of candidatos">
+    <div class="cont-info">
+      <span class="numero">{{ can.lista }}</span>
+      <div class="nombre">
+        <h3>{{ can.nombreCompleto }}</h3>
+      </div>
+      <div class="votos votos-text">
+        <strong>{{ can.votos }} </strong> <br />
+        <div *ngIf="can.votos === 1; then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>{{ votoText | translate }}</ng-template>
+        <ng-template #elseBlock>{{ votosText | translate }}</ng-template>
+      </div>
+    </div>
+  </article>
+</section>

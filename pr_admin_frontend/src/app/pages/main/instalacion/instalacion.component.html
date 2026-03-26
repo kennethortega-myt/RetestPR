@@ -1,0 +1,90 @@
+<section class="section-flex secciones">
+  <article class="w-full">
+    <h1 class="titulo1">Carga inicial de BD</h1>
+    <h2 class="titulo2">Permite poder inicializar la base de datos</h2>
+    <p>
+      Cargar las colecciones iniciales necesarias para el sistema de Presentación de Resultados, obtenidos desde el sistema de Cómputo electoral (SCE).
+    </p>
+    <div class="card-shadow p-5-10">
+      <p>Seleccione el tipo de carga a ejecutar</p>
+      <hr>
+      <div class="custom-grid-1 tipo-carga">
+
+        <button
+          type="button"
+          *ngFor="let tipo of lstMaeImportar"
+          class="btn-white-shadow custom-grid-btn"
+          [class.active]="esActivo(tipo.atributo)"
+          [class.done]="tipo.exito"
+          [disabled]="tipo.exito"
+          (click)="seleccionarTipo(tipo.atributo)"
+        >
+          <div class="ico-carga">
+            <img [src]="tipo.icono" alt="icono">
+          </div>
+
+          <div class="btn-box-text">
+            <h2>{{ tipo.etiqueta }}</h2>
+            <p *ngIf="tipo.descripcion">{{ tipo.descripcion }}</p>
+          </div>
+
+          <div class="box-estado">
+            <div class="dynamiccircle"></div>
+          </div>
+        </button>
+
+        <!-- Mensaje inferior -->
+        <div class="box-message full-width">
+          <img src="assets/icons/ico-circle-check-2.svg" alt="icono">
+          <p>Seleccione una opción para habilitar el procedimiento</p>
+          <button
+            type="button"
+            class="button_estilo1"
+            (click)="alertImportar()"
+            [disabled]="seleccion"
+          >
+            Procesar
+          </button>
+        </div>
+
+        <!-- Progreso -->
+        <article class="full-width">
+          <div class="progressInfo">
+            <h2 class="titulo2">
+              Barra de progreso: {{ progresoImport }} %
+            </h2>
+
+            <div class="boxBar">
+              <mat-progress-bar
+                mode="determinate"
+                [value]="progresoImport"
+              ></mat-progress-bar>
+            </div>
+
+            <div
+              class="contenido-scrollList"
+              *ngIf="mensajes && mensajes.length > 0"
+            >
+              <ul class="liActs">
+                <li *ngFor="let mensaje of mensajes.slice().reverse()">
+                  {{ mensaje }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </article>
+  <article class="w-100 boxMsg" *ngIf="false">
+    <div class="cuadro-azulado-ns">
+      <div class="personaje-anuncio">
+        <p>
+          Cuentas con la información más actual. Aún no existen actualizaciones.
+        </p>
+        <img src="assets/img/personaje1.svg" alt="personaje onpe" />
+      </div>
+    </div>
+  </article>
+  
+</section>

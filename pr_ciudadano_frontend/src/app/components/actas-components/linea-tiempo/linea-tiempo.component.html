@@ -1,0 +1,83 @@
+<div class="d-flex timeLine">
+  @if (!esPantallaChica) {
+  <div class="w-50 t-l p-0">
+    <h2 class="titulo2">{{ 'actas-shared-linea-tiempo.lineaTiempo' | translate }}<i></i></h2>
+  </div>
+  }
+  <div class="w-50 t-r p-0 lineRedBox">
+    @if (existActa) {
+    <button class="estilo1 d-inline-block" (click)="verActa()" [disabled]="buttonIsDisabled">
+      <span class="icono_blanco icon-ico_imagen"></span>
+      {{ 'actas-shared-linea-tiempo.verActa' | translate }}
+    </button>
+    } @if(existResolution){
+    <button class="estilo1 d-inline-block" (click)="verResolucion()" [disabled]="buttonIsDisabled">
+      <span class="icono_blanco icon-ico_imagen"></span>
+      {{ 'actas-shared-linea-tiempo.verResolucion' | translate }}
+    </button>
+    }
+  </div>
+</div>
+
+<button class="button-map" [class.mb-1]="!showMapMobile" *ngIf="esPantallaChica" (click)="toggleMapMobile()">
+  <div class="text-mapa">
+    <img src="assets/img/icons/icon-ojo.svg" alt="" />
+    <h5>{{ 'actas-shared-linea-tiempo.lineaTiempo' | translate }}</h5>
+  </div>
+  <div class="flecha_desplegar" [class.flecha_desplegado]="showMapMobile"></div>
+</button>
+
+<div class="container mb-2 card-map-movil" [class.mostrar-datos]="showMapMobile" [class.dato-oculto]="!showMapMobile">
+  <ul class="progressbar">
+    <ng-container *ngFor="let linea of lineaTiempo; let index = index">
+      <li
+        *ngIf="linea.codigoEstadoActa === ACTA_LINEAT_CODIGO_ESTADO.OBSERVADA; else showList"
+        [ngClass]="
+          linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.PARA_ENVIO_JEE ||
+          linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.OBSERVADA ||
+          linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.RESOLUCION_DEL_JEE
+            ? 'active rojo'
+            : 'active'
+        "
+        mat-raised-button
+        matTooltipPosition="above"
+        [matTooltip]="limpiarDescripcionRepetida(linea.descripcionEstadoActaResolucion)"
+        [matTooltipDisabled]="!linea.descripcionEstadoActaResolucion"
+        matTooltipClass="custom-tooltip2"
+      >
+        <div class="ico-steps">
+          <img alt="codigoEstadoActa" [src]="obtenerImagen(linea.codigoEstadoActa)" />
+        </div>
+        <div class="descripcion">
+          <h3>{{ getDescripcionReducida(linea.descripcionEstadoActaResolucion) }}</h3>
+          <h3 class="fecha-steps">
+            {{ linea.fechaRegistro | date : 'dd/MM/yyyy' }}
+            {{ linea.fechaRegistro | hourFormat }} 
+          </h3>
+        </div>
+      </li>
+      <ng-template #showList>
+        <li
+          [ngClass]="
+            linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.PARA_ENVIO_JEE ||
+            linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.OBSERVADA ||
+            linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.RESOLUCION_DEL_JEE
+              ? 'active rojo'
+              : 'active'
+          "
+        >
+          <div class="ico-steps" mat-raised-button matTooltipPosition="above">
+            <img alt="codigoEstadoActa" [src]="obtenerImagen(linea.codigoEstadoActa)" />
+          </div>
+          <div class="descripcion">
+            <h3>{{ linea.descripcionEstadoActa }}</h3>
+            <h3 class="fecha-steps">
+              {{ linea.fechaRegistro | date : 'dd/MM/yyyy' }}
+              {{ linea.fechaRegistro | hourFormat }}
+            </h3>
+          </div>
+        </li>
+      </ng-template>
+    </ng-container>
+  </ul>
+</div>

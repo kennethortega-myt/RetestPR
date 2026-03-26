@@ -1,0 +1,251 @@
+<section class="cont-flex bg_blanco">
+  <div class="w-100">
+    <article class="cont-flex">
+      <div class="w-100 p-0-movil">
+        <form [formGroup]="myFormUbigeo" class="filter-ubigeo-container">
+          <app-generic-filter-ubigeo
+            filterFunctionality="peru_and_international"
+            [showCleanButton]="false"
+            (applyFiltersEvent)="applyFiltersEvent($event)"
+            [region]="regionFilter"
+            (clearFilterEvent)="ejecutClearFilterNew()"
+          ></app-generic-filter-ubigeo>
+          @if (mostrarElementos) {
+            <app-autocomplete-input
+              class="filter-ubigeo--local-voting"
+              placeholder="Local de Votación"
+              [form]="myFormUbigeo"
+              [arrayValues]="localesVotacion"
+              valueKey="codigoLocalVotacion"
+              displayKey="nombreLocalVotacion"
+              formControlName="cent_educativo"
+              (optionValueSelected)="filtrar()"
+            >
+            </app-autocomplete-input>
+          }
+          @if (!isOnInitialValue()) {
+            <button class="estilo3 res-btn100 version-pc" (click)="ejecutClearFilterNew()">
+              {{ 'actas-observadas.Limpiar' | translate }}
+            </button>
+          }
+        </form>
+      </div>
+    </article>
+  </div>
+  <div class="w-70">
+    <section class="t-l">
+      <article class="cont-flex">
+        <ng-container *ngIf="mensaje != '' && !mostrarMyFromFiltro && !(loading$ | async)">
+          <ng-container *ngTemplateOutlet="mensajeTemplate"></ng-container>
+        </ng-container>
+        <div class="w-30 f-w pl-2 form" *ngIf="mostrarMyFromFiltro">
+          <app-actas-filters class="actas-filters"
+            (actasFiltersForApplyEvent)="applyFilterForActas($event)"
+            [(form)]="myForm"
+          ></app-actas-filters>
+        </div>
+        <div class="w-70 f-w paddLR10 px-1" *ngIf="mostrarMyFromFiltro">
+          <h2 class="titulo2">
+            {{ 'actas-observadas.Cantidadactas' | translate }}
+            <span class="blueTxt">({{ totalRegistros | number: '1.0-1' }})</span>
+          </h2>
+          <ng-container *ngIf="mensaje != '' && !(loading$ | async)">
+            <ng-container *ngTemplateOutlet="mensajeTemplate"></ng-container>
+          </ng-container>
+          <article class="cont-cards-envio-jee" *ngIf="mensaje == ''">
+            @for (acta of actas; track $index) {
+              <button
+                class="mesa-observada"
+                [ngClass]="{
+                  contabilizada: acta.estadoActa === ACTA_CODIGO_ESTADO.CONTABILIZADA,
+                  pendiente: acta.estadoActa === ACTA_CODIGO_ESTADO.PENDIENTE,
+                  observado: acta.estadoActa === ACTA_CODIGO_ESTADO.OBSERVADA,
+                  'ico-distrital': acta.idEleccion == ID_ELECCION.ID_ELECCION_MUNICIPAL,
+                  'ico-congresal': acta.idEleccion == ID_ELECCION.ID_ELECCION_DIPUTADOS,
+                  'ico-presidencial': acta.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL,
+                  'ico-parlamento': acta.idEleccion == ID_ELECCION.ID_ELECCION_PARLAMENTO_ANDINO,
+                  'ico-senador_dem': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_27,
+                  'ico-senador_deu': acta.idEleccion == ID_ELECCION.ID_ELECCION_SENADOR_33,
+                  activado: acta.esSeleccionado
+                }"
+                (click)="VerDetalles(acta, $index)"
+              >
+                {{ acta.descripcionMesa }} <i>{{ acta.codigoMesa }}</i>
+                <div class="txt-observada">
+                  <span>{{ getEstadoTraducido(acta.codigoEstadoActa) }}</span>
+
+                  <ng-container *ngIf="acta.codigoEstadoActa === ACTA_CODIGO_ESTADO.CONTABILIZADA">
+                    <img
+                      [alt]="'iconos.acta-contabilizada' | translate"
+                      class="ico-observada"
+                      src="assets/img/icons/ico-observada-contabilizada.svg"
+                    />
+                  </ng-container>
+                  <ng-container *ngIf="acta.codigoEstadoActa === ACTA_CODIGO_ESTADO.PARA_ENVIO_JEE">
+                    <img
+                      [alt]="'iconos.acta-observada' | translate"
+                      class="ico-observada"
+                      src="assets/img/icons/ico-observada.svg"
+                    />
+                  </ng-container>
+                </div>
+              </button>
+            }
+          </article>
+          <div class="w-full" *ngIf="totalPaginasReales > 1">
+            <ul class="numero-lista" *ngIf="totalPaginasReales > 1">
+              <li>
+                <a *ngIf="habilitarBotonAnterior" tabindex="0" (click)="eventoPaginaAnterior()" (keydown.enter)="eventoPaginaAnterior()" (keydown.space)="eventoPaginaAnterior()">◀</a>
+              </li>
+              <li *ngFor="let i of listaPagina">
+                <a
+                  (click)="paginado(i.pagina)" tabindex="0" (keydown.enter)="paginado(i.pagina)" (keydown.space)="paginado(i.pagina)"
+                  class="activado"
+                  [ngStyle]="{
+                    background: i?.seleccionado ? '#2971b9' : '#ffffff',
+                    color: i?.seleccionado ? '#ffffff' : '#2971b9'
+                  }"
+                  >{{ i.pagina }}</a
+                >
+              </li>
+              <li>
+                <a *ngIf="habilitarBotonSiguiente" tabindex="0" (click)="eventoPaginaSiguiente()" (keydown.enter)="eventoPaginaSiguiente()" (keydown.space)="eventoPaginaSiguiente()">►</a>
+              </li>
+            </ul>
+          </div>
+          <div *ngIf="totalRegistros > 0" class="w-100">
+            <ul class="leyendas_actas p-0 mt-0 mb-0">
+              <li *ngFor="let eleccion of elecciones">
+                <span class="{{ eleccion.icono }}"></span>
+                Acta - {{ eleccion.nombre }}
+              </li>
+            </ul>
+            <ul class="leyendas_actas p-0 mt-0 mb-0">
+              <li>
+                <img alt="ico-observada" class="ico-observada" src="assets/img/icons/ico-observada.svg" />
+                {{ ACTA_CODIGO_ESTADO_DESC.PARA_ENVIO_JEE }}
+              </li>
+              <li>
+                <img
+                  alt="ico-observada-contabilizada"
+                  class="ico-observada"
+                  src="assets/img/icons/ico-observada-contabilizada.svg"
+                />
+                {{ ACTA_CODIGO_ESTADO_DESC.CONTABILIZADA }}
+              </li>
+            </ul>
+            <a class="preguntas-popup" (click)="openPopup2()"
+              >{{ CausalesEnvio | translate }} <span class="material-icons">visibility</span></a
+            >
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+  <!-- MAPA -->
+  <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+    <div class="text-mapa">
+      <img src="assets/img/icons/icon-mapa.svg" alt="" />
+      <h5>{{ 'actas-por-ambito.VerMapaCalor' | translate }}</h5>
+    </div>
+    <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2"></div>
+  </button>
+  <div
+    class="w-30 min-50vh transition-map map-participacion"
+    [ngClass]="{
+      'map-visible2': mostrarMapa2 || !esPantallaChica,
+      'map-oculto': !mostrarMapa2 && esPantallaChica
+    }"
+  >
+    <div class="bg-white mapas map-container card-map-movil" style="width: 100%; height: 460px">
+      <app-main-hot-map
+        [mapType]="'contabilizadas'"
+        [mapaCalor]="mapaCalor"
+        [esEstranjero]="esEstranjero"
+        [nivelUbigeo]="nivelUbigeo"
+        [codigoUbigeo]="codigoUbigeo"
+        (bottonHome)="eventoMapBotton($event)"
+        (cambioUbigeoEvent)="cambioUbigeo($event)"
+        (distritoSeleccionadoEvent)="detectarDistritoPorMapa($event)"
+        [changeZoomLevelsToThree]="true"
+      ></app-main-hot-map>
+    </div>
+  </div>
+</section>
+<section *ngIf="detalleActa != null" class="cont-flex espacio-actas-observadas" id="detalle-view-111"></section>
+<section *ngIf="detalleActa != null" class="sec-cont segundo px-20 p-0-movil">
+  <section *ngIf="detalleActa != null" class="sec-cont segundo">
+    <h3 class="titulo_numero_acta">ACTA N&#176; {{ detalleActa?.codigoMesa }} - {{ electionName }}</h3>
+    <app-det-acta [detalleActa]="detalleActa" [idAmbito]="idAmbito"></app-det-acta>
+
+    <ng-template ngIf="!lineaTiempo">
+      <div *ngIf="lineaTiempo?.length < 1; else conLinea" class="bg_gris t-r mt-2 mb-2">
+        <div class="personaje-anuncio px-20">
+          <p class="burbuja-celeste">
+            {{ 'personaje.hemosActualizado' | translate }}
+            <span class="no-break">
+              {{ resumen?.fechaActualizacion | date: 'dd/MM/yyyy' }} {{ 'personaje.aLas' | translate }}
+              {{ resumen?.fechaActualizacion | hourFormat}}
+            </span>
+            {{ 'personaje.sinActualizacion' | translate }}
+          </p>
+          <img alt="person" [src]="randomImageUrl" />
+        </div>
+      </div>
+
+      <ng-template #conLinea>
+        <ng-container *ngIf="detalleActa.idEleccion == ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+          <app-acta-presidencial
+            *ngIf="lineaTiempo?.length > 0"
+            [mesaSeleccionado]="mesaSeleccionado"
+            [detalleMesa]="detalleActa"
+            [lineaTiempo]="lineaTiempo"
+            [detalle]="detalle"
+            [archivos]="listaArchivos"
+            [numeroDeActa]="codigoMesaForLineaTiempo"
+            [nombreDeActa]="configNameForLineTiempo"
+          ></app-acta-presidencial>
+        </ng-container>
+        <ng-container *ngIf="detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL">
+          <app-linea-tiempo
+            [lineaTiempo]="lineaTiempo"
+            [detalleMesa]="detalleActa"
+            [detalle]="detalle"
+            [archivos]="listaArchivos"
+            [numeroDeActa]="codigoMesaForLineaTiempo"
+            [nombreDeActa]="configNameForLineTiempo"
+          ></app-linea-tiempo>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            detalleActa.idEleccion != ID_ELECCION.ID_ELECCION_PRESIDENCIAL &&
+            detalleActa.codigoEstadoActa == ACTA_CODIGO_ESTADO.CONTABILIZADA
+          "
+        >
+          <app-lista-acordion-agrupacion-candidato
+            [totalVotosEmitidos]="detalleActa.totalVotosEmitidos"
+            [totalVotosValidos]="detalleActa.totalVotosValidos"
+            [detalle]="detalle"
+            [idActa]="detalleActa.id"
+            [detalleActa]="detalleActa"
+            [useAlterTotalCastedVotesKey]="true"
+          ></app-lista-acordion-agrupacion-candidato>
+        </ng-container>
+      </ng-template>
+    </ng-template>
+  </section>
+</section>
+
+<ng-template #mensajeTemplate>
+  <div class="w-100 d-flex flex-grow-1 contenido-centrado">
+    <ng-container class="sec-cont segundo px-20">
+      <div class="personaje-anuncio gran px-20">
+        <p class="burbuja-celeste">{{ mensaje | translate : {
+                  date: (this.resumen.fechaActualizacion | date : 'dd/MM/yyyy' ),
+                  hour: (this.resumen.fechaActualizacion | hourFormat )
+                } }}</p> 
+        <img alt="person" [src]="randomImageUrl" />
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

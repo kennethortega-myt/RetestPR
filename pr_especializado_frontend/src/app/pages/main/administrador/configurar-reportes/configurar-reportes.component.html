@@ -1,0 +1,12 @@
+<app-reporte-config-form
+  [titleKey]="'ConfigurarReporte'"
+  [form]="form"
+  [listaEleccion]="listaEleccion"
+  [listaDePeriodos]="listaDePeriodos"
+  [listaDeHorasDeInicios]="listaDeHorasDeInicios"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  [horaTooltipAriaLabel]="'La Hora no puede ser antes del proceso electoral'"
+  [isValidForm]="isValidForm"
+  (guardar)="guardarConfiguracion()"
+></app-reporte-config-form>

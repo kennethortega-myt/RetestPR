@@ -1,0 +1,18 @@
+.input_autocompletar {
+  display: flex;         
+  align-items: center;   /* Centrar verticalmente */
+  width: 100%;
+  height: 40px;          /* Ajusta este valor según el alto de los botones */
+}
+
+mat-form-field {
+  display: flex;         
+  align-items: center;   /* Centrar contenido */
+  width: 100%;
+  margin: 0;             /* Elimina márgenes extra */
+}
+
+input {
+  height: 100%;          /* Ocupa todo el alto del mat-form-field */
+  box-sizing: border-box; /* Considera padding en el tamaño */
+}

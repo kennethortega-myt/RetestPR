@@ -1,0 +1,52 @@
+<section class="contenido-nofixed" id="main-all-section">
+  <article class="w-100">
+    <h1 class="titulo1"><span class="icono_titulo" [ngClass]="iconoClass"></span> {{ electionDescriptionTitle }}</h1>
+  </article>
+
+  <app-seccion-actas-resumen class="actas-seccion" [resumen]="resumen"></app-seccion-actas-resumen>
+
+  <div class="tabs-group">
+    <app-election-tabs (openTabEvent)="openTab($event)" [activeTab]="activeTab" class="w-100"></app-election-tabs>
+    <div class="tab-conte" id="tab1" [class.active]="activeTab === 'tab1'">
+      <ng-container *ngIf="activeTab === 'tab1' && resumen.fechaActualizacion">
+        <app-tab-ubicacion-geografica-parlamento
+          (scrollToTopEvent)="scrollToMainSection()"
+          (regionChangedEvent)="regionChanged($event)"
+          (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+          (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+          [resumen]="resumen"
+          [parlamentoService]="parlamentoService"
+          [electionId]="electionID"
+        ></app-tab-ubicacion-geografica-parlamento>
+      </ng-container>
+    </div>
+    <div class="tab-conte" id="tab2" [class.active]="activeTab === 'tab2'">
+      <ng-container *ngIf="activeTab === 'tab2'">
+        <app-tab-realizar-busqueda
+          class="w-100"
+          [electionId]="electionID"
+          (regionChangedEvent)="regionChanged($event)"
+          (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+          (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+          [parlamentoService]="parlamentoService"
+          [electionId]="electionID"
+          [showNombreOP]="showNombreOP"
+        ></app-tab-realizar-busqueda>
+      </ng-container>
+    </div>
+    <div class="tab-conte" id="tab3" [class.active]="activeTab === 'tab3'">
+      <ng-container *ngIf="activeTab === 'tab3'">
+        <app-tab-candidato-parlamento
+          class="w-100"
+          (regionChangedEvent)="regionChanged($event)"
+          (filterByLocationParamsEvent)="filterDistrictElectionChart($event)"
+          (updateFiltersFromNewEvent)="loadGeneralSummaryByGenericFilters($event)"
+          [parlamentoService]="parlamentoService"
+          [electionId]="electionID"
+        ></app-tab-candidato-parlamento>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

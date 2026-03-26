@@ -1,0 +1,110 @@
+<article class="cont-flex container" [formGroup]="formTipoDeBusqueda" *ngIf="allContentStatus == 'show'">
+  <div class="cont-flex justify-content-center">
+    <div class="w-80">
+      <!-- SELECT PARA ELEGIR ORGANIZACIÓN POLÍTICA -->
+      <section class="">
+        <div class="conte_buscador mb-1">
+          <app-autocomplete-input
+            class="input_autocomplete"
+            placeholder="{{ 'tab-busqueda.seleccioneOrganizacion' | translate }}"
+            [form]="formTipoDeBusqueda"
+            [arrayValues]="organizationsForSelect"
+            valueKey="codigoAgrupacionPolitica"
+            displayKey="nombreAgrupacionPolitica"
+            formControlName="organization"
+            (optionValueSelected)="organizationChanged($event)"
+          >
+          </app-autocomplete-input>
+        </div>
+      </section>
+    </div>
+
+    <!-- HOMBRE ONPE: Debes seleccionar una organización politica --- VERIFICADO -->
+    <div class="w-80" *ngIf="showInitialMessage">
+      <app-person-opne-no-information
+        [personOnpeMessageType]="'select_orga_and_press_button'"
+      ></app-person-opne-no-information>
+    </div>
+
+    <!-- HOMBRE ONPE: Debes hacer click en botón buscar --- VERIFICADO -->
+    <div class="w-80" *ngIf="enableButtonBuscar">
+      <app-person-opne-no-information
+        [personOnpeMessageType]="'press_button_to_cotinue'"
+      ></app-person-opne-no-information>
+    </div>
+
+    <div class="w-80" *ngIf="dataFromBackendStatue == 'show'">
+        <div class="w-100 mb-1 opBase">
+          <app-lista-de-candidatos-y-organizaciones-resultado
+            class="w-full"  
+            [resultOfParticipants]="compactListPorCandidato"
+            [datosOrganizacion]="datosOP"
+            [compactMode]="true"
+          ></app-lista-de-candidatos-y-organizaciones-resultado>
+        </div>
+      <!-- SELECT PARA ELEGIR ORGANIZACIÓN POLÍTICA -->
+      <div class="w-100 centrar-vertical mb-1">
+        <mat-form-field appearance="outline" class="input-bg-blanco">
+          <input
+            formControlName="candidateName"
+            matInput
+            class="input_buscador"
+            placeholder="{{ 'realizar-busqueda.ingreseNombreCandidato' | translate }}"
+          />
+          @if (formTipoDeBusqueda.get('candidateName').value?.length) {
+            <button matSuffix mat-icon-button (click)="cleanCandidateFilter()" (mousedown)="$event.preventDefault()">
+              <mat-icon>close</mat-icon>
+            </button>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="w-100" *ngIf="thereIsMatchWithName == 'show'">
+        <!-- FILTRO DE UBIGEOS -->
+        <div class="w-100">
+          <app-generic-filter-ubigeo
+            class="w-100 n-p"
+            [filterFunctionality]="'peru_intern_and_all_join'"
+            (applyFiltersEvent)="applyFiltersEvent($event)"
+          ></app-generic-filter-ubigeo>
+        </div>
+
+        <div class="w-100 mb-3">
+          <app-lista-de-candidatos-y-organizaciones-resultado
+            [resultOfParticipants]="resultOfParticipants"
+            [maxValueForScaleName]="maxValueForScaleName"
+            [showLogoOP]="false"
+            [showNombreOP]="false"
+            *ngIf="showListOfResult == 'show'"
+          ></app-lista-de-candidatos-y-organizaciones-resultado>
+          <app-person-opne-no-information
+            [personOnpeMessageType]="'there_is_no_information'"
+            *ngIf="showListOfResult == 'hide'"
+          ></app-person-opne-no-information>
+        </div>
+      </div>
+
+      <!-- LISTA DE RESULTADOS DE BUSQUEDA -->
+      <div class="w-100 mb-3" *ngIf="thereIsMatchWithName == 'hide'">
+        <app-person-opne-no-information [personOnpeMessageType]="'criterios_no_valid'"></app-person-opne-no-information>
+      </div>
+    </div>
+
+    <!--HOMBRE ONPE: No hay información -->
+    <div class="w-80" *ngIf="dataFromBackendStatue == 'hide'">
+      <app-person-opne-no-information
+        [personOnpeMessageType]="'there_is_no_information'"
+      ></app-person-opne-no-information>
+    </div>
+  </div>
+</article>
+
+<article class="cont-flex container" *ngIf="allContentStatus == 'hide'">
+  <div class="cont-flex justify-content-center">
+    <div class="w-80">
+      <app-person-opne-no-information
+        [personOnpeMessageType]="'there_is_no_information2'"
+      ></app-person-opne-no-information>
+    </div>
+  </div>
+</article>

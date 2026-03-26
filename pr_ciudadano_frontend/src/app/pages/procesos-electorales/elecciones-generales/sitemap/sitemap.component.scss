@@ -1,0 +1,74 @@
+.sitemap-content {
+  padding: 0 15px;
+
+  nav {
+    background: none;
+    width: 100%;
+    position: unset;
+    height: auto;
+
+    li {
+      a,
+      button {
+        width: 100%;
+        background-color: inherit;
+        border: none;
+        font-weight: 300;
+        font-size: 1.2rem;
+        font-family: 'Poppins', Arial, sans-serif;
+        color: var(--azulOnpe); // unificado
+        transition: all 0.3s;
+        padding: 10px 15px 8px 8px;
+        text-align: left;
+
+        strong {
+          font-weight: 500;
+          margin-right: 8px;
+        }
+      }
+
+      &:hover a,
+      &:hover button {
+        background: var(--grisclaro2);
+        color: var(--azulOnpe);
+
+        &:hover {
+          color: var(--azulOnpeClaro);
+        }
+      }
+      ul {
+        border: 1px dashed var(--azulOnpe);
+        border-radius: 10px;
+        padding: 1rem;
+        li {
+          a,
+          button {
+            &:hover {
+              background: var(--azulFocus);
+              color: var(--blanco) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #002751;
+    margin: 2.5rem 0 0.5rem 0;
+  }
+
+  /* Estilos generales para a dentro de UL */
+  ul a,
+  ul button {
+    color: var(--azulOnpe);
+    transition: color 0.2s ease; // mejora UX
+
+    &:hover {
+      color: var(--azulOnpeClaro);
+      cursor: pointer;
+    }
+  }
+}

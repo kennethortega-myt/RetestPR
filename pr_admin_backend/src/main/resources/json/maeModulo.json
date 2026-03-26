@@ -1,0 +1,29 @@
+[
+  {"id": 1,	"nombre": "Resumen General",								 "padre":0, "hijos":false,	"icono": "icon-ico_resumen_general",		"url": "/main/resumen",									"orden": 1, "activo": 1, "eleccion": 0,	"principal": false, "descripcion":""},
+  {"id": 2,	"nombre": "Resumen General",								 "padre":0, "hijos":false,	"icono": "icon-ico_resumen_general",		"url": "/main/resumen-revocatoria",						"orden": 2, "activo": 0, "eleccion": 0,	"principal": false, "descripcion":""},
+ 
+  {"id": 10,"nombre": "Eleccion Regional",					    		 "padre":0, "hijos":false,	"icono": "icon-ico-elecciones-regionales", 	"url": "/main/elecciones-regionales",  					"orden": 10,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Eleccion Regional"},
+  {"id": 11,"nombre": "Eleccion Provincial",	    		    		 "padre":0, "hijos":false,	"icono": "icon-ico-elecciones-provicional",	"url": "/main/elecciones-provinciales",					"orden": 11,"activo": 0, "eleccion": 0,	"principal": false, "descripcion":"Eleccion Provincial"},
+  {"id": 12,"nombre": "Eleccion Distrital",	    			    		 "padre":0, "hijos":false,	"icono": "icon-ico-elecciones-distritales",	"url": "/main/elecciones-distritales", 					"orden": 12,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Eleccion Distrital"},
+  {"id": 13,"nombre": "Referendun Nacional",				    		 "padre":0, "hijos":false,	"icono": "icon-ico-referendun-nacional",   	"url": "/main/referendun-nacional",						"orden": 13,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Referendun Nacional"},
+  
+  {"id": 21,"nombre": "Revocatoria de autoridades",    		 			 "padre":0, "hijos":false,	"icono": "icon-ico-revocatoria",		    "url": "/main/revocatoria-autoridades",					"orden": 21,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Revocatoria de autoridades"},
+  {"id": 22,"nombre": "Revocatoria de Gobernadores y Consejeros",		 "padre":21,"hijos":false,	"icono": "icon-ico-revocatoria-gobernador", "url": "/main/revocatoria-gobernador-consejero",		"orden": 22,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Revocatoria de Gobernadores y Consejeros"},
+  {"id": 23,"nombre": "Revocatoria de Alcaldes y Regidores Provinciales","padre":21,"hijos":false,	"icono": "icon-ico-revocatoria-provincial", "url": "/main/revocatoria-alcalde-regidor-prov",		"orden": 23,"activo": 0, "eleccion": 6, "principal": false, "descripcion":"Revocatoria de Alcaldes y Regidores Provinciales"},
+  {"id": 24,"nombre": "Revocatoria de Alcaldes y Regidores Distritales", "padre":21,"hijos":false,	"icono": "icon-ico-revocatoria-distrital",  "url": "/main/revocatoria-alcalde-regidor-dist",		"orden": 24,"activo": 0, "eleccion": 7, "principal": false, "descripcion":"Revocatoria de Alcaldes y Regidores Distritales"},
+  
+  {"id": 31,"nombre": "Presidencial",									 "padre":0, "hijos":false,	"icono": "icon-ico_e_presidencial",			"url": "/main/presidenciales",							"orden": 31,"activo": 1, "eleccion": 10,"principal": true, "descripcion":"Elección de Fórmula Presidencial"},
+  {"id": 32,"nombre": "Senadores",										 "padre":0, "hijos":true,	"icono": "icon-ico_senadores",		   		"url": "",												"orden": 32,"activo": 1, "eleccion": 0,	"principal": false, "descripcion":""},
+  {"id": 33,"nombre": "Senadores distrito electoral múltiple",			 "padre":32,"hijos":false,	"icono": "icon-ico-senado_27",		   		"url": "/main/senadores-distrito-electoral-multiple",	"orden": 34,"activo": 1, "eleccion": 14,"principal": false, "descripcion":"Elección Cámara de Senadores - Distrito Electoral Múltiple (Regional)"},
+  {"id": 34,"nombre": "Senadores distrito electoral único",    			 "padre":32,"hijos":false,	"icono": "icon-ico-senado_33",   			"url": "/main/senadores-distrito-nacional-unico",   	"orden": 33,"activo": 1, "eleccion": 15,"principal": false, "descripcion":"Elección Cámara de Senadores - Distrito Electoral Único (Nacional)"},
+  {"id": 35,"nombre": "Diputados",				    		    		 "padre":0, "hijos":false,	"icono": "icon-ico_e_diputados",   			"url": "/main/diputados",   							"orden": 35,"activo": 1, "eleccion": 13,"principal": false, "descripcion":"Elección Cámara de Diputados"}, 
+  {"id": 36,"nombre": "Parlamento Andino",		    					 "padre":0, "hijos":false,	"icono": "icon-ico_e_parlamento",  			"url": "/main/parlamento-andino",						"orden": 36,"activo": 1, "eleccion": 12,"principal": false, "descripcion":"Elección Parlamento Andino"},
+   
+  {"id": 51,"nombre": "Participación Ciudadana",   			    		 "padre":0, "hijos":false,	"icono": "icon-ico-participacion2", 		"url": "/main/participacion-ciudadana",					"orden": 51,"activo": 1, "eleccion": 0, "principal": false, "descripcion":"Participación ciudadana"},
+  {"id": 52,"nombre": "Actas",		    					    		 "padre":0, "hijos":false,	"icono": "icon-ico_menu_actas",				"url": "/main/actas",		    						"orden": 52,"activo": 1, "eleccion": 0, "principal": false, "descripcion":"Actas"},
+  {"id": 53,"nombre": "Participación Ciudadana",   			    		 "padre":0, "hijos":false,	"icono": "icon-ico-participacion2", 		"url": "/main/participacion-ciudadana-revocatoria",		"orden": 53,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Participación ciudadana"},
+  {"id": 54,"nombre": "Actas",		    					    		 "padre":0, "hijos":false,	"icono": "icon-ico_menu_actas",				"url": "/main/actas-revocatoria",  						"orden": 54,"activo": 0, "eleccion": 0, "principal": false, "descripcion":"Actas"},
+  
+  {"id": 61,"nombre": "Reportes",		    					    		 "padre":0, "hijos":false,	"icono": "icon-ico-reportes",				"url": "/main/reportes-automaticos",  						"orden": 61,"activo": 1, "eleccion": 0, "principal": false, "descripcion":"Reportes Automáticos"}
+   
+]

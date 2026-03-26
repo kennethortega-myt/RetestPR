@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fab724;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-iconEspera);
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_10853" data-name="Rectángulo 10853" class="cls-1" width="24" height="24"/>
+    </clipPath>
+    <clipPath id="clip-iconEspera">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="iconEspera" class="cls-2">
+    <g id="Grupo_23085" data-name="Grupo 23085">
+      <g id="Grupo_23079" data-name="Grupo 23079" class="cls-3">
+        <path id="Trazado_16521" data-name="Trazado 16521" class="cls-1" d="M23.989,11.443A12,12,0,1,0,11.453,23.989c.175.011.36.011.546.011A12.008,12.008,0,0,0,24,12c0-.185,0-.371-.011-.556M17.4,17.586a1.427,1.427,0,0,1-1.075-.169L12.674,15.2l-1.657-1.008a.882.882,0,0,1-.405-.577.894.894,0,0,1-.018-.124c0-.007,0-.014,0-.02s-.006-.04-.006-.06V7.192A1.413,1.413,0,0,1,12,5.779h.01a1.408,1.408,0,0,1,1.4,1.413v4.266a.009.009,0,0,0,.01.01l0,.87L17.806,15a1.418,1.418,0,0,1-.4,2.586" transform="translate(0 0)"/>
+      </g>
+    </g>
+  </g>
+</svg>

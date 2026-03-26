@@ -1,0 +1,35 @@
+<div class="content-total-votos">
+  <h5><span class="asterisk">*</span>{{ TotVotosValidosKey | translate }}</h5>
+  <h5><span class="asterisk">**</span>
+    @if (useAlterTotalCastedVotesKey) {
+      {{ TotVotosEmitidosAlternativoKey | translate }}
+    } @else {
+      {{ TotVotosEmitidosKey | translate }}
+    }
+  </h5>
+</div>
+<!-- FORMULA DE VOTOS -->
+<div class="formula_votos">
+  <div class="w-50 d-flex-wrap">
+    <div>{{ VotosValidadosKey | translate }}</div>
+    <div class="igual">=</div>
+    <div>
+      {{ CantidadVotosKey | translate }}
+      <hr />
+      {{ TotalVotosValidadosKey | translate }}
+    </div>
+    <div class="igual">x</div>
+    <div>100</div>
+  </div>
+  <div class="w-50 d-flex-wrap">
+    <div>{{ VotosEmitidosKey | translate }}</div>
+    <div class="igual">=</div>
+    <div>
+      {{ CantidadVotosKey | translate }}
+      <hr />
+      {{ TotalVotosEmitidosKey | translate }}
+    </div>
+    <div class="igual">x</div>
+    <div>100</div>
+  </div>
+</div>

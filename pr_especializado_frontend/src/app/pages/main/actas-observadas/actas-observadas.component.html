@@ -1,0 +1,438 @@
+<div *ngIf="isContentReady">
+  <div class="d-flex px-32 p-0-movil mt-2 mt-12-xs gap-22">
+    <div class="w-70 p-0-movil w-full-xs mr-40 mr-0-xs">
+      <h1 class="titulo-content">{{ 'ActasEnviadasJEE.Titulo' | translate }}</h1>
+      <app-filtro
+        (mensajeEvent)="mostrarMensaje($event)"
+        (filtrarEvent)="filtrar($event)"
+        (limpiarFiltrarEvent)="limpiar($event)"
+        (cambiosFiltrosDinamicosEvent)="cambiosFiltroDinamicos($event)"
+      ></app-filtro>
+    </div>
+  </div>
+
+  <div class="scroll-content-general d-flex flex-direction-col-xs px-32 p-0-movil content-general">
+    <div class="w-70 p-0-movil w-60-md w-full-xs items-center content-70 bg-blanco bg-transparent-movil">
+      <ng-container *ngIf="!mensaje || form!.get('filtroActas')!.value!.length > 0">
+        <div class="content-resultado">
+          <app-resumen-etiqueta
+            #resumenEtiquetaComponent
+            [hidden]="mensaje != ''"
+            (generarReporteEvent)="generarReporte()"
+          ></app-resumen-etiqueta>
+
+          <!-- Botón + mapa: solo en móvil, posición superior -->
+          <ng-container *ngIf="esPantallaChica && !(mensaje != '')">
+            <hr>
+            <button class="button-map" (click)="toggleMapa()">
+              <div class="text-mapa">
+                <img src="assets/img/icons/icon-mapa.svg" alt="icono mapa" />
+                <h5>{{ 'actas-observadas.VerMapaCalor' | translate }}</h5>
+              </div>
+              <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa"></div>
+            </button>
+            <ng-container *ngTemplateOutlet="mapaContenido"></ng-container>
+          </ng-container>
+
+          <app-resumen-grafica-modelo-dos [hidden]="mensaje != ''"></app-resumen-grafica-modelo-dos>
+        </div>
+
+        <div class="d-flex gap-22 pt-20">
+          <div class="w-full">
+            <div class="mt-10">
+              <div class="container-actas">
+                <ng-container>
+                  <div
+                    class="title-actas"
+                    [formGroup]="form"
+                    *ngIf="actasObservadas.length > 0 || haHabidoResultadosPrevios"
+                  >
+                    <h2>
+                      {{ 'ActasEnviadasJEE.CantidadActas' | translate }}
+                      <span class="num-actas">({{ this.tableInformation.totalRegisters | number: '1.0-0' }})</span>
+                    </h2>
+                    <div class="d-flex gap-18 flex-wrap w-full filtro-cant-actas">
+                      <div class="text-left ">
+                        <mat-select
+                          [(value)]="select5"
+                          class="mat-select-resul"
+                          panelClass="select-panel-right"
+                          formControlName="filtroActas"
+                          multiple
+                          [placeholder]="'ActasEnviadasJEE.MotivoJEE' | translate"
+                        >
+                          <mat-select-trigger>
+                            <span class="placeholder">
+                              {{ 'ActasEnviadasJEE.MotivoJEE' | translate }}
+                            </span>
+                          </mat-select-trigger>
+                          <ng-container *ngFor="let option of actasOptionsV">
+                            <mat-option
+                              [value]="option.value"
+                              (onSelectionChange)="onParentSelectionChange($event, option)"
+                            >
+                              {{ option.text | translate }}
+                            </mat-option>
+
+                            <ng-container *ngFor="let child of option.children">
+                              <mat-option class="pl-3" [value]="child.value">
+                                {{ child.text | translate }}
+                              </mat-option>
+                            </ng-container>
+                          </ng-container>
+                        </mat-select>
+                      </div>
+                      <div class="text-left ">
+                        <mat-select [(value)]="select3" class="mat-select-resul" formControlName="estadoActa" panelClass="custom-select-panel">
+                          <ng-container *ngFor="let option of mainOptionsActasV">
+                            <mat-option [value]="option.value">{{ option.text | translate }}</mat-option>
+                          </ng-container>
+                        </mat-select>
+                      </div>
+                    </div>
+                    <div class="w-full text-right">
+                      <button class="filtros__activos" (click)="toggleChips()" [class.is-open]="chipsOpen">
+                        <h6>Filtros activos ({{ selectedTextsSubStatusFilter.length }})</h6>
+                        <div class="mat-mdc-select-arrow">
+                          <svg viewBox="0 0 24 24" width="24px" height="24px"><path d="M7 10l5 5 5-5z"></path></svg>
+                        </div>
+                      </button>
+                      <div class="chip-container" [class.is-open]="chipsOpen" >
+                        <span class="chip" *ngFor="let item of selectedTextsSubStatusFilter">
+                          {{ item }}
+                          <button type="button" class="chip-close" (click)="removeSelectedItem(item)">×</button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="actas-container">
+                    <ng-container *ngFor="let actaObservada of actasObservadas">
+                      <button
+                        class="acta"
+                        [ngClass]="{ activado: actaObservada.activo == true }"
+                        (click)="mostrarDetalleActa(actaObservada)"
+                        (keydown.enter)="mostrarDetalleActa(actaObservada)"
+                      >
+                        <img [src]="getIconImageForElectionId(actaObservada.idEleccion)" alt="Icono de Acta" />
+                        <div class="acta-info">
+                          <span class="acta-code">{{ actaObservada?.codigoMesa }}</span>
+                          <ng-container [ngSwitch]="actaObservada.codigoEstadoActa">
+                            <div class="conte-cards-status">
+                              <span
+                                class="status"
+                                *ngSwitchCase="EnumCodigoEstadoActa.CODIGO_ESTADO_ACTA_PARA_ENVIO_JEE"
+                              >
+                                {{ 'ActasEnviadasJEE.ParaJEE' | translate }}
+                                <img src="assets/icon-adv.svg" alt="Acta observada" />
+                              </span>
+                              <span
+                                class="status"
+                                *ngSwitchCase="EnumCodigoEstadoActa.CODIGO_ESTADO_ACTA_CONTABILIZADA"
+                              >
+                                {{ 'ActasEnviadasJEE.Contabilizada' | translate }}
+                                <img class="nofilter" src="assets/icon-check-azul.svg" alt="Contabilizada" />
+                              </span>
+                            </div>
+                          </ng-container>
+                        </div>
+                      </button>
+                    </ng-container>
+                  </div>
+                  <div class="footer" *ngIf="actasObservadas.length > 0">
+                    <div class="legend">
+                      <div>
+                        @switch (idTipoEleccion) {
+                          @case (EnumIdEleccion.ID_ELECCION_PRESIDENCIAL) {
+                            <img src="assets/icon-acta-pre.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaPresidencial' | translate }}</span>
+                          }
+                          @case (EnumIdEleccion.ID_ELECCION_CONGRESAL) {
+                            <img src="assets/icon-congresal.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaCongresal' | translate }}</span>
+                          }
+                          @case (EnumIdEleccion.ID_ELECCION_PARLAMENTO_ANDINO) {
+                            <img src="assets/icon-parlamento-andino.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaParlamentoAndino' | translate }}</span>
+                          }
+                          @case (EnumIdEleccion.ID_ELECCION_DIPUTADOS) {
+                            <img src="assets/icon-congresal.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaDiputados' | translate }}</span>
+                          }
+                          @case (EnumIdEleccion.ID_ELECCION_SENADORES_MULTIPLE) {
+                            <img src="assets/img/icons/senador_DEM.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaSenadoresMultiple' | translate }}</span>
+                          }
+                          @case (EnumIdEleccion.ID_ELECCION_SENADORES_UNICO) {
+                            <img src="assets/img/icons/senador_DEU.svg" alt="Icono de Acta" />
+                            <span>{{ 'ActasEnviadasJEE.ActaSenadoresUnico' | translate }}</span>
+                          }
+                        }
+                      </div>
+                      <div class="w-full">
+                        <ul class="leyendas_actas p-0 mt-10">
+                          <li>
+                            <img
+                              alt="Acta observada"
+                              src="assets/img/icons/ico-observada.svg"
+                              class="ico-observada"
+                            />{{ 'ActasEnviadasJEE.ParaJEE' | translate }}
+                          </li>
+                          <li>
+                            <img
+                              alt="Contabilizada"
+                              src="assets/img/icons/ico-observada-contabilizada.svg"
+                              class="ico-observada"
+                            />{{ 'ActasEnviadasJEE.Contabilizada' | translate }}
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="w-full">
+                        <a
+                          class="preguntas-popup"
+                          tabindex="0"
+                          (keydown.enter)="openPopup2()"
+                          (keydown.space)="openPopup2()"
+                          (click)="openPopup2()"
+                          >{{ 'actas-observadas.CausalesEnvio' | translate }}
+                          <span class="material-icons">visibility</span></a
+                        >
+                      </div>
+                    </div>
+                    <div class="pagination flex-grow1">
+                      @if (tableInformation.totalRegisters > tamanioPaginaActas) {
+                        <mat-paginator
+                          class="w-full bg-transparente"
+                          [length]="tableInformation.totalRegisters"
+                          [pageSize]="tableInformation.pageSize"
+                          [pageIndex]="tableInformation.currentPage"
+                          (page)="handlePageEvent($event)"
+                          [pageSizeOptions]="pageSizeOptions"
+                          aria-label="Select page"
+                        >
+                        </mat-paginator>
+                      }
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-detalle-resultado"></div>
+      </ng-container>
+      <ng-container *ngIf="mensaje != ''">
+        <app-personaje-mensaje
+          [mensaje]="'actas-observadas.MensajeSinSeleccion' | translate"
+          class="scroll-content-general d-flex flex-direction-col-xs content-general"
+        ></app-personaje-mensaje>
+      </ng-container>
+      <ng-container *ngIf="mensajeListaActasObservada != ''">
+        <app-personaje-mensaje [mensaje]="'actas-observadas.MensajeActasObservadasSinResultados' | translate : {
+                  date: (dateUpdate | onpeDate: 'dd/MM/yyyy'),
+                  hour: (dateUpdate | onpeDate: 'hh:mm:ss a')
+                }" class="scroll-content-general d-flex flex-direction-col-xs content-general"></app-personaje-mensaje>
+      </ng-container>
+    </div>
+
+    <!-- En desktop: mapa en sidebar (siempre visible) -->
+    <ng-container *ngIf="!esPantallaChica">
+      <ng-container *ngTemplateOutlet="mapaContenido"></ng-container>
+    </ng-container>
+  </div>
+
+  <!-- Definición única del contenedor del mapa -->
+  <ng-template #mapaContenido>
+    <div
+      class="w-30 w-40-md containermap"
+      [ngClass]="{
+        'map-visible2': mostrarMapa || !esPantallaChica,
+        'map-oculto': !mostrarMapa && esPantallaChica
+      }"
+    >
+      <div class="mapas card-map-movil" style="width: 100%; height: 240px !important">
+        <ng-container *ngIf="mapaCalor">
+          <app-chart-mapa
+            [id]="'chartdivmap'"
+            (bottonHome)="cambioIdAmbitoGeograficoDesdeMapa($event)"
+            (seleccionPoligonoEvent)="ubigeoMapaSeleccionado($event)"
+          >
+          </app-chart-mapa>
+        </ng-container>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="bg-gris">
+    <!-- BLOQUE DETALLE ACTA RESPONSIVE -->
+    <ng-container *ngIf="verDetalleActa">
+      <!-- Botón toggle para móviles -->
+      <div id="detalle-view-222"></div>
+      <div class="container-datos-acta px-32 p-0-movil pt-20">
+        <h3 class="titulo_numero_acta">
+          {{ 'ActasEnviadasJEE.ACTAN' | translate }} {{ detalleActa.codigoMesa + ' - ' + detActaEleccion }}
+        </h3>
+
+        <button class="button-map" *ngIf="esPantallaChica" (click)="toggleDatosActa()">
+          <div class="text-mapa">
+            <img src="assets/img/icons/icon-ojo.svg" alt="" />
+            <h5>{{ detalleActaText | translate }}</h5>
+          </div>
+          <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarDatosActa"></div>
+        </button>
+
+        <div
+          class="ocultar-datos card-map-movil"
+          [ngClass]="{
+            'mostrar-datos': mostrarDatosActa || !esPantallaChica,
+            'dato-oculto': !mostrarDatosActa && esPantallaChica
+          }"
+        >
+          <div class="conte_detalles_acta">
+            <div class="detalles_acta">
+              <div class="cols-datos">
+                <div class="dato">{{ electoresHabiles | translate }}:</div>
+                <div class="resultado">{{ detalleActa.totalElectoresHabiles ?? 0 | number: '1.0-1' }}</div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ totalVotantes | translate }}:</div>
+                <div class="resultado">{{ mostrarValorTotalVotantes(detalleActa) }}</div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ participacionCiudadana | translate }}:</div>
+                <div class="resultado">{{ mostrarValorParticipacionCiudadana(detalleActa) }}</div>
+              </div>
+            </div>
+
+            <div class="detalles_acta">
+              <div class="cols-datos">
+                <div class="dato">{{ estadoActa | translate }}:</div>
+                <div class="resultado">
+                  {{ detalleActa.descripcionEstadoActa | uppercase }}
+                  {{ mostrarEtiquetaAdicionalEstadoActa(detalleActa) }}
+                </div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ ambito | translate }}:</div>
+                <div class="resultado">
+                  {{ nombreAmbito | uppercase }}
+                </div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ mostrarNombreNivel(0, true) | titlecase }}:</div>
+                <div class="resultado">{{ detalleActa.ubigeoNivel01 ?? '' }}</div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ mostrarNombreNivel(1, true) | titlecase }}:</div>
+                <div class="resultado">{{ detalleActa.ubigeoNivel02 ?? '' }}</div>
+              </div>
+            </div>
+
+            <div class="detalles_acta">
+              <div class="cols-datos">
+                <div class="dato">{{ mostrarNombreNivel(2, true) | titlecase }}:</div>
+                <div class="resultado">{{ detalleActa.ubigeoNivel03 ?? '' }}</div>
+              </div>
+              <div class="cols-datos">
+                <div class="dato">{{ capitalizeFirstLetter(mostrarNombreNivel(3, true)) }}:</div>
+                <div class="resultado">{{ detalleActa.nombreLocalVotacion ?? '' }}</div>
+              </div>
+              <ng-container *ngIf="detalleActa.centroPoblado">
+                <div class="cols-datos">
+                  <div class="dato">{{ centroPoblado | translate }}:</div>
+                  <div class="resultado">{{ detalleActa.centroPoblado }}</div>
+                </div>
+              </ng-container>
+              @if(detalleActa.codigoSolucionTecnologica == codigoSolucion){
+                <div class="cols-datos">
+                  <div class="dato">{{ solucionTecnologica | translate }}:</div>
+                  <div class="resultado">{{ detalleActa.descripcionSolucionTecnologica | uppercase }}</div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <section *ngIf="verDetalleActa" class="sec-cont segundo px-32 p-0-movil pb-20">
+      <ng-container *ngIf="verDetalleActa">
+        <div class="content-ver-actas version-pc">
+          <h2>{{ 'ActasEnviadasJEE.LineaTiempo' | translate }}:</h2>
+          <div
+            style="display: flex; gap: 12px"
+            *ngIf="contentActaObservada?.archivosActa || contentActaObservada?.archivosResolucion"
+          >
+            <button
+              *ngIf="contentActaObservada?.archivosActa!.length > 0"
+              (click)="verActa(contentActaObservada)"
+              style="display: flex; align-items: center; gap: 12px"
+              class="button_estilo1"
+            >
+              <img src="assets/icon-img.svg" alt="" />
+              {{ 'ActasEnviadasJEE.VerActa' | translate }}
+            </button>
+            <button
+              *ngIf="contentActaObservada?.archivosResolucion!.length > 0"
+              (click)="verResolucion(contentActaObservada)"
+              style="display: flex; align-items: center; gap: 12px"
+              class="button_estilo1"
+            >
+              <img src="assets/icon-img.svg" alt="" />
+              {{ 'ActasEnviadasJEE.VerResolucion' | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="container overflow-y-auto mt-20">
+          <app-linea-tiempo
+            [lineasTiempo]="lineasTiempo"
+            [hidden]="!verDetalleActa"
+            [mensaje]="estadoDescripcionActaResolucion"
+          ></app-linea-tiempo>
+        </div>
+
+        <ng-container
+          *ngIf="
+            contentActaObservada?.codigoEstadoActa == EnumCodigoEstadoActa.CODIGO_ESTADO_ACTA_CONTABILIZADA &&
+            (listaTablaEscrutinioModeloUno.length > 0 || listaTablaEscrutinioModeloDos.length > 0)
+          "
+        >
+          <div class="content-slide-toggle">
+            <p>{{ 'ActasEnviadasJEE.OrdenarPor' | translate }}</p>
+            <div class="inline-flex items-center">
+                  <label for="Toggle" [className]="orderBy === 'Votos' ? 'label_activo' : 'label_inactivo'">{{
+                                'ActasEnviadasJEE.Acta' | translate
+                  }}</label>
+                  <mat-slide-toggle [formControl]="ctrlToggle"></mat-slide-toggle>
+                  <label for="ctrlToggle" [className]="orderBy === 'Posicion' ? 'label_activo' : 'label_inactivo'">{{
+                    'ActasEnviadasJEE.Voto' | translate
+                  }}</label>
+            </div>
+
+          </div>
+          <div>
+            <app-tabla-escrutinio-modelo-uno
+              *ngIf="contentActaObservada?.idEleccion == EnumIdEleccion.ID_ELECCION_PRESIDENCIAL"
+              [listaTablaEscrutinioModeloUno]="listaTablaEscrutinioModeloUno!"
+              [showAchurados]="orderBy == 'Votos'"
+              [detalleActa]="detalleActa"
+              [hidden]="!verDetalleActa"
+            ></app-tabla-escrutinio-modelo-uno>
+            <app-tabla-escrutinio-modelo-dos
+              *ngIf="contentActaObservada?.idEleccion != EnumIdEleccion.ID_ELECCION_PRESIDENCIAL"
+              [listaTablaEscrutinioModeloDos]="listaTablaEscrutinioModeloDos!"
+              [idActa]="contentActaObservada?.id"
+              [showAchurados]="orderBy == 'Votos'"
+              [detalleActa]="detalleActa"
+              [hidden]="!verDetalleActa"
+            ></app-tabla-escrutinio-modelo-dos>
+          </div>
+
+          <div class="d-flex content-center">
+            <app-leyenda-formula-modelo-uno class="w-full"></app-leyenda-formula-modelo-uno>
+          </div>
+        </ng-container>
+      </ng-container>
+    </section>
+  </div>
+</div>

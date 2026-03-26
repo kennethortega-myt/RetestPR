@@ -1,0 +1,14 @@
+<div class="centrar_icono">
+  <img class="ico_alert" [src]="config.icon" alt="" />
+</div>
+<h2 class="titulo2 txtCenter aletWindows">{{ config.title }}</h2>
+<mat-dialog-content class="mat-typography txtCenter ajust-modal">
+  <div class="paddt-5">
+    <p class="palert" [innerHTML]="config.message"></p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="ajust-actions p-0">
+  <button [mat-dialog-close]="true" class="button_estilo1 no-mrg" cdkFocusInitial>
+    ACEPTAR
+  </button>
+</mat-dialog-actions>

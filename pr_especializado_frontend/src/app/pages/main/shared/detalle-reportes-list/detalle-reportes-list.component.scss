@@ -1,0 +1,98 @@
+.content__detalle__reportes{
+    display: flex; align-items: center;width: 100%;
+}
+
+.config-report-form__flex{
+    display: flex;gap: 20px;width: 100%;
+    border-bottom: 2px #ECECEC solid;
+    padding-bottom: 12px;
+}
+.config-report-form__flex-movil{
+    display: none;
+    width: 100%;
+    border-bottom: 2px #ECECEC solid;
+    padding-bottom: 12px;
+    .cabecera_eleccion{
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        .icono_eleccion{
+            width: 45px;
+            img{
+                max-width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+.content_detalle_reporte{
+    display: flex; flex-direction: column;width: 100%;    justify-content: center;
+    div{
+        h4{
+            font-size: 0.8rem ;
+            color: #2971B9;
+            display: flex;
+            text-align: left;
+            margin-bottom: 0.3rem;
+            span{
+                color: #003770;
+                flex: 1;
+                font-weight: 600;
+                padding-left: 6px;
+            }
+        }
+        h3{
+            color: #003770;
+            flex: 1;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+.content__detalle__reportes__colum{
+display: flex; flex-direction: column;
+flex: 1;
+    p{
+        text-align: center;
+        font-size: 0.9rem ;
+        line-height: 1rem;
+        color: #707070;
+        span{
+            color: #707070;
+            font-weight: 600;
+        }
+    }
+}
+
+
+.border-hr{
+    border: 1px #c0c0c0 solid;
+    height: 16px; margin: 0px 20px;
+}
+
+.text-left{
+    text-align: left!important;
+}
+
+
+@media (max-width: 960px) {
+    .config-report-form__shadow{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .config-report-form__flex{
+        display: none;
+    }
+    .config-report-form__flex-movil{
+        display: block;
+    }
+    .content_detalle_reporte {
+        h3{
+            font-weight: 400 !important;
+        }
+        h4{
+            font-weight: 400 !important;
+        }
+    }
+}

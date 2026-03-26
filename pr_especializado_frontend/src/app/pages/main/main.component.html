@@ -1,0 +1,45 @@
+<div class="div-externo">
+  <div class="div-interno header-container">
+    <app-header></app-header>
+  </div>
+  <mat-drawer-container class="example-container w-full d-grid">
+    <mat-drawer #drawer class="example-sidenav" mode="over" [opened]="false">
+      <!-- Header del drawer - solo visible en móvil -->
+      <div class="drawer-header">
+        <div class="alinear_boton_cerrar mb-1">
+          <button mat-dialog-close="" class="cerrar_menu" type="button" (click)="closeDrawer()" (keydown.enter)="closeDrawer()" (keydown.space)="closeDrawer()">
+            <img src="assets/img/icons/ico_x.svg" alt="">
+          </button>
+        </div>
+      </div>
+      
+      <!-- Menú principal -->
+      <div class="menu">
+        <a
+          *ngFor="let item of drawerMenuList()"
+          class="menu-item-new"
+          [routerLink]="item.routerLink"
+          routerLinkActive="selected"
+          (click)="closeDrawer()"
+          (keydown.enter)="closeDrawer()"
+          tabindex="0"
+        >
+          <span class="menu-icon" [class]="getIconPath(item.routeName)"></span><span>{{ getTranslationKey(item.routeName) | translate }}</span>
+        </a>
+      </div>
+    </mat-drawer>
+    
+    <div class="example-sidenav-content">
+      <div class="contenido-nofixed mainContenedor bg-gris-movil d-flex w-full ">
+        <router-outlet></router-outlet>
+      </div>
+
+      @if (!isLoading) {
+        <div class="div-interno">
+          <app-footer></app-footer>
+        </div>
+      }
+      
+    </div>
+  </mat-drawer-container>
+</div>

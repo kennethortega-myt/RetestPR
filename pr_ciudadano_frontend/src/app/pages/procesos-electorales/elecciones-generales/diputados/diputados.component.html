@@ -1,0 +1,33 @@
+<section class="contenido-nofixed">
+  <article class="w-100">
+    <h1 class="titulo1"><span class="icono_titulo icon-ico_e_diputados"></span> {{ electionDescriptionTitle }}</h1>
+  </article>
+  <app-seccion-actas-resumen [resumen]="resumen" class="actas-seccion"></app-seccion-actas-resumen>
+
+  <div class="tabs-group">
+    <app-election-tabs [activeTab]="activeTab" (openTabEvent)="openTab($event)" class="w-100"></app-election-tabs>
+
+    <div class="tab-conte" id="tab1" [class.active]="activeTab === 'tab1'">
+      <ng-container *ngIf="activeTab === 'tab1' && resumen">
+        <app-resultado-por-ubicacion-geografica
+          [idEleccion]="idEleccion"
+          [resumen]="resumen"
+        ></app-resultado-por-ubicacion-geografica>
+      </ng-container>
+    </div>
+    <div class="tab-conte" id="tab2" [class.active]="activeTab === 'tab2'">
+      <ng-container *ngIf="activeTab === 'tab2' && resumen">
+        <app-realizar-busqueda-diputado class="w-100"
+          [datos]="{ resumen: resumen, idEleccion: idEleccion }"
+        ></app-realizar-busqueda-diputado>
+      </ng-container>
+    </div>
+    <div class="tab-conte" id="tab3" [class.active]="activeTab === 'tab3'">
+      <ng-container *ngIf="activeTab === 'tab3' && resumen">
+        <app-resultado-por-candidato [idEleccion]="idEleccion" [resumen]="resumen" class="w-100"></app-resultado-por-candidato>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

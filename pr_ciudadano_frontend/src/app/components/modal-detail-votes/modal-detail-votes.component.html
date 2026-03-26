@@ -1,0 +1,90 @@
+<!-- mostrar cuando es voto agrupacion o candita -->
+@if (data.politicalPartyShow || data.candidateImageShow) {
+  <div class="voto_detalle">
+    @if (data.politicalPartyShow) {
+      <div class="bg-gris-candidato sombras">
+        @if (data.politicalPartyImageShow) {
+          <div class="img-partido">
+            <app-img alt="partidos" [src]="data.politicalPartyImage"></app-img>
+          </div>
+        }
+        <p class="nombre-agrupacion">{{ data.politicalPartyName }}</p>
+      </div>
+    }
+    <div class="dato-candidato">
+      @if (data.candidateImageShow) {
+        <div class="img-candidato">
+          <app-img alt="candidato" [src]="data.candidateImage"></app-img>
+        </div>
+      }
+      @if (data.candidateNameShow) {
+        <h3 class="nombre-candidato">{{ data.candidateName }}</h3>
+      }
+      <span class="subtitulo" [class.mt-2]="!data.candidateImageShow && !data.candidateNameShow">
+        {{ 'tab-ubicacion-geografica-presidenciales.cantidad_votos' | translate }}:
+      </span>
+      <span class="voto-cantidad">{{ data.votesNumber }}</span>
+    </div>
+  </div>
+  <!-- FIN mostrar cuando es voto agrupacion o candita -->
+} @else {
+  <!-- Mostrar cuando es votos blanco o nulos -->
+  <div class="voto_detalle_blanconulo">
+    <div class="dato-candidato">
+      <h3 class="nombre-candidato mb-2">{{ data.candidateName }}</h3>
+      <span class="subtitulo">{{ 'tab-ubicacion-geografica-presidenciales.cantidad_votos' | translate }}: </span>
+      <span class="voto-cantidad">{{ data.votesNumber }}</span>
+    </div>
+  </div>
+  <!-- FIN mostrar cuando es votos blanco o nulos -->
+}
+<div class="bg-gris-candidato mb-2">
+  <div class="votos-grises">
+    <span>{{ 'tab-ubicacion-geografica-presidenciales.votos_validos' | translate }}:</span>
+    <span class="voto">{{ votesValidPercentage }}</span>
+  </div>
+  <div class="votos-grises">
+    <span>{{ 'tab-ubicacion-geografica-presidenciales.votos_emitidos' | translate }}:</span>
+    <span class="voto">{{ votesEmittedPercentage }}</span>
+  </div>
+</div>
+<button class="estilo2 mb-2" mat-dialog-close>{{ 'pop-actas.cerrar' | translate }}</button>
+
+<!-- Mostrar lista de candidatos -->
+@if (data.candidatesShow) {
+  <button class="button-map" (click)="toggleShowCandidates()">
+    <div class="text-mapa">
+      <img src="assets/img/icons/icon-ojo.svg" alt="" />
+      <h5>Detalle Candidatos</h5>
+    </div>
+    <div class="flecha_desplegar" [class.flecha_desplegado]="showCandidates"></div>
+  </button>
+  <div class="mb-2">
+    <div
+      class="card-map-movil ocultar-datos"
+      [class.mostrar-listado]="showCandidates"
+      [class.ocultar-listado]="!showCandidates"
+    >
+      <section class="columnas detallados uno">
+        @for (candidate of data.candidates; track candidate.list) {
+          <article class="candidato">
+            <div class="cont-info">
+              <span class="numero">{{ candidate.list }}</span>
+              <div class="nombre">
+                <h3>{{ candidate.fullName }}</h3>
+              </div>
+              <div class="votos votos-text">
+                <strong>{{ candidate.votes }} </strong><br />
+                {{
+                  candidate.votes > 1
+                    ? ('deta-lista-candidato.votosText' | translate)
+                    : ('deta-lista-candidato.votoText' | translate)
+                }}
+              </div>
+            </div>
+          </article>
+        }
+      </section>
+    </div>
+  </div>
+}

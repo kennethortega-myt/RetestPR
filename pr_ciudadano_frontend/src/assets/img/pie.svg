@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="116.503" height="116.502" viewBox="0 0 116.503 116.502">
+  <defs>
+    <filter id="Elipse_153" x="0" y="0" width="116.503" height="116.502" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Elipse_153)">
+    <ellipse id="Elipse_153-2" data-name="Elipse 153" cx="49.251" cy="49.251" rx="49.251" ry="49.251" transform="translate(9 6)" fill="#fff"/>
+  </g>
+  <path id="Trazado_452" data-name="Trazado 452" d="M3780.348,4553.99a49.39,49.39,0,0,0-30.378,26.621l44.678,19.634.317-.314Z" transform="translate(-3736.519 -4545.844)" fill="#003874"/>
+  <g id="Grupo_248" data-name="Grupo 248" transform="translate(9.001 6)">
+    <path id="Unión_2" data-name="Unión 2" d="M12.57,82.117a49.295,49.295,0,0,1-8.12-53.35L49.129,48.4h0l.317-.315L34.828,2.147A49.258,49.258,0,1,1,12.57,82.117Z" transform="translate(0 0)" fill="#ececec" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>
+  </g>
+</svg>

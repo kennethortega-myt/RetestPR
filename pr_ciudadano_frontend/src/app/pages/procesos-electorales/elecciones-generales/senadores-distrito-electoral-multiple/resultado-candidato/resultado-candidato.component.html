@@ -1,0 +1,85 @@
+<article class="cont-flex">
+  <div class="sticky_ubigeo w-100">
+    <article class="cont-flex normal" [formGroup]="myFormUbigeo">
+      <div class="w-70 p-0-movil">
+        <div class="ubigeo-principal second t-l">
+          <div class="w-100 p-0 filtro-movil">
+            <app-generic-filter-ubigeo
+              class="w-100 n-p"
+              [filterFunctionality]="'only_regiones'"
+              (applyFiltersEvent)="filtrar($event)"
+              [style.visibility]="isUbigeoReady ? 'visible' : 'hidden'"
+            ></app-generic-filter-ubigeo>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="w-70">
+    <ng-container *ngIf="dataForDistrict?.length > 0">
+      <app-grafica-congresal-candidato
+        class="w-100 n-p"
+        [information_for_bars_origin]="dataForDistrict"
+        [scaleValues]="scalesForDistrict"
+        [totalPagina]="totalPagina"
+        [paginaActual]="paginaActual"
+      >
+      </app-grafica-congresal-candidato>
+    </ng-container>
+    <ng-container *ngIf="dataForDistrict?.length == 0">
+      <div class="personaje-anuncio">
+        <p>{{ mensaje }}</p>
+        <img alt="person" [src]="randomImageUrl" />
+      </div>
+    </ng-container>
+  </div>
+   <!-- MAPA -->
+
+    <button class="button-map" *ngIf="esPantallaChica" (click)="toggleMapa()">
+      <div class="text-mapa">
+        <img src="assets/img/icons/icon-mapa.svg" alt="">
+        <h5>{{ "actas-por-ambito.VerMapaCalor" | translate }}</h5>
+      </div>
+      <div class="flecha_desplegar" [class.flecha_desplegado]="mostrarMapa2">
+      </div>
+    </button>
+  <div class="w-30 min-50vh transition-map map-participacion" [ngClass]="{ 'map-visible2': mostrarMapa2 || !esPantallaChica, 'map-oculto': !mostrarMapa2 && esPantallaChica}">
+    <div class=" mapas map-container card-map-movil" style="width: 100%; height: 460px">
+      <ng-container *ngIf="mapaCalor && active">
+        <app-main-hot-map
+          [mapType]="'congresales'"
+          [mapaCalor]="mapaCalor"
+          [idDistritoElectoral]="myFormUbigeo.get('region').value"
+          [esEstranjero]="esExtranjero"
+          [oneFilter]="true"
+          [electionId]="idEleccion"
+          [mapContainerId]="'divChartMapa_'"
+          [mapHeight]="heightGrafica || 460"
+          [mostrarBotonMundo]="false"
+          [changeZoomLevelsToThree]="true"
+          [showLoadingState]="true"
+          (ubigeoParamsChanged)="seleccionarDistritoElectoralPorParams($event)"
+        >
+        </app-main-hot-map>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="w-100 content-total-votos">
+      <ng-container>
+      @if(dataForDistrict.length != 0 && dataForDistrict.length < cantidadLimiteCandidatos){
+        <h5><span class="asterisk">*</span>
+          {{ 'resultado-candidato.notaCandidatos1' | translate }}
+        </h5>
+      } @else if(dataForDistrict.length >= cantidadLimiteCandidatos) {
+          <h5><span class="asterisk">*</span>
+            {{ 'resultado-candidato.notaCandidatos1' | translate }}
+          </h5>
+          <h5><span class="asterisk">*</span>
+            {{ 'resultado-candidato.notaCandidatos2' | translate }}
+          </h5>
+      }
+      </ng-container>
+  </div>
+</article>

@@ -1,0 +1,47 @@
+<article class="grafica-candidatos">
+  <article>
+    <span *ngFor="let value of scaleValues">{{ value | number }}</span>
+    <span>0</span>
+  </article>
+  <article>
+    <section class="grafica-partidos-section">
+      <button class="btn_next2" (click)="scrollRight()"></button>
+      <button class="btn_after2" (click)="scrollLeft()"></button>
+      <!-- Bars -->
+      <article
+        class="chart-section grafica-partidos-article centrando-barras"
+        #politicalPartiesArticle
+      >
+        <div
+          class="data-postul"
+          *ngFor="let info of information_for_bars; let index = index"
+          [id]="index + 1"
+        >
+          <div class="barra-principal">
+            <div
+              class="carga"
+              [ngStyle]="{
+                height: info.percentage_for_chart + '%'
+              }"
+            >
+              <div class="elector-foto">
+                <img alt="elector-foto" [src]="info.urlAgrupacionImage" />
+              </div>
+              <span>
+                <b>{{ info.nombreAgrupacionPolitica }}</b> <br />
+                Votos válidos: <b>{{ info.number_of_valid_votes | number }}</b>
+              </span>
+            </div>
+          </div>
+          <div class="nombre-logo">
+            {{ info.nombreAgrupacionPolitica }}
+          </div>
+        </div>
+      </article>
+      <div class="fondo-grafica">
+        <div *ngFor="let value of scaleValues"></div>
+        <div></div>
+      </div>
+    </section>
+  </article>
+</article>

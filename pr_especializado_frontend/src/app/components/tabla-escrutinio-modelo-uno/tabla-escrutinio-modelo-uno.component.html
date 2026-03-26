@@ -1,0 +1,168 @@
+<div #header class="d-flex gap-30 d-none-md content-center px-20 lg mt-40 sticky">
+  <div class="d-flex gap12 item-partido w-40 cursor-pointer j-between-md" style="justify-content: end">
+    <div class="content-votos-e">
+      <div class="vot-v d-flex">
+        <h6 style="text-align: center">{{ 'TablaEscrutinio.VotosValidos' | translate }} (%)</h6>
+      </div>
+      <div class="vot-e d-flex items-center">
+        <h6 style="text-align: center">{{ 'TablaEscrutinio.VotosEmitidos' | translate }} (%)</h6>
+      </div>
+    </div>
+  </div>
+  <div class="w-40 linea-p">
+    <app-escala-cabecera-tabla class="version-pc" [registrosParaEscala]="registrosEscalas"></app-escala-cabecera-tabla>
+  </div>
+</div>
+
+<div #tabla class="mt-18 d-flex gap8 flex-column content-partidos" style="flex-direction: column">
+  <ng-container *ngFor="let partido of listaTablaEscrutinioModeloUnoPartidos">
+    <div class="item-partidos achurado flex-col-md flex-col-md h-80" *ngIf="partido.estado == 20 && showAchurados">
+      <div class="conte_achurado">
+        <img src="assets/achurado.svg" alt=""> <div class="texto_achurado">NO PARTICIPA</div>
+      </div>
+    </div>
+    <div class="item-partidos flex-col-md" *ngIf="partido.estado != 20">
+      <div class="d-flex item-partido w-40 cursor-pointer j-between-md" style="justify-content: space-between" (click)="detalleVotos(partido, true)" 
+      (keydown.enter)="detalleVotos(partido, true)">
+        <div class="d-flex gap12 gap-5-xs flex-grow1">
+          <div class="content-partido-person">
+            <img [src]="getImagePoliticalOrganization(partido.ccodigo!)" alt="" role="presentation" />
+            <ng-container *ngIf="partido.candidato?.length">
+              <img
+                [src]="getImageCandidate(partido.candidato![0].cdocumentoIdentidad!)"
+                onerror="this.src='assets/candidatos/avatar.jpg'"
+                alt=""
+                role="presentation"
+              />
+            </ng-container>
+          </div>
+          <div class="d-flex cont-part">
+            <ng-container *ngIf="partido.candidato?.length">
+              <h3>
+                {{ partido.candidato![0].apellidoPaterno }}
+                {{ partido.candidato![0].apellidoMaterno }}
+                {{ partido.candidato![0].nombres }}
+              </h3>
+            </ng-container>
+            <span>{{ partido.nombrePartidoPolitico }}</span>
+          </div>
+          <div class="conte-votos2 version-movil">
+            <div class="titulo_movil">{{ 'TablaEscrutinio.CantidadVotos' | translate }}:</div><span><b>{{ partido.totalVotos | number : "1.0-1" : "en-US" }}</b></span>
+          </div>
+        </div>
+        <div class="content-votos version-pc">
+          <div class="votos cant-pc">
+            {{ partido.votosValido | porcentajeFormat }}
+            <div class="sombra"></div>
+          </div>
+          <div class="votos cant-pc">
+             {{ partido.votosEmitido | porcentajeFormat }}
+            <div class="sombra"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-40 d-flex gap12 cont-progress">
+        <span>{{ 'TablaEscrutinio.CantidadVotos' | translate }}: <span class="cantidad-voto">{{ partido.totalVotos | number : "1.0-1" : "en-US" }}</span> </span>
+        <mat-progress-bar
+          class="carga-partidos"
+          mode="determinate"
+          [value]="partido.porcentajeBarra"
+        ></mat-progress-bar>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngFor="let otros of listaTablaEscrutinioModeloUnoOtros">
+    <div class="item-partidos sin-candidato flex-col-md h-80">
+      <div class="d-flex gap12 item-partido height-candidate w-40 cursor-pointer j-between-md" 
+        style="justify-content: space-between" (click)="detalleVotos(otros)" 
+      (keydown.enter)="detalleVotos(otros)">
+        <div class="d-flex gap12" style="gap: 12px">
+          <div class="d-flex cont-part" style="padding: 10px 0px 10px 20px">
+            <h3>{{ otros.nombrePartidoPolitico }}</h3> 
+          </div>
+        </div>
+        <div class="content-votos version-pc">
+          <div class="votos h-80">
+            -
+            <div class="sombra"></div>
+          </div>
+          <div class="votos h-80">
+            {{ otros.votosEmitido | porcentajeFormat }}
+            <div class="sombra"></div>
+          </div>
+        </div>
+        <div class="conte-votos2 version-movil">
+          <div class="titulo_movil">{{ 'TablaEscrutinio.CantidadVotos' | translate }}:</div><span><b>{{ otros.totalVotos | number : "1.0-1" : "en-US" }}</b></span>
+        </div>
+
+      </div>
+
+      <div class="w-40 d-flex gap12 cont-progress">
+        <span>{{ 'TablaEscrutinio.CantidadVotos' | translate }}: <span class="cantidad-voto">{{ otros.totalVotos | number : "1.0-1" : "en-US" }}</span></span>
+        <mat-progress-bar
+          class="carga-partidos"
+          mode="determinate"
+          [value]="otros.porcentajeBarra"
+        ></mat-progress-bar>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="item-partidos sin-candidato flex-wrap-movil flex-col-md h-80">
+    <div class="d-flex gap12 item-partido w-40 cursor-pointer j-between-md" style="justify-content: space-between">
+      <div class="d-flex gap12" style="gap: 12px">
+        <div class="d-flex cont-part" style="padding: 10px 0px 10px 20px">
+          <h3>{{ 'TablaEscrutinio.TOTALVOTOS' | translate }}</h3>
+        </div>
+      </div>
+      <div class="content-votos version-pc">
+        <div class="votos h-80">
+          {{ (detalleActa?.totalVotosValidos ?? 0) > 0 ? 100 : 0 }}%
+          <div class="sin-sombra"></div>
+        </div>
+
+        <div class="votos h-80">
+          {{ (detalleActa?.totalVotosEmitidos ?? 0) > 0 ? 100 : 0 }}%
+          <div class="sin-sombra"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-40 d-flex gap12 cont-progress">
+      <p class="titulo_votos_totales">
+        <span class="fs14">* {{ 'TablaEscrutinio.Votos_Validos' | translate }}: </span>
+        <span class="titulo_votos_totales__num2">
+          <span class="cantidad-voto">{{ detalleActa?.totalVotosValidos || 0 | number : "1.0-1" : "en-US" }} </span>
+        </span>
+      </p>
+      <p class="titulo_votos_totales mb-6">
+        <span class="fs14">** {{ 'TablaEscrutinio.Votos_Emitidos' | translate }}: </span>
+          <span class="titulo_votos_totales__num2">
+          <span class="cantidad-voto">{{ detalleActa?.totalVotosEmitidos || 0 | number : "1.0-1" : "en-US" }}</span>
+        </span>
+      </p>
+    </div>
+
+    <div class="cant-movil version-movil">
+      <div class="votos_totales">
+        <div class="titulo_movil">{{ 'TablaEscrutinio.Votos_Validos' | translate }}</div>
+        <span>
+          <b>{{ detalleActa?.totalVotosValidos || 0 | porcentajeFormat }}</b>
+          <b>{{ (detalleActa?.totalVotosValidos ?? 0) > 0 ? 100 : 0 }}%</b>
+        </span>
+      </div>
+      <div class="votos_totales">
+        <div class="titulo_movil">{{ 'TablaEscrutinio.Votos_Emitidos' | translate }}</div>
+        <span >
+          <b>
+            {{ detalleActa?.totalVotosEmitidos || 0 | porcentajeFormat }}
+          </b>
+          <b>{{ (detalleActa?.totalVotosEmitidos ?? 0) > 0 ? 100 : 0 }}% </b>
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.map-container {
+  position: relative;
+  min-height: 450px !important;
+  max-height: 600px !important;
+}
+
+.item-candidate {
+  gap: 6px;
+  .nombre {
+    flex: 1;
+    h2 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+.item-candidate:hover {
+  background-color: #7297bd;
+  cursor: pointer;
+}
+
+.item-candidate.activado {
+  background-color: #2A71B9;
+  .nombre {
+    h2 {
+      color: white;
+      font-weight: bold;
+    }
+    p {
+      color: white;
+    }
+  }
+}
+
+.presidenciales-org-pol {
+  padding-top: 0px !important;
+}

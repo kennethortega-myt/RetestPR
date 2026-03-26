@@ -1,0 +1,4215 @@
+/*****************************************************************************/
+/******************* PROYECTO: PRESENTACION DE RESULTADOS - ONPE *************/
+/************************** GITE - SGSI 2023 *********************************/
+/* UX/UI TEAM : Carlos Salas - Luis Vera - Edgardo Parede - Eduardo Castillo */
+/*****************************************************************************/
+
+@use 'variables' as *;
+
+$azulOnpe: #003874;
+$azulOnpeClaro: #2971B9;
+$celesteOnpe: #6DB2E2;
+$grisPendiente: #ECECEC;
+$grisTextos: #B2B4B6;
+$blanco: #ffffff;
+$azulFocus: #287ace;
+
+
+
+@media (min-width: 960px) {
+    .d-none-xl {
+        display: none !important;
+    }
+
+    .texto-cantidad-procentaje {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1921px) {
+    .mesa-observada i {
+        width: 168px;
+    }
+
+    .general-contenedor:first-child .contenido-nofixed.seccion-pantalla {
+
+        height: calc(100vh - 186px);
+    }
+
+    span {
+
+        font-size: 1.1rem;
+    }
+
+    .logo-principal {
+        max-width: 500px;
+    }
+
+    .navegador-recomendado {
+        margin-top: 9vh;
+    }
+
+    .sec-cont {
+        padding: 15px;
+    }
+
+    .elector-foto {
+        width: 80px;
+        height: 80px;
+        margin-left: -40px;
+        top: -64px;
+    }
+
+    .caja-simulacion {
+        height: calc(100vh - 419px)
+    }
+
+    .caja-simulacion2 {
+        height: calc(40vh - 145px);
+    }
+
+    .caja-simulacion3 {
+        height: calc(10vh - 39px);
+    }
+
+    .mapa-cont {
+        max-height: 64vh;
+    }
+
+    .lista-mapa-calor li {
+        padding: 8px 12px;
+        margin: 0 10px 8px 10px;
+    }
+
+    .candidato .cant::before {
+        height: calc(100% + 59px);
+        top: -29px;
+    }
+
+    .titulos-votos .cant::before {
+        height: calc(100% + 19px);
+        top: -10px;
+    }
+
+    footer h4 {
+        color: #FFB81C;
+        font-size: 1.5rem;
+    }
+
+    footer li,
+    footer p {
+        font-size: 1.2rem;
+    }
+
+    .redes-sociales img {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin: 5px;
+    }
+
+    .contenido-nofixed {
+        min-height: calc(100vh - 186px);
+    }
+}
+
+@media (max-width: 1920px) {
+    header nav ul li ul {
+        top: 69px;
+    }
+
+    .mat-mdc-icon-button.mat-mdc-button-base {
+        height: 30px;
+        padding: 2px;
+        width: 30px;
+    }
+}
+
+@media (max-width: 1850px) {
+
+    .mesa,
+    .mesa-observada {
+
+        width: 100%;
+    }
+
+    .mesa-observada i {
+        width: 100%;
+    }
+
+    nav {
+        width: 220px;
+    }
+
+    .personaje-logeado>.contenedor-img {
+        height: 143px;
+        width: 70px;
+    }
+
+    nav li a {
+        padding: 10px 15px 8px 8px;
+
+    }
+
+    .opciones-ubigeo {
+        margin: 0 5px;
+        font-size: 1.2rem;
+
+        img {
+            width: 20px;
+            height: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+
+    .contenedor-resumen-general {
+        min-height: calc(100vh - 61px);
+    }
+
+    .personaje-logeado>div:before {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 20px solid $blanco;
+        border-right: 20px solid transparent;
+        left: 30%;
+        bottom: -20px;
+    }
+
+    nav ul {
+        margin: 8px 0;
+        padding: 0;
+
+    }
+
+    header nav ul li ul {
+        top: 50px;
+    }
+
+    .personaje-logeado {
+        margin: 5px 15px;
+    }
+
+    .infoprincipal-detalle img {
+        display: inline-block;
+        margin: 6px 3px 6px 0px;
+        width: 41px;
+    }
+
+    header .logo-principal {
+        height: 42px;
+        width: auto;
+        margin: 3px;
+    }
+
+    .estilo1,
+    .estilo2,
+    .estilo3 {
+        margin: 0px 5px;
+    }
+
+    .cards-agregar-fav,
+    .selec-favorite {
+        min-height: 214px;
+    }
+
+    .cards .vuelta {
+        padding: 5px 13px 2px 13px;
+    }
+
+    .color-partido {
+        width: 18px;
+        height: 18px;
+    }
+    .candidato .img-alto{
+        width: 45px;
+        height: 45px;
+    }
+    .candidato .img {
+        min-width: 37px;
+        width: 37px;
+        min-height: 37px;
+        height: 37px;
+    }
+
+    .candidato .numero {
+        min-width: 37px;
+        width: 37px;
+        min-height: 37px;
+        height: 37px;
+    }
+
+    .logo-principal {
+        max-width: 320px;
+    }
+
+    .infoprincipal-detalle span {
+        font-size: 1.4rem;
+    }
+
+    .ubigeo-principal select {
+        font-size: 1.2rem;
+    }
+
+    .columnas.dos .desplegable.full {
+        margin: 13px 0;
+    }
+
+    footer>img {
+        height: 49px;
+    }
+
+    .redes-sociales img {
+        width: 19px;
+        height: 19px;
+    }
+
+    .btnIco {
+        height: 11px;
+        margin-right: 5px;
+    }
+
+    .mapas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .mapas img {
+        width: 100%;
+        height: 100%;
+    }
+
+    header .ico-accesible {
+        height: 43px;
+        width: auto;
+        margin: 4px 6px;
+    }
+
+    nav .logo-principal {
+        margin: 6px;
+    }
+
+    .personaje-logeado>div {
+        padding: 14px;
+    }
+
+    .sec-prinsipal-candidato.general .infoprincipal-detalle span b,
+    .sec-prinsipal-candidato.congresista .infoprincipal-detalle span b,
+    .sec-prinsipal-candidato.presidencial .infoprincipal-detalle span b,
+    .sec-prinsipal-candidato.parlamento .infoprincipal-detalle span b {
+        font-size: 2.5rem;
+    }
+
+    .cards.vuelta2 {
+        width: calc(37.5555% - 19px);
+    }
+
+    .cards {
+        width: calc(25% - 18px);
+        padding: 17px 18px;
+        margin: 9px;
+        min-height: 178px;
+    }
+
+    .cuadro-blanco-1.cont-flex,
+    .cuadro-blanco-2.cont-flex main,
+    .cuadro-blanco-3.cont-flex {
+        padding: 2px;
+    }
+
+   
+
+    .sin-candidato .candidato .cant::before {
+        height: calc(100% + 54px);
+        top: -26px;
+    }
+
+    .titulos-votos .cant::before {
+        height: calc(100% + 16px);
+        top: -8px;
+    }
+
+    .encuesta {
+        .candidato .cant::before {
+            height: calc(100% + 49px);
+            top: -24px;
+        }
+    }
+
+    .encuesta.titulos-votos {
+        .cant::before {
+            height: calc(100% + 18px);
+            top: -8px;
+        }
+    }
+
+    /************* ANGULAR **************/
+    .mdc-radio {
+        padding: 2px !important;
+    }
+
+
+    .columnas {
+        column-count: 2;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+    }
+
+    .columnas .candidato {
+        width: calc(50% - 10px);
+    }
+    .columnas.uno .candidato {
+        width: 100%;
+    }
+
+    .personaje-logeado p {
+        margin-bottom: 3px;
+    }
+
+    .img-dni {
+        max-width: 170px;
+    }
+
+    .partido-logo2 {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+    }
+
+    .contenido-nofixed {
+
+        min-height: calc(100vh - 145px);
+    }
+
+    .tabs-group .tabs .seleccion {
+        height: 40px;
+    }
+
+    .sticky_ubigeo {
+        top: 61px;
+    }
+
+    .sticky_cabecera {
+        top: 110px;
+    }
+
+    .sticky_cabecera_acta {
+        top: 61px;
+    }
+
+    .sticky_acta {
+        top: 85px;
+    }
+
+    .candidato.achurado .cant,
+    .candidato.achurado .barra-cargando {
+        height: 65px;
+    }
+
+    .custom-tooltip {
+        top: -30px !important;
+    }
+
+    .anchotooltip {
+        width: 20%;
+        min-width: 140px;
+        left: calc(20% - 5px);
+    }
+
+    .filtro_y_botones {
+
+        .estilo1,
+        .estilo2,
+        .estilo3 {
+            padding: 8px 18px;
+        }
+    }
+
+    .res-mb10 {
+        margin-bottom: 10px;
+    }
+    .resumen-general-container .seccion-pantalla{
+        padding-top: 61px;
+    }
+    .general-contenedor:first-child .contenido-nofixed.seccion-pantalla{
+        min-height: calc(100vh - 61px);
+    }
+
+}
+
+@media (max-width: 1600px) {
+
+
+
+    header .ubigeo-principal {
+        min-height: 10px;
+    }
+
+    html,
+    body {
+        font-size: 65%;
+    }
+
+ .text-1-size { font-size: 65% }
+.text-2-size { font-size: 72%; } 
+.text-3-size { font-size: 80%; } 
+
+
+    .titulo1 {
+        font-size: 1.7rem;
+        line-height: 1.7rem;
+        margin: 8px 0;
+    }
+
+    .titulo1.nomarginhv {
+        margin: 0;
+    }
+  
+
+    .titulo2 {
+        margin: 8px 0;
+    }
+
+    .titulo3 {
+        margin: 8px 0;
+    }
+
+    .sec-prinsipal-candidato.general .infoprincipal-detalle span b {
+        font-size: 2.7rem;
+    }
+
+
+    .detalle-candidatos .candidato {
+        margin: 5px;
+    }
+
+    .desplegable.full .mapa-cont {
+        max-height: 270px !important;
+    }
+
+    .mapa-cont {
+        max-height: 56vh;
+    }
+
+    header .logo-principal {
+        height: 40px;
+        margin: 4px;
+    }
+
+    header .ico-accesible {
+        height: 35px;
+    }
+
+    .columnas {
+        column-count: 2;
+    }
+
+    .columnas.tres {
+        column-count: 3;
+    }
+
+    .opciones-ubigeo img {
+        margin: 3px;
+        height: 17px;
+    }
+
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+        height: 34px;
+        padding-top: 3px;
+    }
+
+    .partido-logo2 {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+        top: -40px;
+    }
+
+    .elector-foto {
+        width: 50px;
+        height: 50px;
+        margin-left: -25px;
+        top: -40px;
+        .numero{
+            width: 50px ;
+            height: 50px ;
+            font-size: 2.25rem;
+        }
+    }
+
+    .partido-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .btn_after2 {
+        border-top: 15px solid transparent;
+        border-right: 10px solid #2a71b9;
+        border-bottom: 15px solid transparent;
+        left: 5px;
+        top: 50%;
+        &:focus{
+            border-right: 10px solid $blanco;
+        }
+    }
+
+    .btn_after2_desabilitada {
+        border-top: 15px solid transparent;
+        border-right: 10px solid #9F9F9F;
+        border-bottom: 15px solid transparent;
+        left: 5px;
+        top: 50%;
+        &:focus{
+            border-right: 10px solid $blanco;
+        }
+    }
+
+    .btn_next2 {
+        border-top: 15px solid transparent;
+        border-left: 10px solid #2a71b9;
+        border-bottom: 15px solid transparent;
+        right: 5px;
+        top: 50%;
+        &:focus{
+            border-left: 10px solid $blanco;
+        }
+    }
+
+    .btn_next2_desabilitada {
+        border-top: 15px solid transparent;
+        border-left: 10px solid #9F9F9F;
+        border-bottom: 15px solid transparent;
+        right: 5px;
+        top: 50%;
+        &:focus{
+            border-left: 10px solid $blanco;
+        }
+    }
+
+    .btn_after {
+        top: 90px;
+        border-right: 20px solid transparent;
+        border-bottom: 10px solid #2a71b9;
+        border-left: 20px solid transparent;
+        &:focus{
+            border-bottom: 10px solid $blanco;
+        }
+    }
+
+    .btn_next {
+        border-right: 20px solid transparent;
+        border-top: 10px solid #2a71b9;
+        border-left: 20px solid transparent;
+        &:focus{
+            border-top: 10px solid $blanco;
+        }
+    }
+
+    .tabs-group .tabs .seleccion {
+        width: auto;
+        display: none;
+    }
+
+    nav ul li ul li a span {
+        font-size: 2rem;
+    }
+
+    nav li a span.nombre {
+        font-size: 1.0rem;
+    }
+
+    nav li a span {
+        margin: -2px 5px 0px 5px;
+    }
+
+    nav li a span.icon-ico_resumen_general,
+    nav li a span.icon-ico_e_presidencial,
+    nav li a span.icon-ico_e_diputados,
+    nav li a span.icon-ico_senadores,
+    nav li a span.icon-ico_e_parlamento,
+    nav li a span.icon-ico-participacion2,
+    nav li a span.icon-ico_menu_actas,
+    nav li a span.icon-ico-hoja-informativa,
+    nav li a span.icon-ico-revocatoria,
+    nav li a span.icon-ico-reportes,
+    nav li a span.icon-ico-informacion,
+    nav li a span.icon-ico-pregunta,
+    nav li a span.icon-ico-sitemap {
+        font-size: 1.8rem;
+    }
+
+    .opciones-ubigeo {
+        width: 20px;
+    }
+
+    .sticky_ubigeo {
+        top: 61px;
+    }
+}
+
+@media (max-width: 1367px) {
+    .elector-foto {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+        top: -27px;
+        .numero{
+            width: 40px;
+            height: 40px ;
+            font-size: 2rem;
+        }
+    }
+
+    .cambioheight.barra-principal,
+    .cambioheight.fondo-grafica,
+    .cambioheight.barra-principal-referendum {
+        height: calc(35vh + -11px);
+        margin-top: 27px;
+    }
+
+    .cambioheight.grafica-candidatos article:first-child,
+    .grafica-referendum article:first-child {
+        margin-top: 23px;
+        height: calc(35vh - 3px);
+    }
+
+    nav li a span {
+        font-size: 1.0rem;
+        margin: -2px 4px 0px 4px;
+    }
+
+    nav a {
+        font-size: 1.0rem;
+    }
+
+    nav li a span.nombre {
+        font-size: 1.0rem;
+    }
+
+    nav li a {
+        padding: 10px 8px 8px 8px;
+    }
+
+    .ubigeo-principal.second {
+        padding: 10px 20px 10px 20px;
+    }
+
+    .sticky_ubigeo {
+        top: 61px;
+    }
+
+    .cards {
+        width: calc(50% - 18px) !important;
+    }
+
+    .columnas.dos {
+        column-count: 1;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+    }
+
+    .ubigeo-principal {
+        height: auto;
+        display: block;
+    }
+
+    .opciones-ubigeo img {
+        display: inline-block;
+    }
+
+    .infoprincipal {
+        text-align: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .mapas {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .infoprincipal-detalle {
+        text-align: left;
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .contenido-nofixed {
+        min-height: calc(100vh - 145px);
+    }
+
+    header .ubigeo-principal {
+        min-height: 10px;
+    }
+
+    .leyenda_eleccion {
+        width: 70%;
+        margin-left: 15%;
+    }
+
+    .data-postul-referendum {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .conte-reporte-leyenda{
+        width: calc(100% - 40px);
+        margin-left: 20px;
+    }
+   .conte-cards-reportes .conte-reporte {
+        width: calc(50% - 30px);
+        min-width: 320px;
+    }
+    .formula_votos{
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 1280px) {
+
+    .contenido-nofixed.seccion-pantalla,
+    .general-contenedor:first-child .contenido-nofixed.seccion-pantalla {
+        height: auto;
+    }
+
+    .candidato-x-organizacion {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    nav li a span.icon-ico_resumen_general,
+    nav li a span.icon-ico_e_presidencial,
+    nav li a span.icon-ico_e_diputados,
+    nav li a span.icon-ico_senadores,
+    nav li a span.icon-ico_e_parlamento,
+    nav li a span.icon-ico-participacion2,
+    nav li a span.icon-ico_menu_actas,
+    nav li a span.icon-ico-hoja-informativa,
+    nav li a span.icon-ico-revocatoria {
+        font-size: 1.6rem;
+    }
+
+    nav li a span {
+        font-size: 1rem;
+        margin: -2px 2px 0px 4px;
+    }
+
+    .secCand {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+    }
+}
+
+@media (max-width: 1224px) {
+    .titulo2 {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+    }
+
+    .infoNumbers {
+        font-size: 1rem;
+        margin: 0px 10px;
+
+        b {
+            font-size: 2.2rem;
+        }
+    }
+
+    .totales {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .leyenda.vertical li {
+        font-size: 1rem;
+    }
+
+    .leyenda_participacion {
+        font-size: 1.2rem;
+    }
+
+    .seccion-pantalla {
+        min-height: calc(100vh - 141px);
+    }
+
+    footer .text-logo {
+        margin-bottom: 20px;
+    }
+
+    .columnas {
+        column-count: 2;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+    }
+
+    footer {
+        column-count: 1;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-gap: 0px;
+        -moz-column-gap: 0px;
+        -webkit-column-gap: 0px;
+        background: $azulOnpe;
+        height: auto;
+    }
+
+    .contenido-gris-centrado {
+        text-align: center;
+    }
+
+    .menssaje-con-imagen img {
+        margin: 10px;
+    }
+
+    .ubigeo-principal>div:first-child,
+    .ubigeo-principal {
+        width: 100%;
+        height: auto;
+    }
+
+    .ubigeo-principal.t-l {
+        select {
+            width: 50%;
+            margin: 0;
+        }
+    }
+
+    .ubigeo-principal select {
+        width: 100%;
+        margin: 8px;
+    }
+
+    .estilo1,
+    .estilo2,
+    .estilo3 {
+        max-width: 500px;
+        display: block;
+        margin: 0px 0px;
+        padding: 8px 18px;
+    }
+
+    .personalizado {
+        width: 100%;
+    }
+
+    header nav {
+        width: 100%;
+    }
+
+    header .ico-accesible {
+        margin: 0;
+    }
+
+    .ubigeo-principal>div:last-child,
+    .ubigeo-principal>div:first-child {
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .candidato {
+        .favorito {
+            min-width: 20px;
+        }
+    }
+
+    header nav li {
+        width: 14.285%;
+    }
+
+    .inicial .estilo1,
+    .inicial .estilo2,
+    .inicial .estilo3 {
+        width: auto;
+    }
+
+    .grafica-candidatos {
+        height: auto;
+        min-height: auto;
+    }
+
+    .filtro_y_botones {
+        width: auto;
+    }
+
+    .sec-prinsipal-candidato.general {
+        width: auto;
+    }
+
+    .sombra-resumen-acta {
+        .cont-botones {
+            margin-bottom: 10px;
+            justify-content: end;
+
+            .estilo1 {
+                min-width: 120px;
+            }
+
+            .estilo2 {
+                min-width: 120px;
+            }
+
+            .estilo3 {
+                min-width: 120px;
+            }
+        }
+    }
+
+    .cont-botones {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0;
+        flex: 1;
+        gap: 10px;
+
+        .estilo1 {
+            width: auto;
+        }
+
+        .estilo2 {
+            width: auto;
+        }
+
+        .estilo3 {
+            width: auto;
+        }
+    }
+
+    footer>div {
+        width: 50%;
+    }
+
+    .contenido-nofixed {
+        min-height: calc(100vh - 189px);
+    }
+
+    .sticky_ubigeo {
+        top: 61px;
+    }
+
+    .sticky_cabecera {
+        .form {
+            gap: 10px;
+
+            .w-50 {
+                width: calc(50% - 5px);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                .estilo1,
+                .estilo2,
+                .estilo3 {
+                    width: calc(50% - 10px);
+                    margin-right: 0px;
+                    padding: 8px 18px;
+                }
+            }
+        }
+    }
+
+    .sticky_acta {
+        top: 84px;
+    }
+
+    .tab-flechas {
+        display: block !important;
+    }
+
+    .hidden-acce {
+        display: block;
+    }
+
+    .hidden-acce .mdc-button__label {
+        width: 30px;
+    }
+
+    nav li a {
+        padding: 10px 6px 8px 6px;
+    }
+
+    nav li a span.nombre {
+        width: 100%;
+    }
+
+    nav li a span.icon-ico_resumen_general,
+    nav li a span.icon-ico_e_presidencial,
+    nav li a span.icon-ico_e_diputados,
+    nav li a span.icon-ico_senadores,
+    nav li a span.icon-ico_e_parlamento,
+    nav li a span.icon-ico-participacion2,
+    nav li a span.icon-ico_menu_actas,
+    nav li a span.icon-ico-hoja-informativa,
+    nav li a span.icon-ico-revocatoria,
+    nav li a span.icon-ico-reportes {
+        display: none;
+    }
+
+    .res-btn100 {
+        max-width: 100px;
+        margin: 4px;
+        display: inline;
+    }
+
+    .res-flex {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .mat-mdc-text-field-wrapper {
+        flex: none !important;
+    }
+
+    .no-percent .estilo1,
+    .no-percent .estilo2,
+    .no-percent .estilo3 {
+        width: 100%;
+    }
+    .flexBoxProv{
+        .col_dato_participacion{
+        padding-left: 0rem;
+        }
+    }
+}
+
+.lg_hidden {
+    display: none;
+}
+
+@media (max-width: 960px) {
+    .cambioheight.barra-principal,
+    .cambioheight.fondo-grafica,
+    .cambioheight.barra-principal-referendum {
+        margin-top: 30px;
+    }
+
+    .flex-direction-col-movil{
+        flex-direction: column;
+    }
+    .resumen-general-container .general-contenedor:last-child .contenido-nofixed.seccion-pantalla{
+        min-height: inherit;
+    }
+    .general-contenedor:first-child .contenido-nofixed.seccion-pantalla{
+        min-height: inherit;
+    }
+    .resumen-general-container .seccion-pantalla{
+        min-height: inherit;
+    }
+
+    .pdf-container{
+        display: none;
+    }
+    .none-movil{
+        display: none;
+    }
+    .m-0-movil{
+        margin: 0;
+    }
+    .mt-05-movil {
+        margin-top: 0.5rem !important;
+    }
+    .mt-1-movil {
+        margin-top: 1rem !important;
+    }
+    .mt-15-movil {
+        margin-top: 15px;
+    }
+    .mt-2-movil {
+        margin-top: 2rem;
+    }
+    .mb-05-movil {
+        margin-bottom: 0.5rem !important;
+    }
+    .mb-1-movil {
+        margin-bottom: 1rem !important;
+    }
+
+    .mb-2-movil {
+        margin-bottom: 2rem !important;
+    }
+
+    .my-1-movil {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .pt-1-movil {
+        padding-top: 1rem !important;
+    }
+
+    .pt-2-movil {
+        padding-top: 2rem !important;
+    }
+
+    .pb-1-movil {
+        padding-bottom: 1rem;
+    }
+
+    .pb-2-movil {
+        padding-bottom: 2rem;
+    }
+
+    .pt-0-md {
+        padding-top: 0 !important;
+    }
+
+    .px-0-movil {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .px-1-movil {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    .px-20-movil {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    .leyenda_participacion2{
+        .asterisk{
+            left: 10px;
+        }
+    }
+    .py-1-movil {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+    .ancla2{
+        height: 76px;
+        margin-top: -76px;
+    }
+
+    .button-map {
+        background: white;
+        border: 1px #D9D9D9 solid;
+        width: 100%;
+        display: flex;
+        padding: 0.2rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 15px;
+        min-height: 40px;
+
+        .text-mapa {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            img {
+                width: 20px;
+            }
+
+            h5 {
+                color: #003770;
+                font-weight: 600;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .transition-map {
+        transition: all 0.3s ease;
+        height: 0;
+        min-height: 0 ;
+        overflow: hidden;
+    }
+    .transition-map-participacion {
+        transition: none;
+        height: 0 ;
+        min-height: 0 ;
+        .mapas{
+            background: transparent;
+        }
+    }
+    .map-container {
+        min-height: 360px !important;
+    }
+
+    .map-oculto , .dato-oculto{
+        visibility: hidden;
+        opacity: 0;
+        height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        pointer-events: none;
+        overflow: hidden;
+        
+        .card-map-movil{
+            margin-top: -$map-height-desktop;
+            height: 0 !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+            overflow: hidden;
+        }
+        .container{
+            transition: 0.3s;
+            margin-top: -$map-height-desktop !important;
+        }
+        .conte_detalles_acta{
+            position: absolute;
+            transition: 0.3s;
+            margin-top: -$map-height-desktop !important;
+        }
+        
+        // Para contenedores con min-50vh, forzar ocultar todo
+        &.min-50vh {
+            height: 0 !important;
+            min-height: 0 !important;
+            max-height: 0 !important;
+            
+            .card-map-movil {
+                height: 0 !important;
+                min-height: 0 !important;
+                max-height: 0 !important;
+            }
+        }
+    }
+
+    .bg-white-movil.mapas {
+        background: #fff !important;
+    }
+
+    .map-visible {
+        visibility: visible;
+        opacity: 1;
+        height: $map-height-mobile-small !important;
+        margin-bottom: 60px !important;
+    }
+
+    .map-visible2 {
+        visibility: visible;
+        opacity: 1;
+        height: $map-height-mobile-medium !important;
+        border: 1px #D9D9D9 solid;
+        border-top: none;
+    }
+
+    .mostrar-datos{
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        margin: 0 auto;
+        display: block;
+        padding-top: 20px;
+        border: 1px #D9D9D9 solid;
+        border-top: none;
+    }
+
+    .card-map-movil {
+        background-color: #fff !important;
+        border-top: 0px !important;
+        background-position: right, bottom, left, top;
+        background-size: 1px 25px, 25px 1px, 1px 25px, 25px 1px;
+        background-repeat: repeat-y, repeat-x, repeat-y, repeat-x;
+        padding: 0.5rem;
+        position: relative;
+        z-index: 1;
+        transition: none;
+        display: flex;
+        align-items: center;
+    }
+    .card-map-movil.mostrar-listado{
+        padding: 0rem;
+    }
+
+    .standarPch-movil {
+        min-height: auto !important;
+        max-height: initial !important;
+        height: auto !important;
+    }
+
+    .cont-info .pb-0 {
+        padding-bottom: 0 !important;
+    }
+
+    .revocatoria .info {
+        padding-left: 0px;
+        padding-right: 0px;
+        p {
+            margin-left: 0rem;
+            font-size: 1rem;
+        }
+
+        ol li {
+            font-size: 0.9rem;
+
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .revodv .candidato .cont-info {
+        padding: 10px 0px 8px 0px !important;
+    }
+
+    .revoBtn.active .d-none-xl {
+        display: none !important;
+    }
+
+    .relative-md {
+        position: relative;
+
+    }
+
+    .p-a-icon {
+        position: absolute;
+        top: 6px;
+        right: 9px;
+    }
+
+    .revoBtn .p-a-icon {
+        position: absolute;
+        top: -7px;
+        right: -3px;
+    }
+
+    .sec-referendun article.desplegable .nombre {
+        width: 100% !important;
+
+        div {
+            .icon-new {
+                width: 22px;
+            }
+        }
+    }
+
+    .content-nom-gob-gao0 {
+        display: flex;
+        flex-direction: column;
+        gap: 0 !important;
+    }
+
+    .nom-gob-flex {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .texto-cantidad-procentaje {
+        text-align: right !important;
+        color: #1D1D1D !important;
+        font-size: 1.1rem !important;
+        text-transform: initial !important;
+
+        span {
+            font-weight: 500 !important;
+            font-size: 1.1rem;
+        }
+    }
+    .barra-cargando.alterBlue{
+        margin-bottom: 1rem;
+    }
+    .barra-cargando2.alterGris {
+        height: 9px;
+        width: 100%;
+        background: #ECECEC;
+        padding: 0;
+        text-align: left;
+        position: relative;
+
+        div {
+            padding: 0px;
+        }
+    }
+
+    .barra-cargando2 div {
+
+        background: #6DB2E2;
+        display: block;
+        height: 100%;
+        animation-name: barra;
+        animation-duration: 1s;
+        transition: 1s;
+        top: 0;
+        z-index: 7;
+        position: absolute;
+    }
+
+    .barra-cargando2 div.barra-gris {
+        background-color: #909090;
+    }
+
+    .barra-cargando2 div.barra-azul {
+        background-color: var(--azulOnpe);
+    }
+
+    .actualizado-acta {
+        padding: 0px;
+        font-size: 0.8rem;
+    }
+
+    .lg_hidden {
+        display: block;
+    }
+
+    .hidden-acce {
+        display: none !important;
+    }
+
+    .w-100,
+    .w-33,
+    .w-50,
+    .w-75,
+    .w-20,
+    .w-30,
+    .w-70,
+    .w-80,
+    .w-66,
+    .w-25,
+    .w-40,
+    .w-60 {
+        width: 100% !important;
+        padding: 0px 0px;
+    }
+
+    .conte-grafica-revocatoria {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .grafica-revocatoria {
+
+        height: auto;
+
+        .grafica-candidatos {
+            max-width: 100%;
+        }
+    }
+
+    .grafica-revocatoria:first-child {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .p-0-movil {
+        padding: 0 !important;
+    }
+
+    .mgrB_20-movil {
+        padding-bottom: 20px !important;
+    }
+
+    .leyenda_participacion {
+        font-size: 1.0rem;
+        font-weight: normal;
+    }
+
+    .mat-mdc-raised-button.mat-mdc-button-base.btnAccesibilidad {
+        height: 55px;
+        width: 55px;
+        min-height: 55px;
+        min-width: 55px;
+        max-height: 55px;
+        max-width: 55px;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+
+        border-radius: 50%;
+        margin: 0;
+        background: #fff;
+
+    }
+
+    .conte_cabecera_header {
+        display: flex;
+        width: 100%;
+    }
+
+    .revosettings .content-title .title h2 {
+        font-size: 1.2rem;
+        line-height: 1.2rem !important;
+    }
+
+    .revoBtn h2 {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+    }
+
+    .revoBtn h3 {
+        font-size: 2.5rem;
+    }
+
+    header nav .site-overlay {
+        display: block;
+        position: fixed;
+        top: 0px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fade 500ms;
+    }
+
+    header nav ul {
+        display: none;
+        transition: all 0.3s;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+
+        li ul {
+            display: block;
+            position: relative;
+            top: 0;
+            max-width: 100%;
+            box-shadow: none;
+
+            li a {
+                padding-left: 20px;
+            }
+        }
+    }
+
+    header nav>ul {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    header .w-20 {
+        display: flex;
+        background: $blanco;
+        z-index: 600;
+    }
+
+    .titulo1 {
+        padding: 0 0;
+        margin: 5px 0px;
+
+        .icono_titulo {
+            margin-left: 0px;
+        }
+    }
+    .actualizado{
+        padding: 0;
+        margin-top: 5px;
+    }
+    .conte-ico-menu {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: $blanco;
+        z-index: 70;
+        justify-content: space-between;
+
+        button {
+            background: transparent;
+            border: 0px none;
+            padding: 0 10px;
+            cursor: pointer;
+
+            span {
+                font-size: 3rem;
+                color: $azulOnpe;
+            }
+        }
+        button::selection {
+            background: transparent;
+        }
+    }
+
+    nav .logo-principal {
+        display: none;
+    }
+
+    .showmenu {
+        display: none;
+    }
+
+    .menu-movil {
+        width: 100% !important;
+        height: 100vh;
+
+        .mat-mdc-dialog-container .mdc-dialog__surface {
+            border-radius: 0px !important;
+        }
+        .mat-bottom-sheet-container-medium{
+            min-width: 100%;
+        }
+    }
+    .alinear_boton_cerrar{
+        width: 100%;
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0;
+        .cerrar_menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 2;
+        }
+    }
+
+    .menu {
+        flex: 100%;
+        width: 100%;
+        align-items: inherit;
+
+        nav {
+            background: $blanco;
+            width: 100%;
+            height: auto;
+            position: relative;
+            z-index: 23;
+            flex-wrap: wrap;
+
+            ul li{
+                ul {
+                    padding-left: 2rem;
+                    margin: 1px 0;
+                    li{
+                        a:hover{
+                            .conte-ico-movil{
+                                span{
+                                    color: $blanco;
+                                }
+                            }
+                        }
+                    }
+                    li:hover{
+                        a{
+                            .conte-ico-movil{
+                                span{
+                                    color: $blanco;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            ul li:hover{
+                ul{
+                    li{
+                        a{
+                            background: transparent;
+                            color: $azulOnpeClaro;
+                            span{
+                                color: $azulOnpeClaro;
+                            }
+                        }
+                    }
+                }
+            }
+
+            li {
+                padding: 0px 0px;
+                a {
+                padding: 10px 10px 10px 10px;
+                max-width: none;
+                color: $azulOnpeClaro;
+                border-radius: 15px;
+                    .conte-ico-movil{
+                        width: 45px;
+                        height: 45px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 100%;
+                        
+                        span{
+                            color: $azulOnpeClaro;
+                        }
+                        span.nombre{
+                            color: $azulOnpeClaro !important;
+                        }
+                    }
+                }
+                a.active, a:hover{
+                    background: #f0f5fb !important;
+                    .conte-ico-movil{
+                        background: $azulOnpeClaro;
+                        color: $blanco;
+                        .icon-ico_resumen_general,
+                        .icon-ico_e_presidencial,
+                        .icon-ico_e_diputados,
+                        .icon-ico_senadores,
+                        .icon-ico_e_parlamento,
+                        .icon-ico-participacion2,
+                        .icon-ico_menu_actas,
+                        .icon-ico-reportes,
+                        .icon-ico-hoja-informativa,
+                        .icon-ico-revocatoria {
+                            font-size: 2.4rem;
+                            color: $blanco !important;
+                        }
+                    }
+                    span.nombre{
+                        color: $azulOnpeClaro !important;
+                    }
+                }
+            }
+        }
+    }
+
+    nav li.active:before,
+    nav li.active:after {
+        display: none;
+    }
+    nav li a span{
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        transition: all 0.2s;
+    }
+    nav li a span.nombre {
+        font-size: 1.5rem;
+        width: auto;
+        flex-grow: 1;
+        justify-content: flex-start;
+    }
+    nav li .active span.icon-ico_resumen_general,
+    nav li .active span.icon-ico_e_presidencial,
+    nav li .active span.icon-ico_e_diputados,
+    nav li .active span.icon-ico_senadores,
+    nav li .active span.icon-ico_e_parlamento,
+    nav li .active span.icon-ico-participacion2,
+    nav li .active span.icon-ico_menu_actas,
+    nav li .active span.icon-ico-reportes,
+    nav li .active span.icon-ico-hoja-informativa,
+    nav li .active span.icon-ico-revocatoria{
+        background: $azulOnpeClaro;
+    }
+
+    nav li a span.icon-ico_resumen_general,
+    nav li a span.icon-ico_e_presidencial,
+    nav li a span.icon-ico_e_diputados,
+    nav li a span.icon-ico_senadores,
+    nav li a span.icon-ico_e_parlamento,
+    nav li a span.icon-ico-participacion2,
+    nav li a span.icon-ico_menu_actas,
+    nav li a span.icon-ico-reportes,
+    nav li a span.icon-ico-hoja-informativa,
+    nav li a span.icon-ico-revocatoria {
+        display: flex;
+        font-size: 2.4rem;
+    }
+
+
+    .standarPch {
+        height: auto;
+        min-height: auto;
+        padding: 10px 0;
+    }
+
+    .cont-cards {
+        flex-wrap: wrap;
+        padding: 0;
+
+        .map-participacion {
+            margin-bottom: 20px;
+            min-height: 250px;
+            .map-container {
+                min-height: 250px;
+            }
+            .card-map-movil{
+                border: 1px #D9D9D9 solid;
+            }
+        }
+
+        .w-25,
+        .w-50 {
+            width: 100%;
+        }
+    }
+
+    .btn_after,
+    .btn_next {
+        display: none;
+    }
+
+    .columnas.tres {
+        column-count: 2;
+    }
+
+    .grafica-candidatos {
+        height: auto;
+        max-width: calc(100vw - 40px);
+    }
+
+    header nav li {
+        max-width: none;
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: none;
+    }
+
+    header {
+        height: auto;
+        position: relative;
+    }
+
+    .contenido-nofixed {
+        padding: 20px;
+        padding-top: 0px;
+        min-height: calc(100vh - 205px);
+
+        .actas-seccion {
+            width: 100%;
+            margin: 0px 0px 20px 0px;
+            padding: 0px;
+        }
+    }
+
+    .titulo_numero_acta {
+        font-size: 1.3rem;
+        line-height: 1.4rem;
+        border-left: 10px solid #00ABE3;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .conte_detalles_acta {
+        margin-bottom: 0px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0px 10px;
+
+        .detalles_acta{
+            .cols-datos{
+                grid-template-columns: 1fr 1fr;
+            }
+           p {
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
+            padding-right: 0;
+            font-size: 1rem;
+            } 
+        } 
+    }
+
+    .inicial {
+        margin-top: 0px;
+    }
+
+    .infoprincipal-detalle {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .cont-flex.px-20 {
+        padding: 0 !important;
+
+        .mapas {
+            height: 40vh;
+        }
+
+        .w-70,
+        .w-30 {
+            padding: 0;
+        }
+    }
+
+    .sec-cont.segundo {
+        max-width: 100%;
+        padding: 0px;
+    }
+
+    .elector-foto {
+        width: 40px;
+        height: 40px;
+        margin-left: -20px;
+        top: -30px;
+    }
+
+    .columnas.cuatro {
+        column-count: 3;
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        margin: 7px;
+    }
+
+    .menu-ico {
+        display: block;
+    }
+
+    .cards {
+        width: calc(100% - 18px) !important;
+    }
+
+    .cards-agregar-fav,
+    .selec-favorite {
+        min-height: 174px;
+    }
+
+    .contenedor-principal {
+        min-height: auto;
+
+    }
+
+    .titulo_movil {
+        display: block;
+        font-size: 0.9rem;
+    }
+
+    .titulos-votos .candidato {
+        display: none;
+    }
+
+    .miga_pan.version-movil {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        gap: 10px;
+        .btn_migapan{
+            font-size: 1rem;
+        }
+        .mat-mdc-checkbox{
+            .mdc-label{
+                font-size: 1rem;
+                padding-left: 0;
+            }
+        }
+    }
+    
+    /**** Resumen de actas******/
+    .candidato {
+        display: flex;
+        flex-wrap: wrap;
+
+        .cont-info {
+            width: 100%;
+            max-width: 100%;
+            text-align: left;
+            padding-bottom: 0px;
+            margin-bottom: 0rem;
+            justify-content: space-between;
+
+            h3 {
+                text-align: left;
+                min-height: inherit;
+                font-weight: 600;
+            }
+
+            p {
+                width: 100%;
+                text-align: left !important;
+            }
+
+            .cant::before {
+                background: none !important;
+            }
+        }
+        .nombre {
+            width: calc(100% - 145px);
+        }
+
+        .votos-emitidos-validos {
+            width: 100%;
+            max-width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #C1C1C1;
+            margin-top: 10px;
+            padding-top: 10px;
+
+            .cant:first-child {
+                border-right: 1px solid #C1C1C1;
+            }
+
+            .cant::before {
+                display: none;
+            }
+        }
+    }
+
+   
+
+    .revodv .candidato.p {
+        background: $blanco;
+        box-shadow: 0px 0px 10px -7px rgb(0 0 0 / 80%);
+        padding-bottom: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .cont-info {
+            box-shadow: none;
+            border: none;
+            padding-left: 0px;
+        }
+
+        .barra-cargando {
+            padding-left: 0px;
+            margin-left: 0px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            margin-right: 0px;
+
+            h2 {
+                font-weight: 600;
+                font-size: 1.5rem !important;
+                line-height: 1.7rem !important;
+            }
+        }
+    }
+
+    .revodv .sinbarras-movil {
+        .barra-cargando {
+            display: none;
+        }
+    }
+
+    .container-title {
+        padding: 10px 20px;
+    }
+
+    .detalle-gob .content-data-gob{
+        width: 100%;
+        justify-content: center;
+        .detalle-gob-descrip {
+            h3 {
+                font-size: 0.9rem;
+                line-height: 1rem;
+            }
+
+            span {
+                font-size: 1.3rem;
+            }
+        }
+    }
+
+    .revoBtn {
+        padding-top: 10px;
+    }
+
+    .infoBoxes {
+         gap: 10px;
+        flex-direction: column;
+        padding: 20px 10px 30px;
+        grid-template-columns: repeat(2, 1fr);
+        span {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+        }
+    }
+
+    .cant-gober div {
+        h5 {
+            font-size: 1.1rem;
+            line-height: 1.2rem;
+        }
+
+        span {
+            font-size: 3.2rem;
+        }
+    }
+
+    .barra-cargando h2.porcent span {
+        display: none;
+    }
+
+    .barra-cargando h3 {
+        display: block !important;
+        position: absolute !important;
+        top: 10px;
+        line-height: 1.4rem !important;
+    }
+
+    .barra-cargando h3.fin {
+        right: 0;
+        text-align: right;
+    }
+
+    .revodv.cursor-pointer:hover .candidato.p {
+        background: #e3e8f0;
+    }
+
+    .actas-seccion .inicial {
+        padding: 5px !important;
+        display: flex;
+        flex-wrap: wrap;
+
+        .w-100 {
+            padding: 0 5px;
+        }
+
+        .infoprincipal {
+            padding-top: 15px;
+        }
+    }
+
+    .actas-seccion .inicial.version-movil {
+        padding: 0 !important;
+    }
+
+    .cont-botones {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding: 0;
+        gap: 15px;
+
+        .estilo1 {
+            width: 100%;
+            margin: 0;
+        }
+
+        .estilo2 {
+            width: 100%;
+            margin: 0;
+        }
+
+        .estilo3 {
+            width: 100%;
+            margin: 0;
+        }
+
+        button:last-child {
+            margin-right: auto;
+        }
+    }
+
+    .ubigeo-principal {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0;
+
+        select {
+            margin: 5px 0;
+        }
+
+        .estilo2 {
+            width: calc(50% - 10px);
+
+        }
+
+        .estilo3 {
+            width: calc(50% - 10px);
+        }
+
+    }
+
+
+    /* Fin Resumen de actas *******/
+    .mat-mdc-tab-group {
+        margin: 0;
+    }
+
+    .leyenda.vertical.dos li {
+        width: auto;
+    }
+
+    .personaje-logeado>.contenedor-img>img {
+        height: 230px;
+        width: auto;
+    }
+
+    .personaje-logeado {
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        width: 200px;
+        z-index: 23;
+    }
+
+    .personaje-logeado>.contenedor-img img {
+        width: 80px;
+        height: auto;
+        display: block;
+        margin-top: 1px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .personaje-logeado>div:before {
+        content: " ";
+        display: inline-block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 20px solid $blanco;
+        border-left: 20px solid transparent;
+        border-right: none;
+        left: 30%;
+        bottom: -20px;
+    }
+
+    .personaje-logeado>.contenedor-img {
+        height: 120px;
+        cursor: pointer;
+        border-radius: 0 0 100px 100px;
+        display: block;
+        width: 80px;
+        position: absolute;
+        right: 0;
+        z-index: 33;
+        overflow: hidden;
+        bottom: 0;
+        filter: drop-shadow(5px 5px 4px rgb(0 0 0 / 43%));
+    }
+
+    .personaje-logeado>.contenedor-img:before {
+        content: "";
+        background: #fdb81e;
+        border-radius: 50%;
+        display: block;
+        height: 80px;
+        width: 80px;
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .personaje-logeado>div {
+        max-height: 0px;
+        overflow: visible;
+        bottom: 100px;
+        opacity: 0;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .personaje-logeado:hover>div {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    .cont-tool .tool-image {
+        left: auto;
+        right: 50px;
+        max-width: 100%;
+    }
+
+    .cont-tool .tool-image img {
+        max-width: 100%;
+    }
+
+    .seccion-borde {
+        max-width: calc(50% - 40px);
+        margin: 8px 20px;
+        min-height: 230px;
+        padding: 10px 10px;
+    }
+
+    .conte-logo {
+        width: 50%;
+        margin-left: 50px;
+    }
+
+    .conte-accesibilidad {
+        width: auto;
+    }
+
+    header .logo-principal {
+        display: none;
+        margin: 7px auto;
+        height: 52px;
+    }
+
+    header .conte-ico-menu .logo-principal {
+        display: block;
+        margin: 7px auto;
+        height: 52px;
+    }
+
+    header .opciones-ubigeo {
+        display: none;
+    }
+
+    header .conte-ico-menu .opciones-ubigeo {
+        display: block;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    .ocultar {
+        display: none;
+    }
+
+    .infoElectores {
+        height: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
+    .progressbar {
+        flex-direction: column;
+        margin: 0;
+
+        li {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            word-break: break-all;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            text-align: left;
+            align-items: center;
+            font-size: 11px;
+
+            .descripcion {
+                width: calc(100% - 52px);
+                flex-grow: 1;
+                word-break: break-word;
+            }
+
+            .fecha-steps {
+                margin-bottom: 0;
+            }
+
+            .ico-steps {
+                margin: 0;
+            }
+        }
+        li:first-child{
+            padding-top: 0;
+        }
+        li:last-child{
+            padding-bottom: 0;
+        }
+        li:after {
+            width: 10px;
+            height: 100%;
+            top: 20;
+            left: 16px;
+        }
+    }
+
+    .progressbar li:first-child:after {
+        content: '';
+    }
+
+    .progressbar li:last-child:after {
+        content: none;
+    }
+
+    .btn_next-2,
+    .btn_after-2 {
+        left: calc(50% + 14px);
+    }
+
+    .formula_votos,
+    .leyenda_eleccion {
+        width: 100%;
+        margin-left: 0px;
+        .mesa-movil{
+            width: 160px !important;
+            justify-content: flex-start;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            display: grid !important;
+            grid-template-columns: 20px auto;
+            gap: 5px;
+            text-align: left;
+            line-height: 1rem;
+        }
+    }
+
+    .formula_votos {
+        gap: 10px;
+        .w-50 {
+            width: 50%;
+        }
+    }
+
+    .formula_votos>div:first-child {
+        border-right: none;
+    }
+
+    .leyenda_eleccion {
+        .w-33 {
+            width: 33.3333%;
+        }
+    }
+
+    .sticky_ubigeo {
+        top: 0;
+        margin-left: 0;
+        position: relative;
+    }
+
+    .sticky_acta {
+        top: 0;
+        position: relative;
+    }
+
+    .sticky_cabecera_acta {
+        top: 0px;
+        display: none;
+    }
+
+    .tabs-group {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
+    .sticky_cabecera {
+        position: relative;
+        top: 0;
+        .form{
+            margin-bottom: 0;
+            gap: 0;
+        }
+    }
+
+    .achurado .barra-cargando {
+        display: none;
+    }
+
+    .achurado .cont-info {
+        padding-bottom: 0;
+    }
+
+    .conte-mesas {
+        min-height: inherit;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .mat-mdc-select-value {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    .candidato-x-organizacion {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .numero-lista {
+        text-align: center;
+        padding: 0;
+    }
+
+    .forceTop {
+        padding-top: 130px;
+    }
+
+    .personaje-anuncio>img {
+        height: 50vh;
+        width: auto;
+    }
+
+    .cont-cards-envio-jee {
+        display: grid;
+        gap: 10px;
+        height: auto;
+    }
+
+    .mesa,
+    .mesa-observada {
+        width: 100%;
+        margin: 0;
+    }
+
+    .cont-flex .cont-flex {
+        margin: 0;
+        width: 100%;
+    }
+
+    .paddLR10 {
+        padding: 0 10px;
+    }
+
+    .personaje-anuncio.gran {
+        width: 100%;
+        margin: 10px 0;
+        padding: 0px 0px 20px 0px;
+        min-height: auto;
+
+        .hijo1 {
+            width: 100%;
+            height: auto;
+            margin-top: 100px;
+        }
+
+        .hijo1::before {
+            content: none;
+        }
+
+        .hijo2 {
+            margin-top: 0px;
+            display: grid;
+            place-items: center;
+
+            img {
+                height: 300px;
+            }
+        }
+    }
+
+    .ubigeo-principal.second {
+        justify-content: center;
+        padding: 10px 20px 10px 20px;
+    }
+
+    .nombre br {
+        display: block;
+        content: "";
+        width: 3px;
+    }
+
+    .icon-ico-senado_27,
+    .icon-ico-senado_33,
+    .icon-ico-senador_deu,
+    .icon-ico-senador_dem,
+    .icon-ico_e_presidencial,
+    .icon-ico_e_diputados,
+    .icon-ico_senadores,
+    .icon-ico_e_parlamento,
+    .icon-ico-revocatoria
+    {
+        font-size: 2.9rem;
+    }
+
+    .cont-botones button:first-child {
+        margin-left: auto;
+    }
+
+    .version-movil {
+        display: flex !important;
+    }
+
+    .version-pc {
+        display: none !important;
+    }
+    .flecha-tablet {
+        display: flex !important;
+        width: auto !important;
+    }
+    .flecha-movil {
+        display: none !important;
+    }
+
+    .cant-pc {
+        display: none !important;
+    }
+
+    .cant-movil {
+        width: 100%;
+        margin-top: 10px;
+
+        >div {
+            border-right: 1px solid #CBCBCB;
+        }
+
+        >div:last-child {
+            border-right: none;
+        }
+
+        .votos_totales {
+            color: $azulOnpeClaro;
+
+            b {
+                color: $azulOnpeClaro;
+            }
+        }
+
+        .votos-totales {
+            .titulo_votos_totales {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .titulo_resumen_acta {
+        width: 100%;
+        font-size: 1.1rem;
+        line-height: 1.1rem;
+        color: $azulOnpeClaro;
+    }
+
+    .datos_resumen {
+        width: 100%;
+        font-weight: 600;
+        color: $azulOnpe;
+        font-size: 2.0rem;
+        line-height: 2.0rem;
+    }
+
+    .fecha_resumen {
+        font-size: 1.0rem;
+        line-height: 1.2rem;
+        color: $azulOnpe;
+    }
+
+    .hora_resumen {
+        font-size: 1.0rem;
+        line-height: 1.2rem;
+        color: $azulOnpeClaro;
+    }
+
+    .desplegable_resumen {
+        display: flex;
+        align-items: center;
+    }
+
+    .desplegar_resumen {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .cabecera_desplegable_resumen {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+    }
+
+    .contenido_desplegar {
+        display: none;
+        padding-bottom: 1rem;
+
+        .leyenda.vertical li {
+            display: flex;
+            text-align: left;
+            margin: 5px 0 0 0;
+            padding-right: 0px;
+
+            div {
+                vertical-align: text-top;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        }
+
+        .contedor_leyenda {
+            display: flex;
+            gap: 6px;
+            width: calc(100% - 22px);
+            height: auto;
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            font-size: 1.1rem;
+            justify-content: space-between;
+
+            p {
+                font-size: 1.1rem;
+                line-height: 1rem;
+                color: $azulOnpe;
+                padding-top: 3px;
+                padding-bottom: 3px;
+            }
+
+            h3 {
+                margin-top: 0px;
+                font-weight: 400;
+            }
+        }
+
+        .iconos-resumen {
+            font-size: 2.5rem;
+            color: $azulOnpe;
+            margin-right: 0.5rem;
+        }
+
+        .conte-col-iconos {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .col-iconos {
+            h3 {
+                font-size: 0.9rem;
+                line-height: 0.9rem;
+                color: $azulOnpe;
+                margin: 0 0 2px 0;
+            }
+
+            h4 {
+                font-size: 1.0rem;
+                font-weight: 600;
+                line-height: 1.0rem;
+                color: $azulOnpeClaro;
+                margin: 0;
+            }
+        }
+    }
+
+    .contenido_desplegar.desplegado {
+        display: block;
+    }
+
+    .desplegable-hr {
+        width: 100%;
+        height: 1px;
+        background: #c7c6c6;
+        border: none;
+        margin: 0 0 0 0;
+    }
+
+    .votos-totales {
+        margin-top: 1rem;
+
+        .titulo_votos_totales {
+            width: 100%;
+            max-width: 100% !important;
+        }
+    }
+
+    .secCand {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .onlyPc {
+        display: none;
+    }
+
+    .mobileFilter {
+        display: flex;
+    }
+
+    .interno {
+        display: flex;
+    }
+
+    .pefima {
+        flex-wrap: nowrap;
+    }
+
+    .sec-prinsipal-candidato.actas.no-percent {
+        flex-wrap: nowrap;
+        gap: 20px;
+    }
+
+    .no-percent .w-30 {
+        min-width: 280px;
+    }
+
+    .lineTitle {
+        gap: 10px;
+        .icono_titulo{
+            font-size: 3rem;
+        }
+    }
+
+    .actsBi {
+        gap: 15px;
+    }
+
+    .listado-candidatos {
+        .item-candidato {
+            grid-template-columns: repeat(2, 1fr);
+            padding: 12px 10px;
+
+            .autoridad {
+                .nombre-autoridad {
+                    h2 {
+                        font-size: 1.1rem;
+                        line-height: 1.1rem;
+                    }
+                }
+            }
+
+            .cantidades {
+                .cant {
+                    .dato-voto {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    
+        .cantidades {
+                grid-column: span 2;
+        }
+    }
+
+
+    .grafica-candidatos article:last-child section>article,
+    .grafica-referendum article:last-child section>article {
+        padding: 0px 15px;
+    }
+
+    .content-map-rev {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .movil-pl-20 {
+        padding-left: 20px;
+    }
+
+    .leyenda.blue li {
+        .rayita_suma {
+            width: 50%;
+        }
+
+        span {
+            width: 50%;
+            font-size: 1rem;
+        }
+
+        b,
+        i {
+            width: 25%;
+            font-size: 1.1rem;
+        }
+    }
+
+    .leyenda_revo {
+        font-size: 1.0rem;
+        list-style: 1.2rem;
+    }
+
+    .mt-0-md {
+        margin-top: 0px !important;
+    }
+    
+    .flex-col-input{
+        margin-top: -0.2rem !important;
+    }
+    .conte_select_movil{
+        .mat-mdc-select-value{
+            span{
+                font-size: 0.9rem;
+            }
+        }
+    }
+    .conte-votos{
+        width: 100px !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        color: $azulOnpeClaro;
+        b{
+            margin: 0 !important;
+            color: $azulOnpeClaro;
+        }
+        .titulo_movil{
+            width: 100%;
+        }
+    }
+    .conte-votos2{
+        max-width: 105px;
+        flex-wrap: wrap;
+        justify-content: center;
+        color: $azulOnpeClaro;
+        b{
+            margin: 0 !important;
+            color: $azulOnpeClaro;
+        }
+        .titulo_movil{
+            width: 100%;
+        }
+    }
+    .conte-votos version-movil-xs{
+        display: none;
+    }
+    .voto_detalle_blanconulo{
+        margin-top: 1rem;
+    }
+    .columnas .candidato {
+        width: 100%;
+    }
+    .ocultar-listado{
+        display: none;
+    }
+    .mostrar-listado{
+        display: block;
+    }
+    .lineRedBox{
+        margin-top: 15px;
+    }
+    
+    .opBase{
+        display: flex;
+        flex-direction: row;
+        .conte-votos.conversion-movil-xs.version-movil{
+            display: none !important;       
+        }
+        .candidato.compact{
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+            .cont-info{
+                width: auto;
+                flex: 1;
+                gap: 10px;
+                justify-content: left;
+                p{
+                    font-size: 1.2rem;
+                }
+                .conte-votos.version-movil{
+                    display: none !important;
+                }
+            }
+            .barra-cargando{
+                width: 100%;
+                .cantidadvoto{
+                    text-align: center;
+                    font-size: 1.2rem;
+                    .fs14, .titulo_votos_totales__num2{
+                        display: inline;
+                        font-size: 1.2rem !important;
+                    }
+                }
+                 .votoemitidovalidos{
+                    text-align: center;
+                    font-size: 1.2rem;
+                    .fs14, .titulo_votos_totales__num2, .separador{
+                        display: inline;
+                        font-size: 1rem !important;
+                    }
+                }
+            }
+            .nombre.sinnumero{
+                flex: 1;
+            }
+        }
+    }
+    .custom-tooltip2, .custom-tooltip3{
+        max-width: 145px;
+    }
+    .faqs-content{
+        padding: 0;
+        .quest-list{
+            gap: 5px;
+            img{
+                width: 20px;
+                height: auto;
+            }
+            p{
+                font-size: 1rem;
+            }
+        }
+        .accordeon {
+            font-size: 0.9rem;
+            line-height: 1.1rem;
+            li{
+                font-size: 1.0rem;
+                line-height: 1.2rem !important;
+                margin-bottom: 10px;
+            }
+        }
+        .mat-expansion-panel-header-title {
+            font-size: 1.1rem;
+            margin-right: 5px;
+        }
+    }
+    .conte-cards-reportes .conte-reporte{
+        min-width: min-content;
+    }
+    .fila-reporte .color-porcentaje{
+        padding: 0;
+    }
+    .content-total-votos{
+        font-size: 0.9rem;
+        color: var(--azulOnpe);
+        position: relative;
+        padding: 0;
+        h5{
+            position: relative;
+            padding-left: 15px;
+            .asterisk {
+                color: var(--azulOnpe);
+                position: absolute;
+                left: 0;
+                top: 3px;
+            }
+        }        
+    }
+    .bg-white-movil {
+        background: $blanco;
+    }
+    .filter-participation{
+        justify-content: center;
+    }
+    .actas-filters{
+        width: calc(100% - 20px);
+        .mdc-text-field--outlined{
+            padding: 0;
+            .mat-mdc-select{
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+        &:focus{
+            .mat-mdc-select-placeholder{
+                color: var(--blanco);
+            }
+        }
+    }
+    .espacio-actas-observadas{
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-cargando {
+        margin-bottom: 4px;
+    }
+
+    .cant-gober {
+        flex-direction: column;
+    }
+
+    .content-pdf {
+        padding: 0px 0px !important;
+    }
+
+    .secCand {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+    }
+
+    .timeLine {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .tab-conte-revoc.active {
+
+        .estilo1,
+        .estilo2,
+        .estilo3 {
+            width: 100%;
+            justify-content: center;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+    
+}
+
+@media (max-width: 500px) {
+    .columnas.cuatro {
+        column-count: 1;
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        margin: 0px;
+    }
+
+    .estilo1,
+    .estilo2,
+    .estilo3 {
+        width: 100%;
+    }
+
+    .mesa-observada {
+        i {
+            width: 100%;
+        }
+    }
+
+    .columnas.tres {
+        column-count: 1;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .conte_detalles_acta {
+        .detalles_acta {
+            width: 100%;
+        }
+    }
+
+    .mesa,
+    .mesa-observada {
+        text-align: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .seccion-borde {
+        min-width: 320px;
+    }
+    .cards-reportes{
+        min-width: inherit;
+    }
+
+    .timeLine {
+        gap: 5px;
+    }
+
+    .lineRedBox {
+        
+        .estilo1, .estilo2, .estilo3{
+            padding: 8px 2px;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .lineRedBox:has(> button:nth-child(3)) {
+        flex-wrap: wrap;
+    }
+        .opBase .desplegable > div:first-child p{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 440px) {
+
+    .pb-0-md {
+        padding-bottom: 0 !important;
+    }
+
+    .nombre-logo {
+        font-size: 0.9rem !important;
+    }
+
+    .candidato .titulo_votos_totales .fs14 {
+        font-size: 0.8rem !important;
+    }
+
+    .flex-votos {
+        display: flex !important;
+        gap: 6px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .y-space {
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+
+    .sec-referendun article.desplegable .nombre {
+        width: 100% !important;
+
+        div {
+            .icon-new {
+                width: 22px;
+            }
+        }
+    }
+
+    .l-h {
+        line-height: 0.2rem !important;
+    }
+
+    .revocatoria .info ul li {
+        line-height: 1.3rem;
+    }
+
+    .leyenda li .color {
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .vertical {
+        margin-top: 5px;
+        margin-bottom: 10px !important;
+    }
+
+    .content-flex {
+        display: flex !important;
+        gap: 1px !important;
+    }
+
+    .contedor_leyenda-xs {
+        display: flex !important;
+        gap: 6px !important;
+    }
+
+    .w-full-md {
+        width: 100%;
+    }
+
+    .p-1-md {
+        padding: 1rem;
+    }
+
+    .mt-1-md {
+        margin-top: 1rem;
+    }
+
+    .titulo1 {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+    }
+
+    .forceTop {
+        padding-top: 230px;
+    }
+
+
+    .none-movil {
+        display: none;
+    }
+
+    .barra-principal {
+        height: 300px;
+    }
+
+    .grafica-candidatos article:first-child {
+        height: 311px;
+    }
+
+    .fondo-grafica {
+        height: 300px;
+    }
+
+  
+
+    .numero-lista {
+        text-align: center;
+    }
+
+    .btn_after2 ,.btn_after2_desabilitada{
+        left: 5px;
+        top: 55%;
+    }
+
+    .btn_next2, .btn_next2_desabilitada {
+        right: 5px;
+        top: 55%;
+    }
+
+    .partido-logo {
+        width: 44px;
+        height: 44px;
+        margin: 4px;
+    }
+
+    .partido-logo2 {
+        width: 44px;
+        height: 44px;
+        margin-left: -22px;
+        top: -40px;
+    }
+
+    .cont-flex .mat-mdc-select {
+        width: 100% !important;
+        margin-right: 0px;
+
+        .mat-mdc-select-value {
+            text-align: left;
+        }
+    }
+    .filtro-movil{
+        text-align: center;
+        .mat-mdc-select{
+            width: auto !important;
+        }
+    }
+
+    .candidato>span {
+        margin: 2px;
+    }
+
+    .candidato span b {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .candidato .img {
+        min-width: 42px;
+        width: 42px;
+        min-height: 42px;
+        height: 42px;
+        vertical-align: middle;
+        margin: 0;
+    }
+
+    .candidato .numero {
+        min-width: 42px;
+        width: 42px;
+        min-height: 42px;
+        height: 42px;
+        vertical-align: middle;
+    }
+
+
+    .leyenda.vertical li {
+        width: 100%;
+        text-align: left;
+        margin: 0 20px;
+    }
+
+    .candidato {
+        padding: 4px 0px;
+
+        .cont-info {
+            flex-wrap: wrap;
+            .cant {
+                width: 33%;
+            }
+        }
+    }
+
+    .candidato .nombre {
+        margin-bottom: 0px;
+    }
+
+    .candidato .nombre.connumeroyfoto {
+        width: calc(100% - 150px);
+    }
+
+    .candidato .nombre.nameandphoto {
+        width: calc(100% - 200px) !important;
+    }
+
+    .sincandidato .nombre {
+        width: calc(100% - 150px) !important;
+    }
+
+    .candidato.achurado .nombre {
+        width: 33%;
+    }
+
+    .columnas .candidato h3,
+    .columnas .candidato .nombre {
+        display: block;
+
+    }
+
+    .columnas .candidato .datos {
+        display: block;
+        text-align: center;
+    }
+
+    .columnas .candidato .datos span,
+    .candidato .datos span b {
+        display: block;
+        text-align: center;
+    }
+
+    .desplegable>div:first-child .w-100 {
+        width: 100%;
+        padding: 0px 5px;
+    }
+
+    .desplegable.full .candidato>span {
+        left: -30px;
+    }
+
+    .columnas.cuatro {
+        column-count: 2;
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        width: 100% !important;
+        column-gap: 10px;
+        -moz-column-gap: 10px;
+        -webkit-column-gap: 10px;
+    }
+
+    .lista-mapa-calor li {
+        margin: 0 0px 4px 20px;
+    }
+
+    .desplegable>div:first-child p {
+        text-align: center;
+    }
+
+    .candidato h3 {
+        display: block;
+        min-height: auto;
+        text-align: center;
+        margin-top: 4px;
+    }
+
+    .candidato p {
+        display: block;
+        min-height: auto;
+        text-align: center;
+    }
+
+    .cards {
+        width: 100%;
+
+        .favorito {
+            width: 18px;
+            height: 25px;
+            min-width: 18px;
+        }
+    }
+
+    .desplegable.full {
+
+        width: 100%;
+        margin-left: 0px;
+        .candidato{
+            min-height: 60px;
+        }
+    }
+
+    .desplegable>div:first-child {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .desplegable .desplegar_btn {
+        border-right: 7px solid transparent;
+        border-top: 7px solid #2a71b9;
+        border-left: 7px solid transparent;
+        border-bottom: 0px solid transparent;
+        min-width: 10px;
+        margin-right: 5px;
+    }
+
+    .desplegable.detalle .desplegar_btn {
+        border-right: 7px solid transparent;
+        border-top: 0px solid transparent;
+        border-left: 7px solid transparent;
+        border-bottom: 7px solid #2a71b9;
+    }
+
+    .img-dni {
+        max-width: 100%;
+    }
+
+    header {
+        .logo-principal {
+
+            max-width: 100%;
+        }
+    }
+
+    .conte-accesibilidad {
+        padding: 5px 0px;
+    }
+
+    .conte-logo {
+        width: 70%;
+    }
+
+    .columnas {
+        width: calc(100% - 20px);
+
+        .candidato .datos span {
+            line-height: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .candidato {
+            width: 100%;
+            margin-left: 0px;
+            margin-right: 0;
+            padding: 10px;
+
+            h3 {
+                margin-bottom: 0px;
+            }
+
+            .favorito {
+                width: 18px;
+                height: 25px;
+                min-width: 18px;
+                right: 10px;
+            }
+        }
+    }
+
+    .columnas.detallados {
+        width: 100%;
+        column-count: 1;
+    }
+
+    .columnas.dos {
+        margin: 0 10px;
+
+        .desplegable.full {
+            width: calc(100% - 12px);
+            margin-left: 12px;
+        }
+    }
+
+    .barra-cargando {
+        margin-top: 5px;
+        height: 9px;
+        width: 100%;
+        background: #ECECEC;
+        padding: 0;
+        text-align: left;
+        position: relative;
+    }
+
+    .cont-info {
+        .barra-cargando {
+            div {
+                display: block !important;
+            }
+        }
+    }
+
+    .barra-cargando.alterBlue {
+        div {
+            display: block !important;
+        }
+    }
+
+    .sombra-resumen-acta .desplegado .barra-cargando div {
+        display: block !important;
+    }
+
+    .titulo_movil {
+        display: block;
+        margin-top: 0rem;
+    }
+
+    .standarPch img {
+        max-width: 50%;
+    }
+
+    .titulo_resumen_acta {
+        font-size: 1rem;
+    }
+
+    .candidato .titulo_votos_totales {
+        color: #2A71B9 !important;
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+        span {
+            font-size: 1.2rem;
+            width: 100%;
+            color: #2A71B9;
+            margin-top: 1rem;
+        }
+
+        .titulo_votos_totales__num {
+            font-weight: 600;
+            font-size: 2rem;
+            display: block;
+            margin: 4px 0px 0px 0px;
+        }
+    }
+
+    .votos-totales p {
+
+        bottom: 9px;
+        right: 0;
+        font-family: 'poppins', sans-serif;
+        width: auto !important;
+    }
+
+    .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+        max-width: 200px;
+    }
+
+    .mat-mdc-tab .mdc-tab__text-label {
+
+        max-width: 80%;
+        white-space: normal;
+    }
+
+    .seccion-borde {
+        max-width: calc(100% - 40px);
+        margin: 8px 20px;
+    }
+
+    footer>div {
+        width: 100%;
+    }
+
+    .infoprincipal-detalle {
+        justify-content: center;
+    }
+
+    .ubigeo-principal>div:first-child {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .ubigeo-principal.t-l {
+        select {
+            width: 100%;
+        }
+    }
+
+    .formula_votos {
+        .w-50 {
+            width: 100%;
+        }
+    }
+
+    .formula_votos>div:first-child {
+        border: none;
+        margin-bottom: 5px;
+    }
+
+    .leyenda_eleccion {
+        .w-33 {
+            width: 100%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+
+    .tabs-group{
+        .tabs{
+            .tabs_scroll .tablinks .label {
+                font-size: 1rem !important;
+                font-weight: 500 !important;
+            }
+            .tablinks {
+                width: calc(50% - 20px);
+                max-width: 50%;
+                padding: 5px !important;
+                flex: 1 0 140px !important;
+                }
+            .tab-flechas {
+                padding: 0px 0px;
+                min-width: 20px;
+            }
+        }
+    }
+    .candidato.achurado .cant,
+    .candidato.achurado .barra-cargando {
+        height: 58px;
+        width: calc(33% - 24px);
+    }
+
+    .candidato .cont-info .cant::before {
+        display: none;
+    }
+
+    .candidato-x-organizacion {
+        display: flex;
+        flex-wrap: wrap;
+        .li-can {
+            width: 100%;
+        }
+    }
+
+    .conte_barras_desplegar {
+        margin-bottom: 10px;
+    }
+
+    .conte_buscador {
+        display: block;
+
+        .select_buscador,
+        .input_buscador,
+        .input_autocomplete {
+            width: 100%;
+            margin-bottom: 15px !important;
+        }
+    }
+
+    .menu nav li{
+        a{
+            span.icon-ico_resumen_general,
+            span.icon-ico_e_presidencial,
+            span.icon-ico_e_diputados,
+            span.icon-ico_senadores,
+            span.icon-ico_e_parlamento,
+            span.icon-ico-participacion2,
+            span.icon-ico_menu_actas,
+            span.icon-ico-reportes,
+            span.icon-ico-hoja-informativa,
+            span.icon-ico-revocatoria {
+                font-size: 2rem;
+            }
+        }
+        a.active{
+            .conte-ico-movil{
+                span.icon-ico_resumen_general,
+                span.icon-ico_e_presidencial,
+                span.icon-ico_e_diputados,
+                span.icon-ico_senadores,
+                span.icon-ico_e_parlamento,
+                span.icon-ico-participacion2,
+                span.icon-ico_menu_actas,
+                span.icon-ico-reportes,
+                span.icon-ico-hoja-informativa,
+                span.icon-ico-revocatoria{
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+
+  /*   .icon-ico-senado_27 {
+        font-size: 2rem;
+    }
+
+    .icon-ico-senado_33 {
+        font-size: 2rem;
+    } */
+
+    nav li a span.nombre {
+        font-size: 1.2rem;
+        text-align: left;
+    }
+
+    .showmenu {
+        background: #FFFFFF;
+    }
+
+    .btnAccesibilidad {
+        width: 60px;
+    }
+
+    .infoBoxes {
+        padding: 20px 10px 30px;
+        grid-template-columns: repeat(1, 1fr);
+
+        div {
+            margin-bottom: 4px;
+        }
+    }
+
+    body {
+        padding-top: 0px !important;
+    }
+
+    .conte-mesas {
+        padding: 0 20px;
+    }
+
+    .customModalContent {
+        display: none !important;
+    }
+
+    .listModal {
+        width: 100% !important;
+    }
+
+    .sec-prinsipal-candidato.actas.no-percent {
+        flex-wrap: wrap;
+        gap: 0px;
+    }
+
+    .no-percent .estilo1,
+    .no-percent .estilo2,
+    .no-percent .estilo3 {
+        max-width: 640px;
+    }
+
+    .actsBi {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .actsBi .actualizado {
+        justify-content: start;
+    }
+
+    .listado-candidatos {
+        .item-candidato {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 5px;
+            padding: 12px 10px;
+            .barra-cargando h2{
+                font-size: 1.5rem !important;
+                line-height: 1.5rem;
+            }
+            .autoridad {
+                margin-bottom: 10px;
+                .foto{
+                    .img{
+                        width: 35px;
+                        min-width: 35px;
+                        height: 35px;
+                        min-height: 35px;
+                    }
+                }
+            }
+        }
+
+        .cantidades {
+            grid-column: span 1;
+            padding-top: 10px;
+        }
+    }
+
+    .data-postul-referendum {
+        .nombre-logo {
+            display: flex;
+        }
+    }
+
+    .content-map-rev {
+        grid-template-columns: auto 80px auto;
+        gap: 5px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+
+        .si-rev,
+        .no-rev {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            span {
+                font-size: 1.1rem;
+            }
+
+            h3 {
+                font-size: 3rem;
+            }
+        }
+
+        .map-container2 {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    .btnMaster {
+        grid-template-columns: repeat(2, minmax(155px, 1fr));
+        gap: 10px;
+    }
+
+    .cant-gober div {
+        gap: 10px;
+    }
+    .conte_detalles_acta {
+        grid-template-columns: repeat(1, 1fr);
+        
+    }
+    .flecha-tablet {
+        display: none !important;
+    }
+    .flecha-movil {
+        display: flex !important;
+        width: auto !important;
+    }
+    
+    .filter-ubigeo-container {
+        flex-direction: column;
+        padding-bottom: 1rem;
+
+        .filter-ubigeo--local-voting {
+            width: calc(100% - 40px);
+        }
+    }
+    
+    .opBase .desplegable > div:first-child p {
+        max-width: 100%;
+        .fs14{
+            margin-top: 5px;
+        }
+        .titulo_votos_totales__num2{
+            margin-top: 5px;
+        }
+    }
+
+     .conte-votos2{
+        max-width: 105px;
+    }
+    .reports__brandText{
+        flex-wrap: wrap;
+    }
+    .reports__separador{
+        display: none;
+    }
+    .reports{
+        padding: 0 0 20px 0;
+    }
+    .reports__footer{
+        gap: 0;
+    }
+    
+}
+
+@media (max-width: 420px) {
+    .version-movil-xs{
+        display: flex !important;
+    }
+    .conversion-movil-xs.version-movil{
+        display: none !important;
+    }
+    
+    .actas-seccion {
+        padding: 10px;
+
+        .inicial {
+            padding: 0px !important;
+
+            .w-100 {
+                padding: 0;
+            }
+        }
+    }
+
+    .titulo1 .icono_titulo {
+        font-size: 2.5rem;
+    }
+
+    .titulo2 {
+        font-size: 1.2rem;
+    }
+
+    .inicial .w-10,
+    .inicial .w-90,
+    .inicial .w-100,
+    .inicial .w-33,
+    .inicial .w-50,
+    .inicial .w-75,
+    .inicial .w-20,
+    .inicial .w-30,
+    .inicial .w-70,
+    .inicial .w-80,
+    .inicial .w-66,
+    .inicial .w-25,
+    .inicial .w-40,
+    .inicial .w-60 {
+        padding: 0;
+    }
+
+    .actas-seccion .inicial .infoprincipal {
+        padding-top: 10px;
+    }
+
+    .sec-prinsipal-candidato.general .infoprincipal-detalle span {
+        font-size: 1rem;
+        margin: 5px 0px 0px 0px;
+    }
+
+    .sec-prinsipal-candidato.general .infoprincipal-detalle span b {
+        font-size: 2.5rem;
+    }
+
+    .sec-prinsipal-candidato.general .infoprincipal-detalle span strong {
+        font-size: 1.2rem;
+    }
+
+    .actualizado {
+        font-size: 1rem;
+    }
+
+    .leyenda.vertical li {
+        font-size: 1rem;
+        width: auto !important;
+    }
+
+    .leyenda li div {
+        margin-left: 0px;
+    }
+
+    .personaje-anuncio>img {
+        height: 45vh;
+        width: auto;
+    }
+
+    .content-map-rev {
+        grid-template-columns: auto 80px auto;
+        gap: 5px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+
+        .si-rev,
+        .no-rev {
+            display: flex;
+
+            span {
+                font-size: 1rem;
+            }
+
+            h3 {
+                font-size: 2.3rem;
+            }
+        }
+
+        .map-container2 {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+
+    .mesa,
+    .mesa-observada {
+        width: 100%;
+        margin: 0;
+    }
+
+    .candidato h3 {
+        font-size: 1rem;
+    }
+
+    .candidato .img,
+    .candidato .numero {
+        width: 35px;
+        min-width: 35px;
+        height: 35px;
+        min-height: 35px;
+        margin: 0;
+    }
+
+
+
+    .sincandidato .nombre {
+        width: calc(100% - 145px) !important;
+    }
+
+    .candidato .nombre.connumeroyfoto {
+        width: calc(100% - 145px);
+    }
+
+    .candidato .nombre.nameandphoto {
+        width: calc(100% - 130px) !important;
+    }
+
+    .candidato .titulo_votos_totales {
+        max-width: 33%;
+    }
+
+    .candidato .titulo_votos_totales span {
+        margin-top: 0rem;
+    }
+
+    .desplegable>div:first-child p {
+        font-size: 1.0rem;
+    }
+
+    .content-total-votos {
+        h5 {
+            font-size: 1rem;
+        }
+    }
+
+    .formula_votos div{
+        font-size: 1rem;
+    }
+
+    .leyenda_eleccion {
+        font-size: 1.5em;
+    }
+
+    .titulo_movil {
+        font-size: 0.8rem;
+        line-height: 0.9rem;
+    }
+
+    footer {
+        h4 {
+            font-size: 1rem;
+        }
+
+        ul {
+            margin-bottom: 5px;
+
+            li {
+                font-size: 0.9rem;
+                margin: 0;
+            }
+        }
+    }
+
+    .btn_next-2,
+    .btn_after-2 {
+        left: 50%;
+    }
+
+    .ubigeo-principal.second {
+        padding: 10px 10px;
+    }
+
+    .data-postul {
+        min-width: 65px;
+    }
+
+    .seccion-borde {
+        min-width: 100%;
+        margin: 8px 0px;
+    }
+
+    .detalle-gob .content-data-gob {
+        .foto-autoridad {
+            min-width: 90px;
+            width: 90px;
+            height: 90px;
+            min-height: 90px;
+        }
+    }
+    .opBase{
+        .version-movil-xs {
+            display: none !important;
+        }
+        .conte-votos.conversion-movil-xs.version-movil{
+            display: none !important;       
+        }
+    }
+    .personaje-anuncio{
+        width: 100%;
+        max-width: 100%;
+    }
+    .personaje-anuncio > p {
+        padding: 15px 10px;
+        line-height: 1.4rem;
+    }
+    .candidato .nombre {
+        width: calc(100% - 95px);
+    }
+    .conte-votos{
+        max-width: 50px;
+    }
+    .conte-votos2{
+        max-width: 50px;
+    }
+    .cabecera-reportes{
+        flex-wrap: wrap;
+    }
+    .conte-reporte-leyenda{
+        flex-wrap: wrap;
+        margin-left: 0;
+        width: 100%;
+    }
+    .conte-cards-reportes .conte-reporte{
+        width: 100%;
+    }
+    .votos-text{
+        font-size: 0.8rem !important;
+        strong{
+            font-size: 1.2rem !important;
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .revoBtn .box .title-movil {
+        justify-content: start !important;
+    }
+    .opBase{
+        .conte-votos.version-movil-xs{
+            display: none !important;       
+        }
+    }
+    .custom-tooltip2, .custom-tooltip3{
+        max-width: 120px;
+    }
+}
+
+.opBase .candidato.compact .img {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    flex: 0 0 48px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    overflow: visible !important;
+}
+
+.opBase .candidato.compact .img img {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: contain !important;
+    object-position: center !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+}

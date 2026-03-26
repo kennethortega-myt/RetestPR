@@ -1,0 +1,32 @@
+<section class="cont-flex cuadro-gris-1">
+  <div class="w-100">
+    <h2 class="titulo2">{{ lineaTiempoText | translate }}</h2>
+  </div>
+  <div class="cont-flex">
+    <div class="w-100 historico_observada">
+      <div class="container mt-2">
+        <ul class="progressbar">
+          <li
+            *ngFor="let linea of lineaTiempo"
+            [ngClass]="
+              linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.PARA_ENVIO_JEE ||
+              linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.OBSERVADA ||
+              linea.codigoEstadoActa == ACTA_LINEAT_CODIGO_ESTADO.RESOLUCION_DEL_JEE
+                ? 'active rojo'
+                : 'active'
+            "
+          >
+            <div class="ico-steps">
+              <img alt="person" [src]="obtenerImagen(linea.codigoEstadoActa)" />
+            </div>
+            <h3>{{ linea.descripcionEstadoActa }}</h3>
+            <h3 class="fecha-steps">
+              {{ linea.fechaRegistro | date : "dd/MM/yyyy" }}
+              {{ linea.fechaRegistro | hourFormat }}
+            </h3>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

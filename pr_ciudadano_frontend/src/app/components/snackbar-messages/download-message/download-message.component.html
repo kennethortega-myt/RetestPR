@@ -1,0 +1,7 @@
+<span class="download-message-container">
+  <ng-container *ngIf="data.mensaje == ''"> {{ ReporteKey | translate }} </ng-container>
+
+  <ng-container *ngIf="data.mensaje != ''">
+    <span>{{ data.mensaje }}</span>
+  </ng-container>
+</span>

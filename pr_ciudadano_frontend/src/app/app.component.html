@@ -1,0 +1,15 @@
+<onpe-loading></onpe-loading>
+<button
+  style="position: fixed; bottom: 10px; z-index: 200; right: 0; border: 0; background: none"
+  class="btnAccesibilidad version-movil"
+  (click)="openBottomSheet()"
+>
+  <img alt="ico-accesible" src="assets/img/icons/ico-accesible.svg" class="ico-accesible" />
+</button>
+<div #containerCursor [class.big-cursor]="grandCursor" appGlobalKeyboardShortcuts>
+  <div [class.resalta]="readingMaskActive" #cursorContainer></div>
+  <router-outlet></router-outlet>
+</div>
+<ng-template #disclaimerTpl>
+  <onpe-disclaimer-browser (close)="closeDisclaimer()" />
+</ng-template>

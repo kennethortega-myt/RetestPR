@@ -1,0 +1,10 @@
+<div class="flexInput">
+    <label class="label-input" for="">{{ label }}</label>
+    <mat-form-field appearance="outline" class="mfl">
+      <mat-select [placeholder]="placeholder">
+        @for (demo of demos; track demo) {
+          <mat-option [value]="demo.value">{{demo.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+</div>

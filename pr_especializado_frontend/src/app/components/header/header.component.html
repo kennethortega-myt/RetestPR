@@ -1,0 +1,96 @@
+<div *ngIf="!isBoletines" id="headInternas" class="header">
+  <div class="logo">
+    <mat-icon
+      tabindex="0"    
+      class="icon-menu"
+      svgIcon="sandwich-icon"
+      aria-hidden="false"
+      aria-label="Menú"
+      (click)="openDrawer()" (keydown.enter)="openDrawer()"
+    ></mat-icon>
+
+    <!-- logo centrado en mobile -->
+    <img src="assets/logo/logo.svg" alt="logo ONPE" class="logo-principal"/>
+    
+    <h1 class="d-none-xs">
+      {{ 'titulo' | translate }}
+    </h1>
+  </div>
+  
+  <div class="access d-md-none d-md-block">
+    <button class="btnAccesibilidad hidden-acce" mat-raised-button (click)="openBottomSheet()">
+      <img alt="accesibilidad" src="assets/img/ico-accesible.svg" class="ico-accesible" />
+    </button>
+  </div>
+  
+  <!-- sección usuario y cerrar sesión -->
+  <div class="content-sesion">
+    <div class="sesion">
+      <img  [matMenuTriggerFor]="menu" src="assets/header/user.svg" alt="icon usuario" />
+      <div class="user-info">
+        <h2>{{ labelUserLogin }}</h2>
+        <button (click)="cerrarSession()" (keydown.enter)="cerrarSession()">{{ 'CerrarSesion' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+
+<mat-menu #menu="matMenu" class="mat-menu__movil">
+    <div class="user-info2">
+        <h2>{{ labelUserLogin }}</h2>
+        <button (click)="cerrarSession()" (keydown.enter)="cerrarSession()">{{ 'CerrarSesion' | translate }}</button>
+      </div>
+</mat-menu>
+
+</div>
+
+
+<div *ngIf="isBoletines" id="headBoletines" class="header">
+  <div class="logo">
+    <img src="assets/logo/logo.svg" alt="logo ONPE" />
+  </div>
+  <div class="pseudoSelectTitle">
+    <mat-select
+      class="mat-select-resul"
+      customSelect
+      [(ngModel)]="selectedIpsum"
+    >
+      <mat-select-trigger>
+        <div class="sltdIpsumTitle">
+          <h1 class="selected-view">{{ selectedIpsum.viewValue }}</h1>
+          <span class="selected-time">{{ selectedIpsum.timeValue }}</span>
+        </div>
+      </mat-select-trigger>
+      <mat-option
+        *ngFor="let ipsum of ipsums"
+        [value]="ipsum"
+        class="filterTitle"
+      >
+        <span class="view">{{ ipsum.viewValue }}</span>
+        <dfn class="time">{{ ipsum.timeValue }}</dfn>
+      </mat-option>
+    </mat-select>
+  </div>
+  <div class="menuBoletin">
+    <nav>
+      <ul>
+        <li>
+          <a
+            class="link"
+            [routerLink]="'/' + routePaths.boletines"
+            routerLinkActive="active"
+          >
+            <span class="icon-icon_candidatos"></span> Candidatos
+          </a>
+        </li>
+        <li>
+          <a class="link" routerLink="/boletines/detalle">
+            <span class="icon-icon_ubicaciones"></span> Ubicaciones
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="barra-azul"></div>
